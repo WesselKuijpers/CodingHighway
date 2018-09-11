@@ -21,11 +21,13 @@ class CreateUserOrganisationsTable extends Migration
 
             $table->foreign('user_id')
                   ->references('id')->on('users')
-                  ->onDelete('restrict');
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
 
             $table->foreign('organisation_id')
                   ->references('id')->on('organisations')
-                  ->onDelete('restrict');
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

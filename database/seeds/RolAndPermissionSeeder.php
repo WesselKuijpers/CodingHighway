@@ -12,16 +12,20 @@ class RolAndPermissionSeeder extends Seeder
    */
   public function run()
   {
-    Role::create([
-      'name' => 'Super Administratior',
-      'slug' => 'sa',
-      'level' => 2
-    ]);
+    if (Role::where('slug', 'sa')->count() != 1):
+      Role::create([
+        'name' => 'Super Administratior',
+        'slug' => 'sa',
+        'level' => 2
+      ]);
+    endif;
 
-    Role::create([
-      'name' => 'Administrator',
-      'slug' => 'admin',
-      'level' => 1
-    ]);
+    if (Role::where('slug', 'admin')->count() != 1):
+      Role::create([
+        'name' => 'Administrator',
+        'slug' => 'admin',
+        'level' => 1
+      ]);
+    endif;
   }
 }

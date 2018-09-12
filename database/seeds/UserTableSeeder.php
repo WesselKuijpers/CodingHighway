@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\general\User;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -17,7 +18,7 @@ class UserTableSeeder extends Seeder
     $email = $this->command->ask('Email');
     $password = $this->command->ask('Password');
 
-    $user = new \App\User;
+    $user = new User;
     $user->firstname = $firstname;
     $user->insertion = $insertion;
     $user->lastname = $lastname;
@@ -25,5 +26,9 @@ class UserTableSeeder extends Seeder
     $user->email_verified_at = \Carbon\Carbon::now();
     $user->password = bcrypt($password);
     $user->save();
+
+    $user->attachRole(1);
+    $user->attachRole(2);
+
   }
 }

@@ -20,6 +20,7 @@ class Answer extends Model
     {
         $this->hasMany('App\Reply');
     }
+
     protected $fillable = [
         'content', 'question_id'
     ];

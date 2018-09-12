@@ -2,6 +2,10 @@
 
 namespace App\Models\general;
 
+use App\Models\forum\Answer;
+use App\Models\forum\Question;
+use App\Models\forum\Reply;
+use App\Models\forum\Vote;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -43,5 +47,35 @@ class User extends Authenticatable implements MustVerifyEmailContract
     $total .= " ".$this->lastname;
 
     return $total;
+  }
+
+  public function license()
+  {
+    return $this->belongsTo(License::class);
+  }
+
+  public function organisation()
+  {
+    return $this->hasManyThrough(Organisation::class, UserOrganisation::class);
+  }
+
+  public function questions()
+  {
+    return $this->hasMany(Question::class);
+  }
+
+  public function answers()
+  {
+    return $this->hasMany(Answer::class);
+  }
+
+  public function votes()
+  {
+    return $this->hasMany(Vote::class);
+  }
+
+  public function replies()
+  {
+    return $this->hasMany(Reply::class);
   }
 }

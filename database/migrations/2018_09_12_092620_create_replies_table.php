@@ -6,34 +6,40 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateRepliesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('replies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('content');
-            $table->unsignedInteger('answer_id');
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('replies', function (Blueprint $table) {
+      $table->increments('id');
+      $table->string('content');
+      $table->unsignedInteger('answer_id');
+      $table->unsignedInteger('user_id');
 
-            $table->foreign('answer_id')
-                ->references('id')->on('answers')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+      $table->foreign('answer_id')
+        ->references('id')->on('answers')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
 
-            $table->timestamps();
-        });
-    }
+      $table->foreign('user_id')
+        ->references('id')->on('users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('replies');
-    }
+      $table->timestamps();
+    });
+  }
+
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('replies');
+  }
 }

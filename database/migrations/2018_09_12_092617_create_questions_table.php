@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('exercise_id');
+            $table->unsignedInteger('exercise_id')->nullable();
             $table->string('content');
 
             $table->foreign('user_id')

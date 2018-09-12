@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use jeremykenedy\LaravelRoles\Models\Role;
 
-class RolAndPermissionSeeder extends Seeder
+class RoleAndPermissionSeeder extends Seeder
 {
   /**
    * Seed the application's database.

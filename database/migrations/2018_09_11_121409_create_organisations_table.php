@@ -21,7 +21,7 @@ class CreateOrganisationsTable extends Migration
             $table->string('zipcode');
             $table->string('city');
             $table->string('email');
-            $table->string('paper_invoice');
+            $table->boolean('paper_invoice');
             $table->string('color');
             //TODO add media id
             $table->timestamps();

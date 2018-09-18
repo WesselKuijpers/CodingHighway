@@ -6,12 +6,16 @@ use App\Models\forum\Answer;
 use App\Models\forum\Question;
 use App\Models\forum\Reply;
 use App\Models\forum\Vote;
+use App\Models\general\License;
+use App\Models\general\Organisation;
+use App\Models\general\UserOrganisation;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -51,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
   public function license()
   {
-    return $this->belongsTo(License::class);
+    return $this->hasMany(License::class);
   }
 
   public function organisation()

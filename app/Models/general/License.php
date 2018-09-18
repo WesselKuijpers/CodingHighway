@@ -3,6 +3,7 @@
 namespace App\Models\general;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class License extends Model
 {

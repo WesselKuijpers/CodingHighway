@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\general;
+namespace App;
 
 use App\Models\forum\Answer;
 use App\Models\forum\Question;

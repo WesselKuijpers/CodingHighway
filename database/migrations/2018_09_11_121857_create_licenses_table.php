@@ -15,7 +15,7 @@ class CreateLicensesTable extends Migration
     {
         Schema::create('licenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('key');
+            $table->string('key')->unique();
             $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('organisation_id')->nullable();
             $table->dateTime('expires_at');

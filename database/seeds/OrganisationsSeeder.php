@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\general\Organisation;
 
 class OrganisationsSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class OrganisationsSeeder extends Seeder
      */
     public function run()
     {
-        //
+      factory(Organisation::class, 10)->create();
     }
 }

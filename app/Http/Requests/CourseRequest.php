@@ -28,11 +28,31 @@ class CourseRequest extends FormRequest
    */
   public function rules()
   {
-    return [
-      'name' => 'required|string|max:255',
-      'description' => 'required|string',
-      'color' => 'required|string',
-      'media_id' => 'nullable|numeric'
-    ];
+    $rules = [];
+    switch($this->getMethod()):
+      case "POST":
+        $rules = [
+          'name' => 'required|string|max:255',
+          'description' => 'required|string',
+          'color' => 'required|string',
+          'media_id' => 'nullable|numeric'
+        ];
+        break;
+      case "PUT":
+        $rules = [
+          'id' => 'required|numeric',
+          'name' => 'required|string|max:255',
+          'description' => 'required|string',
+          'color' => 'required|string',
+          'media_id' => 'nullable|numeric'
+        ];
+        break;
+      case "DELETE":
+        $rules = [
+          'id' => 'required|numeric'
+        ];
+        break;
+    endswitch;
+    return $rules;
   }
 }

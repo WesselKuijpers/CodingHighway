@@ -17,5 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['middleware'=>'auth:api'], function(){
-  Route::post('/course/create', 'api\CourseController@create');
+  Route::post('/course/', 'api\CourseController@create');
+  Route::put('/course/', 'api\CourseController@edit');
+  Route::delete('/course/', 'api\CourseController@delete');
 });

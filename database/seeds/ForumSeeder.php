@@ -15,7 +15,7 @@ class ForumSeeder extends Seeder
         $question->title = str_random(rand(12, 30));
         $question->content = str_random(rand(30, 150));
         $question->exercise_id = null;
-        $question->user_id = \App\Models\general\User::all()->last()->id;
+        $question->user_id = \App\User::all()->last()->id;
         $question->solved = false;
         $question->save();
 
@@ -23,7 +23,7 @@ class ForumSeeder extends Seeder
         $question->title = str_random(rand(12, 30));
         $question->content = str_random(rand(30, 150));
         $question->exercise_id = null;
-        $question->user_id = \App\Models\general\User::all()->last()->id;
+        $question->user_id = \App\User::all()->last()->id;
         $question->solved = false;
         $question->save();
 
@@ -31,7 +31,7 @@ class ForumSeeder extends Seeder
         $question->title = str_random(rand(12, 30));
         $question->content = str_random(rand(30, 150));
         $question->exercise_id = null;
-        $question->user_id = \App\Models\general\User::all()->last()->id;
+        $question->user_id = \App\User::all()->last()->id;
         $question->solved = false;
         $question->save();
 
@@ -39,34 +39,34 @@ class ForumSeeder extends Seeder
         $question->title = str_random(rand(12, 30));
         $question->content = str_random(rand(30, 150));
         $question->exercise_id = null;
-        $question->user_id = \App\Models\general\User::all()->last()->id;
+        $question->user_id = \App\User::all()->last()->id;
         $question->solved = false;
         $question->save();
 
         $answer = new \App\Models\forum\Answer();
         $answer->content = str_random(rand(30, 150));
-        $answer->user_id = \App\Models\general\User::all()->last()->id;
+        $answer->user_id = \App\User::all()->last()->id;
         $answer->question_id = \App\Models\forum\Question::all()->last()->id;
         $answer->is_best = false;
         $answer->save();
 
         $answer = new \App\Models\forum\Answer();
         $answer->content = str_random(rand(30, 150));
-        $answer->user_id = \App\Models\general\User::all()->last()->id;
+        $answer->user_id = \App\User::all()->last()->id;
         $answer->question_id = \App\Models\forum\Question::all()->last()->id;
         $answer->is_best = false;
         $answer->save();
 
         $answer = new \App\Models\forum\Answer();
         $answer->content = str_random(rand(30, 150));
-        $answer->user_id = \App\Models\general\User::all()->last()->id;
+        $answer->user_id = \App\User::all()->last()->id;
         $answer->question_id = \App\Models\forum\Question::all()->last()->id;
         $answer->is_best = false;
         $answer->save();
 
         $answer = new \App\Models\forum\Answer();
         $answer->content = str_random(rand(30, 150));
-        $answer->user_id = \App\Models\general\User::all()->last()->id;
+        $answer->user_id = \App\User::all()->last()->id;
         $answer->question_id = \App\Models\forum\Question::all()->last()->id;
         $answer->is_best = false;
         $answer->save();
@@ -89,25 +89,25 @@ class ForumSeeder extends Seeder
 
         $reply = new \App\Models\forum\Reply();
         $reply->content = str_random(rand(30, 150));
-        $reply->user_id = \App\Models\general\User::all()->last()->id;
+        $reply->user_id = \App\User::all()->last()->id;
         $reply->answer_id = \App\Models\forum\Question::all()->last()->id;
         $reply->save();
 
         $reply = new \App\Models\forum\Reply();
         $reply->content = str_random(rand(30, 150));
-        $reply->user_id = \App\Models\general\User::all()->last()->id;
+        $reply->user_id = \App\User::all()->last()->id;
         $reply->answer_id = \App\Models\forum\Question::all()->last()->id;
         $reply->save();
 
         $reply = new \App\Models\forum\Reply();
         $reply->content = str_random(rand(30, 150));
-        $reply->user_id = \App\Models\general\User::all()->last()->id;
+        $reply->user_id = \App\User::all()->last()->id;
         $reply->answer_id = \App\Models\forum\Question::all()->last()->id;
         $reply->save();
 
         $reply = new \App\Models\forum\Reply();
         $reply->content = str_random(rand(30, 150));
-        $reply->user_id = \App\Models\general\User::all()->last()->id;
+        $reply->user_id = \App\User::all()->last()->id;
         $reply->answer_id = \App\Models\forum\Question::all()->last()->id;
         $reply->save();
 
@@ -134,28 +134,28 @@ class ForumSeeder extends Seeder
         $vote = new \App\Models\forum\Vote();
         $vote->increment = true;
         $vote->question_id = \App\Models\forum\Question::all()->last()->id;
-        $vote->user_id = \App\Models\general\User::all()->last()->id;
+        $vote->user_id = \App\User::all()->last()->id;
         $vote->answer_id = \App\Models\forum\Question::all()->last()->id;
         $vote->save();
 
         $vote = new \App\Models\forum\Vote();
         $vote->increment = true;
         $vote->question_id = \App\Models\forum\Question::all()->last()->id;
-        $vote->user_id = \App\Models\general\User::all()->last()->id;
+        $vote->user_id = \App\User::all()->last()->id;
         $vote->answer_id = \App\Models\forum\Question::all()->last()->id;
         $vote->save();
 
         $vote = new \App\Models\forum\Vote();
         $vote->increment = true;
         $vote->question_id = \App\Models\forum\Question::all()->last()->id;
-        $vote->user_id = \App\Models\general\User::all()->last()->id;
+        $vote->user_id = \App\User::all()->last()->id;
         $vote->answer_id = \App\Models\forum\Question::all()->last()->id;
         $vote->save();
 
         $vote = new \App\Models\forum\Vote();
         $vote->increment = true;
         $vote->question_id = \App\Models\forum\Question::all()->last()->id;
-        $vote->user_id = \App\Models\general\User::all()->last()->id;
+        $vote->user_id = \App\User::all()->last()->id;
         $vote->answer_id = \App\Models\forum\Question::all()->last()->id;
         $vote->save();
     }

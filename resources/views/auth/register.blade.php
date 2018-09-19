@@ -16,7 +16,7 @@
               @include('shared.form_required', ['label' => 'Achternaam', 'name'=> 'lastname', 'type'=> 'text'])
               @include('shared.form_required', ['label' => 'Email', 'name'=> 'email', 'type'=> 'email'])
               @include('shared.form_required', ['label' => 'Wachtwoord', 'name'=> 'password', 'type'=> 'password'])
-              @include('shared.form_required', ['label' => 'Wachtwoord bevestigen', 'name'=> 'password-confirm', 'type'=> 'password'])
+              @include('shared.form_required', ['label' => 'Wachtwoord bevestigen', 'name'=> 'password_confirmation', 'type'=> 'password'])
 
               <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">

@@ -34,7 +34,7 @@ class CourseRequest extends FormRequest
         $rules = [
           'name' => 'required|string|max:255',
           'description' => 'required|string',
-          'color' => 'required|string',
+          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
           'media_id' => 'nullable|numeric'
         ];
         break;
@@ -43,7 +43,7 @@ class CourseRequest extends FormRequest
           'id' => 'required|numeric',
           'name' => 'required|string|max:255',
           'description' => 'required|string',
-          'color' => 'required|string',
+          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
           'media_id' => 'nullable|numeric'
         ];
         break;

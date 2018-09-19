@@ -17,7 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['middleware'=>'auth:api'], function(){
-  Route::post('/course/', 'api\CourseController@create');
-  Route::put('/course/', 'api\CourseController@edit');
-  Route::delete('/course/', 'api\CourseController@delete');
+  Route::group(['prefix' => 'course'], function (){
+    Route::post('/', 'api\CourseController@create')->name('ApiCourseCreate');
+    Route::put('/', 'api\CourseController@edit')->name('ApiCourseEdit');
+    Route::delete('/', 'api\CourseController@delete')->name('ApiCourseDelete');
+  });
+  
+  Route::group(['prefix' => 'lesson'], function (){
+    Route::post('/', 'api\LessonController@create')->name('ApiLessonCreate');
+    Route::put('/', 'api\LessonController@edit')->name('ApiLessonEdit');
+    Route::delete('/', 'api\LessonController@delete')->name('ApiLessonDelete');
+  });
 });

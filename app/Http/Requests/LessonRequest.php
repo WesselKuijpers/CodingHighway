@@ -35,7 +35,7 @@ class LessonRequest extends FormRequest
           'title' => 'required|string|max:45',
           'content' => 'required|string',
           'course_id' => 'required|numeric',
-          'media_id' => 'nullable|numeric'
+          'level_id' => 'nullable|numeric'
         ];
         break;
       case "PUT":
@@ -44,7 +44,7 @@ class LessonRequest extends FormRequest
           'title' => 'required|string|max:45',
           'content' => 'required|string',
           'course_id' => 'required|numeric',
-          'media_id' => 'nullable|numeric'
+          'level_id' => 'nullable|numeric'
         ];
         break;
       case "DELETE":

@@ -9,6 +9,33 @@
 @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
-  background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+// Used for a sticky footer
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
+.main-text-block {
+  max-height: 300px;
+  height: 300px;
+}
+
+.side-block {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 46.66666667%;
+  flex: 1 0 46.666667%;
+  max-width: 46.666667%;
+}
+

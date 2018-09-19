@@ -3,7 +3,7 @@
 
   <div class="col-md-6">
     <input id="{{ $name }}" type="{{ $type }}" class="form-control{{ $errors->has($name) ? ' is-invalid' : '' }}"
-           name="{{ $name }}" value="{{ old($name) }}" required>
+           name="{{ $name }}" value="@if(isset($value)) {{$value}} @endif" required @if(isset($multiple) && $multiple) multiple @endif>
 
     @if ($errors->has($name))
       <span class="invalid-feedback" role="alert">

@@ -15,11 +15,11 @@ class CreateLicensesTable extends Migration
     {
         Schema::create('licenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('key');
-            $table->unsignedInteger('user_id');
+            $table->string('key')->unique();
+            $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('organisation_id')->nullable();
             $table->dateTime('expires_at');
-            $table->boolean('expires');
+            $table->boolean('expired');
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\general\User;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -30,5 +30,6 @@ class UserTableSeeder extends Seeder
     $user->attachRole(1);
     $user->attachRole(2);
 
+    factory(User::class, 20)->create();
   }
 }

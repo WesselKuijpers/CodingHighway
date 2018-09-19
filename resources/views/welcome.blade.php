@@ -1,96 +1,44 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
+@section('content')
+    <div class="container">
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+            <h2 class="text-center pt-1 pb-3">BootCamp</h2>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="row">
+                <div class="main-text-block col-11 ml-3" style="background-color: #FAC275">
+                    <h5 class="text-center font-weight-bold pt-3">BootCamp voor iedereen!</h5>
+                    <p class="pt-2">
+                        Bacon ipsum dolor amet shank buffalo beef spare ribs ham frankfurter bresaola flank alcatra beef ribs corned beef.
+                        Cupim ground round porchetta meatloaf corned beef, ball tip filet mignon ham hock flank frankfurter burgdoggen shankle.
+                        Tri-tip ribeye porchetta, drumstick shank ground round jerky ball tip pork loin pancetta strip steak kevin.
+                        Meatloaf short ribs pancetta sausage swine, ham pork chop t-bone. Drumstick turducken buffalo picanha pork loin brisket.
+                        Frankfurter meatball tongue pork loin.
+                    </p>
                 </div>
+            </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+            <div class="row">
+                <div class="col-11 ml-3">
+                    <div class="row mt-3">
+
+                        <div class="side-block col-6" style="background-color: #009BDC">
+                            <h5 class="text-center font-weight-bold pt-3">Aan de slag met de cursussen</h5>
+                            <p class="pt-2">
+                                Kun je niet wachten om te beginnen met een cursus? <a href="/courses" class="text-white">Bezoek</a> dan onze cursus pagina!
+                            </p>
+                        </div>
+
+                        <div class="side-block col-6 ml-auto" style="background-color: #009BDC">
+                            <h5 class="text-center font-weight-bold pt-3">Stel een vraag</h5>
+                            <p class="pt-2">
+                                Heb je een vraag over één van de opdrachten of lessen? Stel deze dan gerust <a href="/forum" class="text-white">hier</a>.
+                            </p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+@endsection

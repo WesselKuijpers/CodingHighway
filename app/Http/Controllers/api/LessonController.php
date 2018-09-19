@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Requests\CourseRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LessonRequest;
 
-class CourseController extends Controller
+class lessonController extends Controller
 {
-  public function create(CourseRequest $request)
+  public function create(LessonRequest $request)
   {
-    $data = CourseCreate($request);
+    $data = LessonCreate($request);
 
     if ($data != false):
       return $data->toJson();
@@ -20,9 +18,9 @@ class CourseController extends Controller
     endif;
   }
 
-  public function edit(CourseRequest $request)
+  public function edit(LessonRequest $request)
   {
-    $data = CourseEdit($request);
+    $data = LessonEdit($request);
 
     if ($data != false):
       return $data->toJson();
@@ -31,9 +29,9 @@ class CourseController extends Controller
     endif;
   }
 
-  public function delete(CourseRequest $request)
+  public function delete(LessonRequest $request)
   {
-    $data = CourseDelete($request);
+    $data = LessonDelete($request);
 
     if ($data != false):
       return $data->toJson();

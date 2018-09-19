@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->string('color', 10);
             $table->unsignedInteger('media_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
           $table->foreign('media_id')

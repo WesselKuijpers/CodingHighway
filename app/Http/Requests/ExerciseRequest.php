@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CourseRequest extends FormRequest
+class ExerciseRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -29,22 +29,22 @@ class CourseRequest extends FormRequest
   public function rules()
   {
     $rules = [];
-    switch($this->getMethod()):
+    switch ($this->getMethod()):
       case "POST":
         $rules = [
-          'name' => 'required|string|max:255',
-          'description' => 'required|string',
-          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
-          'media_id' => 'nullable|numeric'
+          'course_id' => 'required|numeric',
+          'content' => 'required|string',
+          'is_final' => 'required|boolean',
+          'level_id' => 'required|numeric',
         ];
         break;
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'name' => 'required|string|max:255',
-          'description' => 'required|string',
-          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
-          'media_id' => 'nullable|numeric'
+          'course_id' => 'required|numeric',
+          'content' => 'required|string',
+          'is_final' => 'required|boolean',
+          'level_id' => 'required|numeric',
         ];
         break;
       case "DELETE":

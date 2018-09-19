@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Requests\CourseEditRequest;
 use App\Http\Requests\CourseRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

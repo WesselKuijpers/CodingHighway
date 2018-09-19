@@ -30,4 +30,15 @@ class CourseController extends Controller
       return "{'Message':'Something went wrong'}";
     endif;
   }
+
+  public function delete(CourseRequest $request)
+  {
+    $data = CourseDelete($request);
+
+    if ($data != false):
+      return $data->toJson();
+    else:
+      return "{'Message':'Something went wrong'}";
+    endif;
+  }
 }

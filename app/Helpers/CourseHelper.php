@@ -65,3 +65,25 @@ if (!function_exists('CourseEdit')) {
     endif;
   }
 }
+
+if (!function_exists('CourseDelete')) {
+
+  /**
+   * description
+   *
+   * @param
+   * @return
+   */
+  function CourseDelete(CourseRequest $request)
+  {
+    $validated = $request->validated();
+
+    $course = Course::find($validated['id']);
+
+    if ($course->delete()):
+      return $course;
+    else:
+      return false;
+    endif;
+  }
+}

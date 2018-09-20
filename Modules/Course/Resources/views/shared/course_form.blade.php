@@ -1,10 +1,15 @@
+@if (session('status'))
+    <div class="alert alert-danger">
+        {{ session('status') }}
+    </div>
+@endif
 @if(isset($course))
-    <form method="post" action="/course/{{$course['name']}}">
+    <form method="post" action="/course/{{$course['id']}}">
         {{ method_field('PUT') }}
         @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text', 'value' => $course['name']])
         @include('shared.textarea', ['label' => 'Beschrijving', 'name'=> 'description', 'type'=> 'text', 'required' => true, 'rows' => 10, 'value' => $course['description']])
         @include('shared.form_required', ['label' => 'Organisatiekleur', 'name'=> 'color', 'type'=> 'color', 'value' => $course['color']])
-        @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media[]', 'type' => 'file', 'value' => 'file'])
+        @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media[]', 'type' => 'file', 'value' => $course['file']])
 @else
     <form method="post" action="/course" enctype="multipart/form-data">
         @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text'])

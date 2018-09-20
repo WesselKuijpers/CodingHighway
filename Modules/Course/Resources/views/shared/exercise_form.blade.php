@@ -1,16 +1,41 @@
+@if (session('status'))
+    <div class="alert alert-danger">
+        {{ session('status') }}
+    </div>
+@endif
 @if(isset($exercise))
-    <form method="post" action="/course/{{$course['name']}}/exercise">
+    <form method="post" action="/course/{{$course['id']}}/exercise/{{$exercise['id']}}" enctype="multipart/form-data">
         {{ method_field('PUT') }}
-        @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'description', 'type'=> 'text', 'required' => true, 'rows' => 10, 'value' => $course['description']])
-        @include('shared.form_required', ['label' => 'Organisatiekleur', 'name'=> 'color', 'type'=> 'color', 'value' => $course['color']])
-        @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media[]', 'type' => 'file', 'value' => 'file'])
-@else
-    <form method="post" action="/course" enctype="multipart/form-data">
-        @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text'])
-        @include('shared.textarea', ['label' => 'Beschrijving', 'name'=> 'description', 'type'=> 'text', 'required' => true, 'rows' => 10])
-        @include('shared.form_required', ['label' => 'Cursuskleur', 'name'=> 'color', 'type'=> 'color'])
-        @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media[]', 'type' => 'file'])
+        @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10, 'value' => $exercise['content']])
+        <select name="is_final">
+            <option value="1">Ja</option>
+            <option value="0">Nee</option>
+        </select>
+        @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'value' => $exercise['file'], 'multiple' => true])
+        @if(isset($levels))
+            <select name = "level_id">
+                @foreach($levels as $level)
+                    <option value="{{$level['id']}}">{{$level['name']}}</option>
+                @endforeach
+            </select>
         @endif
+@else
+    <form method="post" action="/course/{{$course['id']}}/exercise" enctype="multipart/form-data">
+        @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10])
+        <select name="is_final">
+            <option value="1">Ja</option>
+            <option value="0">Nee</option>
+        </select>
+        @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'multiple' => true])
+        @if(isset($levels))
+            <select name="level_id">
+                @foreach($levels as $level)
+                    <option value="{{$level['id']}}">{{$level['name']}}</option>
+                @endforeach
+            </select>
+        @endif
+@endif
         {{ csrf_field() }}
+        <input type="hidden" value="{{$course['id']}}" name="course_id">
         <input type="submit" value="aanmaken">
     </form>

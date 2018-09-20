@@ -2,6 +2,9 @@
 
 namespace Modules\Course\Http\Controllers;
 
+use App\Http\Requests\CourseRequest;
+use App\Models\course\Course;
+use CourseHelper;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -31,9 +34,15 @@ class CourseController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
-        dd($request);
+        $data = CourseHelper::create($request);
+
+        if ($data != false):
+            return redirect('/course/');
+        else :
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        endif;
     }
 
     /**
@@ -57,10 +66,13 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      * @param  Request $request
+     * @param $id
      * @return Response
      */
     public function update(Request $request)
     {
+        dump($request);
+        die();
     }
 
     /**

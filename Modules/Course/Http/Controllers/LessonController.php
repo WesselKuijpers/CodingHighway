@@ -2,9 +2,14 @@
 
 namespace Modules\Course\Http\Controllers;
 
+use App\Http\Requests\LessonRequest;
+use App\Models\course\Course;
+use App\Models\course\Lesson;
+use App\Models\course\Level;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use LessonHelper;
 
 class LessonController extends Controller
 {
@@ -19,20 +24,38 @@ class LessonController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param $id
      * @return Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('course::lesson/create');
+        $course = Course::find($id);
+        $levels = Level::all();
+        return view('course::lesson/create', ['course' => $course, 'levels' => $levels]);
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     * @param $id
+     * @param LessonRequest|Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store($id, LessonRequest $request)
     {
+        if ($id != $request['course_id'])
+        {
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        }
+        else
+        {
+            $data = LessonHelper::create($request);
+
+            if ($data != false):
+                return redirect('/course/' . $id);
+            else :
+                return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            endif;
+        }
     }
 
     /**
@@ -55,11 +78,21 @@ class LessonController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param $course_id
      * @param  Request $request
      * @return Response
+     * @internal param $id
      */
-    public function update(Request $request)
+    public function update($id, $lesson, Request $request)
     {
+        if ($lesson != $request['course_id'])
+        {
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        }
+        else
+        {
+            dd($request);
+        }
     }
 
     /**

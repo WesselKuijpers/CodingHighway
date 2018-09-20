@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use LessonHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LessonRequest;
 
@@ -9,7 +10,7 @@ class lessonController extends Controller
 {
   public function create(LessonRequest $request)
   {
-    $data = LessonCreate($request);
+    $data = LessonHelper::create($request);
 
     if ($data != false):
       return $data->toJson();
@@ -20,7 +21,7 @@ class lessonController extends Controller
 
   public function edit(LessonRequest $request)
   {
-    $data = LessonEdit($request);
+    $data = LessonHelper::edit($request);
 
     if ($data != false):
       return $data->toJson();
@@ -31,7 +32,7 @@ class lessonController extends Controller
 
   public function delete(LessonRequest $request)
   {
-    $data = LessonDelete($request);
+    $data = LessonHelper::delete($request);
 
     if ($data != false):
       return $data->toJson();

@@ -1,22 +1,13 @@
 <?php
 
-use App\Http\Requests\CourseEditRequest;
 use App\Http\Requests\CourseRequest;
 use App\Models\course\Course;
 
-if (!function_exists('CourseCreate')) {
-
-  /**
-   * description
-   *
-   * @param
-   * @return
-   */
-  function CourseCreate(CourseRequest $request)
+class CourseHelper
+{
+  public static function create(CourseRequest $request)
   {
     $validated = $request->validated();
-
-//      dd($validated);
 
     $course = new Course;
     $course->name = $validated['name'];
@@ -34,17 +25,8 @@ if (!function_exists('CourseCreate')) {
       return false;
     endif;
   }
-}
 
-if (!function_exists('CourseEdit')) {
-
-  /**
-   * description
-   *
-   * @param
-   * @return
-   */
-  function CourseEdit(CourseRequest $request)
+  public static function edit(CourseRequest $request)
   {
     $validated = $request->validated();
 
@@ -64,17 +46,8 @@ if (!function_exists('CourseEdit')) {
       return false;
     endif;
   }
-}
 
-if (!function_exists('CourseDelete')) {
-
-  /**
-   * description
-   *
-   * @param
-   * @return
-   */
-  function CourseDelete(CourseRequest $request)
+  public static function delete(CourseRequest $request)
   {
     $validated = $request->validated();
 

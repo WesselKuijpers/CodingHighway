@@ -2,6 +2,11 @@
 
 namespace Modules\Course\Http\Controllers;
 
+use App\Http\Requests\ExerciseRequest;
+use App\Models\course\Course;
+use App\Models\course\Lesson;
+use App\Models\course\Level;
+use ExerciseHelper;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -19,20 +24,38 @@ class ExerciseController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param $id
      * @return Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('course::exercise/create');
+        $course = Course::find($id);
+        $levels = Level::all();
+        return view('course::exercise/create', ['course' => $course, 'levels' => $levels]);
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     * @param $id
+     * @param ExerciseRequest|Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store($id, ExerciseRequest $request)
     {
+        if ($id != $request['course_id'])
+        {
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        }
+        else
+        {
+            $data = ExerciseHelper::create($request);
+
+            if ($data != false):
+                return redirect('/course/' . $id);
+            else :
+                return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            endif;
+        }
     }
 
     /**
@@ -55,11 +78,21 @@ class ExerciseController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param $course_id
      * @param  Request $request
      * @return Response
+     * @internal param $id
      */
-    public function update(Request $request)
+    public function update($id, $exercise, Request $request)
     {
+        if ($id != $request['course_id'])
+        {
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        }
+        else
+        {
+            dd($request);
+        }
     }
 
     /**

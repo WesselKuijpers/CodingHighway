@@ -29,5 +29,11 @@ Route::group(['middleware'=>'auth:api'], function(){
     Route::delete('/', 'api\LessonController@delete')->name('ApiLessonDelete');
   });
 
+  Route::group(['prefix' => 'level'], function (){
+    Route::post('/', 'api\LevelController@create')->name('ApiLevelCreate');
+    Route::put('/', 'api\LevelController@edit')->name('ApiLevelEdit');
+    Route::delete('/', 'api\LevelController@delete')->name('ApiLevelDelete');
+  });
+
   Route::post('/superadmin', 'api\SuperAdminController@create')->name('ApiSuperAdmin');
 });

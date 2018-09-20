@@ -40,6 +40,7 @@ git pull origin {{ $git['branch'] }}
 @endtask
 
 @task('git:update')
+cd {{ $base.'/repo' }}
 git checkout {{ $git['branch'] }}
 git pull origin {{ $git['branch'] }}
 @endtask
@@ -67,4 +68,18 @@ cd {{ $base.'/releases/'.$current }}
   cd {{ $base }}
   rm -f current
   ln -s {{ $base.'/releases/'.$current }} current
+@endtask
+
+@task('set:fin')
+  cd {{ $base.'/current' }}
+  chmod 777 -R storage/
+  php artisan link:storage
+@endtask
+
+@task('set:up')
+  php artisan up
+@endtask
+
+@task('set:down')
+  php artisan down
 @endtask

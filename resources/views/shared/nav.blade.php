@@ -46,13 +46,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ url('/courses') }}" style="color: #004685" class="nav-link">Cursussen</a>
+                        <a href="{{ url('/course') }}" style="color: #004685" class="nav-link">Cursussen</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/lessons') }}" style="color: #004685" class="nav-link">Lessen</a>
+                        <a href="{{ url('/lesson') }}" style="color: #004685" class="nav-link">Lessen</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/exercises') }}" style="color: #004685" class="nav-link">Opdrachten</a>
+                        <a href="{{ url('/exercise') }}" style="color: #004685" class="nav-link">Opdrachten</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('/forum') }}" style="color: #004685" class="nav-link">Forum</a>

@@ -28,4 +28,6 @@ Route::group(['middleware'=>'auth:api'], function(){
     Route::put('/', 'api\LessonController@edit')->name('ApiLessonEdit');
     Route::delete('/', 'api\LessonController@delete')->name('ApiLessonDelete');
   });
+
+  Route::post('/superadmin', 'api\SuperAdminController@create')->name('ApiSuperAdmin');
 });

@@ -21,13 +21,17 @@
 </head>
 <body>
     <div id="app">
+        <!-- Including navbar partial -->
         @include('shared.nav')
-        <main class="py-4">
-            <div class="container">
+
+        <!-- Content container -->
+        <main class="py-4 container">
                 @yield('content')
-            </div>
         </main>
+
     </div>
-@include('layouts.footer')
+
+    <!-- Including footer partial -->
+    @include('layouts.footer')
 </body>
 </html>

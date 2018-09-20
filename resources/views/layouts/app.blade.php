@@ -15,17 +15,24 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Galdeano" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
+        <!-- Including navbar partial -->
         @include('shared.nav')
-        <main class="py-4">
-            @yield('content')
+
+        <!-- Content container -->
+        <main class="py-4 container">
+                @yield('content')
         </main>
+
     </div>
-@include('layouts.footer')
+
+    <!-- Including footer partial -->
+    @include('layouts.footer')
 </body>
 </html>

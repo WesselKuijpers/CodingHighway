@@ -16,6 +16,7 @@ make:release
 make:link
 install
 set:live
+set:fin
 @endstory
 
 @story('deploy')
@@ -24,6 +25,7 @@ make:release
 make:link
 install
 set:live
+set:fin
 @endstory
 
 @task('install')
@@ -77,9 +79,11 @@ cd {{ $base.'/releases/'.$current }}
 @endtask
 
 @task('set:up')
+  cd {{ $base.'/current' }}
   php artisan up
 @endtask
 
 @task('set:down')
+  cd {{ $base.'/current' }}
   php artisan down
 @endtask

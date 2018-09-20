@@ -10471,10 +10471,18 @@ a.text-dark:focus {
   }
 }
 
+/*
+  <----- Navbar styling ----->
+*/
+
 .navbar-laravel {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+/*
+  <----- Footer styling ----->
+*/
 
 html {
   position: relative;
@@ -10495,6 +10503,10 @@ body {
   /* Vertically center the text there */
 }
 
+/*
+  <----- Homepage styling ----->
+*/
+
 .main-text-block {
   max-height: 300px;
   height: 300px;
@@ -10505,5 +10517,23 @@ body {
   -ms-flex: 0 0 46.66666667%;
   flex: 1 0 46.666667%;
   max-width: 46.666667%;
+}
+
+/*
+  <----- Form styling ----->
+*/
+
+.form-box {
+  background-color: #fff;
+  padding: 15px;
+}
+
+/*
+  <----- Page styling ----->
+*/
+
+.page-header {
+  font-family: 'Galdeano', sans-serif;
+  font-size: 35px;
 }
 

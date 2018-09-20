@@ -8,9 +8,17 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+/*
+  <----- Navbar styling ----->
+*/
+
 .navbar-laravel {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+/*
+  <----- Footer styling ----->
+*/
+
 // Used for a sticky footer
 html {
   position: relative;
@@ -27,6 +35,11 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*
+  <----- Homepage styling ----->
+*/
+
 .main-text-block {
   max-height: 300px;
   height: 300px;
@@ -39,3 +52,20 @@ body {
   max-width: 46.666667%;
 }
 
+/*
+  <----- Form styling ----->
+*/
+
+.form-box {
+  background-color: #fff;
+  padding: 15px;
+}
+
+/*
+  <----- Page styling ----->
+*/
+
+.page-header {
+  font-family: 'Galdeano', sans-serif;
+  font-size: 35px;
+}

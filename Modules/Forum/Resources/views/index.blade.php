@@ -1,9 +1,9 @@
-@extends('forum::layouts.master')
+@extends('layouts.app')
 
 @section('content')
-    <h1>Hello World</h1>
-
-    <p>
-        This view is loaded from module: {!! config('forum.name') !!}
-    </p>
+    <div class="row">
+        <div class="col-md-6 offset-4">
+            <h1>Forum</h1>
+        </div>
+    </div>
 @stop

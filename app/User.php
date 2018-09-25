@@ -15,12 +15,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+use Laravel\Scout\Searchable;
 use phpDocumentor\Reflection\Types\Boolean;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
   use Notifiable;
   use HasRoleAndPermission;
+  use Searchable;
 
   /**
    * The attributes that are mass assignable.

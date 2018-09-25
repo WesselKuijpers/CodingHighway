@@ -19,7 +19,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return view('course::lesson/index');
+        return view('course::lesson.index');
     }
 
     /**
@@ -31,7 +31,7 @@ class LessonController extends Controller
     {
         $course = Course::find($id);
         $levels = Level::all();
-        return view('course::lesson/create', ['course' => $course, 'levels' => $levels]);
+        return view('course::lesson.create', ['course' => $course, 'levels' => $levels]);
     }
 
     /**
@@ -71,9 +71,13 @@ class LessonController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($courseId, $lessonId)
     {
-        return view('course::lesson/edit');
+        $course = Course::find($courseId);
+        $lesson = Lesson::find($lessonId);
+        $levels = Level::all();
+
+        return view('course::lesson/edit', ['course' => $course, 'lesson' => $lesson, 'levels' => $levels]);
     }
 
     /**

@@ -21,6 +21,6 @@ class LicenseCheck
             return $next($request);
         }
 
-        return redirect('/home')->with('msg', 'je moet een actieve licentie hebben voor deze actie.');
+        return redirect()->route('UserActivateLicense')->with('error', 'je moet een actieve licentie hebben voor deze actie.');
     }
 }

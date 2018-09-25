@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('LicenseCheck');
+
+Route::group(['prefix'=>'user', 'middleware'=>'auth'], function(){
+  Route::get('/activate', 'LicenseActivationController@activate')->name('UserActivateLicense');
+  Route::post('/activate', 'LicenseActivationController@save')->name('UserActivateLicenseSave');
+
+  Route::get('/edit', 'UserController@edit')->name('UserEdit');
+  Route::post('/edit', 'UserController@save')->name('UserEditSave');
+});

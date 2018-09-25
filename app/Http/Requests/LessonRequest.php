@@ -35,7 +35,8 @@ class LessonRequest extends FormRequest
           'title' => 'required|string|max:45',
           'content' => 'required|string',
           'course_id' => 'required|numeric',
-          'level_id' => 'nullable|numeric'
+          'level_id' => 'nullable|numeric',
+          'media.*' => 'file'
         ];
         break;
       case "PUT":

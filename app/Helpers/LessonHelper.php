@@ -2,6 +2,8 @@
 
 use App\Models\course\Lesson;
 use App\Http\Requests\LessonRequest;
+use App\Models\course\LessonMedia;
+use App\Models\general\Media;
 
 class LessonHelper
 {
@@ -20,6 +22,19 @@ class LessonHelper
     $lesson->course_id = $validated['course_id'];
 
     if ($lesson->save()):
+      foreach ($validated['media'] as $m):
+        $file = FileHelper::store($m);
+
+        $media = new Media;
+        $media->content = '/storage/media'.$file->hashName();
+        if ($media->save()):
+          $ml = new LessonMedia;
+          $ml->media_id = $media->id;
+          $ml->lesson_id = $lesson->id;
+          $ml->save();
+        endif;
+      endforeach;
+
       return $lesson;
     else:
       return false;

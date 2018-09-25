@@ -36,6 +36,7 @@ class ExerciseRequest extends FormRequest
           'content' => 'required|string',
           'is_final' => 'required|boolean',
           'level_id' => 'required|numeric',
+          'media.*' => 'file'
         ];
         break;
       case "PUT":

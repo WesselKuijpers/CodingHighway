@@ -26,7 +26,7 @@ class LessonHelper
         $file = FileHelper::store($m);
 
         $media = new Media;
-        $media->content = '/storage/media'.$file->hashName();
+        $media->content = '/storage/media/'.$file->hashName();
         if ($media->save()):
           $ml = new LessonMedia;
           $ml->media_id = $media->id;

@@ -60,7 +60,7 @@
 @endif
         {{ csrf_field() }}
         <input type="hidden" value="{{$course['id']}}" name="course_id">
-            <div class="text-center col-md-6 offset-4">
+            <div class="text-center col-6 offset-4">
                 <input type="submit" value="opslaan" class="btn btn-info">
             </div>
     </form>

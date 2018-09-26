@@ -18,11 +18,16 @@
         </div>
         @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'value' => $exercise['file'], 'multiple' => true])
         @if(isset($levels))
-            <select name = "level_id">
-                @foreach($levels as $level)
-                    <option value="{{$level['id']}}">{{$level['name']}}</option>
-                @endforeach
-            </select>
+            <div class="row form-group" id="level">
+                <label for="level" class="col-md-4 col-form-label text-md-right font-weight-bold">Moeilijkheidsgraad</label>
+                <div class="col-md-6">
+                    <select name="level_id" class="form-control">
+                        @foreach($levels as $level)
+                            <option value="{{$level['id']}}">{{$level['name']}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         @endif
 @else
     <div class="col-md-6 offset-md-4 mt-3 mb-3">
@@ -41,18 +46,21 @@
         </div>
         @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'multiple' => true])
         @if(isset($levels))
-            <select name="level_id">
-                @foreach($levels as $level)
-                    <option value="{{$level['id']}}">{{$level['name']}}</option>
-                @endforeach
-            </select>
+            <div class="row form-group" id="level">
+                <label for="level" class="col-md-4 col-form-label text-md-right font-weight-bold">Moeilijkheidsgraad</label>
+                <div class="col-md-6">
+                    <select name="level_id" class="form-control">
+                        @foreach($levels as $level)
+                            <option value="{{$level['id']}}">{{$level['name']}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         @endif
 @endif
         {{ csrf_field() }}
         <input type="hidden" value="{{$course['id']}}" name="course_id">
-        <div class="col-md-6 offset-4">
-            <div class="text-center">
+            <div class="text-center col-md-6 offset-4">
                 <input type="submit" value="opslaan" class="btn btn-info">
             </div>
-        </div>
     </form>

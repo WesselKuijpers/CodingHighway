@@ -9,7 +9,7 @@
     <form action="/management/admin" method="post">
         {{ csrf_field() }}
         @if($users->count() != 0)
-            <table>
+            <table class="table table-striped table-bordered">
                 <tr>
                     <th>Voornaam:</th>
                     <th>Tussenvoegsel:</th>

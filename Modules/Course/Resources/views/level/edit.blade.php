@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-    @include('course::shared.level_create_form', ['level' => $level])
+    @include('course::shared.level_update_form', ['level' => $level])
 
 @endsection

@@ -9,13 +9,12 @@
         @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'class' => 'form-control'])
         @include('shared.textarea', ['label' => 'Inhoud', 'name' => 'content', 'required' => true])
 
-        <div class="input-group form-group">
-          <div class="input-group-prepend">
-            <label for="media" class="input-group-text">Media</label>
+        <div class="row">
+          <label for="media" class="col-md-4 col-form-label text-md-right font-weight-bold">Media</label>
+          <div class="col-md-6">
+            <input type="file" id="media" name="media[]" multiple>
           </div>
-          <input type="file" id="media" name="media[]" class="form-control" multiple>
         </div>
-
         @if(isset($levels))
           <div class="row form-group" id="level">
             <label for="level" class="col-md-4 col-form-label text-md-right font-weight-bold">Moeilijkheidsgraad</label>

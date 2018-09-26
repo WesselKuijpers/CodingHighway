@@ -10,7 +10,7 @@
         'class' => ''])
         {{ csrf_field() }}
         <div class="text-center">
-            <input type="submit" value="aanmaken" class="btn mb-3" style="color: #004685; background-color: #d5a10f">
+            <input type="submit" value="aanmaken" class="btn btn-info mb-3">
         </div>
   </form>
 </div>

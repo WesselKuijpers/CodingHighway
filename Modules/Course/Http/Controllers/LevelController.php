@@ -2,14 +2,14 @@
 
 namespace Modules\Course\Http\Controllers;
 
-use App\Http\Requests\CourseRequest;
-use App\Models\course\Course;
-use CourseHelper;
+use App\Http\Requests\LevelRequest;
+use App\Models\course\Level;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use LevelHelper;
 
-class CourseController extends Controller
+class LevelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('course::course/index');
+        return view('course::level/index');
     }
 
     /**
@@ -26,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('course::course/create');
+        return view('course::level/create');
     }
 
     /**
@@ -34,14 +34,14 @@ class CourseController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(CourseRequest $request)
+    public function store(LevelRequest $request)
     {
-        $data = CourseHelper::create($request);
+        $data = LevelHelper::create($request);
 
         if ($data != false):
-            return redirect('/course/');
+            return redirect('course/level');
         else :
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
         endif;
     }
 
@@ -51,7 +51,7 @@ class CourseController extends Controller
      */
     public function show()
     {
-        return view('course::course/show');
+        return view('course::level/show');
     }
 
     /**
@@ -60,26 +60,18 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course = Course::find($id);
+        $level = Level::find($id);
 
-        return view('course::course/edit', ['course' => $course]);
+        return view('course::level/edit', ['level' => $level]);
     }
 
     /**
      * Update the specified resource in storage.
      * @param  Request $request
-     * @param $id
      * @return Response
      */
-    public function update(CourseRequest $request)
+    public function update(Request $request)
     {
-        $data = CourseHelper::edit($request);
-
-        if ($data != false):
-            return redirect('/course/');
-        else :
-            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
-        endif;
     }
 
     /**

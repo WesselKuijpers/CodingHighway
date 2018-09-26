@@ -85,12 +85,17 @@ class LessonController extends Controller
    * @return Response
    * @internal param $id
    */
-  public function update($id, $lesson, Request $request)
+  public function update($id, $lesson, LessonRequest $request)
   {
     if ($lesson != $request['course_id']) {
       return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
     } else {
-      dd($request);
+        $data = LessonHelper::edit($request);
+        if ($data != false):
+            return redirect('/course/' . $id);
+        else :
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        endif;
     }
   }
 

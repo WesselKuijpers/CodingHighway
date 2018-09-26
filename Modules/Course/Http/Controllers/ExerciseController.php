@@ -4,6 +4,7 @@ namespace Modules\Course\Http\Controllers;
 
 use App\Http\Requests\ExerciseRequest;
 use App\Models\course\Course;
+use App\Models\course\Exercise;
 use App\Models\course\Lesson;
 use App\Models\course\Level;
 use ExerciseHelper;
@@ -71,9 +72,12 @@ class ExerciseController extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($courseId, $excerciseId)
     {
-        return view('course::exercise/edit');
+        $course = Course::find($courseId);
+        $exercise = Exercise::find($excerciseId);
+
+        return view('course::exercise/edit', ['course' => $course, 'exercise' => $exercise]);
     }
 
     /**
@@ -83,7 +87,7 @@ class ExerciseController extends Controller
      * @return Response
      * @internal param $id
      */
-    public function update($id, $exercise, Request $request)
+    public function update($id, $exercise, ExerciseRequest $request)
     {
         if ($id != $request['course_id'])
         {
@@ -91,7 +95,13 @@ class ExerciseController extends Controller
         }
         else
         {
-            dd($request);
+            $data = ExerciseHelper::edit($request);
+
+            if ($data != false):
+                return redirect('/course/' . $id);
+            else :
+                return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            endif;
         }
     }
 

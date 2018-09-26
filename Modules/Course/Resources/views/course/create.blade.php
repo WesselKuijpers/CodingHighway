@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <h2 class="text-center page-header">Creeër een cursus</h2>
+    @include('shared.form_title', ['title' => "Creeër een cursus"])
 
     @include('course::shared.course_create_form')
 

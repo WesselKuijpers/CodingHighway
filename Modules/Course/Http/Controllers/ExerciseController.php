@@ -76,8 +76,9 @@ class ExerciseController extends Controller
     {
         $course = Course::find($courseId);
         $exercise = Exercise::find($excerciseId);
+        $levels = Level::all();
 
-        return view('course::exercise/edit', ['course' => $course, 'exercise' => $exercise]);
+        return view('course::exercise/edit', ['course' => $course, 'exercise' => $exercise, 'levels' => $levels]);
     }
 
     /**

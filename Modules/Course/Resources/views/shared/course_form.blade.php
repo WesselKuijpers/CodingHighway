@@ -1,8 +1,3 @@
-@if (session('status'))
-  <div class="alert alert-danger">
-    {{ session('status') }}
-  </div>
-@endif
 <h2 class="text-center page-header">Creeër een cursus</h2>
 <div class="form-box rounded container">
   @if(isset($course))

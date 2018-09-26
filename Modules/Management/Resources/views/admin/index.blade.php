@@ -1,43 +1,44 @@
 @extends('layouts.app')
 @section('content')
-
     <form action="/management/admin/" method="get">
-        <input type="text" name="query" placeholder="voer hier uw zoekterm in...">
-        <input type="submit" value="zoeken">
+        <input type="text" name="query" placeholder="Vul een naam of email in">
+        <input type="submit" value="Zoek">
     </form>
 
     <form action="/management/admin" method="post">
         {{ csrf_field() }}
-        @if($users->count() != 0)
-            <table class="table table-striped table-bordered">
-                <tr>
-                    <th>Voornaam:</th>
-                    <th>Tussenvoegsel:</th>
-                    <th>Achternaam:</th>
-                    <th>Email:</th>
-                    <th>Rechten?</th>
-                </tr>
-                @foreach($users as $user)
+        <div class="container" style="overflow: auto;">
+            @if($users->count() != 0)
+                <table class="table table-striped table-bordered mt-3 mb-3">
                     <tr>
-                        <td>{{$user->firstname}}</td>
-                        <td>{{$user->insertation}}</td>
-                        <td>{{$user->lastname}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>
-                            @if($user->hasRole('sa'))
-                                <input type="hidden" value=0 name="noAdmins[{{$user->id}}]">
-                                <input type="checkbox" checked="checked" name="noAdmins[{{$user->id}}]" value=1>
-                            @else
-                                <input type="checkbox" name="admins[]" value="{{$user->id}}">
-                            @endif
-                        </td>
+                        <th>Voornaam</th>
+                        <th>Tussenvoegsel</th>
+                        <th>Achternaam</th>
+                        <th>Email</th>
+                        <th>Rechten</th>
                     </tr>
-                @endforeach
-            </table>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>{{$user->firstname}}</td>
+                            <td>{{$user->insertation}}</td>
+                            <td>{{$user->lastname}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
+                                @if($user->hasRole('sa'))
+                                    <input type="hidden" value=0 name="noAdmins[{{$user->id}}]">
+                                    <input type="checkbox" checked="checked" name="noAdmins[{{$user->id}}]" value=1>
+                                @else
+                                    <input type="checkbox" name="admins[]" value="{{$user->id}}">
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+        </div>
         @else
             <p>Er zijn geen gebruikers gevonden.</p>
         @endif
-        <input type="submit" value="opslaan">
+        <input type="submit" value="Bevestig">
     </form>
 
 @endsection

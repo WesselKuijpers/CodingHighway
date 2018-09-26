@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    @include('course::shared.course_form', ['course' => $course])
+    <h2 class="text-center page-header">Pas een cursus aan</h2>
+
+    @include('course::shared.course_update_form', ['course' => $course])
 
 @endsection

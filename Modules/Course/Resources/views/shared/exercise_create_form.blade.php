@@ -1,8 +1,3 @@
-@if (session('status'))
-    <div class="alert alert-danger">
-        {{ session('status') }}
-    </div>
-@endif
 @if(isset($exercise))
     <form method="post" action="/course/{{$course['id']}}/exercise/{{$exercise['id']}}" enctype="multipart/form-data">
         {{ method_field('PUT') }}

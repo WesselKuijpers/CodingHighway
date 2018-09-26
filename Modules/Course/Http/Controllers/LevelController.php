@@ -70,8 +70,15 @@ class LevelController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(LevelRequest $request)
     {
+        $data = LevelHelper::edit($request);
+
+        if ($data != false):
+            return redirect('course/level');
+        else :
+            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+        endif;
     }
 
     /**

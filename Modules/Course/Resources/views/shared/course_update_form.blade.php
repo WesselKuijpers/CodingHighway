@@ -9,7 +9,5 @@
     @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media[]', 'type' => 'file',
     'value' => 'file', 'class' => ''])
     {{ csrf_field() }}
-    <div class="text-center">
-        <input type="submit" value="aanmaken" class="btn mb-3" style="color: #004685; background-color: #d5a10f">
-    </div>
+    @include('shared.submit_button')
 </form>

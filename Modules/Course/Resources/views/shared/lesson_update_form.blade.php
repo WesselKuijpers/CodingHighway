@@ -5,6 +5,8 @@
     , 'class' => 'form-control'])
     @include('shared.textarea', ['label' => 'Inhoud', 'name' => 'content', 'value' => $lesson['content'], 'required' => true
     , 'class' => 'form-control'])
+    @include('shared.form', ['label' => 'Media', 'name' => 'media[]', 'type' => 'file',
+        'class' => ''])
     @if(isset($levels))
         <div class="row form-group" id="level">
             <label for="level" class="col-md-4 col-form-label text-md-right font-weight-bold">Moeilijkheidsgraad</label>
@@ -21,10 +23,5 @@
     {{ csrf_field() }}
 
     <input type="hidden" value="{{$course['id']}}" name="course_id">
-
-    <div class="row form-group" id="level">
-        <div class="offset-4 col-md-6">
-            <input type="submit" class="btn" value="Opslaan">
-        </div>
-    </div>
+    @include('shared.submit_button')
 </form>

@@ -30,9 +30,9 @@ class UserEditRequest extends FormRequest
   {
     return [
       'user_id' => 'required|numeric',
-      'firstname' => 'required|alpha',
-      'insertion' => 'nullable|alpha',
-      'lastname' => 'required|alpha',
+      'firstname' => 'required|string',
+      'insertion' => 'nullable|string',
+      'lastname' => 'required|string',
       'email' => 'required|email'
     ];
   }

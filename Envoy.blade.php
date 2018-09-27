@@ -75,7 +75,7 @@ cd {{ $base.'/releases/'.$current }}
 @task('set:fin')
   cd {{ $base.'/current' }}
   chmod 777 -R storage/
-  php artisan link:storage
+  php artisan storage:link
 @endtask
 
 @task('set:up')

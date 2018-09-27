@@ -23,6 +23,7 @@ class CourseHelper
       if ($media->save()):
         $course->media_id = $media->id;
       endif;
+      $course->save();
 
       return $course;
     else:

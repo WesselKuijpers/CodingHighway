@@ -20,7 +20,7 @@
                     @foreach($users as $user)
                         <tr>
                             <td>{{$user->firstname}}</td>
-                            <td>{{$user->insertation}}</td>
+                            <td>{{$user->insertion}}</td>
                             <td>{{$user->lastname}}</td>
                             <td>{{$user->email}}</td>
                             <td>

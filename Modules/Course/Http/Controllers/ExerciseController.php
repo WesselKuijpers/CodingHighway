@@ -30,6 +30,7 @@ class ExerciseController extends Controller
      */
     public function create($id)
     {
+        // finds the course by the ID param, fetches all the levels from the DB and gives it to the view
         $course = Course::find($id);
         $levels = Level::all();
         return view('course::exercise/create', ['course' => $course, 'levels' => $levels]);
@@ -43,14 +44,18 @@ class ExerciseController extends Controller
      */
     public function store($id, ExerciseRequest $request)
     {
+        // evaluates if the ID param is the same as the id that was passed in by the request.
+        // if false redirect with errors, if true continue
         if ($id != $request['course_id'])
         {
             return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
         }
         else
         {
+            // attempts to create the exercise via the ExerciseHelper, passing in the request.
             $data = ExerciseHelper::create($request);
 
+            // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
                 return redirect('/course/' . $id);
             else :
@@ -74,10 +79,12 @@ class ExerciseController extends Controller
      */
     public function edit($courseId, $excerciseId)
     {
+        // fetches course and exercise from the passed in params, fetch all levels
         $course = Course::find($courseId);
         $exercise = Exercise::find($excerciseId);
         $levels = Level::all();
 
+        // pass them to the view
         return view('course::exercise/edit', ['course' => $course, 'exercise' => $exercise, 'levels' => $levels]);
     }
 
@@ -90,14 +97,18 @@ class ExerciseController extends Controller
      */
     public function update($id, $exercise, ExerciseRequest $request)
     {
+        // evaluates if the ID param is the same as the id that was passed in by the request.
+        // if false redirect with errors, if true continue
         if ($id != $request['course_id'])
         {
             return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
         }
         else
         {
+            // attempts to update the exercise via the ExerciseHelper, passing in the request.
             $data = ExerciseHelper::edit($request);
 
+            // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
                 return redirect('/course/' . $id);
             else :

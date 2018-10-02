@@ -36,13 +36,15 @@ class LevelController extends Controller
      */
     public function store(LevelRequest $request)
     {
-        $data = LevelHelper::create($request);
+      // attempts to create a level via the level helper
+      $data = LevelHelper::create($request);
 
-        if ($data != false):
-            return redirect('course/level');
-        else :
-            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
-        endif;
+      // if successful redirect to level overview, if not redirect back with errors
+      if ($data != false):
+          return redirect('course/level');
+      else :
+          return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+      endif;
     }
 
     /**
@@ -60,9 +62,9 @@ class LevelController extends Controller
      */
     public function edit($id)
     {
-        $level = Level::find($id);
-
-        return view('course::level/edit', ['level' => $level]);
+      // finds the level by id and passes it to the view
+      $level = Level::find($id);
+      return view('course::level/edit', ['level' => $level]);
     }
 
     /**
@@ -72,13 +74,15 @@ class LevelController extends Controller
      */
     public function update(LevelRequest $request)
     {
-        $data = LevelHelper::edit($request);
+      // attempts to create a level via the LevelHelper
+      $data = LevelHelper::edit($request);
 
-        if ($data != false):
-            return redirect('course/level');
-        else :
-            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
-        endif;
+      // if successful redirect to the level overview, if not redirect back with errors
+      if ($data != false):
+          return redirect('course/level');
+      else :
+          return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+      endif;
     }
 
     /**

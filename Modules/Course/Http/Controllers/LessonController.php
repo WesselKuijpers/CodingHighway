@@ -18,9 +18,11 @@ class LessonController extends Controller
    * Display a listing of the resource.
    * @return Response
    */
-  public function index()
+  public function index($id)
   {
-    return view('course::lesson.index');
+    $course = Course::find($id);
+    $lessons = $course->lessons;
+    return view('course::lesson.index', ['course' => $course, 'lessons' => $lessons]);
   }
 
   /**
@@ -65,9 +67,10 @@ class LessonController extends Controller
    * Show the specified resource.
    * @return Response
    */
-  public function show()
+  public function show($courseId, $id)
   {
-    return view('course::lesson/show');
+    $lesson = Lesson::find($id);
+    return view('course::lesson/show', ['lesson' => $lesson]);
   }
 
   /**

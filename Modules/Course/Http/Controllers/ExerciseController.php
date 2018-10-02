@@ -18,9 +18,11 @@ class ExerciseController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('course::exercise/index');
+      $course = Course::find($id);
+      $exercises = $course->exercises;
+      return view('course::exercise/index', ['course' => $course, 'exercises' => $exercises]);
     }
 
     /**
@@ -68,9 +70,10 @@ class ExerciseController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function show($courseId, $id)
     {
-        return view('course::exercise/show');
+      $exercise = Exercise::find($id);
+      return view('course::exercise/show', ['exercise' => $exercise]);
     }
 
     /**

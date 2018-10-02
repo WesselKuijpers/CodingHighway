@@ -1,4 +1,11 @@
+{{--
+-- Extending the layout --
+--}}
 @extends('layouts.app')
+
+{{--
+-- Placeholder for the page-specific content
+--}}
 @section('content')
     <form action="/management/admin/" method="get">
         <input type="text" name="query" placeholder="Vul een naam of email in">

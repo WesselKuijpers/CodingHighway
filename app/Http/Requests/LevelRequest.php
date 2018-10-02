@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class LevelRequest
+ * Request class to validate the requests of create, edit and delete Level
+ * @package App\Http\Requests
+ */
 class LevelRequest extends FormRequest
 {
   /**

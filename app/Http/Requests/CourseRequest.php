@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class CourseRequest
+ * Request class to validate the requests of create, edit and delete Course
+ * @package App\Http\Requests
+ */
 class CourseRequest extends FormRequest
 {
   /**

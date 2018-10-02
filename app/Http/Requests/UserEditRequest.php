@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class UserEditRequest
+ * Request class to validate the requests of edit User
+ * @package App\Http\Requests
+ */
 class UserEditRequest extends FormRequest
 {
   /**

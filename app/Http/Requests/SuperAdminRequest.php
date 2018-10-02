@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class SuperAdminRequest
+ * Request class to validate the requests of create and delete SuperAdmin
+ * @package App\Http\Requests
+ */
 class SuperAdminRequest extends FormRequest
 {
   /**

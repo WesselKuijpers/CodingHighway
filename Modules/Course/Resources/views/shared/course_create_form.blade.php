@@ -1,3 +1,6 @@
+<!--
+-- Page to create a form --
+-->
 <form method="post" action="/course" enctype="multipart/form-data">
     @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text',
     'class' => 'form-control'])

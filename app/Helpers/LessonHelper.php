@@ -5,9 +5,15 @@ use App\Http\Requests\LessonRequest;
 use App\Models\course\LessonMedia;
 use App\Models\general\Media;
 
+/**
+ * Class LessonHelper
+ */
+
 class LessonHelper
 {
   /**
+   * Handling of creating a new Lesson
+   *
    * @param LessonRequest $request
    * @return Lesson|bool
    */

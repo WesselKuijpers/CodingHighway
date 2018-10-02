@@ -4,8 +4,17 @@ use App\Http\Requests\CourseRequest;
 use App\Models\course\Course;
 use App\Models\general\Media;
 
+/**
+ * Class CourseHelper
+ */
 class CourseHelper
 {
+  /**
+   * Handling of creating a new Course
+   *
+   * @param CourseRequest $request
+   * @return Course|bool
+   */
   public static function create(CourseRequest $request)
   {
     $validated = $request->validated();
@@ -31,6 +40,12 @@ class CourseHelper
     endif;
   }
 
+  /**
+   * Handling of the editing of a Course
+   *
+   * @param CourseRequest $request
+   * @return bool
+   */
   public static function edit(CourseRequest $request)
   {
     $validated = $request->validated();
@@ -52,6 +67,12 @@ class CourseHelper
     endif;
   }
 
+  /**
+   * Handling of deleting a Course
+   *
+   * @param CourseRequest $request
+   * @return bool
+   */
   public static function delete(CourseRequest $request)
   {
     $validated = $request->validated();

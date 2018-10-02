@@ -5,8 +5,17 @@ use App\Http\Requests\UserEditRequest;
 use App\Models\general\License;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class UserHelper
+ */
 class UserHelper
 {
+  /**
+   * Handling of activation user by means of the license key
+   *
+   * @param UserActivateRequest $request
+   * @return bool
+   */
   public static function activate(UserActivateRequest $request)
   {
     $validated = $request->validated();
@@ -25,6 +34,12 @@ class UserHelper
     return false;
   }
 
+  /**
+   * Handling of editing user details
+   *
+   * @param UserEditRequest $request
+   * @return bool|\Illuminate\Contracts\Auth\Authenticatable|null
+   */
   public static function edit(UserEditRequest $request)
   {
     $validated = $request->validated();

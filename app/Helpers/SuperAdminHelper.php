@@ -4,8 +4,17 @@ use App\User;
 use App\Http\Requests\SuperAdminRequest;
 use jeremykenedy\LaravelRoles\Models\Role;
 
+/**
+ * Class SuperAdminHelper
+ */
 class SuperAdminHelper
 {
+  /**
+   * Creating or Deleting the role of SuperAdmin
+   *
+   * @param SuperAdminRequest $request
+   * @return string
+   */
   public static function create(SuperAdminRequest $request)
   {
     $validated = $request->validated();

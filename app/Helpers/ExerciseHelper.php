@@ -11,6 +11,8 @@ use App\Models\general\Media;
 class ExerciseHelper
 {
   /**
+   * Handling of creating a new Exercise
+   *
    * @param ExerciseRequest $request
    * @return Exercise|bool
    */

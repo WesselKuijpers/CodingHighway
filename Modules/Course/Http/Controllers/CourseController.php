@@ -36,8 +36,10 @@ class CourseController extends Controller
      */
     public function store(CourseRequest $request)
     {
+        // $data variable attempts to create a course via the course helper, if successful return true, else return false.
         $data = CourseHelper::create($request);
 
+        // if $data is true redirect to the course overview, else redirect back with an error.
         if ($data != false):
             return redirect('/course/');
         else :
@@ -60,8 +62,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
+        // finds course by ID param and gives it to the view.
         $course = Course::find($id);
-
         return view('course::course/edit', ['course' => $course]);
     }
 
@@ -73,8 +75,10 @@ class CourseController extends Controller
      */
     public function update(CourseRequest $request)
     {
+        // $data variable attempts to update a course via the course helper, if successful return true, else return false.
         $data = CourseHelper::edit($request);
 
+        // if $data is true return to course overview else redirect back with errors
         if ($data != false):
             return redirect('/course/');
         else :

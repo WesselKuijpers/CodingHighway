@@ -30,6 +30,7 @@ class LessonController extends Controller
    */
   public function create($id)
   {
+    //fetches the course by id in params, fetches all levels and pass them to the view.
     $course = Course::find($id);
     $levels = Level::all();
     return view('course::lesson.create', ['course' => $course, 'levels' => $levels]);
@@ -43,11 +44,15 @@ class LessonController extends Controller
    */
   public function store($id, LessonRequest $request)
   {
+    // evaluates if the ID param is the same as the id that was passed in by the request.
+    // if false redirect with errors, if true continue
     if ($id != $request['course_id']) {
       return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
     } else {
+      // attempts to create the lessonn via the LessonHelper, passing in the request.
       $data = LessonHelper::create($request);
 
+      // if $data is true redirect to specific course overview, else redirect back with errors
       if ($data != false):
         return redirect('/course/' . $id);
       else :
@@ -71,10 +76,12 @@ class LessonController extends Controller
    */
   public function edit($courseId, $lessonId)
   {
+    // fetches course and lesson from their ids in the params, fetches all levels
     $course = Course::find($courseId);
     $lesson = Lesson::find($lessonId);
     $levels = Level::all();
 
+    // passes them to the view
     return view('course::lesson/edit', ['course' => $course, 'lesson' => $lesson, 'levels' => $levels]);
   }
 
@@ -87,15 +94,20 @@ class LessonController extends Controller
    */
   public function update($id, $lesson, LessonRequest $request)
   {
+    // evaluates if the ID param is the same as the id that was passed in by the request.
+    // if false redirect with errors, if true continue
     if ($lesson != $request['course_id']) {
       return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
     } else {
-        $data = LessonHelper::edit($request);
-        if ($data != false):
-            return redirect('/course/' . $id);
-        else :
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
-        endif;
+      // attempts to update the lesson via the lesson helper
+      $data = LessonHelper::edit($request);
+
+      //if successful redirect so specific course, else redirect with errors.
+      if ($data != false):
+          return redirect('/course/' . $id);
+      else :
+          return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+      endif;
     }
   }
 

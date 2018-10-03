@@ -11,86 +11,92 @@ use Illuminate\Routing\Controller;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
-    {
-        return view('course::course/index');
-    }
+  public function __construct()
+  {
+    $this->middleware('LicenseCheck')->only(['index','show']);
+    $this->middleware('role:sa')->except(['index','show']);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('course::course/create');
-    }
+  /**
+   * Display a listing of the resource.
+   * @return Response
+   */
+  public function index()
+  {
+    return view('course::course/index');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(CourseRequest $request)
-    {
-        // $data variable attempts to create a course via the course helper, if successful return true, else return false.
-        $data = CourseHelper::create($request);
+  /**
+   * Show the form for creating a new resource.
+   * @return Response
+   */
+  public function create()
+  {
+    return view('course::course/create');
+  }
 
-        // if $data is true redirect to the course overview, else redirect back with an error.
-        if ($data != false):
-            return redirect('/course/');
-        else :
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
-        endif;
-    }
+  /**
+   * Store a newly created resource in storage.
+   * @param  Request $request
+   * @return Response
+   */
+  public function store(CourseRequest $request)
+  {
+    // $data variable attempts to create a course via the course helper, if successful return true, else return false.
+    $data = CourseHelper::create($request);
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('course::course/show');
-    }
+    // if $data is true redirect to the course overview, else redirect back with an error.
+    if ($data != false):
+      return redirect('/course/');
+    else :
+      return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+    endif;
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit($id)
-    {
-        // finds course by ID param and gives it to the view.
-        $course = Course::find($id);
-        return view('course::course/edit', ['course' => $course]);
-    }
+  /**
+   * Show the specified resource.
+   * @return Response
+   */
+  public function show()
+  {
+    return view('course::course/show');
+  }
 
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @param $id
-     * @return Response
-     */
-    public function update(CourseRequest $request)
-    {
-        // $data variable attempts to update a course via the course helper, if successful return true, else return false.
-        $data = CourseHelper::edit($request);
+  /**
+   * Show the form for editing the specified resource.
+   * @return Response
+   */
+  public function edit($id)
+  {
+    // finds course by ID param and gives it to the view.
+    $course = Course::find($id);
+    return view('course::course/edit', ['course' => $course]);
+  }
 
-        // if $data is true return to course overview else redirect back with errors
-        if ($data != false):
-            return redirect('/course/');
-        else :
-            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
-        endif;
-    }
+  /**
+   * Update the specified resource in storage.
+   * @param  Request $request
+   * @param $id
+   * @return Response
+   */
+  public function update(CourseRequest $request)
+  {
+    // $data variable attempts to update a course via the course helper, if successful return true, else return false.
+    $data = CourseHelper::edit($request);
 
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
+    // if $data is true return to course overview else redirect back with errors
+    if ($data != false):
+      return redirect('/course/');
+    else :
+      return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+    endif;
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   * @return Response
+   */
+  public function destroy()
+  {
+  }
 }

@@ -10,6 +10,11 @@ use UserHelper;
 
 class LicenseActivationController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
   public function activate()
   {
     $user = Auth::user();

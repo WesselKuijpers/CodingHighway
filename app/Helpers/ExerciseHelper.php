@@ -45,4 +45,24 @@ class ExerciseHelper
       return false;
     endif;
   }
+
+
+  public function sortCourseList($exerciseList)
+  {
+    $first = $exerciseList->isFirst();
+    $next = null;
+    $list = [];
+
+    for($i = 1; $i < $exerciseList->count(); $i++):
+      if ($next == null):
+        $next = $first->next;
+      else:
+        $next = $next->next;
+      endif;
+
+      array_push($list, $next);
+    endfor;
+
+    return $list;
+  }
 }

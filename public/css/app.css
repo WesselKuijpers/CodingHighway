@@ -10553,3 +10553,14 @@ body {
   border: thin rgba(0, 0, 0, 0.25) solid;
 }
 
+.no-link {
+  /* Todo */
+  text-decoration: none;
+  color: black;
+}
+
+.custom-card {
+  min-height: 300px;
+  width: auto;
+}
+

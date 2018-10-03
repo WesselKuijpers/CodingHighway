@@ -20,7 +20,7 @@ class CourseController extends Controller
     public function index()
     {
       $courses = Course::all();
-      return view('course::course/index', ['courses' => $courses]);
+      return view('course::course.index', ['courses' => $courses]);
     }
 
     /**
@@ -29,14 +29,13 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('course::course/create');
+        return view('course::course.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
+  /**
+   * @param CourseRequest $request
+   * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+   */
     public function store(CourseRequest $request)
     {
         // $data variable attempts to create a course via the course helper, if successful return true, else return false.
@@ -44,40 +43,38 @@ class CourseController extends Controller
 
         // if $data is true redirect to the course overview, else redirect back with an error.
         if ($data != false):
-            return redirect('/course/');
+            return redirect()->route('course');
         else :
             return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
         endif;
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
+  /**
+   * @param $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
     public function show($id)
     {
       $course = Course::find($id);
 
-      return view('course::course/show', ['course' => $course]);
+      return view('course::course.show', ['course' => $course]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
+  /**
+   * @param $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
     public function edit($id)
     {
         // finds course by ID param and gives it to the view.
         $course = Course::find($id);
-        return view('course::course/edit', ['course' => $course]);
+        return view('course::course.edit', ['course' => $course]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @param $id
-     * @return Response
-     */
+  /**
+   * @param CourseRequest $request
+   * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+   */
     public function update(CourseRequest $request)
     {
         // $data variable attempts to update a course via the course helper, if successful return true, else return false.
@@ -85,7 +82,7 @@ class CourseController extends Controller
 
         // if $data is true return to course overview else redirect back with errors
         if ($data != false):
-            return redirect('/course/');
+            return redirect()->route('course');
         else :
             return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
         endif;

@@ -28,6 +28,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -83,10 +84,8 @@ body {
   border: thin rgba(0, 0, 0, .25) solid;
 }
 
-.no-link {
-  /* Todo */
+.no-link, a:hover.no-link {
     text-decoration: none;
-    color: black;
 }
 
 .custom-card {

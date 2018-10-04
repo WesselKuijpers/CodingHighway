@@ -46,29 +46,4 @@ class ExerciseHelper
     endif;
   }
 
-  /**
-   * Sort the list
-   * TODO fix code to the new db fields
-   *
-   * @param $exerciseList
-   * @return array
-   */
-  public function sortCourseList($exerciseList)
-  {
-    $first = $exerciseList->isFirst();
-    $next = null;
-    $list = [];
-
-    for($i = 1; $i < $exerciseList->count(); $i++):
-      if ($next == null):
-        $next = $first->next;
-      else:
-        $next = $next->next;
-      endif;
-
-      array_push($list, $next);
-    endfor;
-
-    return $list;
-  }
 }

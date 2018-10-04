@@ -10,6 +10,7 @@ use CourseHelper;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use OrderHelper;
 
 class CourseController extends Controller
 {
@@ -62,8 +63,14 @@ class CourseController extends Controller
   public function show($id)
   {
     $course = Course::find($id);
+    $exercises = $course->exercises;
+    $sortedexercises = OrderHelper::sortList($exercises);
 
-    return view('course::course.show', ['course' => $course]);
+    $lessons = $course->lessons;
+    $sortedlessons = OrderHelper::sortList($lessons);
+
+
+    return view('course::course.show', ['course' => $course, 'exercises' => $sortedexercises, 'lessons' => $sortedlessons]);
   }
 
   /**

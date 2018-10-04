@@ -10,14 +10,14 @@
     <p>{{$course->description}}</p>
     <h3>Lessen:</h3>
     <ul>
-        @foreach($course->lessons as $lesson)
+        @foreach($lessons as $lesson)
             <li><a href="/course/{{$course->id}}/lesson/{{$lesson->id}}">{{$lesson->title}}</a></li>
         @endforeach
     </ul>
     <h3>Opdrachten:</h3>
     <ul>
-        @for($i = 1; $i <= count($course->exercises); $i++)
-            <li><a href="/course/{{$course->id}}/exercise/{{$course->exercises[$i-1]->id}}">Opdracht {{$i}}</a></li>
+        @for($i = 0; $i < count($exercises); $i++)
+            <li><a href="/course/{{$course->id}}/exercise/{{$exercises[$i]->id}}">Opdracht {{$i+1}}</a></li>
         @endfor
     </ul>
 

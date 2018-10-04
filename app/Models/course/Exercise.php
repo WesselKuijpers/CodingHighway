@@ -21,4 +21,9 @@ class Exercise extends Model
   {
     return $this->hasManyThrough(Media::class, ExerciseMedia::class);
   }
+
+  public function next()
+  {
+    return $this->belongsTo(Exercise::class, 'next_exercise');
+  }
 }

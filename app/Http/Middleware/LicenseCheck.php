@@ -16,7 +16,7 @@ class LicenseCheck
    */
   public function handle($request, Closure $next)
   {
-    if ($request->user()->hasRole('sa')):
+    if (! $request->user()->hasRole('sa')):
       return $next($request);
     else:
       if ($request->user()->license->count() === 1 && $request->user()->license->first()->expired == false) :

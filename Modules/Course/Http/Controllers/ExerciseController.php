@@ -11,6 +11,7 @@ use ExerciseHelper;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use OrderHelper;
 
 class ExerciseController extends Controller
 {
@@ -21,7 +22,7 @@ class ExerciseController extends Controller
     public function index($id)
     {
       $course = Course::find($id);
-      $exercises = $course->exercises;
+      $exercises = OrderHelper::sortList($course->exercises);
       return view('course::exercise.index', ['course' => $course, 'exercises' => $exercises]);
     }
 
@@ -31,7 +32,7 @@ class ExerciseController extends Controller
    */
     public function create($id)
     {
-        // finds the course by the ID param, fetches all the levels from the DB and gives it to the view
+        // finds the course by the ID param, fetches all the levels and exercises from the DB and gives it to the view
         $course = Course::find($id);
         $levels = Level::all();
         return view('course::exercise.create', ['course' => $course, 'levels' => $levels]);

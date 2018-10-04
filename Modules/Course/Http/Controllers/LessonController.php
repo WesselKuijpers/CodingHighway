@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use LessonHelper;
+use OrderHelper;
 
 class LessonController extends Controller
 {
@@ -21,7 +22,7 @@ class LessonController extends Controller
   public function index($id)
   {
     $course = Course::find($id);
-    $lessons = $course->lessons;
+    $lessons = OrderHelper::sortList($course->lessons);
     return view('course::lesson.index', ['course' => $course, 'lessons' => $lessons]);
   }
 
@@ -31,7 +32,7 @@ class LessonController extends Controller
    */
   public function create($id)
   {
-    //fetches the course by id in params, fetches all levels and pass them to the view.
+    //fetches the course by id in params, fetches all levels and other lessons and pass them to the view.
     $course = Course::find($id);
     $levels = Level::all();
     return view('course::lesson.create', ['course' => $course, 'levels' => $levels]);

@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use jeremykenedy\LaravelRoles\Models\Role;
 
-class RoleAndPermissionSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
   /**
    * Seed the application's database.
@@ -14,9 +14,9 @@ class RoleAndPermissionSeeder extends Seeder
   {
     if (Role::where('slug', 'sa')->count() != 1):
       Role::create([
-        'name' => 'Super Administratior',
+        'name' => 'System Administrator',
         'slug' => 'sa',
-        'level' => 2
+        'level' => 3
       ]);
     endif;
 
@@ -24,6 +24,14 @@ class RoleAndPermissionSeeder extends Seeder
       Role::create([
         'name' => 'Administrator',
         'slug' => 'admin',
+        'level' => 2
+      ]);
+    endif;
+
+    if (Role::where('slug', 'user')->count() != 1):
+      Role::create([
+        'name' => 'Gebruiker',
+        'slug' => 'user',
         'level' => 1
       ]);
     endif;

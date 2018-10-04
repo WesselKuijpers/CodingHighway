@@ -3,6 +3,7 @@
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use jeremykenedy\LaravelRoles\Models\Permission;
 use jeremykenedy\LaravelRoles\Models\Role;
 
 class UserTableSeeder extends Seeder
@@ -30,6 +31,7 @@ class UserTableSeeder extends Seeder
     $user->save();
 
     $user->attachRole(Role::where('slug', 'sa')->first());
+    $user->attachPermission(Permission::where('slug', 'error.show')->first());
 
     factory(User::class, 20)->create();
   }

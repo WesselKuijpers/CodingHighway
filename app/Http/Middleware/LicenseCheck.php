@@ -16,9 +16,14 @@ class LicenseCheck
    */
   public function handle($request, Closure $next)
   {
+<<<<<<< HEAD
 
     if (! $request->user()->hasRole('sa')):
       return $next($request);
+=======
+    if (!$request->user()):
+      return redirect()->route('login')->with('error', 'Je moet ingelogd zijn');
+>>>>>>> sprint_2_thomas
     else:
       if ($request->user()->hasRole('sa')):
         return $next($request);

@@ -27,18 +27,20 @@ class ExerciseHelper
     $exercise->level_id = $validated['level_id'];
 
     if ($exercise->save()):
-      foreach ($validated['media'] as $m):
-        $file = FileHelper::store($m);
+      if (!empty($validated['media'])):
+        foreach ($validated['media'] as $m):
+          $file = FileHelper::store($m);
 
-        $media = new Media;
-        $media->content = '/storage/media/'.$file->hashName();
-        if ($media->save()):
-          $ml = new ExerciseMedia;
-          $ml->media_id = $media->id;
-          $ml->exercise_id = $exercise->id;
-          $ml->save();
-        endif;
-      endforeach;
+          $media = new Media;
+          $media->content = '/storage/media/' . $file->hashName();
+          if ($media->save()):
+            $ml = new ExerciseMedia;
+            $ml->media_id = $media->id;
+            $ml->exercise_id = $exercise->id;
+            $ml->save();
+          endif;
+        endforeach;
+      endif;
 
       return $exercise;
     else:

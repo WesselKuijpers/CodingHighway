@@ -10563,8 +10563,9 @@ a:hover.no-link {
   width: auto;
 }
 
-.img-h-275 {
-  height: 275px;
+.img-h-250 {
+  height: 250px;
   width: auto;
+  margin: 0px auto;
 }
 

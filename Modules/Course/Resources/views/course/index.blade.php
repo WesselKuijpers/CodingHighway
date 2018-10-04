@@ -21,7 +21,7 @@
             <div class="card overflow-h custom-card" style="background-color: {{$course->color}}; color:{{"#fff"}};">
               <div class="card-body text-center text-white">
                 <h3 class="card-title mt-1 mb-3">{{  $course->name }}</h3>
-                <img class="card-img-top m-a img-h-275" src="{{$course->media->content}}"
+                <img class="card-img-top m-a img-h-250" src="{{$course->media->content}}"
                      alt="Course logo">
                 <p class="text-truncate pt-2">{{ $course->description }}</p>
               </div>

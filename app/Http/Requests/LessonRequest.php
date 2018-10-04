@@ -19,11 +19,35 @@ class LessonRequest extends FormRequest
    */
   public function authorize()
   {
-    if (Auth::user()->hasRole('sa')):
-      return true;
-    else:
-      return false;
-    endif;
+    switch ($this->getMethod()):
+      case 'POST':
+        if (Auth::user()->canLessonCreate()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      case 'PUT':
+        if (Auth::user()->canLessonEdit()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      case 'DELETE':
+        if (Auth::user()->canLessonDelete()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      default:
+        return false;
+        break;
+    endswitch;
   }
 
   /**

@@ -19,7 +19,7 @@ class SuperAdminRequest extends FormRequest
    */
   public function authorize()
   {
-    if (Auth::user()->hasRole('sa')):
+    if (Auth::user()->canSaCreate()):
       return true;
     else:
       return false;

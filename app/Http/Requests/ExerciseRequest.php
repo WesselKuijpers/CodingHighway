@@ -19,11 +19,35 @@ class ExerciseRequest extends FormRequest
    */
   public function authorize()
   {
-    if (Auth::user()->hasRole('sa')):
-      return true;
-    else:
-      return false;
-    endif;
+    switch ($this->getMethod()):
+      case 'POST':
+        if (Auth::user()->canExerciseCreate()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      case 'PUT':
+        if (Auth::user()->canExerciseEdit()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      case 'DELETE':
+        if (Auth::user()->canExerciseDelete()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      default:
+        return false;
+        break;
+    endswitch;
   }
 
   /**

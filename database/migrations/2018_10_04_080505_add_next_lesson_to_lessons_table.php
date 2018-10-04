@@ -14,7 +14,7 @@ class AddNextLessonToLessonsTable extends Migration
     public function up()
     {
         Schema::table('lessons', function (Blueprint $table) {
-          $table->boolean('is_first');
+          $table->boolean('is_first')->default(false);
           $table->unsignedInteger('next_lesson')->nullable();
 
           $table->foreign('next_lesson')

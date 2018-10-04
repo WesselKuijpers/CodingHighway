@@ -126,5 +126,12 @@ return [
     'slug' => 'sa.create',
     'model' => '',
     'description' => 'Access to be able of enabling / disabling the sa role'
+  ],
+  //overige
+  [
+    'name' => 'ErrorShow',
+    'slug' => 'error.show',
+    'model' => '',
+    'description' => ''
   ]
 ];

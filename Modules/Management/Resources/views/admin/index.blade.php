@@ -1,11 +1,7 @@
-{{--
--- Extending the layout --
---}}
+{{-- Extending the layout --}}
 @extends('layouts.app')
 
-{{--
--- Placeholder for the page-specific content
---}}
+{{-- Placeholder for the page-specific content --}}
 @section('content')
     <form action="/management/admin/" method="get">
         <input type="text" name="query" placeholder="Vul een naam of email in">
@@ -33,9 +29,12 @@
                             <td>
                                 @if($user->hasRole('sa'))
                                     <input type="hidden" value=0 name="noAdmins[{{$user->id}}]">
-                                    <input type="checkbox" checked="checked" name="noAdmins[{{$user->id}}]" value=1>
+                                    {{--<input type="checkbox" checked="checked" name="noAdmins[{{$user->id}}]" value=1>--}}
+                                    <input type="checkbox" checked data-toggle="toggle" data-on="Admin" data-off="User"  name="noAdmins[{{$user->id}}]" value=1>
+
                                 @else
-                                    <input type="checkbox" name="admins[]" value="{{$user->id}}">
+                                    <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" name="admins[]" value="{{$user->id}}">
+                                    {{--<input type="checkbox" name="admins[]" value="{{$user->id}}">--}}
                                 @endif
                             </td>
                         </tr>

@@ -28,6 +28,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -68,4 +69,26 @@ body {
 .page-header {
   font-family: 'Galdeano', sans-serif;
   font-size: 35px;
+}
+
+/* Bootstrap Toggle v2.2.2 corrections for Bootsrtap 4*/
+.toggle-off {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.toggle.off {
+  border-color: rgba(0, 0, 0, .25);
+}
+
+.toggle-handle {
+  background-color: white;
+  border: thin rgba(0, 0, 0, .25) solid;
+}
+
+.no-link, a:hover.no-link {
+    text-decoration: none;
+}
+
+.custom-card {
+  min-height: 300px;
+  width: auto;
 }

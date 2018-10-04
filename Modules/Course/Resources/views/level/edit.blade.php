@@ -8,7 +8,7 @@
 
     {{-- Including the form title partial --}}
     @include('shared.form_title', ['title' => "Pas de moeilijkheid aan"])
-
+    @include('shared.error')
     <form method="post" action="/course/level">
         @include('shared.form_required', ['label' => 'Moeilijkheid', 'value' => $level['name'], 'name'=> 'name', 'type'=> 'text',
         'class' => 'form-control'])

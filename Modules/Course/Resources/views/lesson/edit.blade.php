@@ -7,7 +7,8 @@
 @section('content')
 
     {{-- Including the form title partial --}}
-    @include('shared.form_title', ['title' => "Pas een opdracht aan in de cursus $course->name"])
+    @include('shared.form_title', ['title' => "Pas een les aan in de cursus $course->name"])
+    @include('shared.error')
     <form method="post" action="/course/{{$course['id']}}/lesson/{{$lesson['id']}}" enctype="multipart/form-data">
         {{ method_field('PUT') }}
 

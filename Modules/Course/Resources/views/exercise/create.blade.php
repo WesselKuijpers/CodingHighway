@@ -8,7 +8,7 @@
 
     {{-- Including the form title --}}
     @include('shared.form_title', ['title' => "Creeër een nieuwe opdracht in de cursus $course->name"])
-
+    @include('shared.error')
     <form method="post" action="/course/{{$course['id']}}/exercise" enctype="multipart/form-data">
         @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10])
         <div class="row">

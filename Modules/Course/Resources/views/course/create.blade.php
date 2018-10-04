@@ -8,7 +8,7 @@
 
     {{-- Including the form title --}}
     @include('shared.form_title', ['title' => "Creeër een cursus"])
-
+    @include('shared.error')
     <form method="post" action="/course" enctype="multipart/form-data">
         @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text',
         'class' => 'form-control'])

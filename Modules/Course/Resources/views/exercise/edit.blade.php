@@ -6,8 +6,9 @@
 {{-- Placeholder for the page-specific content --}}
 @section('content')
 
+    @include('shared.form_title', ['title' => "Pas een opdracht aan in de cursus $course->name"])
+    @include('shared.error')
     <form method="post" action="/course/{{$course['id']}}/exercise/{{$exercise['id']}}" enctype="multipart/form-data">
-
         {{ method_field('PUT') }}
 
         @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10, 'value' => $exercise['content']])

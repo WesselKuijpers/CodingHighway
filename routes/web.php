@@ -19,7 +19,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('LicenseCheck');
 
-Route::group(['prefix'=>'user', 'middleware'=>'auth'], function(){
+Route::group(['prefix'=>'user'], function(){
   Route::get('/activate', 'LicenseActivationController@activate')->name('UserActivateLicense');
   Route::post('/activate', 'LicenseActivationController@save')->name('UserActivateLicenseSave');
 

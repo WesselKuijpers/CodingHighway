@@ -3,6 +3,7 @@
 
 {{-- Placeholder for the page-specific content --}}
 @section('content')
+    @include('shared.error')
     <form action="/management/admin/" method="get">
         <input type="text" name="query" placeholder="Vul een naam of email in">
         <input type="submit" value="Zoek">

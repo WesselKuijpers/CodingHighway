@@ -19,7 +19,7 @@ class UserActivateRequest extends FormRequest
    */
   public function authorize()
   {
-    if ($this->input('user_id') == Auth::id()):
+    if ($this->input('user_id') == Auth::id() && Auth::user()->canUserActivate()):
       return true;
     else:
       return false;

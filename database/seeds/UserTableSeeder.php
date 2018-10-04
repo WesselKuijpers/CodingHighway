@@ -2,6 +2,9 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use jeremykenedy\LaravelRoles\Models\Permission;
+use jeremykenedy\LaravelRoles\Models\Role;
 
 class UserTableSeeder extends Seeder
 {
@@ -24,11 +27,11 @@ class UserTableSeeder extends Seeder
     $user->lastname = $lastname;
     $user->email = $email;
     $user->email_verified_at = \Carbon\Carbon::now();
-    $user->password = bcrypt($password);
+    $user->password = Hash::make($password);
     $user->save();
 
-    $user->attachRole(1);
-    $user->attachRole(2);
+    $user->attachRole(Role::where('slug', 'sa')->first());
+    $user->attachPermission(Permission::where('slug', 'error.show')->first());
 
     factory(User::class, 20)->create();
   }

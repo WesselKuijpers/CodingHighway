@@ -19,11 +19,35 @@ class CourseRequest extends FormRequest
    */
   public function authorize()
   {
-    if (Auth::user()->hasRole('sa')):
-      return true;
-    else:
-      return false;
-    endif;
+    switch ($this->getMethod()):
+      case 'POST':
+        if (Auth::user()->canCourseCreate()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      case 'PUT':
+        if (Auth::user()->canCourseEdit()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      case 'DELETE':
+        if (Auth::user()->canCourseDelete()):
+          return true;
+        else:
+          return false;
+        endif;
+
+        break;
+      default:
+        return false;
+        break;
+    endswitch;
   }
 
   /**
@@ -34,7 +58,7 @@ class CourseRequest extends FormRequest
   public function rules()
   {
     $rules = [];
-    switch($this->getMethod()):
+    switch ($this->getMethod()):
       case "POST":
         $rules = [
           'name' => 'required|string|max:255',

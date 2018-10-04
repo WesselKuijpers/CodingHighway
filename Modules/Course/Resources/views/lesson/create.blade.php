@@ -8,7 +8,7 @@
 
     {{-- Including the form title partial --}}
     @include('shared.form_title', ['title' => "Creeër een nieuwe les in de cursus $course->name"])
-
+    @include('shared.error')
     <form method="post" action="/course/{{$course['id']}}/lesson" enctype="multipart/form-data">
         @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'class' => 'form-control'])
         @include('shared.textarea', ['label' => 'Inhoud', 'name' => 'content', 'required' => true])

@@ -19,7 +19,7 @@ class UserEditRequest extends FormRequest
    */
   public function authorize()
   {
-    if ($this->input('user_id') == Auth::id()):
+    if ($this->input('user_id') == Auth::id() && Auth::user()->canUserEdit()):
       return true;
     else:
       return false;

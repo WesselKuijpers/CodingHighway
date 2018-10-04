@@ -14,7 +14,7 @@
         'class' => 'form-control'])
         @include('shared.textarea', ['label' => 'Beschrijving', 'name'=> 'description', 'type'=> 'text',
         'required' => true, 'rows' => 7, 'class' => ''])
-        @include('shared.form_required', ['label' => 'Cursuskleur', 'name'=> 'color', 'type'=> 'color',
+        @include('shared.form_required', ['label' => 'Cursus kleur', 'name'=> 'color', 'type'=> 'color',
         'class' => 'w-25'])
         @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media', 'type' => 'file',
         'class' => ''])

@@ -26,7 +26,7 @@
           </li>
         @else
           <li class="nav-item dropdown">
-            <a id="navbarDropdown" style="color: #004685" class="nav-link dropdown-toggle" href="#" role="button"
+            <a id="navbarDropdown" style="color: #fff" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->getFullname() }} <span class="caret"></span>
             </a>
@@ -47,13 +47,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/home') }}" style="color: #004685" class="nav-link">Home</a>
+            <a href="{{ url('/home') }}" style="color: #fff" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/course') }}" style="color: #004685" class="nav-link">Cursussen</a>
+            <a href="{{ url('/course') }}" style="color: #fff" class="nav-link">Cursussen</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/forum') }}" style="color: #004685" class="nav-link">Forum</a>
+            <a href="{{ url('/forum') }}" style="color: #fff" class="nav-link">Forum</a>
           </li>
         @endguest
       </ul>

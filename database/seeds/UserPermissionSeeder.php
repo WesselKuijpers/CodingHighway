@@ -19,6 +19,9 @@ class UserPermissionSeeder extends Seeder
 
       $user->attachPermission($UserPermission);
       foreach ($ShowPermissions as $permission):
+        if ($permission->slug == 'level.show'):
+          continue;
+        endif;
         $user->attachPermission($permission);
       endforeach;
     }

@@ -21,14 +21,14 @@ class LessonSeeder extends Seeder
     $beginner = Level::where('name', 'Beginner')->first();
     $expert = Level::where('name', 'Expert')->first();
 
-    if (Lesson::where('title', 'Les1-html')->count() != 0):
+    if (Lesson::where('title', 'Les1-html')->count() == 0):
       $lesson = new Lesson;
       $lesson->title = 'Les1-html';
       $lesson->content = Faker\Provider\Lorem::text(500);
       $lesson->course_id = $html->id;
       $lesson->level_id = $beginner->id;
     endif;
-    if (Lesson::where('title', 'Les11-html')->count() != 0):
+    if (Lesson::where('title', 'Les11-html')->count() == 0):
       $lesson = new Lesson;
       $lesson->title = 'Les11-html';
       $lesson->content = Faker\Provider\Lorem::text(600);
@@ -36,14 +36,14 @@ class LessonSeeder extends Seeder
       $lesson->level_id = $expert->id;
     endif;
 
-    if (Lesson::where('title', 'Les1-css')->count() != 0):
+    if (Lesson::where('title', 'Les1-css')->count() == 0):
       $lesson = new Lesson;
       $lesson->title = 'Les1-css';
       $lesson->content = Faker\Provider\Lorem::text(500);
       $lesson->course_id = $css->id;
       $lesson->level_id = $beginner->id;
     endif;
-    if (Lesson::where('title', 'Les11-css')->count() != 0):
+    if (Lesson::where('title', 'Les11-css')->count() == 0):
       $lesson = new Lesson;
       $lesson->title = 'Les11-css';
       $lesson->content = Faker\Provider\Lorem::text(600);
@@ -51,14 +51,14 @@ class LessonSeeder extends Seeder
       $lesson->level_id = $expert->id;
     endif;
 
-    if (Lesson::where('title', 'Les1-js')->count() != 0):
+    if (Lesson::where('title', 'Les1-js')->count() == 0):
       $lesson = new Lesson;
       $lesson->title = 'Les1-js';
       $lesson->content = Faker\Provider\Lorem::text(500);
       $lesson->course_id = $js->id;
       $lesson->level_id = $beginner->id;
     endif;
-    if (Lesson::where('title', 'Les11-js')->count() != 0):
+    if (Lesson::where('title', 'Les11-js')->count() == 0):
       $lesson = new Lesson;
       $lesson->title = 'Les11-js';
       $lesson->content = Faker\Provider\Lorem::text(600);

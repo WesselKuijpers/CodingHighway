@@ -24,6 +24,7 @@
         @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'value' => $exercise['file'], 'multiple' => true])
 
         @include('course::shared.levels', ['levels' => $levels])
+        @include('course::shared.select_exercise', ['exercises' => $course->exercises])
 
         {{ csrf_field() }}
 

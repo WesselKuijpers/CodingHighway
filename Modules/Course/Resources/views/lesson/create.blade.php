@@ -21,6 +21,7 @@
         </div>
 
         @include('course::shared.levels', ['levels' => $levels])
+        @include('course::shared.select_lesson', ['lessons' => $course->lessons])
 
         {{ csrf_field() }}
         <input type="hidden" value="{{$course['id']}}" name="course_id">

@@ -20,6 +20,7 @@
             'class' => ''])
 
         @include('course::shared.levels', ['levels' => $levels])
+        @include('course::shared.select_lesson', ['lessons' => $course->lessons])
 
         {{ csrf_field() }}
 

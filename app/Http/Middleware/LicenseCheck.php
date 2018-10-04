@@ -16,13 +16,18 @@ class LicenseCheck
    */
   public function handle($request, Closure $next)
   {
-    if ($request->user()->hasRole('sa')):
-      return $next($request);
+    if ($request->user()):
+      return redirect()->route('login')->with('error', 'Je moet ingelogd zijn');
     else:
-      if ($request->user()->license->count() === 1 && $request->user()->license->first()->expired == false) :
+      if ($request->user()->hasRole('sa')):
         return $next($request);
+      else:
+        if ($request->user()->license->count() === 1 && $request->user()->license->first()->expired == false) :
+          return $next($request);
+        endif;
       endif;
     endif;
+
 
 
     return redirect()->route('UserActivateLicense')->with('error', 'je moet een actieve licentie hebben voor deze actie.');

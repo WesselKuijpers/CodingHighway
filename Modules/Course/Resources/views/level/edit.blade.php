@@ -9,7 +9,11 @@
     {{-- Including the form title partial --}}
     @include('shared.form_title', ['title' => "Pas de moeilijkheid aan"])
 
-    {{-- Including the update form partial --}}
-    @include('course::shared.level_update_form', ['level' => $level])
+    <form method="post" action="/course/level">
+        @include('shared.form_required', ['label' => 'Moeilijkheid', 'value' => $level['name'], 'name'=> 'name', 'type'=> 'text',
+        'class' => 'form-control'])
+        {{ csrf_field() }}
+        @include('shared.submit_button')
+    </form>
 
 @endsection

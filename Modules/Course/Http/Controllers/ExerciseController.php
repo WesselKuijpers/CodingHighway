@@ -14,34 +14,34 @@ use Illuminate\Routing\Controller;
 
 class ExerciseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+  /**
+   * @param $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
+    public function index($id)
     {
-        return view('course::exercise/index');
+      $course = Course::find($id);
+      $exercises = $course->exercises;
+      return view('course::exercise.index', ['course' => $course, 'exercises' => $exercises]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @param $id
-     * @return Response
-     */
+  /**
+   * @param $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
     public function create($id)
     {
         // finds the course by the ID param, fetches all the levels from the DB and gives it to the view
         $course = Course::find($id);
         $levels = Level::all();
-        return view('course::exercise/create', ['course' => $course, 'levels' => $levels]);
+        return view('course::exercise.create', ['course' => $course, 'levels' => $levels]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param $id
-     * @param ExerciseRequest|Request $request
-     * @return Response
-     */
+  /**
+   * @param $id
+   * @param ExerciseRequest $request
+   * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+   */
     public function store($id, ExerciseRequest $request)
     {
         // evaluates if the ID param is the same as the id that was passed in by the request.
@@ -57,26 +57,29 @@ class ExerciseController extends Controller
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
-                return redirect('/course/' . $id);
+                return redirect()->route('course.show', ['id' => $id]);
             else :
                 return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
             endif;
         }
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
+  /**
+   * @param $courseId
+   * @param $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
+    public function show($courseId, $id)
     {
-        return view('course::exercise/show');
+      $exercise = Exercise::find($id);
+      return view('course::exercise.show', ['exercise' => $exercise]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
+  /**
+   * @param $courseId
+   * @param $excerciseId
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+   */
     public function edit($courseId, $excerciseId)
     {
         // fetches course and exercise from the passed in params, fetch all levels
@@ -85,16 +88,15 @@ class ExerciseController extends Controller
         $levels = Level::all();
 
         // pass them to the view
-        return view('course::exercise/edit', ['course' => $course, 'exercise' => $exercise, 'levels' => $levels]);
+        return view('course::exercise.edit', ['course' => $course, 'exercise' => $exercise, 'levels' => $levels]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param $course_id
-     * @param  Request $request
-     * @return Response
-     * @internal param $id
-     */
+  /**
+   * @param $id
+   * @param $exercise
+   * @param ExerciseRequest $request
+   * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+   */
     public function update($id, $exercise, ExerciseRequest $request)
     {
         // evaluates if the ID param is the same as the id that was passed in by the request.
@@ -110,7 +112,7 @@ class ExerciseController extends Controller
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
-                return redirect('/course/' . $id);
+                return redirect()->route('course.show', ['id' => $id]);
             else :
                 return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
             endif;

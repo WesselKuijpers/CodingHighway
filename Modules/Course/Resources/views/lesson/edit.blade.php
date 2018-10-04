@@ -8,7 +8,22 @@
 
     {{-- Including the form title partial --}}
     @include('shared.form_title', ['title' => "Pas een opdracht aan in de cursus $course->name"])
-    {{-- Including the update form partial --}}
-    @include('course::shared.lesson_update_form', ['lesson' => $lesson, 'course' => $course, 'levels' => $levels])
+    <form method="post" action="/course/{{$course['id']}}/lesson/{{$lesson['id']}}" enctype="multipart/form-data">
+        {{ method_field('PUT') }}
+
+        @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'value' => $lesson['title']
+        , 'class' => 'form-control'])
+        @include('shared.textarea', ['label' => 'Inhoud', 'name' => 'content', 'value' => $lesson['content'], 'required' => true
+        , 'class' => 'form-control'])
+        @include('shared.form', ['label' => 'Media', 'name' => 'media[]', 'type' => 'file',
+            'class' => ''])
+
+        @include('course::shared.levels', ['levels' => $levels])
+
+        {{ csrf_field() }}
+
+        <input type="hidden" value="{{$course['id']}}" name="course_id">
+        @include('shared.submit_button')
+    </form>
 
 @endsection

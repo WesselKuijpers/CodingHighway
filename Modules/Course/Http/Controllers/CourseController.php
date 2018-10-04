@@ -4,6 +4,8 @@ namespace Modules\Course\Http\Controllers;
 
 use App\Http\Requests\CourseRequest;
 use App\Models\course\Course;
+use App\Models\course\Exercise;
+use App\Models\course\Lesson;
 use CourseHelper;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

@@ -15,18 +15,19 @@ use LessonHelper;
 class LessonController extends Controller
 {
   /**
-   * Display a listing of the resource.
-   * @return Response
+   * @param $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
    */
-  public function index()
+  public function index($id)
   {
-    return view('course::lesson.index');
+    $course = Course::find($id);
+    $lessons = $course->lessons;
+    return view('course::lesson.index', ['course' => $course, 'lessons' => $lessons]);
   }
 
   /**
-   * Show the form for creating a new resource.
    * @param $id
-   * @return Response
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
    */
   public function create($id)
   {
@@ -37,10 +38,9 @@ class LessonController extends Controller
   }
 
   /**
-   * Store a newly created resource in storage.
    * @param $id
-   * @param LessonRequest|Request $request
-   * @return Response
+   * @param LessonRequest $request
+   * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
    */
   public function store($id, LessonRequest $request)
   {
@@ -54,7 +54,7 @@ class LessonController extends Controller
 
       // if $data is true redirect to specific course overview, else redirect back with errors
       if ($data != false):
-        return redirect('/course/' . $id);
+        return redirect()->route('course.show', ['id' => $id]);
       else :
         return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
       endif;
@@ -62,17 +62,20 @@ class LessonController extends Controller
   }
 
   /**
-   * Show the specified resource.
-   * @return Response
+   * @param $courseId
+   * @param $id
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
    */
-  public function show()
+  public function show($courseId, $id)
   {
-    return view('course::lesson/show');
+    $lesson = Lesson::find($id);
+    return view('course::lesson.show', ['lesson' => $lesson]);
   }
 
   /**
-   * Show the form for editing the specified resource.
-   * @return Response
+   * @param $courseId
+   * @param $lessonId
+   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
    */
   public function edit($courseId, $lessonId)
   {
@@ -82,15 +85,14 @@ class LessonController extends Controller
     $levels = Level::all();
 
     // passes them to the view
-    return view('course::lesson/edit', ['course' => $course, 'lesson' => $lesson, 'levels' => $levels]);
+    return view('course::lesson.edit', ['course' => $course, 'lesson' => $lesson, 'levels' => $levels]);
   }
 
   /**
-   * Update the specified resource in storage.
-   * @param $course_id
-   * @param  Request $request
-   * @return Response
-   * @internal param $id
+   * @param $id
+   * @param $lesson
+   * @param LessonRequest $request
+   * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
    */
   public function update($id, $lesson, LessonRequest $request)
   {
@@ -104,7 +106,7 @@ class LessonController extends Controller
 
       //if successful redirect so specific course, else redirect with errors.
       if ($data != false):
-          return redirect('/course/' . $id);
+          return redirect()->route('course.show', ['id' => $id]);
       else :
           return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
       endif;

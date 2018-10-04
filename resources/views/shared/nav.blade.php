@@ -49,15 +49,8 @@
           <li class="nav-item">
             <a href="{{ url('/home') }}" style="color: #004685" class="nav-link">Home</a>
           </li>
-
           <li class="nav-item">
             <a href="{{ url('/course') }}" style="color: #004685" class="nav-link">Cursussen</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('/lesson') }}" style="color: #004685" class="nav-link">Lessen</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('/exercise') }}" style="color: #004685" class="nav-link">Opdrachten</a>
           </li>
           <li class="nav-item">
             <a href="{{ url('/forum') }}" style="color: #004685" class="nav-link">Forum</a>

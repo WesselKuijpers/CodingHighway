@@ -14,6 +14,15 @@ use LessonHelper;
 
 class LessonController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('LicenseCheck')->only(['index','show']);
+    $this->middleware('permission:lesson.show')->only(['index','show']);
+    $this->middleware('permission:lesson.create')->only(['create', 'store']);
+    $this->middleware('permission:lesson.edit')->only(['edit', 'update']);
+    $this->middleware('permission:lesson.delete')->only(['destroy']);
+  }
+
   /**
    * @param $id
    * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

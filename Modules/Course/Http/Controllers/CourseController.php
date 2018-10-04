@@ -16,7 +16,10 @@ class CourseController extends Controller
   public function __construct()
   {
     $this->middleware('LicenseCheck')->only(['index','show']);
-    $this->middleware('role:sa')->except(['index','show']);
+    $this->middleware('permission:course.show')->only(['index','show']);
+    $this->middleware('permission:course.create')->only(['create', 'store']);
+    $this->middleware('permission:course.edit')->only(['edit', 'update']);
+    $this->middleware('permission:course.delete')->only(['destroy']);
   }
 
   /**

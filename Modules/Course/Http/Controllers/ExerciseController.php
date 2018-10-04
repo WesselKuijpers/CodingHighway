@@ -14,6 +14,15 @@ use Illuminate\Routing\Controller;
 
 class ExerciseController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('LicenseCheck')->only(['index','show']);
+    $this->middleware('permission:exercise.show')->only(['index','show']);
+    $this->middleware('permission:exercise.create')->only(['create', 'store']);
+    $this->middleware('permission:exercise.edit')->only(['edit', 'update']);
+    $this->middleware('permission:exercise.delete')->only(['destroy']);
+  }
+
   /**
    * @param $id
    * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

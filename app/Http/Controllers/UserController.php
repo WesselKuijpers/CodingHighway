@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-  public function __contruct()
+  public function __construct()
   {
-    $this->middleware('LicenseCheck');
+    $this->middleware('permission:user.edit');
   }
 
   public function edit()

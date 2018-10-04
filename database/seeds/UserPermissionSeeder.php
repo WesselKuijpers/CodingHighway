@@ -15,7 +15,7 @@ class UserPermissionSeeder extends Seeder
     {
       $user = Role::where('slug', 'user')->first();
       $ShowPermissions = Permission::where('slug', 'like', '%show')->get();
-      $UserPermission = Permission::where('slug', 'use.edit')->get();
+      $UserPermission = Permission::where('slug', 'user.edit')->get();
 
       $user->attachPermission($UserPermission);
       foreach ($ShowPermissions as $permission):

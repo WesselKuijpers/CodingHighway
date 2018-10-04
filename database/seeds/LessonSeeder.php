@@ -27,6 +27,7 @@ class LessonSeeder extends Seeder
       $lesson->content = Faker\Provider\Lorem::text(500);
       $lesson->course_id = $html->id;
       $lesson->level_id = $beginner->id;
+      $lesson->save();
     endif;
     if (Lesson::where('title', 'Les11-html')->count() == 0):
       $lesson = new Lesson;
@@ -34,6 +35,7 @@ class LessonSeeder extends Seeder
       $lesson->content = Faker\Provider\Lorem::text(600);
       $lesson->course_id = $html->id;
       $lesson->level_id = $expert->id;
+      $lesson->save();
     endif;
 
     if (Lesson::where('title', 'Les1-css')->count() == 0):
@@ -42,6 +44,7 @@ class LessonSeeder extends Seeder
       $lesson->content = Faker\Provider\Lorem::text(500);
       $lesson->course_id = $css->id;
       $lesson->level_id = $beginner->id;
+      $lesson->save();
     endif;
     if (Lesson::where('title', 'Les11-css')->count() == 0):
       $lesson = new Lesson;
@@ -49,6 +52,7 @@ class LessonSeeder extends Seeder
       $lesson->content = Faker\Provider\Lorem::text(600);
       $lesson->course_id = $css->id;
       $lesson->level_id = $expert->id;
+      $lesson->save();
     endif;
 
     if (Lesson::where('title', 'Les1-js')->count() == 0):
@@ -57,6 +61,7 @@ class LessonSeeder extends Seeder
       $lesson->content = Faker\Provider\Lorem::text(500);
       $lesson->course_id = $js->id;
       $lesson->level_id = $beginner->id;
+      $lesson->save();
     endif;
     if (Lesson::where('title', 'Les11-js')->count() == 0):
       $lesson = new Lesson;
@@ -64,6 +69,7 @@ class LessonSeeder extends Seeder
       $lesson->content = Faker\Provider\Lorem::text(600);
       $lesson->course_id = $js->id;
       $lesson->level_id = $expert->id;
+      $lesson->save();
     endif;
   }
 }

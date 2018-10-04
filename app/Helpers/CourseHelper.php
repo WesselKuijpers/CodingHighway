@@ -25,14 +25,16 @@ class CourseHelper
     $course->color = $validated['color'];
 
     if ($course->save()):
-      $file = FileHelper::store($validated['media']);
+      if (!empty($validated['media'])):
+        $file = FileHelper::store($validated['media']);
 
-      $media = new Media;
-      $media->content = '/storage/media/'.$file->hashName();
-      if ($media->save()):
-        $course->media_id = $media->id;
+        $media = new Media;
+        $media->content = '/storage/media/' . $file->hashName();
+        if ($media->save()):
+          $course->media_id = $media->id;
+        endif;
+        $course->save();
       endif;
-      $course->save();
 
       return $course;
     else:
@@ -54,13 +56,19 @@ class CourseHelper
     $course->name = $validated['name'];
     $course->description = $validated['description'];
     $course->color = $validated['color'];
-    if ($validated['media_id'] != 0):
-      $course->media_id = $validated['media_id'];
-    else:
-      $course->media_id = null;
-    endif;
 
     if ($course->save()):
+      if (!empty($validated['media'])):
+        $file = FileHelper::store($validated['media']);
+
+        $media = new Media;
+        $media->content = '/storage/media/' . $file->hashName();
+        if ($media->save()):
+          $course->media_id = $media->id;
+        endif;
+        $course->save();
+      endif;
+
       return $course;
     else:
       return false;

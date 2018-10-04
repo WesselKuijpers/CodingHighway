@@ -46,7 +46,13 @@ class ExerciseHelper
     endif;
   }
 
-
+  /**
+   * Sort the list
+   * TODO fix code to the new db fields
+   *
+   * @param $exerciseList
+   * @return array
+   */
   public function sortCourseList($exerciseList)
   {
     $first = $exerciseList->isFirst();

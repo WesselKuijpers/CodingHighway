@@ -12,6 +12,8 @@ $factory->define(Organisation::class, function (Faker $faker) {
     'city' => $faker->city,
     'email' => $faker->companyEmail,
     'paper_invoice' => $faker->boolean,
-    'color' => $faker->hexColor
+    'color' => $faker->hexColor,
+    'fontcolor' => $faker->hexcolor,
+    'link' => $faker->url
   ];
 });

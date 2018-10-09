@@ -72,7 +72,6 @@ class CourseController extends Controller
     $lessons = $course->lessons;
     $sortedlessons = OrderHelper::sortList($lessons);
 
-
     return view('course::course.show', ['course' => $course, 'exercises' => $sortedexercises, 'lessons' => $sortedlessons]);
   }
 

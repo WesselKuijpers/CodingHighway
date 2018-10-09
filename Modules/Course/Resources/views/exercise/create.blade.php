@@ -24,6 +24,16 @@
         @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'multiple' => true])
 
         @include('course::shared.levels', ['levels' => $levels])
+        @include('course::shared.select_exercise', ['exercises' => $course->exercises])
+
+        
+        <div class="form-group row">
+            <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
+          
+            <div class="col-md-6">
+              <input type="checkbox" name="is_first" value="1" id="is_first">
+            </div>
+        </div>
 
         {{ csrf_field() }}
         <input type="hidden" value="{{$course['id']}}" name="course_id">

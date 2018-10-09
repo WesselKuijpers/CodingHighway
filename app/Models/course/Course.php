@@ -25,4 +25,14 @@ class Course extends Model
   {
     return $this->belongsTo(Media::class);
   }
+
+  public function firstExercise()
+  {
+    return $this->hasOne(Exercise::class)->where('is_first', true);
+  }
+
+  public function firstLesson()
+  {
+    return $this->hasOne(Lesson::class)->where('is_first', true);
+  }
 }

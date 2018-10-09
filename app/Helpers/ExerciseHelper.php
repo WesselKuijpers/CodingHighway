@@ -25,6 +25,8 @@ class ExerciseHelper
     $exercise->content = $validated['content'];
     $exercise->is_final = $validated['is_final'];
     $exercise->level_id = $validated['level_id'];
+    $exercise->next_exercise = $validated['next_exercise'];
+    $exercise->is_first = $validated['is_first'];
 
     if ($exercise->save()):
       if (!empty($validated['media'])):

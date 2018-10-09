@@ -65,6 +65,8 @@ class LessonRequest extends FormRequest
           'content' => 'required|string',
           'course_id' => 'required|numeric',
           'level_id' => 'nullable|numeric',
+          'is_first' => 'nullable|boolean',
+          'next_lesson' => 'nullable|numeric',
           'media.*' => 'file'
         ];
         break;
@@ -74,6 +76,8 @@ class LessonRequest extends FormRequest
           'title' => 'required|string|max:45',
           'content' => 'required|string',
           'course_id' => 'required|numeric',
+          'is_first' => 'nullable|boolean',
+          'next_lesson' => 'nullable|numeric',
           'level_id' => 'nullable|numeric'
         ];
         break;

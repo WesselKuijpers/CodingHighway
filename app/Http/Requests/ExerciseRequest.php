@@ -65,6 +65,8 @@ class ExerciseRequest extends FormRequest
           'content' => 'required|string',
           'is_final' => 'required|boolean',
           'level_id' => 'required|numeric',
+          'is_first' => 'nullable|boolean',
+          'next_exercise' => 'nullable|numeric',
           'media.*' => 'file'
         ];
         break;
@@ -74,6 +76,8 @@ class ExerciseRequest extends FormRequest
           'course_id' => 'required|numeric',
           'content' => 'required|string',
           'is_final' => 'required|boolean',
+          'is_first' => 'nullable|boolean',
+          'next_exercise' => 'nullable|numeric',
           'level_id' => 'required|numeric',
         ];
         break;

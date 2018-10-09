@@ -25,6 +25,8 @@ class LessonHelper
     $lesson->content = $validated['content'];
     $lesson->level_id = $validated['level_id'];
     $lesson->course_id = $validated['course_id'];
+    $lesson->next_lesson = $validated['next_lesson'];
+    $lesson->is_first = $validated['is_first'];
 
     if ($lesson->save()):
       if (!empty($validated['media'])):

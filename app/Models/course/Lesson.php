@@ -24,6 +24,6 @@ class Lesson extends Model
 
   public function next()
   {
-    return $this->belongsTo(Lesson::class, 'next_lesson');
+    return $this->belongsTo(Lesson::class, 'next_id');
   }
 }

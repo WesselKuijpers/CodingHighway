@@ -26,4 +26,41 @@ class OrderHelper {
 
     return $list;
   }
+
+  /**
+   * @param \App\Models\course\Lesson|\App\Models\course\Exercise $old
+   * @param \App\Models\course\Lesson|\App\Models\course\Exercise $new
+   * @return bool
+   */
+  public function SwitchList($old, $new)
+  {
+    $new->next_id = $old->next_id;
+    $old->next_id = $new->id;
+
+    if ($old->save() && $new->save()):
+      return true;
+    endif;
+
+    return false;
+  }
+
+  /**
+   * @param \App\Models\course\Lesson|\App\Models\course\Exercise $old
+   * @param \App\Models\course\Lesson|\App\Models\course\Exercise $new
+   * @return bool
+   */
+  public function SwitchFirst($old, $new)
+  {
+    $new->is_first = true;
+    $old->is_first = false;
+
+    $new->next_id = $old->id;
+
+
+    if ($old->save() && $new->save()):
+      return true;
+    endif;
+
+    return false;
+  }
 }

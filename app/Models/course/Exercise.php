@@ -24,6 +24,6 @@ class Exercise extends Model
 
   public function next()
   {
-    return $this->belongsTo(Exercise::class, 'next_exercise');
+    return $this->belongsTo(Exercise::class, 'next_id');
   }
 }

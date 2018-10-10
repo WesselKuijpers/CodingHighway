@@ -14,7 +14,7 @@
     @else
         <ul>
             @foreach($lessons as $lesson)
-                <li><a href="/course/{{$course->id}}/lesson/{{$lesson->id}}">{{$lesson->title}}</a></li>
+                <li><a href="{{ route('lesson.show', ['course_id' => $course->id, 'id'=> $lesson->id]) }}">{{$lesson->title}}</a></li>
             @endforeach
         </ul>
     @endif
@@ -23,9 +23,9 @@
         <p>Geen opdrachten voor deze cursus gevonden</p>
     @else
         <ul>
-            @for($i = 0; $i < count($exercises); $i++)
-                <li><a href="/course/{{$course->id}}/exercise/{{$exercises[$i]->id}}">Opdracht {{$i+1}}</a></li>
-            @endfor
+            @foreach($exercises as $exercise)
+                <li><a href="{{ route('exercise.show', ['course_id' => $course->id, 'id'=> $exercise->id]) }}">{{$exercise->title}}</a></li>
+            @endforeach
         </ul>
     @endif
 

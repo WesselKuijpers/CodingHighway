@@ -9,15 +9,16 @@
   {{-- Including the form title --}}
   @include('shared.form_title', ['title' => "Pas een cursus aan"])
   @include('shared.error')
-  <form method="post" action="/course/{{$course['name']}}">
+  <form method="post" action="{{ route('course.update', ['id'=> $course->id]) }}" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{ $course->id }}">
     {{ method_field('PUT') }}
     @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text',
-    'value' => $course['name'], 'class' => 'form-control'])
+    'value' => $course->name, 'class' => 'form-control'])
     @include('shared.textarea', ['label' => 'Beschrijving', 'name'=> 'description', 'type'=> 'text',
-    'required' => true, 'rows' => 10, 'value' => $course['description'], 'class' => ''])
-    @include('shared.form_required', ['label' => 'Cursuskleur', 'name'=> 'color', 'type'=> 'color',
-    'value' => $course['color']])
-    @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media[]', 'type' => 'file',
+    'required' => true, 'rows' => 10, 'value' => $course->description, 'class' => ''])
+    @include('shared.form_required', ['label' => 'Cursus kleur', 'name'=> 'color', 'type'=> 'color',
+    'value' => $course->color])
+    @include('shared.form', ['label' => 'Cursus afbeelding', 'name' => 'media[]', 'type' => 'file',
     'value' => 'file', 'class' => ''])
     {{ csrf_field() }}
     @include('shared.submit_button')

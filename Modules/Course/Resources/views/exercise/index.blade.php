@@ -6,41 +6,43 @@
 {{-- Placeholder for the page-specific content --}}
 @section('content')
 
-    <h1>Opdrachten voor de cursus {{$course->name}}</h1>
+  <h1>Opdrachten voor de cursus {{$course->name}}</h1>
 
-    <h3>Reguliere Opdrachten:</h3>
-    <table>
+  <h3>Reguliere Opdrachten:</h3>
+  <table>
+    <tr>
+      <th>Naam:</th>
+      <th>Moeilijkheid:</th>
+    </tr>
+    @foreach($exercises as $exercise)
+      @if (!$exercise->is_final)
         <tr>
-            <th>Naam:</th>
-            <th>Moeilijkheid:</th>
+          <td>
+            <a
+              href="{{ route('exercise.show', ['course_id'=>$course->id, 'id'=>$exercise->id]) }}">{{$exercise->title}}</a>
+          </td>
+          <td>{{$exercise->level->name}}</td>
         </tr>
-        @for($i = 1; $i <= count($exercises); $i++)
-            @unless($exercises[$i-1]->is_final != false)
-            <tr>
-                <td>
-                    <a href="/course/{{$course->id}}/exercise/{{$exercises[$i-1]->id}}">Opdracht {{$i}}</a>
-                </td>
-                <td>{{$exercises[$i-1]->level->name}}</td>
-            </tr>
-            @endunless
-        @endfor
-    </table>
-    <br>
-    <h3>Eindopdrachten</h3>
-    <table>
+      @endif
+    @endforeach
+  </table>
+  <br>
+  <h3>Eindopdrachten</h3>
+  <table>
+    <tr>
+      <th>Naam:</th>
+      <th>Moeilijkheid:</th>
+    </tr>
+    @foreach($exercises as $exercise)
+      @if ($exercise->is_final)
         <tr>
-            <th>Naam:</th>
-            <th>Moeilijkheid:</th>
+          <td>
+            <a
+              href="{{ route('exercise.show', ['course_id'=>$course->id, 'id'=>$exercise->id]) }}">{{$exercise->title}}</a>
+          </td>
+          <td>{{$exercise->level->name}}</td>
         </tr>
-        @for($i = 1; $i <= count($exercises); $i++)
-            @unless($exercises[$i-1]->is_final == false)
-                <tr>
-                    <td>
-                        <a href="/course/{{$course->id}}/exercise/{{$exercises[$i-1]->id}}">Opdracht {{$i}}</a>
-                    </td>
-                    <td>{{$exercises[$i-1]->level->name}}</td>
-                </tr>
-            @endunless
-        @endfor
-    </table>
+      @endif
+    @endforeach
+  </table>
 @endsection

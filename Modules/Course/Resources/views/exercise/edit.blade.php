@@ -12,7 +12,7 @@
         enctype="multipart/form-data">
     {{ method_field('PUT') }}
     {{ csrf_field() }}
-    <input type="hidden" value="{{$course->id}}" name="course_id">
+    <input type="hidden" value="{{$exercise->id}}" name="id">
 
     @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10, 'value' => $exercise->content])
     <div class="row">

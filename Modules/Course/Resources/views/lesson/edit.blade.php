@@ -13,7 +13,7 @@
         enctype="multipart/form-data">
     {{ method_field('PUT') }}
     {{ csrf_field() }}
-    <input type="hidden" value="{{$course['id']}}" name="course_id">
+    <input type="hidden" value="{{$lesson->id}}" name="id">
 
     @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'value' => $lesson->title
     , 'class' => 'form-control'])

@@ -62,11 +62,23 @@ class ExerciseController extends Controller
         }
         else
         {
+            $first = Course::find($id)->firstExercise;
             // attempts to create the exercise via the ExerciseHelper, passing in the request.
             $data = ExerciseHelper::create($request);
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
+                if(!empty($request['is_first']) && !empty($first)):
+                    $changedFirst = OrderHelper::SwitchFirst($first, $data);
+                  else:
+                    $changedFirst = false;
+                endif;
+
+                if ($request->next_exercise != 0 && $changedFirst == false):
+                    $old = Exercise::where('next_id', $data->next_id)->first();
+                    OrderHelper::SwitchList($old, $data);
+                endif;
+
                 return redirect()->route('course.show', ['id' => $id]);
             else :
                 return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
@@ -109,6 +121,7 @@ class ExerciseController extends Controller
    */
     public function update($id, $exercise, ExerciseRequest $request)
     {
+        $first = Course::find($id)->firstExercise;
         // evaluates if the ID param is the same as the id that was passed in by the request.
         // if false redirect with errors, if true continue
         if ($id != $request['course_id'])
@@ -117,11 +130,24 @@ class ExerciseController extends Controller
         }
         else
         {
+            $first = Course::find($id)->firstExercise;
+            
             // attempts to update the exercise via the ExerciseHelper, passing in the request.
             $data = ExerciseHelper::edit($request);
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
+                if(!empty($request['is_first']) && !empty($first)):
+                    $changedFirst = OrderHelper::SwitchFirst($first, $data);
+                  else:
+                    $changedFirst = false;
+                endif;
+                
+                if ($request->next_exercise != 0 && $changedFirst == false):
+                    $old = Exercise::where('next_id', $data->next_id)->first();
+                    OrderHelper::SwitchList($old, $data);
+                endif;
+
                 return redirect()->route('course.show', ['id' => $id]);
             else :
                 return back()->with('status', 'Er is iets mis gegaan met het verzenden!');

@@ -67,12 +67,16 @@ class CourseController extends Controller
   {
     $course = Course::find($id);
     $exercises = $course->exercises;
-    $sortedexercises = OrderHelper::sortList($exercises);
+    if(count($exercises) != 0):
+      $exercises = OrderHelper::sortList($exercises);
+    endif;
 
     $lessons = $course->lessons;
-    $sortedlessons = OrderHelper::sortList($lessons);
+    if(count($lessons) != 0):
+      $lessons = OrderHelper::sortList($lessons);
+    endif;
 
-    return view('course::course.show', ['course' => $course, 'exercises' => $sortedexercises, 'lessons' => $sortedlessons]);
+    return view('course::course.show', ['course' => $course, 'exercises' => $exercises, 'lessons' => $lessons]);
   }
 
   /**

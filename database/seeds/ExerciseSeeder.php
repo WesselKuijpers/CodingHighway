@@ -16,7 +16,7 @@ class ExerciseSeeder extends Seeder
   {
     for($i=0;$i < 10; $i++):
       $exercise = new Exercise;
-      $exercise->title = Faker\Provider\Lorem::text('10');
+      $exercise->title = Faker\Provider\Lorem::text(10);
       $exercise->course_id = Course::inRandomOrder()->first()->id;
       $exercise->content = Faker\Provider\Lorem::text(500);
       $final = rand(0,1);

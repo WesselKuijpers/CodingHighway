@@ -22,10 +22,15 @@ class ExerciseHelper
 
     $exercise = new Exercise;
     $exercise->course_id = $validated['course_id'];
+    $exercise->title = $validated['title'];
     $exercise->content = $validated['content'];
     $exercise->is_final = $validated['is_final'];
     $exercise->level_id = $validated['level_id'];
-    $exercise->next_exercise = $validated['next_exercise'];
+    if ($validated['next_exercise'] != 0) :
+      $exercise->next_id = $validated['next_exercise'];
+    else :
+      $exercise->next_id = null;
+    endif;
     $exercise->is_first = $validated['is_first'];
 
     if ($exercise->save()):

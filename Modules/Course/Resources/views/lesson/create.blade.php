@@ -27,7 +27,8 @@
             <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
           
             <div class="col-md-6">
-              <input type="checkbox" name="is_first" value="1" id="is_first">
+                <input type="hidden" name="is_first" value="0" id="is_first">
+                <input type="checkbox" name="is_first" value="1" id="is_first">
             </div>
         </div>
 

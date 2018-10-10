@@ -25,7 +25,11 @@ class LessonHelper
     $lesson->content = $validated['content'];
     $lesson->level_id = $validated['level_id'];
     $lesson->course_id = $validated['course_id'];
-    $lesson->next_lesson = $validated['next_lesson'];
+    if ($validated['next_lesson'] != 0) :
+      $lesson->next_id = $validated['next_lesson'];
+    else :
+      $lesson->next_id = null;
+    endif;
     $lesson->is_first = $validated['is_first'];
 
     if ($lesson->save()):

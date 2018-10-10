@@ -62,6 +62,7 @@ class ExerciseRequest extends FormRequest
       case "POST":
         $rules = [
           'course_id' => 'required|numeric',
+          'title' => 'required|string|max:20',
           'content' => 'required|string',
           'is_final' => 'required|boolean',
           'level_id' => 'required|numeric',

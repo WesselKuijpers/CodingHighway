@@ -10,6 +10,7 @@
   @include('shared.form_title', ['title' => "Pas een cursus aan"])
   @include('shared.error')
   <form method="post" action="/course/{{$course['name']}}">
+    <input type="hidden" name="id" value="{{ $course['id'] }}">
     {{ method_field('PUT') }}
     @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text',
     'value' => $course['name'], 'class' => 'form-control'])

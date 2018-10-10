@@ -92,8 +92,6 @@ class CourseController extends Controller
    */
   public function update(CourseRequest $request)
   {
-    // TODO: add id to $request so that request can be submitted.
-    // TODO: display request errors.
     // $data variable attempts to update a course via the course helper, if successful return true, else return false.
     $data = CourseHelper::edit($request);
 

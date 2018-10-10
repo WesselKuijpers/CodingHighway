@@ -9,14 +9,14 @@
     {{-- Including the form title --}}
     @include('shared.form_title', ['title' => "Creeër een cursus"])
     @include('shared.error')
-    <form method="post" action="/course" enctype="multipart/form-data">
+    <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data">
         @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text',
         'class' => 'form-control'])
         @include('shared.textarea', ['label' => 'Beschrijving', 'name'=> 'description', 'type'=> 'text',
         'required' => true, 'rows' => 7, 'class' => ''])
         @include('shared.form_required', ['label' => 'Cursus kleur', 'name'=> 'color', 'type'=> 'color',
         'class' => 'w-25'])
-        @include('shared.form', ['label' => 'Cursusafbeelding', 'name' => 'media', 'type' => 'file',
+        @include('shared.form', ['label' => 'Cursus afbeelding', 'name' => 'media', 'type' => 'file',
         'class' => ''])
         {{ csrf_field() }}
         @include('shared.submit_button')

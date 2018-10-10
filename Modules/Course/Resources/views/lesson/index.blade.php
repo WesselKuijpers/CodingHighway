@@ -15,7 +15,7 @@
         </tr>
         @foreach($lessons as $lesson)
             <tr>
-                <td><a href="/course/{{$course->id}}/lesson/{{$lesson->id}}">{{$lesson->title}}</a></td>
+                <td><a href="{{ route('lesson.show', ['course_id'=>$course->id, 'id'=>$lesson->id]) }}">{{$lesson->title}}</a></td>
                 <td>{{$lesson->level->name}}</td>
             </tr>
         @endforeach

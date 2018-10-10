@@ -12,9 +12,9 @@
   @if($lesson->next)
     <p>
       <a
-        href="{{ route('exercise.show', ['course_id'=>$lesson->course->id, 'id' => $lesson->next->id]) }}"
+        href="{{ route('lesson.show', ['course_id'=>$lesson->course->id, 'id' => $lesson->next->id]) }}"
         class="btn btn-primary">
-        Next Exercise</a>
+        Next Lesson</a>
     </p>
   @endif
 

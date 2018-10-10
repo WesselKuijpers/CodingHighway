@@ -6,6 +6,7 @@
 {{-- Placeholder for the page-specific content --}}
 @section('content')
 
+  @include('shared.form_title', ['title'=>$exercise->title])
   <b>{{$exercise->level->name}}</b>
   <p>dit is @if($exercise->is_final) een @else geen @endif eindopdracht</p>
   <hr>

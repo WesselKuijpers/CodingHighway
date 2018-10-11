@@ -45,7 +45,8 @@ class ExerciseController extends Controller
         // finds the course by the ID param, fetches all the levels and exercises from the DB and gives it to the view
         $course = Course::find($id);
         $levels = Level::all();
-        return view('course::exercise.create', ['course' => $course, 'levels' => $levels]);
+        $exercises = OrderHelper::SortList($course->exercises);
+        return view('course::exercise.create', ['course' => $course, 'levels' => $levels, 'exercises' => $exercises]);
     }
 
   /**
@@ -112,9 +113,10 @@ class ExerciseController extends Controller
         $course = Course::find($courseId);
         $exercise = Exercise::find($excerciseId);
         $levels = Level::all();
+        $exercises = OrderHelper::SortList($course->exercises);
 
         // pass them to the view
-        return view('course::exercise.edit', ['course' => $course, 'exercise' => $exercise, 'levels' => $levels]);
+        return view('course::exercise.edit', ['course' => $course, 'exercise' => $exercise, 'levels' => $levels, 'exercises' => $exercises]);
     }
 
   /**

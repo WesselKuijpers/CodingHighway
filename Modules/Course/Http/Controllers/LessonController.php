@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use LessonHelper;
 use OrderHelper;
+use OrderUpdateHelper;
 
 class LessonController extends Controller
 {
@@ -44,7 +45,9 @@ class LessonController extends Controller
     //fetches the course by id in params, fetches all levels and other lessons and pass them to the view.
     $course = Course::find($id);
     $levels = Level::all();
-    return view('course::lesson.create', ['course' => $course, 'levels' => $levels,]);
+    
+    $lessons = OrderHelper::SortList($course->lessons);
+    return view('course::lesson.create', ['course' => $course, 'levels' => $levels, 'lessons' => $lessons]);
   }
 
   /**
@@ -61,6 +64,7 @@ class LessonController extends Controller
       return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $first = Course::find($id)->firstLesson;
+      $last = Lesson::where('next_id', null)->first();
       // attempts to create the lesson via the LessonHelper, passing in the request.
       $data = LessonHelper::create($request);
 
@@ -72,9 +76,13 @@ class LessonController extends Controller
             $changedFirst = false;
         endif;
 
-        if ($request->next_lesson != 0 && $changedFirst == false):
+        if ($request->next_id != 0 && $changedFirst == false):
           $old = Lesson::where('next_id', $data->next_id)->first();
           OrderHelper::SwitchList($old, $data);
+        else:
+          if (empty($request->is_first)):
+            OrderHelper::InsertLast($last, $data);
+          endif;
         endif;
 
         return redirect()->route('course.show', ['id' => $id]);
@@ -106,9 +114,10 @@ class LessonController extends Controller
     $course = Course::find($courseId);
     $lesson = Lesson::find($lessonId);
     $levels = Level::all();
+    $lessons = OrderHelper::SortList($course->lessons);
 
     // passes them to the view
-    return view('course::lesson.edit', ['course' => $course, 'lesson' => $lesson, 'levels' => $levels]);
+    return view('course::lesson.edit', ['course' => $course, 'lesson' => $lesson, 'levels' => $levels, 'lessons' => $lessons]);
   }
 
   /**
@@ -121,26 +130,26 @@ class LessonController extends Controller
   {
     // evaluates if the ID param is the same as the id that was passed in by the request.
     // if false redirect with errors, if true continue
-    if ($lesson != $request['course_id']) {
+    if ($id != $request['course_id']) {
       return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $first = Course::find($id)->firstLesson;
-        $last = Lesson::where('next_id', null)->first();
-        $next_id = Lesson::find($Lesson)->next_id;
-        $previous = Lesson::where('next_id', $Lesson)->first();
-        $request_next_previous = Lesson::where('next_id', $request->next_id)->first();
-        
-        // attempts to update the Lesson via the LessonHelper, passing in the request.
-        $data = LessonHelper::update($request);
+      $last = Lesson::where('next_id', null)->first();
+      $next_id = Lesson::find($lesson)->next_id;
+      $previous = Lesson::where('next_id', $lesson)->first();
+      $request_next_previous = Lesson::where('next_id', $request->next_id)->first();
+      
+      // attempts to update the Lesson via the LessonHelper, passing in the request.
+      $data = LessonHelper::update($request);
 
-        // if successful redirect to specific course overview, else redirect back with status
-        if ($data != false):
-            OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+      // if successful redirect to specific course overview, else redirect back with status
+      if ($data != false):
+          OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
 
-            return redirect()->route('course.show', ['id' => $id]);
-        else :
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
-        endif;
+          return redirect()->route('course.show', ['id' => $id]);
+      else :
+          return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+      endif;
     }
   }
 

@@ -25,7 +25,9 @@
         'class' => ''])
 
     @include('course::shared.levels', ['levels' => $levels])
-    @include('course::shared.select_lesson', ['lessons' => $course->lessons])
+    @if(count($lessons) != 0)
+      @include('course::shared.select_lesson', ['lessons' => $lessons])
+    @endif
     <div class="form-group row">
       <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
 

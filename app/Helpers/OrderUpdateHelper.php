@@ -19,11 +19,13 @@ class OrderUpdateHelper
             if($first->next_id == $random->id):
                 // sit 1, second becomes first
                 $bool = OrderUpdateHelper::SecondBecomesFirst($first, $next_id, $random);
+            elseif($random->next_id == null):
+                OrderUpdateHelper::LastBecomesFirst($last, $first, $previous);
             else:
                 // sit 2, random becomes first
                 OrderUpdateHelper::RandomBecomesFirst($first, $next_id, $random, $previous);
             endif;
-        elseif(empty($request_next_id)):
+        elseif(empty($request_next_id) && !empty($next_id)):
             //sit 4, random becomes last
             OrderUpdateHelper::RandomBecomesLast($last, $next_id, $random, $previous);
         else:
@@ -120,5 +122,20 @@ class OrderUpdateHelper
         else:
             return false;
         endif;
+    }
+
+    public static function LastBecomesFirst($last, $first, $previous)
+    {
+        $previous->next_id = null;
+        $first->is_first = false;
+        $last->is_first = true;
+
+        $last->next_id = $first->id;
+
+        if ($last->save() && $first->save() && $previous->save()):
+            return true;
+        endif;
+
+        return false;
     }
 }

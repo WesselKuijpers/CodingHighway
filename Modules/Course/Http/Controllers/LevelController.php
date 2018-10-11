@@ -78,7 +78,7 @@ class LevelController extends Controller
   public function update(LevelRequest $request)
   {
     // attempts to create a level via the LevelHelper
-    $data = LevelHelper::edit($request);
+    $data = LevelHelper::update($request);
 
     // if successful redirect to the level overview, if not redirect back with errors
     if ($data != false):

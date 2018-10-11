@@ -14,6 +14,8 @@
     {{ method_field('PUT') }}
     {{ csrf_field() }}
     <input type="hidden" value="{{$lesson->id}}" name="id">
+    <input type="hidden" value="{{$course->id}}" name="course_id">
+    <input type="hidden" name="is_first" value="0" id="is_first">
 
     @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'value' => $lesson->title
     , 'class' => 'form-control'])
@@ -24,6 +26,13 @@
 
     @include('course::shared.levels', ['levels' => $levels])
     @include('course::shared.select_lesson', ['lessons' => $course->lessons])
+    <div class="form-group row">
+      <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
+
+      <div class="col-md-6">
+        <input type="checkbox" name="is_first" value="1" id="is_first">
+      </div>
+    </div>
 
     @include('shared.submit_button')
   </form>

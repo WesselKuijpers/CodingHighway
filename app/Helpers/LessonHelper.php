@@ -25,8 +25,8 @@ class LessonHelper
     $lesson->content = $validated['content'];
     $lesson->level_id = $validated['level_id'];
     $lesson->course_id = $validated['course_id'];
-    if ($validated['next_lesson'] != 0) :
-      $lesson->next_id = $validated['next_lesson'];
+    if ($validated['next_id'] != 0) :
+      $lesson->next_id = $validated['next_id'];
     else :
       $lesson->next_id = null;
     endif;
@@ -69,8 +69,8 @@ class LessonHelper
     $lesson->content = $validated['content'];
     $lesson->level_id = $validated['level_id'];
     $lesson->course_id = $validated['course_id'];
-    if ($validated['next_lesson'] != 0) :
-      $lesson->next_id = $validated['next_lesson'];
+    if ($validated['next_id'] != 0) :
+      $lesson->next_id = $validated['next_id'];
     else :
       $lesson->next_id = null;
     endif;

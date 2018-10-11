@@ -66,18 +66,18 @@ class LessonRequest extends FormRequest
           'course_id' => 'required|numeric',
           'level_id' => 'nullable|numeric',
           'is_first' => 'nullable|boolean',
-          'next_lesson' => 'nullable|numeric',
+          'next_id' => 'nullable|numeric',
           'media.*' => 'file'
         ];
         break;
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'title' => 'required|string|max:45',
+          'title' => 'required|string|max:20',
           'content' => 'required|string',
           'course_id' => 'required|numeric',
           'is_first' => 'nullable|boolean',
-          'next_lesson' => 'nullable|numeric',
+          'next_id' => 'nullable|numeric',
           'level_id' => 'nullable|numeric'
         ];
         break;

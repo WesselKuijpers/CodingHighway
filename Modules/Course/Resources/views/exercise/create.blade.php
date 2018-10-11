@@ -13,6 +13,8 @@
         enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="hidden" value="{{$course->id}}" name="course_id">
+    <input type="hidden" name="is_first" value="0" id="is_first">
+    @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'class' => 'form-control'])
     @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10])
     <div class="row">
       <label for="is_final" class="col-md-4 col-form-label text-md-right font-weight-bold">Eindopdracht</label>

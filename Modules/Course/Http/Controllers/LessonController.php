@@ -125,27 +125,22 @@ class LessonController extends Controller
       return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $first = Course::find($id)->firstLesson;
-      // attempts to update the lesson via the lesson helper
-      $data = LessonHelper::edit($request);
-
-      //if successful redirect so specific course, else redirect with errors.
-      if ($data != false):
-        if(!empty($request['is_first']) && !empty($first)):
-          $changedFirst = OrderHelper::SwitchFirst($first, $data);
-        else:
-          $changedFirst = false;
-        endif;
-
+        $last = Lesson::where('next_id', null)->first();
+        $next_id = Lesson::find($Lesson)->next_id;
+        $previous = Lesson::where('next_id', $Lesson)->first();
+        $request_next_previous = Lesson::where('next_id', $request->next_id)->first();
         
-        if ($request->next_lesson != 0 && $changedFirst == false):
-          $old = Lesson::where('next_id', $data->next_id)->first();
-          OrderHelper::SwitchList($old, $data);
-        endif;
+        // attempts to update the Lesson via the LessonHelper, passing in the request.
+        $data = LessonHelper::update($request);
 
-        return redirect()->route('course.show', ['id' => $id]);
-      else :
-          return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
-      endif;
+        // if successful redirect to specific course overview, else redirect back with status
+        if ($data != false):
+            OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+
+            return redirect()->route('course.show', ['id' => $id]);
+        else :
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        endif;
     }
   }
 

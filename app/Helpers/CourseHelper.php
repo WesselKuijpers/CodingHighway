@@ -48,7 +48,7 @@ class CourseHelper
    * @param CourseRequest $request
    * @return bool
    */
-  public static function edit(CourseRequest $request)
+  public static function update(CourseRequest $request)
   {
     $validated = $request->validated();
 

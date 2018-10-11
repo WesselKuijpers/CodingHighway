@@ -97,7 +97,7 @@ class CourseController extends Controller
   public function update(CourseRequest $request)
   {
     // $data variable attempts to update a course via the course helper, if successful return true, else return false.
-    $data = CourseHelper::edit($request);
+    $data = CourseHelper::update($request);
 
     // if $data is true return to course overview else redirect back with errors
     if ($data != false):

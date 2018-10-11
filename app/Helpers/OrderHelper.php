@@ -32,19 +32,15 @@ class OrderHelper {
    * @param \App\Models\course\Lesson|\App\Models\course\Exercise $new
    * @return bool
    */
-  public static function SwitchList($old, $new)
+  public static function SwitchList($request_next_previous, $new)
   {
-    if(!empty($old->next_id)):
-      $new->next_id = $old->next_id;
-      $old->next_id = $new->id;
-    
+    $request_next_previous->next_id = $new->id;
 
-      if ($old->save() && $new->save()):
-        return true;
-      endif;
+    if ($request_next_previous->save()):
+      return true;
     endif;
 
-    return true;
+    return false;
   }
 
   /**
@@ -52,8 +48,13 @@ class OrderHelper {
    * @param \App\Models\course\Lesson|\App\Models\course\Exercise $new
    * @return bool
    */
-  public static function SwitchFirst($old, $new)
+  public static function SwitchFirst($old, $new, $previous = null)
   {
+    if ($previous != null):
+      $previous->next_id = $new->next_id;
+      $previous->save();
+    endif;
+
     $new->is_first = true;
     $old->is_first = false;
 
@@ -61,6 +62,17 @@ class OrderHelper {
 
 
     if ($old->save() && $new->save()):
+      return true;
+    endif;
+
+    return false;
+  }
+
+  public static function InsertLast($last, $new)
+  {
+    $last->next_id = $new->id;
+
+    if ($last->save()):
       return true;
     endif;
 

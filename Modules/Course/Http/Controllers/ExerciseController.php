@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use OrderHelper;
+use OrderUpdateHelper;
 
 class ExerciseController extends Controller
 {
@@ -65,6 +66,7 @@ class ExerciseController extends Controller
             $first = Course::find($id)->firstExercise;
             // attempts to create the exercise via the ExerciseHelper, passing in the request.
             $data = ExerciseHelper::create($request);
+            $last = Exercise::where('next_id', null)->first();
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
@@ -74,9 +76,11 @@ class ExerciseController extends Controller
                     $changedFirst = false;
                 endif;
 
-                if ($request->next_exercise != 0 && $changedFirst == false):
+                if ($request->next_id != 0 && $changedFirst == false):
                     $old = Exercise::where('next_id', $data->next_id)->first();
                     OrderHelper::SwitchList($old, $data);
+                else:
+                    OrderHelper::InsertLast($last, $data);
                 endif;
 
                 return redirect()->route('course.show', ['id' => $id]);
@@ -121,7 +125,6 @@ class ExerciseController extends Controller
    */
     public function update($id, $exercise, ExerciseRequest $request)
     {
-        $first = Course::find($id)->firstExercise;
         // evaluates if the ID param is the same as the id that was passed in by the request.
         // if false redirect with errors, if true continue
         if ($id != $request['course_id'])
@@ -131,22 +134,17 @@ class ExerciseController extends Controller
         else
         {
             $first = Course::find($id)->firstExercise;
+            $last = Exercise::where('next_id', null)->first();
+            $next_id = Exercise::find($exercise)->next_id;
+            $previous = Exercise::where('next_id', $exercise)->first();
+            $request_next_previous = Exercise::where('next_id', $request->next_id)->first();
             
             // attempts to update the exercise via the ExerciseHelper, passing in the request.
-            $data = ExerciseHelper::edit($request);
+            $data = ExerciseHelper::update($request);
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
-                if(!empty($request['is_first']) && !empty($first)):
-                    $changedFirst = OrderHelper::SwitchFirst($first, $data);
-                  else:
-                    $changedFirst = false;
-                endif;
-                
-                if ($request->next_exercise != 0 && $changedFirst == false):
-                    $old = Exercise::where('next_id', $data->next_id)->first();
-                    OrderHelper::SwitchList($old, $data);
-                endif;
+                OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
 
                 return redirect()->route('course.show', ['id' => $id]);
             else :

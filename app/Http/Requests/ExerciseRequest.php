@@ -62,12 +62,12 @@ class ExerciseRequest extends FormRequest
       case "POST":
         $rules = [
           'course_id' => 'required|numeric',
-          'title' => 'required|string|max:20',
+          'title' => 'required|string|max:50',
           'content' => 'required|string',
           'is_final' => 'required|boolean',
           'level_id' => 'required|numeric',
           'is_first' => 'nullable|boolean',
-          'next_exercise' => 'nullable|numeric',
+          'next_id' => 'nullable|numeric',
           'media.*' => 'file'
         ];
         break;
@@ -75,10 +75,11 @@ class ExerciseRequest extends FormRequest
         $rules = [
           'id' => 'required|numeric',
           'course_id' => 'required|numeric',
+          'title' => 'required|string|max:50',
           'content' => 'required|string',
           'is_final' => 'required|boolean',
           'is_first' => 'nullable|boolean',
-          'next_exercise' => 'nullable|numeric',
+          'next_id' => 'nullable|numeric',
           'level_id' => 'required|numeric',
         ];
         break;

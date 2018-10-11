@@ -8,9 +8,14 @@
 
   @include('shared.form_title', ['title'=>$exercise->title])
   <b>{{$exercise->level->name}}</b>
-  <p>dit is @if($exercise->is_final) een @else geen @endif eindopdracht</p>
+  <p>Dit is @if($exercise->is_final) een @else geen @endif eindopdracht</p>
   <hr>
-  @if($exercise->media)
+  <p>Media:</p>
+  @if($exercise->media_content)
+    {{$exercise->media_content}}
+    @else
+      Geen media
+    @endif
   <p>{{$exercise->content}}</p>
   @if($exercise->next)
     <p>

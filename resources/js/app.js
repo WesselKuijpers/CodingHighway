@@ -20,3 +20,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+function ToggleNextExercise() {
+    // Get the checkbox
+    var checkBox = document.getElementById("is_first");
+    // Get the output text
+    var text = document.getElementById("next-exercise");
+
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked != true){
+        text.style.display = "";
+    } else {
+        text.style.display = "none";
+    }
+}

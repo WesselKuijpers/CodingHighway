@@ -34,11 +34,25 @@
       <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
 
       <div class="col-md-6">
-        <input type="checkbox" name="is_first" value="1" id="is_first">
+        <input type="checkbox" name="is_first" value="1" id="is_first" onchange="ToggleNextExercise(this)">
       </div>
     </div>
 
     @include('shared.submit_button')
   </form>
+<script>
+    function ToggleNextExercise() {
+        // Get the checkbox
+        var checkBox = document.getElementById("is_first");
+        // Get the output text
+        var text = document.getElementById("next-exercise");
 
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked != true){
+            text.style.display = "";
+        } else {
+            text.style.display = "none";
+        }
+    }
+</script>
 @endsection

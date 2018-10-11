@@ -10,6 +10,7 @@
   <b>{{$exercise->level->name}}</b>
   <p>dit is @if($exercise->is_final) een @else geen @endif eindopdracht</p>
   <hr>
+  @if($exercise->media)
   <p>{{$exercise->content}}</p>
   @if($exercise->next)
     <p>

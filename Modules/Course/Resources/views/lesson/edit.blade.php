@@ -25,16 +25,17 @@
         'class' => ''])
 
     @include('course::shared.levels', ['levels' => $levels])
-    @if(count($lessons) != 0)
-      @include('course::shared.select_lesson', ['lessons' => $lessons])
-    @endif
-    <div class="form-group row">
-      <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
+    @include('course::shared.select_lesson', ['lessons' => $lessons, 'id' => $lesson->id, 'course' => $course])
+    
+    @if($course->firstLesson->id != $lesson->id)
+      <div class="form-group row">
+        <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste les?</label>
 
-      <div class="col-md-6">
-        <input type="checkbox" name="is_first" value="1" id="is_first">
+        <div class="col-md-6">
+          <input type="checkbox" name="is_first" value="1" id="is_first">
+        </div>
       </div>
-    </div>
+    @endif
 
     @include('shared.submit_button')
   </form>

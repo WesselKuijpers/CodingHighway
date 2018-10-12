@@ -4,9 +4,11 @@
         <select name="next_id" class="form-control">
             <option value="0">Geen</option>
             
-            @if(App\Models\course\Lesson::count() != 0)
+            @if(App\Models\course\Lesson::count() != 0 && $course->firstLesson->id != $id)
                 @foreach($lessons as $lesson)
-                    <option value="{{$lesson->id}}" class="text-truncate pt-2">{{$lesson->title}}</option>
+                    @if($lesson->id != $id && $lesson->id != $course->firstLesson->id)
+                        <option value="{{$lesson->id}}" class="text-truncate pt-2">{{$lesson->title}}</option>
+                    @endif
                 @endforeach
             @endif
         </select>

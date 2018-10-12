@@ -31,14 +31,16 @@
     @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'value' => $exercise->file, 'multiple' => true])
 
     @include('course::shared.levels', ['levels' => $levels])
-    @include('course::shared.select_exercise', ['exercises' => $exercises])
-    <div class="form-group row">
-      <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
+    @include('course::shared.select_exercise', ['exercises' => $exercises, 'id' => $exercise->id, 'course' => $course])
+    @if($course->firstExercise->id != $exercise->id)
+      <div class="form-group row">
+        <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
 
-      <div class="col-md-6">
-        <input type="checkbox" name="is_first" value="1" id="is_first">
+        <div class="col-md-6">
+          <input type="checkbox" name="is_first" value="1" id="is_first">
+        </div>
       </div>
-    </div>
+    @endif
 
     @include('shared.submit_button')
   </form>

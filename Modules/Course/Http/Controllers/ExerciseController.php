@@ -64,10 +64,11 @@ class ExerciseController extends Controller
         }
         else
         {
-            $first = Course::find($id)->firstExercise;
+            $course = Course::find($id);
+            $first = $course->firstExercise;
+            $last = $course->exercises->where('next_id', null)->first();
             // attempts to create the exercise via the ExerciseHelper, passing in the request.
             $data = ExerciseHelper::create($request);
-            $last = Exercise::where('next_id', null)->first();
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
@@ -81,7 +82,9 @@ class ExerciseController extends Controller
                     $old = Exercise::where('next_id', $data->next_id)->first();
                     OrderHelper::SwitchList($old, $data);
                 else:
-                    OrderHelper::InsertLast($last, $data);
+                    if (empty($request->is_first)):
+                        OrderHelper::InsertLast($last, $data);
+                    endif;
                 endif;
 
                 return redirect()->route('course.show', ['id' => $id]);
@@ -135,8 +138,9 @@ class ExerciseController extends Controller
         }
         else
         {
-            $first = Course::find($id)->firstExercise;
-            $last = Exercise::where('next_id', null)->first();
+            $course = Course::find($id);
+            $first = $course->firstExercise;
+            $last = $course->exercises->where('next_id', null)->first();
             $next_id = Exercise::find($exercise)->next_id;
             $previous = Exercise::where('next_id', $exercise)->first();
             $request_next_previous = Exercise::where('next_id', $request->next_id)->first();

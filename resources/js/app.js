@@ -21,6 +21,7 @@ const app = new Vue({
     el: '#app'
 });
 
+// Function to hide next exercise if this exercise is the first one
 function ToggleNextExercise() {
     // Get the checkbox
     var checkBox = document.getElementById("is_first");

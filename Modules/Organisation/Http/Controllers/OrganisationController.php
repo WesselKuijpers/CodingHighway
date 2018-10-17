@@ -5,6 +5,8 @@ namespace Modules\Organisation\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use App\Http\Requests\OrganisationRequest;
+use OrganisationHelper;
 
 class OrganisationController extends Controller
 {
@@ -31,8 +33,17 @@ class OrganisationController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(OrganisationRequest $request)
     {
+        // $data variable attempts to create a organisation via the organisation helper, if successful return true, else return false.
+        $data = OrganisationHelper::create($request);
+
+        // if $data is true redirect to the organisation overview, else redirect back with an error.
+        if ($data != false):
+            return redirect()->route('organisation');
+        else:
+            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+        endif;
     }
 
     /**

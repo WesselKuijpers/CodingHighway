@@ -44,6 +44,8 @@ class GetTest extends TestCase
     $user->detachAllRoles();
     $user->attachRole($sa);
 
+    dd($user->userPermissions);
+
     $routes = \Route::getRoutes()->getRoutesByMethod()["GET"];
 
     foreach ($routes as $route):

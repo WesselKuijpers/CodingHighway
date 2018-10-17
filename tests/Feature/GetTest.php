@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\User;
+use jeremykenedy\LaravelRoles\Models\Permission;
 use jeremykenedy\LaravelRoles\Models\Role;
 
 use Illuminate\Support\Facades\Artisan;
@@ -41,10 +42,10 @@ class GetTest extends TestCase
     $this->post(route('register'), $post);
     $user = User::latest('id')->first();
     $sa = Role::where('slug', 'sa')->first();
+    $activate = Permission::where('slug', 'user.activate')->first();
     $user->detachAllRoles();
     $user->attachRole($sa);
-
-    dd($user->userPermissions);
+    $user->attachPermission($activate);
 
     $routes = \Route::getRoutes()->getRoutesByMethod()["GET"];
 

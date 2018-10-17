@@ -14,10 +14,12 @@ class SaPermissionSeeder extends Seeder
   public function run()
   {
     $sa = Role::where('slug', 'sa')->first();
+    $levelshow = Permission::where('slug', 'level.show')->first();
     $CreatePermissions = Permission::where('slug', 'like', '%create')->get();
     $EditPermissions = Permission::where('slug', 'like', '%edit')->get();
     $DeletePermissions = Permission::where('slug', 'like', '%delete')->get();
 
+    $sa->attachPermission($levelshow);
     foreach ($CreatePermissions as $permission):
       $sa->attachPermission($permission);
     endforeach;

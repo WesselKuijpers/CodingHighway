@@ -58,6 +58,9 @@ class GetTest extends TestCase
       endif;
       if (strpos($route->uri, '{') === false):
         $response = $this->actingAs($user)->get($route->uri);
+        if ($response->getStatusCode() == 302):
+          dd($response);
+        endif;
         $response->assertSuccessful();
       endif;
     endforeach;

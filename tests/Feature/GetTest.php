@@ -58,9 +58,6 @@ class GetTest extends TestCase
       endif;
       if (strpos($route->uri, '{') === false):
         $response = $this->actingAs($user)->get($route->uri);
-        if ($response->getStatusCode() == 302):
-          dd($route->uri);
-        endif;
         $response->assertSuccessful();
       endif;
     endforeach;
@@ -77,9 +74,6 @@ class GetTest extends TestCase
         $route->uri == "password/reset"
       ):
         $response = $this->get($route->uri);
-        if ($response->getStatusCode() == 302):
-          dd($response);
-        endif;
         $response->assertSuccessful();
       endif;
     endforeach;

@@ -54,7 +54,6 @@ class GetTest extends TestCase
         $route->uri == "login" ||
         $route->uri == "register" ||
         $route->uri == "password/reset" ||
-        $route->uri == "email/verify" ||
         $route->uri == "email/resend"
       ):
         continue;
@@ -80,6 +79,9 @@ class GetTest extends TestCase
         $route->uri == "password/reset"
       ):
         $response = $this->get($route->uri);
+        if ($response->getStatusCode() == 302):
+          dd($response);
+        endif;
         $response->assertSuccessful();
       endif;
     endforeach;

@@ -31,7 +31,7 @@
     @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'value' => $exercise->file, 'multiple' => true])
 
     @include('course::shared.levels', ['levels' => $levels])
-    @include('course::shared.select_exercise', ['exercises' => $exercises, 'id' => $exercise->id, 'course' => $course])
+    @include('course::shared.select_exercise', ['exercises' => $exercises, 'id' => $exercise->id, 'course' => $course, 'next_id' => $exercise->next_id])
     @if($course->firstExercise->id != $exercise->id)
       <div class="form-group row">
         <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>

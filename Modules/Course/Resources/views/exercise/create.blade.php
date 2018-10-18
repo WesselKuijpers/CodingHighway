@@ -29,7 +29,7 @@
     @include('shared.form', ['label' => 'Opdrachtafbeeldingen', 'name' => 'media[]', 'type' => 'file', 'multiple' => true])
 
     @include('course::shared.levels', ['levels' => $levels])
-    @include('course::shared.select_exercise', ['exercises' => $exercises, 'id' => $exercise->id])
+    @include('course::shared.select_exercise', ['exercises' => $exercises, 'id' => 0])
 
 
     <div class="form-group row">

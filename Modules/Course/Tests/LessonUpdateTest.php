@@ -3,13 +3,13 @@
 namespace Modules\Course\Tests;
 
 use app\Models\course\Course;
-use app\Models\course\Exercise;
+use app\Models\course\Lesson;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleWare;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
-class ExerciseUpdateTest extends TestCase
+class LessonUpdateTest extends TestCase
 {
     use RefreshDatabase;
     use WithoutMiddleware;
@@ -24,7 +24,7 @@ class ExerciseUpdateTest extends TestCase
     public function testSecondToFirst()
     {
         $course = Course::first();
-        $first = $course->firstExercise->first();
+        $first = $course->firstLesson->first();
         $second = $first->next;
 
         $post = [
@@ -33,16 +33,15 @@ class ExerciseUpdateTest extends TestCase
             'course_id' => $course->id,
             'title' => $second->title,
             'content' => $second->content,
-            'is_final' => 0,
             'is_first' => 1,
             'next_id' => null,
             'level_id' => $second->level_id,
         ];
 
-        $response = $this->put(route('exercise.update', ['course_id' => $course->id, 'id' => $second->id]), $post);
+        $response = $this->put(route('lesson.update', ['course_id' => $course->id, 'id' => $second->id]), $post);
 
         $course = Course::first();
-        $newFirst = Exercise::where('course_id', $course->id)->where('is_first', 1)->first();
+        $newFirst = Lesson::where('course_id', $course->id)->where('is_first', 1)->first();
         $newSecond = $newFirst->next;
 
         if ($newFirst->id == $second->id && $newSecond->id == $first->id):
@@ -59,9 +58,9 @@ class ExerciseUpdateTest extends TestCase
     public function testRandomToFirst()
     {
         $course = Course::first();
-        $first = $course->firstExercise->first();
-        $rand = $course->exercises->find(4);
-        $oldPrev = Exercise::where('next_id', $rand->id)->first();
+        $first = $course->firstLesson->first();
+        $rand = $course->lessons->find(4);
+        $oldPrev = Lesson::where('next_id', $rand->id)->first();
 
         $post = [
             '_method' => 'PUT',
@@ -69,18 +68,17 @@ class ExerciseUpdateTest extends TestCase
             'course_id' => $course->id,
             'title' => $rand->title,
             'content' => $rand->content,
-            'is_final' => 0,
             'is_first' => 1,
             'next_id' => $first->id,
             'level_id' => $rand->level_id,
         ];
 
-        $response = $this->put(route('exercise.update', ['course_id' => $course->id, 'id' => $rand->id]), $post);
+        $response = $this->put(route('lesson.update', ['course_id' => $course->id, 'id' => $rand->id]), $post);
 
         $course = Course::first();
-        $newFirst = Exercise::where('course_id', $course->id)->where('is_first', 1)->first(); // newfirst = rand
+        $newFirst = Lesson::where('course_id', $course->id)->where('is_first', 1)->first(); // newfirst = rand
         $newSecond = $newFirst->next;
-        $newPrev = Exercise::find($oldPrev->id);
+        $newPrev = Lesson::find($oldPrev->id);
 
         if (
             $newFirst->id == $rand->id &&
@@ -98,10 +96,10 @@ class ExerciseUpdateTest extends TestCase
     public function testSwitchAdjacent()
     {
         $course = Course::first();
-        $rand = $course->exercises->find(3);
-        $prev = $course->exercises->where('next_id', $rand->id)->first();
+        $rand = $course->lessons->find(3);
+        $prev = $course->lessons->where('next_id', $rand->id)->first();
         $next = $rand->next_id;
-        $requestNextPrevious = $course->exercises->where('next_id', $prev->id)->first();
+        $requestNextPrevious = $course->lessons->where('next_id', $prev->id)->first();
 
         $post = [
             '_method' => 'PUT',
@@ -109,19 +107,18 @@ class ExerciseUpdateTest extends TestCase
             'course_id' => $course->id,
             'title' => $rand->title,
             'content' => $rand->content,
-            'is_final' => 0,
             'is_first' => 0,
             'next_id' => $prev->id,
             'level_id' => $rand->level_id,
         ];
 
-        $response = $this->put(route('exercise.update', ['course_id' => $course->id, 'id' => $rand->id]), $post);
+        $response = $this->put(route('lesson.update', ['course_id' => $course->id, 'id' => $rand->id]), $post);
 
         $course = Course::first();
-        $newRand = $course->exercises->find(3);
-        $newPrev = $course->exercises->find(2);
-        $newRequestNextPrevious = $course->exercises->find(1);
-        $newNext = $course->exercises->find(4);
+        $newRand = $course->lessons->find(3);
+        $newPrev = $course->lessons->find(2);
+        $newRequestNextPrevious = $course->lessons->find(1);
+        $newNext = $course->lessons->find(4);
 
         if ($newRequestNextPrevious->next_id == $newRand->id && $newRand->next_id == $newPrev->id && $newPrev->next_id == $newNext->id):
             $this->assertTrue(true);
@@ -133,9 +130,9 @@ class ExerciseUpdateTest extends TestCase
     public function testRandomBecomesLast()
     {
         $course = Course::first();
-        $rand = $course->exercises->find(3);
-        $last = $course->exercises->where('next_id', null)->first();
-        $prev = $course->exercises->where('next_id', $rand->id)->first();
+        $rand = $course->lessons->find(3);
+        $last = $course->lessons->where('next_id', null)->first();
+        $prev = $course->lessons->where('next_id', $rand->id)->first();
 
         $post = [
             '_method' => 'PUT',
@@ -143,18 +140,17 @@ class ExerciseUpdateTest extends TestCase
             'course_id' => $course->id,
             'title' => $rand->title,
             'content' => $rand->content,
-            'is_final' => 0,
             'is_first' => 0,
             'next_id' => null,
             'level_id' => $rand->level_id,
         ];
 
-        $response = $this->put(route('exercise.update', ['course_id' => $course->id, 'id' => $rand->id]), $post);
+        $response = $this->put(route('lesson.update', ['course_id' => $course->id, 'id' => $rand->id]), $post);
 
         $course = Course::first();
-        $newRand = $course->exercises->find(3);
-        $newLast = $course->exercises->find(5);
-        $newPrev = $course->exercises->find(2);
+        $newRand = $course->lessons->find(3);
+        $newLast = $course->lessons->find(5);
+        $newPrev = $course->lessons->find(2);
 
         if ($newLast->next_id != null && $newLast->next_id == $newRand->id && $newRand->next_id == null && $newPrev->next_id == $rand->next_id):
             $this->assertTrue(true);
@@ -166,9 +162,9 @@ class ExerciseUpdateTest extends TestCase
     public function testLastBecomesFirst()
     {
         $course = Course::first();
-        $first = $course->firstExercise->first();
-        $last = $course->exercises->where('next_id', null)->first();
-        $prev = $course->exercises->where('next_id', $last->id)->first();
+        $first = $course->firstLesson->first();
+        $last = $course->lessons->where('next_id', null)->first();
+        $prev = $course->lessons->where('next_id', $last->id)->first();
 
         $post = [
             '_method' => 'PUT',
@@ -176,18 +172,17 @@ class ExerciseUpdateTest extends TestCase
             'course_id' => $course->id,
             'title' => $last->title,
             'content' => $last->content,
-            'is_final' => 0,
             'is_first' => 1,
             'next_id' => null,
             'level_id' => $last->level_id,
         ];
 
-        $response = $this->put(route('exercise.update', ['course_id' => $course->id, 'id' => $last->id]), $post);
+        $response = $this->put(route('lesson.update', ['course_id' => $course->id, 'id' => $last->id]), $post);
 
         $course = Course::first();
-        $newFirst = $course->exercises->find(1);
-        $newLast = $course->exercises->find(5);
-        $newPrev = $course->exercises->find(4);
+        $newFirst = $course->lessons->find(1);
+        $newLast = $course->lessons->find(5);
+        $newPrev = $course->lessons->find(4);
 
         if ($newPrev->next_id == null && $newLast->next_id == $newFirst->id && $newLast->is_first && !$newFirst->is_first):
             $this->assertTrue(true);

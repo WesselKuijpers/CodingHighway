@@ -25,7 +25,7 @@
         'class' => ''])
 
     @include('course::shared.levels', ['levels' => $levels])
-    @include('course::shared.select_lesson', ['lessons' => $lessons, 'id' => $lesson->id, 'course' => $course])
+    @include('course::shared.select_lesson', ['lessons' => $lessons, 'id' => $lesson->id, 'course' => $course, 'next_id' => $lesson->next_id])
     
     @if($course->firstLesson->id != $lesson->id)
       <div class="form-group row">

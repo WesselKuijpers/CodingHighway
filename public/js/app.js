@@ -13906,8 +13906,23 @@ window.Vue = __webpack_require__(36);
 Vue.component('example-component', __webpack_require__(39));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
+
+// Function to hide next exercise if this exercise is the first one
+function ToggleNextExercise() {
+    // Get the checkbox
+    var checkBox = document.getElementById("is_first");
+    // Get the output text
+    var text = document.getElementById("next-exercise");
+
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked != true) {
+        text.style.display = "";
+    } else {
+        text.style.display = "none";
+    }
+}
 
 /***/ }),
 /* 13 */

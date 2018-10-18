@@ -51,12 +51,12 @@ class AdminController extends Controller
           // do nothing
         } else {
           $user = User::find($key);
-          $user->detachRole(Role::where('slug', 'sa')->get());
+          $user->detachRole(Role::where('slug', 'sa')->first());
         }
       }
     }
 
-    // fetches the users that need to be mad admin
+    // fetches the users that need to be made admin
     if (isset($request['admins'])) {
       foreach ($request['admins'] as $adminId) {
         // find the user that was passed in
@@ -66,7 +66,7 @@ class AdminController extends Controller
         if ($user->hasRole('sa')) {
           //do nothing.
         } else {
-          $user->attachRole(Role::where('slug', 'sa')->get()->first()->id);
+          $user->attachRole(Role::where('slug', 'sa')->first());
         }
 
       }

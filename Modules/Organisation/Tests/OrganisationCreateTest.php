@@ -86,7 +86,7 @@ class OrganisationCreateTest extends TestCase
         endif;
     }
 
-    public function testOrganisationLinkRegex()
+    public function testOrganisationLinkValidation()
     {
         $post = [
             'name' => 'TestOrg',

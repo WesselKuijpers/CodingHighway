@@ -24,6 +24,10 @@
         <testsuite name="Organisation">
             <directory suffix="Test.php">./Modules/Organisation/Tests</directory>
         </testsuite>
+
+        <testsuite name="Management">
+            <directory suffix="Test.php">./Modules/Management/Tests</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">

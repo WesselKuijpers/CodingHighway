@@ -12,5 +12,5 @@ Route::group(['middleware' => 'web', 'prefix' => 'organisation', 'namespace' => 
                 'edit' => 'organisation.edit',
             ],
         ]
-    );
+    )->parameter('', 'id');
 });

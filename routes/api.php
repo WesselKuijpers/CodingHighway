@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+/*
 Route::group(['middleware'=>'auth:api'], function(){
   Route::group(['prefix' => 'course'], function (){
     Route::post('/', 'api\CourseController@create')->name('ApiCourseCreate');
@@ -37,3 +38,4 @@ Route::group(['middleware'=>'auth:api'], function(){
 
   Route::post('/superadmin', 'api\SuperAdminController@create')->name('ApiSuperAdmin');
 });
+*/

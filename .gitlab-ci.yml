@@ -1,0 +1,26 @@
+image: registry.gitlab.com/codinghighway/codinghighway:latest
+
+services:
+- mysql:5.7
+
+variables:
+  MYSQL_DATABASE: homestead
+  MYSQL_ROOT_PASSWORD: secret
+  DB_HOST: mysql
+  DB_USERNAME: root
+
+stages:
+- test
+- deploy
+
+unit_test:
+  stage: test
+  script:
+  - cp .env.example .env
+  - cp .env.example .env.testing
+  - composer install
+  - php artisan key:generate
+  - php artisan key:generate --env=testing
+  - php artisan migrate
+  - php artisan migrate --env=testing
+  - vendor/bin/phpunit

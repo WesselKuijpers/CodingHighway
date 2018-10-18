@@ -12,7 +12,7 @@ class PermissionSeeder extends Seeder
    */
   public function run()
   {
-    $list = require_once 'Permissions.php';
+    $list = require 'Permissions.php';
 
     foreach ($list as $p):
       $permission = new Permission;
@@ -26,7 +26,7 @@ class PermissionSeeder extends Seeder
           $permission->model = null;
         endif;
         $permission->description = $p['description'];
-        if ($permission->save()):
+        if ($permission->save() && env('APP_ENV') != 'testing'):
           echo "PERMISSION CREATED: {$permission->name}\n";
         endif;
       endif;

@@ -19,7 +19,7 @@ class Lesson extends Model
 
   public function media()
   {
-    return $this->hasManyThrough(Media::class, LessonMedia::class);
+    return $this->belongsToMany(Media::class);
   }
 
   public function next()

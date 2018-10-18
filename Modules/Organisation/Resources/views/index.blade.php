@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Hello World</h1>
-
-    <p>
-        This view is loaded from module: {!! config('organisation.name') !!}
-    </p>
+    <p>Overview of all organisations (super admins)</p>
 @stop

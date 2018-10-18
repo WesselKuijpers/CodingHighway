@@ -73,8 +73,8 @@ class ExerciseUpdateTest extends TestCase
         # code...
     }
 
-    public function LastBecomesFirst()
+    public function testLastBecomesFirst()
     {
-        # code...
+        $this->assertTrue(true);
     }
 }

@@ -15,8 +15,16 @@
                                 <p class="text-center">Gebruikers</p>
                                 <ul class="list-group">
                                     @for($i=0;$i<8;$i++)
-                                        <li class="list-group-item">Gebruiker {{$i+1}}</li>
-                                        <i class="fas fa-chevron-down"></i>
+                                        <li class="list-group-item float-left">Gebruiker {{$i+1}}
+                                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample{{$i}}" aria-expanded="false" aria-controls="collapseExample">
+                                                <i class="fas fa-chevron-down float-right" onclick="DropDownThisShit()"></i>
+                                            </button>
+                                        </li>
+                                        <div class="collapse" id="collapseExample{{$i}}">
+                                            <div class="card card-body">
+                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                            </div>
+                                        </div>
                                     @endfor
                                 </ul>
 

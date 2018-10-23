@@ -9,23 +9,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserProgress extends Model
 {
-    public function user()
-    {
-      return $this->belongsTo(User::class);
-    }
+  protected $fillable = [
+    'user_id',
+    'course_id',
+    'exercise_id',
+    'lesson_id'
+  ];
 
-    public function course()
-    {
-      return $this->belongsTo(Course::class);
-    }
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 
-    public function lesson()
-    {
-      return $this->belongsTo(Lesson::class);
-    }
+  public function course()
+  {
+    return $this->belongsTo(Course::class);
+  }
 
-    public function exercise()
-    {
-      return $this->belongsTo(Exercise::class);
-    }
+  public function lesson()
+  {
+    return $this->belongsTo(Lesson::class);
+  }
+
+  public function exercise()
+  {
+    return $this->belongsTo(Exercise::class);
+  }
 }

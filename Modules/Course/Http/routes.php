@@ -51,4 +51,6 @@ Route::group(['middleware' => 'web', 'prefix' => 'course', 'namespace' => 'Modul
       ]
     ])->parameter('', 'id');
 
+    Route::post('/progress', 'ProgressController@Create')->name('progress.create');
+
 });

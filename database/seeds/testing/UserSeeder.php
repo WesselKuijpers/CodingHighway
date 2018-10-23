@@ -18,10 +18,10 @@ class TestUserSeeder extends Seeder
         //user 1
 
         $id = 1;
-        $firstname = 'Testman';
+        $firstname = 'Testman1';
         $insertion = 'the';
-        $lastname = 'Tester';
-        $email = 'test@test.nl';
+        $lastname = 'Tester1';
+        $email = 'test1@test1.nl';
         $password = 'testpass';
 
         $user = new User;

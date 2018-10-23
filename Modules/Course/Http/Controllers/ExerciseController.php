@@ -150,7 +150,9 @@ class ExerciseController extends Controller
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
-                OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+                if ($request->next_id != $next_id):
+                    OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+                endif;
 
                 return redirect()->route('course.show', ['id' => $id]);
             else :

@@ -9,14 +9,16 @@
   <h1>{{$lesson->title}}</h1>
   <p><b>Moeilijkheid:</b> {{$lesson->level->name}}</p>
   <p>{{$lesson->content}}</p>
-  @if($lesson->next)
     <p>
-      <a
-        href="{{ route('lesson.show', ['course_id'=>$lesson->course->id, 'id' => $lesson->next->id]) }}"
-        class="btn btn-primary">
-        Next Lesson</a>
+      <form action="{{ route('progress.create') }}" method="POST">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ Auth::id() }}"/>
+        <input type="hidden" name="course_id" value="{{ $lesson->course->id }}"/>
+        <input type="hidden" name="lesson_id" value="{{ $lesson->id }}"/>
+        <input type="submit" class="btn btn-primary" value="Les afronden"/>
+        @endif
+      </form>
     </p>
-  @endif
 
 
 @endsection

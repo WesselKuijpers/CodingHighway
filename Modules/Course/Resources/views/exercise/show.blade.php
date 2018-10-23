@@ -17,13 +17,14 @@
       Geen media
     @endif
   <p>{{$exercise->content}}</p>
-  @if($exercise->next)
-    <p>
-      <a
-        href="{{ route('exercise.show', ['course_id'=>$exercise->course->id, 'id' => $exercise->next->id]) }}"
-        class="btn btn-primary">
-        Next Exercise</a>
-    </p>
-  @endif
+  <p>
+    <form action="{{ route('progress.create') }}" method="POST">
+      @csrf
+      <input type="hidden" name="user_id" value="{{ Auth::id() }}"/>
+      <input type="hidden" name="course_id" value="{{ $exercise->course->id }}"/>
+      <input type="hidden" name="exercise_id" value="{{ $exercise->id }}"/>
+      <input type="submit" class="btn btn-primary" value="Opdracht afronden"/>
+    </form>
+  </p>
 
 @endsection

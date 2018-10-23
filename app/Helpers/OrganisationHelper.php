@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Requests\OrganisationRequest;
-use App\Models\general\Organisation;
 use App\Models\general\Media;
+use App\Models\general\Organisation;
+use App\Models\general\UserOrganisations;
+use App\Models\User;
 
 class OrganisationHelper
 {
@@ -40,6 +42,13 @@ class OrganisationHelper
                 endif;
                 $organisation->save();
             endif;
+
+            // Adds current user to newly created organisation as first memeber
+            $user = Auth::user();
+            $userOrg = new UserOrganisations;
+            $userOrg->user_id = $user->id;
+            $userOrg->organisation_id = $organisation->id;
+            $userOrg->save();
 
             return $organisation;
         else:

@@ -4,6 +4,7 @@ namespace App\Models\general;
 
 use App\Models\invoice\Invoice;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Organisation extends Model
 {

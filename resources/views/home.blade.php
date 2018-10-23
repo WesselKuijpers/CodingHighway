@@ -60,6 +60,7 @@
                     @if(Auth::user()->license->count() == 1)
                       <p>{{ \Carbon\Carbon::parse(Auth::user()->license->first()->expires_at, 'UTC')->format('d F Y')}}</p>
                     @endif
+
                   </div>
                   <div class="col-4">
                     <a href="{{url('user/edit')}}">

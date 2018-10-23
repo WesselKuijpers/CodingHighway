@@ -47,7 +47,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/home') }}" style="color: #fff" class="nav-link">Home</a>
+            <a href="{{ url('/home') }}" style="color: #fff" class="nav-link">Dashboard</a>
           </li>
           <li class="nav-item">
             <a href="{{ url('/course') }}" style="color: #fff" class="nav-link">Cursussen</a>

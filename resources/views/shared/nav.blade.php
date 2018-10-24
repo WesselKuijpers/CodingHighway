@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #e61469">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="">
   <div class="container">
     <!-- Todo: Make img a variable -->
-    <img src="{{ Storage::url('img/windesheim-logo.png') }}">
-
+    <img src="">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
       <span class="navbar-toggler-icon"></span>
@@ -19,14 +18,14 @@
         <!-- Authentication Links -->
         @guest
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a class="nav-link" href="{{ route('login') }}" style="color: {{ "white" }}">{{ __('Login') }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <a class="nav-link" href="{{ route('register') }}" style="color: {{ "white" }}">{{ __('Register') }}</a>
           </li>
         @else
           <li class="nav-item dropdown">
-            <a id="navbarDropdown" style="color: #fff" class="nav-link dropdown-toggle" href="#" role="button"
+            <a id="navbarDropdown" style="" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->getFullname() }} <span class="caret"></span>
             </a>
@@ -47,13 +46,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/home') }}" style="color: #fff" class="nav-link">Dashboard</a>
+            <a href="{{ url('/home') }}" style="" class="nav-link">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/course') }}" style="color: #fff" class="nav-link">Cursussen</a>
+            <a href="{{ url('/course') }}" style="" class="nav-link">Cursussen</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/forum') }}" style="color: #fff" class="nav-link">Forum</a>
+            <a href="{{ url('/forum') }}" style="" class="nav-link">Forum</a>
           </li>
         @endguest
       </ul>

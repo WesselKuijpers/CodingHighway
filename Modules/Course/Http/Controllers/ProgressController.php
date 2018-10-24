@@ -40,4 +40,17 @@ class ProgressController extends Controller
 
     return redirect()->route('course.show', ['id' => $data['course_id']]);
   }
+
+  public function Reset(ProgressRequest $request)
+  {
+    $data = $request->validated();
+
+    $progresses = UserProgress::where('user_id', $data['user_id'])->where('course_id', $data['course_id'])->get();
+
+    foreach ($progresses as $progress):
+      $progress->delete();
+    endforeach;
+
+    return redirect()->route('course.show', ['id' => $data['course_id']]);
+  }
 }

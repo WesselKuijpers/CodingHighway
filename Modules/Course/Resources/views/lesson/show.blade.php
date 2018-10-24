@@ -16,7 +16,6 @@
         <input type="hidden" name="course_id" value="{{ $lesson->course->id }}"/>
         <input type="hidden" name="lesson_id" value="{{ $lesson->id }}"/>
         <input type="submit" class="btn btn-primary" value="Les afronden"/>
-        @endif
       </form>
     </p>
 

@@ -53,4 +53,6 @@ Route::group(['middleware' => 'web', 'prefix' => 'course', 'namespace' => 'Modul
 
     Route::post('/progress', 'ProgressController@Create')->name('progress.create');
 
+    Route::post('/progress/reset', 'ProgressController@reset')->name('progress.reset');
+
 });

@@ -81,4 +81,25 @@ class ProgressTest extends TestCase
             $this->assertTrue(false);
         endif;
     }
+
+    public function testResetgit Progress()
+    {
+        $user = User::find(1);
+        $course = Course::where('name', 'HTML')->first();
+
+        $post = [
+            'user_id' => $user->id,
+            'course_id' => $course->id
+        ];
+
+        $response = $this->actingAs($user)->post(route('progress.reset'), $post);
+
+        $progresses = UserProgress::where('user_id', $user->id)->where('course_id', $course->id)->get();
+
+        if (count($progresses) == 0):
+            $this->assertTrue(true);
+        else:
+            $this->assertTrue(false);
+        endif;
+    }
 }

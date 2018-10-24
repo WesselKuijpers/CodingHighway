@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: @if(Auth::user()) {{  Auth::user()->organisation()->color }} @else {{ "#343a40" }} @endif">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="">
   <div class="container">
     <!-- Todo: Make img a variable -->
     <img src="">

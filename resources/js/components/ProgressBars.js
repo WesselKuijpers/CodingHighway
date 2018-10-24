@@ -31,8 +31,6 @@ export default class ProgressBars extends Component {
       }).catch(error => {
       console.log("ERROR: " + error)
     })
-
-    const bar = this.state.progress / this.state.max * 100;
   }
 
   render() {

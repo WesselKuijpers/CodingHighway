@@ -58126,6 +58126,8 @@ var ProgressBars = function (_Component) {
       }).catch(function (error) {
         console.log("ERROR: " + error);
       });
+
+      var bar = this.state.progress / this.state.max * 100;
     }
   }, {
     key: 'render',
@@ -58142,7 +58144,8 @@ var ProgressBars = function (_Component) {
           'div',
           { className: 'progress-bar', role: 'progressbar', style: divStyle,
             'aria-valuenow': this.state.progress,
-            'aria-valuemin': '0', 'aria-valuemax': this.state.progress },
+            'aria-valuemin': '0', 'aria-valuemax': this.state.max
+          },
           this.state.progress,
           ' / ',
           this.state.max

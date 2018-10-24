@@ -11,7 +11,7 @@ export default class ProgressBars extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     let lesson = (this.props.lessons) ? this.props.lessons : 0;
     let exercise = (this.props.exercises) ? this.props.exercises : 0;
 
@@ -22,7 +22,7 @@ export default class ProgressBars extends Component {
       exercises: exercise
     };
 
-    axios.post('/api/progress?api_token='+this.props.token, post)
+    axios.post('/api/progress?api_token=' + this.props.token, post)
       .then(response => {
         this.setState({
           progress: response.data.progress,
@@ -31,19 +31,22 @@ export default class ProgressBars extends Component {
       }).catch(error => {
       console.log("ERROR: " + error)
     })
+
+    const bar = this.state.progress / this.state.max * 100;
   }
 
   render() {
     const bar = this.state.progress / this.state.max * 100;
     const divStyle = {
-      width: bar+'%'
+      width: bar + '%'
     };
 
     return (
       <div className="progress mb-2">
         <div className="progress-bar" role="progressbar" style={divStyle}
              aria-valuenow={this.state.progress}
-             aria-valuemin="0" aria-valuemax={this.state.progress}>{this.state.progress} / {this.state.max}
+             aria-valuemin="0" aria-valuemax={this.state.max}
+        >{this.state.progress} / {this.state.max}
         </div>
       </div>
     );
@@ -51,7 +54,7 @@ export default class ProgressBars extends Component {
 }
 
 if (document.getElementsByClassName('progressbar')) {
-  $.each(document.getElementsByClassName('progressbar'), function( index, element ) {
+  $.each(document.getElementsByClassName('progressbar'), function (index, element) {
     // create new props object with element's data-attributes
     // result: {tsId: "1241"}
     const props = Object.assign({}, element.dataset)

@@ -28,6 +28,7 @@ class UserTableSeeder extends Seeder
     $user->email = $email;
     $user->email_verified_at = \Carbon\Carbon::now();
     $user->password = Hash::make($password);
+    $user->api_token = Faker\Provider\Uuid::uuid();
     $user->save();
 
     $user->attachRole(Role::where('slug', 'sa')->first());

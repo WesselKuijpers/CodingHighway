@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Faker\Provider\Uuid;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -74,6 +75,7 @@ class RegisterController extends Controller
       'lastname' => $data['lastname'],
       'email' => $data['email'],
       'password' => Hash::make($data['password']),
+      'api_token' => Uuid::uuid()
     ]);
 
     $user->attachRole(Role::where('slug', 'user')->first());

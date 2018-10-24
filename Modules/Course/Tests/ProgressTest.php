@@ -82,7 +82,7 @@ class ProgressTest extends TestCase
         endif;
     }
 
-    public function testResetgit Progress()
+    public function testResetProgress()
     {
         $user = User::find(1);
         $course = Course::where('name', 'HTML')->first();

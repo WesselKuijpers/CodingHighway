@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #e61469">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: {{ Auth::user()->organisation }}">
   <div class="container">
     <!-- Todo: Make img a variable -->
     <img src="{{ Storage::url('img/windesheim-logo.png') }}">

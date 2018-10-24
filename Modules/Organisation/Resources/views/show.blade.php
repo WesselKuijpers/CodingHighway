@@ -17,7 +17,7 @@
                                     @for($i=0;$i<8;$i++)
                                         <li class="list-group-item">Gebruiker {{$i+1}}
                                             <button type="button" class="btn btn-primary float-right" data-toggle="collapse" data-target="#collapseExample{{$i}}" aria-expanded="false" aria-controls="collapseExample">
-                                                <i class="fas fa-chevron-down" onclick="DropDownThisShit()"></i>
+                                                <i class="fas fa-chevron-down"></i>
                                             </button>
                                         </li>
                                         <div class="collapse" id="collapseExample{{$i}}">

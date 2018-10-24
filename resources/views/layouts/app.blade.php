@@ -54,7 +54,6 @@
 @include('layouts.footer')
 
 <!-- Scripts -->
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script type="text/javascript">

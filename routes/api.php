@@ -13,11 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::group(['middleware'=>'auth:api'], function() {
+  Route::post('/progress', 'api\ProgressController@load')->name('ApiProgress');
+});
 /*
-Route::group(['middleware'=>'auth:api'], function(){
   Route::group(['prefix' => 'course'], function (){
     Route::post('/', 'api\CourseController@create')->name('ApiCourseCreate');
     Route::put('/', 'api\CourseController@edit')->name('ApiCourseEdit');

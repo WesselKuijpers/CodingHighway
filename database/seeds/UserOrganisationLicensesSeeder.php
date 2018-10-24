@@ -2,7 +2,7 @@
 
 use App\Models\general\License;
 use App\Models\general\Organisation;
-use App\Models\general\UserOrganisation;
+use App\Models\general\UserOrganisations;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -19,7 +19,7 @@ class UserOrganisationLicensesSeeder extends Seeder
     $organisation = Organisation::inRandomOrder()->first();
     $license = License::inRandomOrder()->first();
 
-    $userOrgan = new UserOrganisation;
+    $userOrgan = new UserOrganisations;
     $userOrgan->user_id = $user->id;
     $userOrgan->organisation_id = $organisation->id;
     $userOrgan->save();

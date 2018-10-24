@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: {{ Auth::user()->organisation }}">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: @if(Auth::user()) {{  Auth::user()->organisation()->color }} @else {{ "#343a40" }} @endif">
   <div class="container">
     <!-- Todo: Make img a variable -->
-    <img src="{{ Storage::url('img/windesheim-logo.png') }}">
-
+    <img src="@if(Auth::user()->organisation()->image != 0) {{ Auth::user()->organisation()->media }} @else {{ ".." }} @endif">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
       <span class="navbar-toggler-icon"></span>
@@ -19,14 +18,14 @@
         <!-- Authentication Links -->
         @guest
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a class="nav-link" href="{{ route('login') }}" style="color: {{ "white" }}">{{ __('Login') }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <a class="nav-link" href="{{ route('register') }}" style="color: {{ "white" }}">{{ __('Register') }}</a>
           </li>
         @else
           <li class="nav-item dropdown">
-            <a id="navbarDropdown" style="color: #fff" class="nav-link dropdown-toggle" href="#" role="button"
+            <a id="navbarDropdown" style="color: @if(Auth::user()) {{  Auth::user()->organisation()->fontcolor }} @else {{ "rgba(255,255,255,.5)" }} @endif" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->getFullname() }} <span class="caret"></span>
             </a>
@@ -47,13 +46,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/home') }}" style="color: #fff" class="nav-link">Dashboard</a>
+            <a href="{{ url('/home') }}" style="color: @if(Auth::user()) {{  Auth::user()->organisation()->fontcolor }} @else {{ "rgba(255,255,255,.5)" }} @endif" class="nav-link">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/course') }}" style="color: #fff" class="nav-link">Cursussen</a>
+            <a href="{{ url('/course') }}" style="color: @if(Auth::user()) {{  Auth::user()->organisation()->fontcolor }} @else {{ "rgba(255,255,255,.5)" }} @endif" class="nav-link">Cursussen</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/forum') }}" style="color: #fff" class="nav-link">Forum</a>
+            <a href="{{ url('/forum') }}" style="color: @if(Auth::user()) {{  Auth::user()->organisation()->fontcolor }} @else {{ "rgba(255,255,255,.5)" }} @endif" class="nav-link">Forum</a>
           </li>
         @endguest
       </ul>

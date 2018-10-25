@@ -48,6 +48,7 @@ class OrganisationRequest extends FormRequest
           'fontcolor' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
           'link' => 'nullable|url',
           'media' => 'nullable|file',
+          'requester' => 'required|numeric|exists:users,id'
         ];
         break;
       case "PUT":

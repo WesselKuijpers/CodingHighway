@@ -30,6 +30,7 @@ class OrganisationHelper
     $organisation->color = $validated['color'];
     $organisation->fontcolor = $validated['fontcolor'];
     $organisation->link = $validated['link'];
+    $organisation->requester = $validated['requester'];
 
     if ($organisation->save()):
       if (!empty($validated['media'])):

@@ -12,16 +12,25 @@ class PermissionSeeder extends Seeder
    */
   public function run()
   {
-    $list = require 'Permissions.php';
+    $this->Creator(PermissionsLoader::CoursePermissions());
+    $this->Creator(PermissionsLoader::ExercisePermissions());
+    $this->Creator(PermissionsLoader::LessonsPermissions());
+    $this->Creator(PermissionsLoader::LevelPermissions());
+    $this->Creator(PermissionsLoader::SystemAdminPermissions());
+    $this->Creator(PermissionsLoader::OverigePermissions());
+    $this->Creator(PermissionsLoader::OrganisationPermissions());
+  }
 
-    foreach ($list as $p):
+  private function Creator($list)
+  {
+    foreach ($list as $key => $p):
       $permission = new Permission;
 
       if (Permission::where('slug', $p['slug'])->count() != 1):
         $permission->name = $p['name'];
         $permission->slug = $p['slug'];
         if (!empty($p['model'])):
-        $permission->model = $p['model'];
+          $permission->model = $p['model'];
         else:
           $permission->model = null;
         endif;

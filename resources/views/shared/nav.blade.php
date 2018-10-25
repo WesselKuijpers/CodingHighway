@@ -1,7 +1,10 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ "background:".Auth::user()->organisation()->color }} @else {{""}} @endif">
   <div class="container">
-    <!-- Todo: Make img a variable -->
-    <img src="">
+
+    <a href="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ Auth::user()->organisation()->link }} @else / @endif">
+      <img src="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ Auth::user()->organisation()->media->content }} @else {{"http://www.lorempixel.com/400/400"}} @endif" class="navbar-brand nav-logo pl-3">
+    </a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
       <span class="navbar-toggler-icon"></span>
@@ -18,14 +21,14 @@
         <!-- Authentication Links -->
         @guest
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}" style="color: {{ "white" }}">{{ __('Login') }}</a>
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}" style="color: {{ "white" }}">{{ __('Register') }}</a>
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
           </li>
         @else
           <li class="nav-item dropdown">
-            <a id="navbarDropdown" style="" class="nav-link dropdown-toggle" href="#" role="button"
+            <a id="navbarDropdown" style="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->getFullname() }} <span class="caret"></span>
             </a>
@@ -46,13 +49,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/home') }}" style="" class="nav-link">Dashboard</a>
+            <a href="{{ url('/home') }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/course') }}" style="" class="nav-link">Cursussen</a>
+            <a href="{{ url('/course') }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">Cursussen</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/forum') }}" style="" class="nav-link">Forum</a>
+            <a href="{{ url('/forum') }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">Forum</a>
           </li>
         @endguest
       </ul>

@@ -14,5 +14,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'organisation', 'namespace' => 
     ]
   )->parameter('', 'id');
 
+  Route::post('/license/generate', 'OrganisationController@generateLicenses')->name('licenses.generate');
+
   Route::post('/activate', 'OrganisationController@activate')->name('organisation.activate');
 });

@@ -24,5 +24,15 @@ class AdminPermissionSeeder extends Seeder
         $admin->attachPermission($p);
       endif;
     endforeach;
+
+    $list = PermissionsLoader::LicensePermissions();
+
+    foreach ($list as $key => $permission):
+      if (Permission::where('slug', $permission['slug'])->count() == 1):
+        $p = Permission::where('slug', $permission['slug'])->first();
+
+        $admin->attachPermission($p);
+      endif;
+    endforeach;
   }
 }

@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
   {
     if (env('APP_ENV') == 'testing'):
       Schema::disableForeignKeyConstraints();
+      $this->call(OrganisationsSeeder::class);
+      $this->call(LicensesSeeder::class);
       $this->call(PermissionSeeder::class);
       $this->call(RoleSeeder::class);
 

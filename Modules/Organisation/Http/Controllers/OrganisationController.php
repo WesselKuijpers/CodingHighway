@@ -114,7 +114,6 @@ class OrganisationController extends Controller
   public function generateLicenses(LicenseCreateRequest $request)
   {
       $data = $request->validated();
-
       LicenseKeyHelper::OrganisationKey($data['amount'], $data['organisation_id']);
 
       return redirect()->route('organisation.show', ['id' => $data['organisation_id']]);

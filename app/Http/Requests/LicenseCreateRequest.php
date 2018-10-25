@@ -57,7 +57,7 @@ class LicenseCreateRequest extends FormRequest
     {
         $rules = [
             'organisation_id' => 'required|numeric|exists:organisations,id|gt:0',
-            'amount' => 'required|string|lte:1000'
+            'amount' => 'required|numeric|lte:1000'
         ];
         
         return $rules;

@@ -12,6 +12,7 @@ class PermissionSeeder extends Seeder
    */
   public function run()
   {
+    $this->Creator(PermissionsLoader::UserPermissions());
     $this->Creator(PermissionsLoader::CoursePermissions());
     $this->Creator(PermissionsLoader::ExercisePermissions());
     $this->Creator(PermissionsLoader::LessonsPermissions());

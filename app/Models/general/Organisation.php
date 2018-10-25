@@ -10,7 +10,7 @@ class Organisation extends Model
 {
   public function users()
   {
-    return $this->hasManyThrough(User::class, UserOrganisation::class);
+    return $this->belongsToMany(User::class, 'licenses');
   }
 
   public function licenses()

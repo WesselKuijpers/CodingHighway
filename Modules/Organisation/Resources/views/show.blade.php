@@ -14,18 +14,43 @@
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <p class="text-center">Gebruikers</p>
                                 <ul class="list-group">
-                                    @for($i=0;$i<8;$i++)
-                                        <li class="list-group-item">Gebruiker {{$i+1}}
-                                            <button type="button" class="btn btn-primary float-right" data-toggle="collapse" data-target="#collapseExample{{$i}}" aria-expanded="false" aria-controls="collapseExample">
+                                    @foreach($organisation->users as $user)
+                                        <li class="list-group-item">{{ $user->getFullname() }}
+                                            <button type="button" class="btn btn-primary float-right" data-toggle="collapse" data-target="#collapseExample{{ $user->id }}" aria-expanded="false" aria-controls="collapseExample">
                                                 <i class="fas fa-chevron-down"></i>
                                             </button>
                                         </li>
-                                        <div class="collapse" id="collapseExample{{$i}}">
+                                        <div class="collapse" id="collapseExample{{ $user->id }}">
                                             <div class="card card-body">
-                                                <p></p>
+                                                <p><strong>Email: </strong>{{ $user->email }}</p>
+                                                <h4>Voortgang:</h4>
+                                                @foreach($courses as $course)
+                                                    <strong>{{ $course->name }}</strong>
+                                                    <p>Lessen: 
+                                                        <div
+                                                            class="progressbar"
+                                                            data-user_id="{{ $user->id }}"
+                                                            data-course_id="{{ $course->id }}"
+                                                            data-lessons="1"
+                                                            data-token="{{ Auth::user()->api_token }}"
+                                                        >
+                                                        </div>
+                                                    </p>
+                                                    
+                                                    <p>Opdrachten: 
+                                                        <div
+                                                            class="progressbar"
+                                                            data-user_id="{{ $user->id }}"
+                                                            data-course_id="{{ $course->id }}"
+                                                            data-exercises="1"
+                                                            data-token="{{ Auth::user()->api_token }}"
+                                                        >
+                                                        </div>
+                                                    </p>
+                                                @endforeach
                                             </div>
                                         </div>
-                                    @endfor
+                                    @endforeach
                                 </ul>
 
 
@@ -44,7 +69,12 @@
                                     @if (count($organisation->licenses) != 0)
                                         @foreach($organisation->licenses as $license)
                                             <div class="col-12 m-auto">
-                                                <p class="text-center">{{ $license->key }}</p>
+                                                <p class="text-center">
+                                                    {{ $license->key }}
+                                                    @if ($license->user_id != null)
+                                                        <i class="fas fa-check"></i>
+                                                    @endif
+                                                </p>
                                             </div>
                                         @endforeach
                                     @endif

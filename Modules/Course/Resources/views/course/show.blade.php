@@ -7,12 +7,14 @@
 @section('content')
   <h1>{{$course->name}}</h1>
   <p>{{$course->description}}</p>
-  <form action="{{ route('progress.reset') }}" method="POST">
-    @csrf
-    <input type="hidden" value="{{ Auth::id() }}" name="user_id"/>
-    <input type="hidden" value="{{ $course->id }}" name="course_id"/>
-    <input type="submit" class="btn btn-danger" value="Voortgang terugzetten"/>
-  </form>
+  @if(count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
+    <form action="{{ route('progress.reset') }}" method="POST">
+      @csrf
+      <input type="hidden" value="{{ Auth::id() }}" name="user_id"/>
+      <input type="hidden" value="{{ $course->id }}" name="course_id"/>
+      <input type="submit" class="btn btn-danger" value="Voortgang terugzetten"/>
+    </form>
+  @endif
   <br>
   <h3>Lessen:</h3>
 

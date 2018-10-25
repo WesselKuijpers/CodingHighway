@@ -18,7 +18,7 @@
     'required' => true, 'rows' => 10, 'value' => $course->description, 'class' => ''])
     @include('shared.form_required', ['label' => 'Cursus kleur', 'name'=> 'color', 'type'=> 'color',
     'value' => $course->color])
-    @include('shared.form', ['label' => 'Cursus afbeelding', 'name' => 'media[]', 'type' => 'file',
+    @include('shared.form', ['label' => 'Cursus afbeelding', 'name' => 'media', 'type' => 'file',
     'value' => 'file', 'class' => ''])
     {{ csrf_field() }}
     @include('shared.submit_button')

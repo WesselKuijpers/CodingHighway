@@ -74,37 +74,66 @@
                 @foreach($courses as $course)
                   <p class="font-weight-bold mt-3">Voortgang van de {{ $course->name }} cursus</p>
                   <div class="row">
-
                   <div
-                    class="col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3">
+                    class="col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3"
+                    @if (!empty($course->media->content))
+                      style="background-image: url({{ $course->media->content }}) !important"
+                    @endif
+                    >
                     <div class="project-hover">
-                      <h2>{{ $course->name }}</h2>
+                      <h2>Opdrachten</h2>
                       <hr/>
                       @if (!empty(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next))
                         <p>{{ Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->title }}</p>
-                      @endif
-                      <div class="progress mb-2">
-                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
-                             aria-valuemin="0" aria-valuemax="100">75%
+                      
+                        <div
+                          class="progressbar"
+                          data-user_id="{{ Auth::id() }}"
+                          data-course_id="{{ $course->id }}"
+                          data-exercises="1"
+                          data-token="{{ Auth::user()->api_token }}"
+                        >
                         </div>
-                      </div>
-                      <a href="#">Ga verder</a>
+
+                      <a href="{{ route('exercise.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->id]) }}">Ga verder</a>
+                      @elseif (count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
+                        <p>Je hebt deze opdrachten al afgerond</p>
+                        <a href="{{ route('course.show', ['id' => $course->id]) }}">Bekijk</a>
+                      @else
+                        <p>Je bent nog niet begonnen aan deze opdrachten</p>
+                        <a href="{{ route('course.show', ['id' => $course->id]) }}">Start</a>
+                      @endif
                     </div>
                   </div>
                   <div
-                    class="offset-md-1 offset-lg-1 offset-xl-1 col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3">
+                    class="offset-md-1 offset-lg-1 offset-xl-1 col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3"
+                    @if (!empty($course->media->content))
+                      style="background-image: url({{ $course->media->content }}) !important"
+                    @endif
+                    >
                     <div class="project-hover">
-                      <h2>{{ $course->name }}</h2>
+                      <h2>Lessen</h2>
                       <hr/>
                       @if (!empty(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next))
                         <p>{{ Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->title }}</p>
-                      @endif
-                      <div class="progress mb-2">
-                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
-                             aria-valuemin="0" aria-valuemax="100">75%
+                      
+                        <div
+                          class="progressbar"
+                          data-user_id="{{ Auth::id() }}"
+                          data-course_id="{{ $course->id }}"
+                          data-lessons="1"
+                          data-token="{{ Auth::user()->api_token }}"
+                        >
                         </div>
-                      </div>
-                      <a href="#">Ga verder</a>
+                        
+                      <a href="{{ route('lesson.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->id]) }}">Ga verder</a>
+                      @elseif (count(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->get()) != 0)
+                        <p>Je hebt deze lessen al afgerond</p>
+                        <a href="{{ route('course.show', ['id' => $course->id]) }}">Bekijk</a>
+                      @else
+                        <p>Je bent nog niet begonnen aan deze lessen</p>
+                        <a href="{{ route('course.show', ['id' => $course->id]) }}">Start</a>
+                      @endif
                     </div>
                   </div>
 

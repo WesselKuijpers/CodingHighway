@@ -25,6 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         $course = Course::all();
-        return view('home', ['course' => $course]);
+        return view('home', ['courses' => $course]);
     }
 }

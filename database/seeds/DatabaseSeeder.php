@@ -41,10 +41,12 @@ class DatabaseSeeder extends Seeder
       $this->call(UserTableSeeder::class);
       $this->call(UserOrganisationLicensesSeeder::class);
 
+      Schema::disableForeignKeyConstraints();
       $this->call(LevelSeeder::class);
       $this->call(CourseSeeder::class);
-      $this->call(LessonSeeder::class);
-      $this->call(ExerciseSeeder::class);
+      $this->call(TestLessonSeeder::class);
+      $this->call(TestExerciseSeeder::class);
+      Schema::enableForeignKeyConstraints();
 
       $this->call(ForumSeeder::class);
     endif;

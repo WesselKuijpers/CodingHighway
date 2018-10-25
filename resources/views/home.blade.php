@@ -69,15 +69,20 @@
                   </div>
                 </div>
               </div>
+ 
               <div class="col-md-7 col-sm-12">
-                <p class="font-weight-bold mt-3">Voortgang van de lessen</p>
-                <div class="row">
+                @foreach($courses as $course)
+                  <p class="font-weight-bold mt-3">Voortgang van de {{ $course->name }} cursus</p>
+                  <div class="row">
+
                   <div
                     class="col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3">
                     <div class="project-hover">
-                      <h2>HTML</h2>
+                      <h2>{{ $course->name }}</h2>
                       <hr/>
-                      <p>Les 2 - Maak een Html tag</p>
+                      @if (!empty(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next))
+                        <p>{{ Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->title }}</p>
+                      @endif
                       <div class="progress mb-2">
                         <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
                              aria-valuemin="0" aria-valuemax="100">75%
@@ -89,9 +94,11 @@
                   <div
                     class="offset-md-1 offset-lg-1 offset-xl-1 col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3">
                     <div class="project-hover">
-                      <h2>HTML</h2>
+                      <h2>{{ $course->name }}</h2>
                       <hr/>
-                      <p>Les 2 - Maak een Html tag</p>
+                      @if (!empty(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next))
+                        <p>{{ Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->title }}</p>
+                      @endif
                       <div class="progress mb-2">
                         <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
                              aria-valuemin="0" aria-valuemax="100">75%
@@ -100,9 +107,13 @@
                       <a href="#">Ga verder</a>
                     </div>
                   </div>
+
                 </div>
-              </div>
-              <div class="col-md-7 offset-xl-5 offset-md-5 offset-lg-5 col-sm-12 offset-sm-0">
+              @endforeach
+            </div>
+
+
+              {{-- <div class="col-md-7 offset-xl-5 offset-md-5 offset-lg-5 col-sm-12 offset-sm-0">
                 <p class="font-weight-bold mt-3">Voortgang van de opdrachten</p>
                 <div class="row">
                   <div
@@ -134,7 +145,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>

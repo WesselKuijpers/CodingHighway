@@ -17,14 +17,14 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->string('color', 10);
+            $table->string('color');
             $table->unsignedInteger('media_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
           $table->foreign('media_id')
                 ->references('id')->on('media')
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
         });
     }

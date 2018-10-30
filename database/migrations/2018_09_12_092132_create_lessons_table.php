@@ -15,10 +15,10 @@ class CreateLessonsTable extends Migration
   {
     Schema::create('lessons', function (Blueprint $table) {
       $table->increments('id');
-      $table->string('title', 45);
+      $table->string('title');
       $table->text('content');
       $table->unsignedInteger('course_id');
-      $table->unsignedInteger('level_id');
+      $table->unsignedInteger('level_id')->nullable();
       $table->timestamps();
 
       $table->foreign('course_id')
@@ -28,7 +28,7 @@ class CreateLessonsTable extends Migration
 
       $table->foreign('level_id')
             ->references('id')->on('levels')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
     });
   }

@@ -19,7 +19,7 @@ class AddNextLessonToLessonsTable extends Migration
 
           $table->foreign('next_lesson')
             ->references('id')->on('lessons')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
         });
     }

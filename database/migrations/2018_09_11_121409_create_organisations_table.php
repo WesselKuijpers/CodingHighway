@@ -23,7 +23,6 @@ class CreateOrganisationsTable extends Migration
             $table->string('email');
             $table->boolean('paper_invoice');
             $table->string('color');
-            //TODO add media id
             $table->timestamps();
         });
     }

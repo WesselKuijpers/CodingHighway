@@ -62,7 +62,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
   public function organisation()
   {
-    return $this->belongsToMany(Organisation::class, 'user_organisations')->first();
+    return $this->belongsToMany(Organisation::class, 'licenses')->first();
   }
 
   public function questions()

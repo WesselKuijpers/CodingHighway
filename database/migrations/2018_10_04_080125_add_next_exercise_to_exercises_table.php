@@ -19,7 +19,7 @@ class AddNextExerciseToExercisesTable extends Migration
 
           $table->foreign('next_exercise')
             ->references('id')->on('exercises')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
         });
     }

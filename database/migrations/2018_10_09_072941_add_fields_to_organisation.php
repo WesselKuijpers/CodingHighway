@@ -20,7 +20,7 @@ class AddFieldsToOrganisation extends Migration
 
         $table->foreign('image')
           ->references('id')->on('media')
-          ->onDelete('cascade')
+          ->onDelete('set null')
           ->onUpdate('cascade');
       });
     }

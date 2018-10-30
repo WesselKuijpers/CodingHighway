@@ -33,6 +33,7 @@ class OrganisationHelper
     $organisation->requester = $validated['requester'];
 
     if ($organisation->save()):
+      $organisation->CompileTheme();
       if (!empty($validated['media'])):
         $file = FileHelper::store($validated['media']);
 

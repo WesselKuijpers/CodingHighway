@@ -2,9 +2,10 @@
 
 namespace App\Models\general;
 
+use App\User;
+use OrganisationStyleHelper;
 use App\Models\invoice\Invoice;
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class Organisation extends Model
@@ -31,12 +32,7 @@ class Organisation extends Model
 
   public function CompileTheme()
   {
-    $output = '
-        .btn-organisation{
-          color: '.$this->fontcolor.';
-          background-color: '.$this->color.'
-        }
-    ';
+    $output = OrganisationStyleHelper::load($this->color, $this->fontcolor);
     Storage::disk('css')->put("organisations/organisation" . $this->id . ".css", $output);
   }
 }

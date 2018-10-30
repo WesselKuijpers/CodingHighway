@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\general\Organisation;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use OrganisationStyleHelper;
 
 class CompileOrganisationThemes extends Command
 {
@@ -45,12 +46,7 @@ class CompileOrganisationThemes extends Command
     $bar = $this->output->createProgressBar(count($organisations));
 
     foreach ($organisations as $organisation) {
-      $output = '
-        .btn-organisation{
-          color: '.$organisation->fontcolor.';
-          background-color: '.$organisation->color.'
-        }
-      ';
+      $output = OrganisationStyleHelper::load($organisation->color, $organisation->fontcolor);
       Storage::disk('css')->put("organisations/organisation" . $organisation->id . ".css", $output);
 
       $bar->advance();

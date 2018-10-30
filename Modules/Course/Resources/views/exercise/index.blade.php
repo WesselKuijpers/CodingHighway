@@ -9,13 +9,13 @@
   <h1>Opdrachten voor de cursus {{$course->name}}</h1>
 
   <h3>Reguliere Opdrachten:</h3>
-  <table>
-    <tr>
-      <th>Naam:</th>
-      <th>Moeilijkheid:</th>
-    </tr>
-    @foreach($exercises as $exercise)
-      @if (!$exercise->is_final)
+  @if($course->exercises->where('is_final', false)->count() != 0)
+    <table>
+      <tr>
+        <th>Naam:</th>
+        <th>Moeilijkheid:</th>
+      </tr>
+      @foreach($course->exercises->where('is_final', false) as $exercise)
         <tr>
           <td>
             <a
@@ -23,18 +23,20 @@
           </td>
           <td>{{$exercise->level->name}}</td>
         </tr>
-      @endif
-    @endforeach
-  </table>
+      @endforeach
+    </table>
+  @else
+    <p>Geen reguliere opdrachten gevonden</p>
+  @endif
   <br>
   <h3>Eindopdrachten</h3>
-  <table>
-    <tr>
-      <th>Naam:</th>
-      <th>Moeilijkheid:</th>
-    </tr>
-    @foreach($exercises as $exercise)
-      @if ($exercise->is_final)
+  @if($course->exercises->where('is_final', true)->count() != 0)
+    <table>
+      <tr>
+        <th>Naam:</th>
+        <th>Moeilijkheid:</th>
+      </tr>
+      @foreach($course->exercises->where('is_final', true) as $exercise)
         <tr>
           <td>
             <a
@@ -42,7 +44,9 @@
           </td>
           <td>{{$exercise->level->name}}</td>
         </tr>
-      @endif
-    @endforeach
-  </table>
+      @endforeach
+    </table>
+  @else
+    <p>Geen eindopdrachten gevonden</p>
+  @endif
 @endsection

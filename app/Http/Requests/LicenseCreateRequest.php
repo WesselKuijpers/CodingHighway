@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LicenseCreateRequest extends FormRequest
 {
@@ -13,7 +14,38 @@ class LicenseCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if (env('APP_ENV') == 'testing'):
+            return true;
+        endif;
+        switch ($this->getMethod()):
+            case 'POST':
+                if (Auth::user()->canLicensesCreate()):
+                    return true;
+                else:
+                    return false;
+                endif;
+
+                break;
+            case 'PUT':
+                if (Auth::user()->canLicensesCreate()):
+                    return true;
+                else:
+                    return false;
+                endif;
+
+                break;
+            case 'DELETE':
+                if (Auth::user()->canLicensesCreate()):
+                    return true;
+                else:
+                    return false;
+                endif;
+
+                break;
+            default:
+                return false;
+                break;
+        endswitch;
     }
 
     /**
@@ -23,8 +55,11 @@ class LicenseCreateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'organisation_id' => 'required|numeric|exists:organisations,id|gt:0',
+            'amount' => 'required|numeric|lte:1000'
         ];
+        
+        return $rules;
     }
 }

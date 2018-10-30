@@ -28,7 +28,7 @@ class LicenseKeyHelper
     return false;
   }
 
-  public static function OrganisationKey($amount, $organisation)
+  public static function OrganisationKey($amount, $organisationId)
   {
     for ($i = 0; $i < $amount; $i++):
       $license = new License;
@@ -39,7 +39,7 @@ class LicenseKeyHelper
         if (License::where('key', $uuid)->count() == 0):
           $license->key = $uuid;
           $license->expires_at = \Carbon\Carbon::now()->addYear();
-          $license->organisation_id = $organisation->id;
+          $license->organisation_id = $organisationId;
           $license->expired = false;
           if ($license->save()):
             $looping = false;

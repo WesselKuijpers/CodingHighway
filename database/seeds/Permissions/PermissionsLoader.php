@@ -199,4 +199,16 @@ class PermissionsLoader
       ]
     ];
   }
+
+  public static function LicensePermissions()
+  {
+    return [
+      'create' => [
+        'name' => 'LicenseCreate',
+        'slug' => 'licenses.create',
+        'model' => '',
+        'description' => 'permission to create licenses'
+      ]
+    ];
+  }
 }

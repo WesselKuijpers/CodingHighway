@@ -9,7 +9,9 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\OrganisationRequest;
 use jeremykenedy\LaravelRoles\Models\Role;
+use App\Http\Requests\LicenseCreateRequest;
 use OrganisationHelper;
+use LicenseKeyHelper;
 
 class OrganisationController extends Controller
 {
@@ -83,9 +85,10 @@ class OrganisationController extends Controller
    * Show the specified resource.
    * @return Response
    */
-  public function show()
+  public function show($id)
   {
-    return view('organisation::show');
+    $organisation = Organisation::find($id);
+    return view('organisation::show', ['organisation' => $organisation]);
   }
 
   /**
@@ -112,5 +115,13 @@ class OrganisationController extends Controller
    */
   public function destroy()
   {
+  }
+
+  public function generateLicenses(LicenseCreateRequest $request)
+  {
+      $data = $request->validated();
+      LicenseKeyHelper::OrganisationKey($data['amount'], $data['organisation_id']);
+
+      return redirect()->route('organisation.show', ['id' => $data['organisation_id']]);
   }
 }

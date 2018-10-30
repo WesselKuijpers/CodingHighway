@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header text-center">
-                        Dashboard van de organisatie OrganisatieNaam
+                        Dashboard van {{ $organisation->name }}
                     </div>
 
                     <div class="card-body">
@@ -32,18 +32,22 @@
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-12">
                                 <p class="text-center pt-2">Licenties</p>
-                                <form action="GET">
+                                <form action="{{ route('licenses.generate') }}" method="POST">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="license_count">
+                                        @csrf
+                                        <input type="hidden" value="{{ $organisation->id }}" name="organisation_id">
+                                        <input type="number" class="form-control" name="amount">
                                         <div class="col-6 m-auto">
                                             <input type="submit" value="Genereer" class="btn btn-primary form-control mt-2">
                                         </div>
                                     </div>
-                                    @for($i=0;$i<app('request')->input('license_count'); $i++)
-                                        <div class="col-12 m-auto">
-                                            <p class="text-center">81963f35-ebdc-302d-b0fe-c36d8cf6d85e</p>
-                                        </div>
-                                    @endfor
+                                    @if (count($organisation->licenses) != 0)
+                                        @foreach($organisation->licenses as $license)
+                                            <div class="col-12 m-auto">
+                                                <p class="text-center">{{ $license->key }}</p>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </form>
                             </div>
                         </div>

@@ -13,57 +13,57 @@ use App\User;
 
 class LicenseTest extends TestCase
 {
-    use RefreshDatabase;
-    use WithoutMiddleware;
-  
-    public function setUp()
-    {
-      parent::setUp();
-      Artisan::call('migrate', ['--env' => 'testing']);
-      Artisan::call('db:seed', ['--env' => 'testing']);
-    }
+  use RefreshDatabase;
+  use WithoutMiddleware;
 
-    public function testGenerateLicenseKeysUnderThousand()
-    {
-        $org = Organisation::first();
-        $previousCount = $org->licenses->count();
+  public function setUp()
+  {
+    parent::setUp();
+    Artisan::call('migrate', ['--env' => 'testing']);
+    Artisan::call('db:seed', ['--env' => 'testing']);
+  }
 
-        $post = [
-            'organisation_id' => $org->id,
-            'amount' => 200
-        ];
+  public function testGenerateLicenseKeysUnderThousand()
+  {
+    $org = Organisation::first();
+    $previousCount = $org->licenses->count();
 
-        $response = $this->post(route('licenses.generate'), $post);
+    $post = [
+      'organisation_id' => $org->id,
+      'amount' => 200
+    ];
 
-        $org = Organisation::first();
-        $newCount = $org->licenses->count();
+    $response = $this->post(route('licenses.generate'), $post);
 
-        if($previousCount + 200 == $newCount):
-            $this->assertTrue(true);
-        else:
-            $this->assertTrue(false);
-        endif;
-    }
+    $org = Organisation::first();
+    $newCount = $org->licenses->count();
 
-    public function testGenerateLicenseKeysOverThousand()
-    {
-        $org = Organisation::first();
-        $previousCount = $org->licenses->count();
+    if ($previousCount + 200 == $newCount):
+      $this->assertTrue(true);
+    else:
+      $this->assertTrue(false);
+    endif;
+  }
 
-        $post = [
-            'organisation_id' => $org->id,
-            'amount' => 1001
-        ];
+  public function testGenerateLicenseKeysOverThousand()
+  {
+    $org = Organisation::first();
+    $previousCount = $org->licenses->count();
 
-        $response = $this->post(route('licenses.generate'), $post);
+    $post = [
+      'organisation_id' => $org->id,
+      'amount' => 1001
+    ];
 
-        $org = Organisation::first();
-        $newCount = $org->licenses->count();
+    $response = $this->post(route('licenses.generate'), $post);
 
-        if($previousCount == $newCount):
-            $this->assertTrue(true);
-        else:
-            $this->assertTrue(false);
-        endif;
-    }
+    $org = Organisation::first();
+    $newCount = $org->licenses->count();
+
+    if ($previousCount == $newCount):
+      $this->assertTrue(true);
+    else:
+      $this->assertTrue(false);
+    endif;
+  }
 }

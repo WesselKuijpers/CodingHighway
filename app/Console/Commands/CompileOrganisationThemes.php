@@ -49,9 +49,11 @@ class CompileOrganisationThemes extends Command
             @import "../variables";
 
             $theme-colors: (
-              "organisation-color": ' . $organisation->color . '
+              "organisation": ' . $organisation->color . '
             );
             @import "~bootstrap/scss/bootstrap";
+            
+            .btn-oc { color: '.$organisation->fontcolor.' }
         ';
 
       Storage::disk('public')->put("css/organisations" . $organisation->id . ".scss", $output);

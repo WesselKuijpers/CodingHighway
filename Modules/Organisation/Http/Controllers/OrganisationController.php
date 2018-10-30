@@ -3,6 +3,7 @@
 namespace Modules\Organisation\Http\Controllers;
 
 use App\Models\general\Organisation;
+use App\Models\course\Course;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,7 +18,6 @@ class OrganisationController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('LicenseCheck');
     $this->middleware('role:sa')->only(['index']);
     $this->middleware('permission:organisation.show')->only(['show']);
     $this->middleware('permission:organisation.create')->only(['create', 'store']);
@@ -88,7 +88,8 @@ class OrganisationController extends Controller
   public function show($id)
   {
     $organisation = Organisation::find($id);
-    return view('organisation::show', ['organisation' => $organisation]);
+    $courses = Course::all();
+    return view('organisation::show', ['organisation' => $organisation, 'courses' => $courses]);
   }
 
   /**

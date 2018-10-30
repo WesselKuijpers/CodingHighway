@@ -17,9 +17,14 @@
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
   <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  @if(Auth::user()->organisation())
-    <link href="{{ asset('css/organisations'.Auth::user()->organisation()->id.'.css') }}" rel="stylesheet">
+  @if (Auth::user())
+    @if(Auth::user()->organisation())
+      <link href="{{ asset('css/organisations'.Auth::user()->organisation()->id.'.css') }}" rel="stylesheet">
+    @else
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
+  @else
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   @endif
   <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.5/css/rowReorder.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
@@ -45,9 +50,9 @@
 
 <div id="app">
   <!-- Including navbar partial -->
-  @include('shared.nav')
+@include('shared.nav')
 
-  <!-- Content container -->
+<!-- Content container -->
   <main class="py-4 container">
     @yield('content')
   </main>

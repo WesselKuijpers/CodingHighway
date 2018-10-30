@@ -17,12 +17,13 @@
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
   <!-- Styles -->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   @if (Auth::user())
     @if(Auth::user()->organisation())
-      <link href="{{ asset('css/organisations/organisation'.Auth::user()->organisation()->id.'.css') }}" rel="stylesheet">
+      <link href="{{ asset('css/organisations/organisation'.Auth::user()->organisation()->id.'.css') }}"
+            rel="stylesheet">
     @endif
   @endif
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.5/css/rowReorder.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">

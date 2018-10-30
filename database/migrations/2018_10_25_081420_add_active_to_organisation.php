@@ -15,6 +15,7 @@ class AddActiveToOrganisation extends Migration
     {
       Schema::table('organisations', function (Blueprint $table) {
         $table->boolean('active')->default(0)->after('link');
+        $table->boolean('requester')->after('active')->nullable();
       });
     }
 

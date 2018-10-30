@@ -4,10 +4,12 @@ namespace Modules\Organisation\Http\Controllers;
 
 use App\Models\general\Organisation;
 use App\Models\course\Course;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\OrganisationRequest;
+use jeremykenedy\LaravelRoles\Models\Role;
 use App\Http\Requests\LicenseCreateRequest;
 use OrganisationHelper;
 use LicenseKeyHelper;
@@ -40,6 +42,10 @@ class OrganisationController extends Controller
     if (!empty($data['organisation_id'])):
       $organisation = Organisation::find($data['organisation_id']);
       $organisation->active = 1;
+      
+      $user = User::find($organisation->requester);
+      $user->attachRole(Role::where('slug', 'admin')->first());
+
       if ($organisation->save()):
         return redirect()->route('organisation');
       else:

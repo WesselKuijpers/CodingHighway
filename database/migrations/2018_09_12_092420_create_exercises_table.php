@@ -40,6 +40,8 @@ class CreateExercisesTable extends Migration
    */
   public function down()
   {
+    Schema::disableForeignKeyConstraints();
     Schema::dropIfExists('exercises');
+    Schema::enableForeignKeyConstraints();
   }
 }

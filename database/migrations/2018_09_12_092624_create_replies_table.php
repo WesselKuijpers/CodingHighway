@@ -17,16 +17,16 @@ class CreateRepliesTable extends Migration
       $table->increments('id');
       $table->string('content');
       $table->unsignedInteger('answer_id');
-      $table->unsignedInteger('user_id');
-
-      $table->foreign('answer_id')
-        ->references('id')->on('answers')
-        ->onDelete('cascade')
-        ->onUpdate('cascade');
+      $table->unsignedInteger('user_id')->nullable();
 
       $table->foreign('user_id')
         ->references('id')->on('users')
         ->onDelete('set null')
+        ->onUpdate('cascade');
+
+      $table->foreign('answer_id')
+        ->references('id')->on('answers')
+        ->onDelete('cascade')
         ->onUpdate('cascade');
 
       $table->timestamps();
@@ -40,6 +40,8 @@ class CreateRepliesTable extends Migration
    */
   public function down()
   {
+    Schema::disableForeignKeyConstraints();
     Schema::dropIfExists('replies');
+    Schema::enableForeignKeyConstraints();
   }
 }

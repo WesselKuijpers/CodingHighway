@@ -50,6 +50,8 @@ class CreateUserProgressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_progresses');
+      Schema::disableForeignKeyConstraints();
+      Schema::dropIfExists('user_progresses');
+      Schema::enableForeignKeyConstraints();
     }
 }

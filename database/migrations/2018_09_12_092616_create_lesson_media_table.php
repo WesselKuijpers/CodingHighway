@@ -38,6 +38,8 @@ class CreateLessonMediaTable extends Migration
    */
   public function down()
   {
+    Schema::disableForeignKeyConstraints();
     Schema::dropIfExists('lesson_media');
+    Schema::enableForeignKeyConstraints();
   }
 }

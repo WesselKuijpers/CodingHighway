@@ -39,6 +39,8 @@ class CreateQuestionTagsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('question_tags');
+        Schema::enableForeignKeyConstraints();
     }
 }

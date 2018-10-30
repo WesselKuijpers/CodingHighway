@@ -40,6 +40,8 @@ class CreateLessonsTable extends Migration
    */
   public function down()
   {
+    Schema::disableForeignKeyConstraints();
     Schema::dropIfExists('lessons');
+    Schema::enableForeignKeyConstraints();
   }
 }

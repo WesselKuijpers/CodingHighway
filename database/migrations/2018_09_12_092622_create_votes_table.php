@@ -46,6 +46,8 @@ class CreateVotesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('votes');
+        Schema::enableForeignKeyConstraints();
     }
 }

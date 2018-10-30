@@ -48,6 +48,8 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('questions');
+        Schema::enableForeignKeyConstraints();
     }
 }

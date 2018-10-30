@@ -31,8 +31,10 @@ class AddNextLessonToLessonsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('lesson', function (Blueprint $table) {
             //
         });
+        Schema::enableForeignKeyConstraints();
     }
 }

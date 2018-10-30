@@ -38,6 +38,8 @@ class CreateUserOrganisationsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('user_organisations');
+        Schema::enableForeignKeyConstraints();
     }
 }

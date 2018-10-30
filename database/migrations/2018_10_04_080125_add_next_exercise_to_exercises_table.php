@@ -31,8 +31,10 @@ class AddNextExerciseToExercisesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('exercise', function (Blueprint $table) {
             //
         });
+        Schema::enableForeignKeyConstraints();
     }
 }

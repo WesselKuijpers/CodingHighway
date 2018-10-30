@@ -19,7 +19,7 @@
   <!-- Styles -->
   @if (Auth::user())
     @if(Auth::user()->organisation())
-      <link href="{{ asset('css/organisations'.Auth::user()->organisation()->id.'.css') }}" rel="stylesheet">
+      <link href="{{ asset('css/organisations/organisation'.Auth::user()->organisation()->id.'.css') }}" rel="stylesheet">
     @else
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @endif

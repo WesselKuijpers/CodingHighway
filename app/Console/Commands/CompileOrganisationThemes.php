@@ -46,17 +46,12 @@ class CompileOrganisationThemes extends Command
 
     foreach ($organisations as $organisation) {
       $output = '
-            @import "../variables";
-
-            $theme-colors: (
-              "organisation": ' . $organisation->color . '
-            );
-            @import "~bootstrap/scss/bootstrap";
-            
-            .btn-oc { color: '.$organisation->fontcolor.' }
-        ';
-
-      Storage::disk('public')->put("css/organisations" . $organisation->id . ".scss", $output);
+        .btn-organisation{
+          color: '.$organisation->fontcolor.';
+          background-color: '.$organisation->color.'
+        }
+      ';
+      Storage::disk('css')->put("organisations/organisation" . $organisation->id . ".css", $output);
 
       $bar->advance();
     }

@@ -1,14 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/organisations1.css": "/css/organisations1.css",
-    "/css/organisations10.css": "/css/organisations10.css",
-    "/css/organisations2.css": "/css/organisations2.css",
-    "/css/organisations3.css": "/css/organisations3.css",
-    "/css/organisations4.css": "/css/organisations4.css",
-    "/css/organisations5.css": "/css/organisations5.css",
-    "/css/organisations6.css": "/css/organisations6.css",
-    "/css/organisations7.css": "/css/organisations7.css",
-    "/css/organisations8.css": "/css/organisations8.css",
-    "/css/organisations9.css": "/css/organisations9.css"
+    "/css/app.css": "/css/app.css"
 }

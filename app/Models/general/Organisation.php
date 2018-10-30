@@ -32,16 +32,11 @@ class Organisation extends Model
   public function CompileTheme()
   {
     $output = '
-      @import "../variables";
-
-      $theme-colors: (
-        "organisation": ' . $this->color . '
-      );
-      @import "~bootstrap/scss/bootstrap";
-      
-      .btn-oc { color: '.$this->fontcolor.' }
+        .btn-organisation{
+          color: '.$this->fontcolor.';
+          background-color: '.$this->color.'
+        }
     ';
-
-    Storage::disk('public')->put("css/organisations" . $this->id . ".scss", $output);
+    Storage::disk('css')->put("organisations/organisation" . $this->id . ".css", $output);
   }
 }

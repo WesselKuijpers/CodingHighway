@@ -12,9 +12,8 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/js/app.js', 'public/js')
-   .copyDirectory('storage/app/public/css', 'resources/sass/organisations')
    .sass('resources/sass/app.scss', 'public/css');
-
+/*
 let fs = require('fs');
 
 let getFiles = function (dir) {
@@ -28,3 +27,4 @@ let getFiles = function (dir) {
 getFiles('resources/sass/organisations').forEach(function (filepath) {
   mix.sass('resources/sass/organisations/' + filepath, 'public/css');
 });
+*/

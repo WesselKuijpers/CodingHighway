@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'css' => [
+            'driver' => 'local',
+            'root' => app()->path() . '/../public/css',
+            'url' => env('APP_URL').'/css',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

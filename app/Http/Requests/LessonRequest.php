@@ -64,7 +64,7 @@ class LessonRequest extends FormRequest
     switch ($this->getMethod()):
       case "POST":
         $rules = [
-          'title' => 'required|string|max:45',
+          'title' => 'required|string|max:60',
           'content' => 'required|string',
           'course_id' => 'required|numeric',
           'level_id' => 'nullable|numeric',
@@ -76,7 +76,7 @@ class LessonRequest extends FormRequest
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'title' => 'required|string|max:20',
+          'title' => 'required|string|max:60',
           'content' => 'required|string',
           'course_id' => 'required|numeric',
           'is_first' => 'nullable|boolean',

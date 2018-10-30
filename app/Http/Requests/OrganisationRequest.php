@@ -37,7 +37,7 @@ class OrganisationRequest extends FormRequest
     switch ($this->getMethod()):
       case "POST":
         $rules = [
-          'name' => 'required|string|max:45',
+          'name' => 'required|string|max:60',
           'street' => 'required|string',
           'housenumber' => 'required|string',
           'zipcode' => 'required|string|regex:/([0-9]{4})\s{0,1}([a-zA-Z]{2})/',
@@ -54,7 +54,7 @@ class OrganisationRequest extends FormRequest
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'name' => 'required|string|max:45',
+          'name' => 'required|string|max:60',
           'street' => 'required|string',
           'housenumber' => 'required|string',
           'zipcode' => 'required|string',

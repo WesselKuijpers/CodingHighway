@@ -23,8 +23,8 @@
       <label for="is_final" class="col-md-4 col-form-label text-md-right font-weight-bold">Eindopdracht</label>
       <div class="col-md-6 form-group">
         <select name="is_final" class="form-control">
-          <option value="1">Ja</option>
           <option value="0">Nee</option>
+          <option value="1">Ja</option>
         </select>
       </div>
     </div>
@@ -40,6 +40,8 @@
           <input type="checkbox" name="is_first" value="1" id="is_first">
         </div>
       </div>
+    @else
+      <input type="hidden" name="is_first" value="1" id="is_first">
     @endif
 
     @include('shared.submit_button')

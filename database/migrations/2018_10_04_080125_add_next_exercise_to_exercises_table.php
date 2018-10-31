@@ -19,7 +19,7 @@ class AddNextExerciseToExercisesTable extends Migration
 
           $table->foreign('next_exercise')
             ->references('id')->on('exercises')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
         });
     }
@@ -31,8 +31,10 @@ class AddNextExerciseToExercisesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('exercise', function (Blueprint $table) {
             //
         });
+        Schema::enableForeignKeyConstraints();
     }
 }

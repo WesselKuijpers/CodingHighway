@@ -23,7 +23,6 @@ class CreateOrganisationsTable extends Migration
             $table->string('email');
             $table->boolean('paper_invoice');
             $table->string('color');
-            //TODO add media id
             $table->timestamps();
         });
     }
@@ -35,6 +34,8 @@ class CreateOrganisationsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('organisations');
+        Schema::enableForeignKeyConstraints();
     }
 }

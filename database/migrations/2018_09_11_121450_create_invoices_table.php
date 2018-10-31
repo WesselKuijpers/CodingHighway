@@ -33,6 +33,8 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('invoices');
+        Schema::enableForeignKeyConstraints();
     }
 }

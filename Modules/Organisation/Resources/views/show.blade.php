@@ -67,16 +67,36 @@
                                         </div>
                                     </div>
                                     @if (count($organisation->licenses) != 0)
-                                        @foreach($organisation->licenses as $license)
-                                            <div class="col-12 m-auto">
-                                                <p class="text-center">
-                                                    {{ $license->key }}
-                                                    @if ($license->user_id != null)
-                                                        <i class="fas fa-check"></i>
-                                                    @endif
-                                                </p>
+                                        @if (count($organisation->licenses->where('user_id', '!=', null)) != 0)
+                                            <div class="col-md-6 m-auto">
+                                                <strong class="text-center">Geactiveerde Licenties:</strong>
                                             </div>
-                                        @endforeach
+                                            @foreach($organisation->licenses->where('user_id', '!=', null) as $license)
+                                                <div class="col-12 m-auto">
+                                                    <p class="text-center">
+                                                        {{ $license->key }}
+                                                        @if ($license->user_id != null)
+                                                            <i class="fas fa-check"></i>
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        @if (count($organisation->licenses->where('user_id', null)) != 0)
+                                            <div class="col-md-6 m-auto">
+                                                <strong class="text-center">Openstaande Licenties:</strong>
+                                            </div>
+                                            @foreach($organisation->licenses->where('user_id', null) as $license)
+                                                <div class="col-12 m-auto">
+                                                    <p class="text-center">
+                                                        {{ $license->key }}
+                                                        @if ($license->user_id != null)
+                                                            <i class="fas fa-check"></i>
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     @endif
                                 </form>
                             </div>

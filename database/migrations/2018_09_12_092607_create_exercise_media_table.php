@@ -38,6 +38,8 @@ class CreateExerciseMediaTable extends Migration
    */
   public function down()
   {
+    Schema::disableForeignKeyConstraints();
     Schema::dropIfExists('exercise_media');
+    Schema::enableForeignKeyConstraints();
   }
 }

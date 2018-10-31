@@ -16,12 +16,12 @@ class CreateAnswersTable extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('question_id');
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
 
             $table->foreign('question_id')
@@ -41,6 +41,8 @@ class CreateAnswersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('answers');
+        Schema::enableForeignKeyConstraints();
     }
 }

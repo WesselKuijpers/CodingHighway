@@ -16,17 +16,23 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->unsignedInteger('exercise_id')->nullable();
+            $table->unsignedInteger('lesson_id')->nullable();
             $table->string('content');
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
-                ->onDelete('cascade')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
 
             $table->foreign('exercise_id')
                 ->references('id')->on('exercises')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('lesson_id')
+                ->references('id')->on('lessons')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
@@ -42,6 +48,8 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('questions');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -64,13 +64,13 @@ class LevelRequest extends FormRequest
     switch($this->getMethod()):
       case "POST":
         $rules = [
-          'name' => 'required|string|max:30',
+          'name' => 'required|string|max:60',
         ];
         break;
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'name' => 'required|string|max:30'
+          'name' => 'required|string|max:60'
         ];
         break;
       case "DELETE":

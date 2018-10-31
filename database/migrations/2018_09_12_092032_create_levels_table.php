@@ -15,7 +15,7 @@ class CreateLevelsTable extends Migration
     {
         Schema::create('levels', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 30);
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +27,8 @@ class CreateLevelsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('levels');
+        Schema::enableForeignKeyConstraints();
     }
 }

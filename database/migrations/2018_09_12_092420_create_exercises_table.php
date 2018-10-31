@@ -18,7 +18,7 @@ class CreateExercisesTable extends Migration
       $table->unsignedInteger('course_id');
       $table->text('content');
       $table->boolean('is_final');
-      $table->unsignedInteger('level_id');
+      $table->unsignedInteger('level_id')->nullable();
       $table->timestamps();
 
       $table->foreign('course_id')
@@ -28,7 +28,7 @@ class CreateExercisesTable extends Migration
 
       $table->foreign('level_id')
             ->references('id')->on('levels')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
     });
   }
@@ -40,6 +40,8 @@ class CreateExercisesTable extends Migration
    */
   public function down()
   {
+    Schema::disableForeignKeyConstraints();
     Schema::dropIfExists('exercises');
+    Schema::enableForeignKeyConstraints();
   }
 }

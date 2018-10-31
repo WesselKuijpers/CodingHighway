@@ -39,6 +39,8 @@ class CreateInvoiceLinesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('invoice_lines');
+        Schema::enableForeignKeyConstraints();
     }
 }

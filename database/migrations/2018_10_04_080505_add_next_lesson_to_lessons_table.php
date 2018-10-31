@@ -19,7 +19,7 @@ class AddNextLessonToLessonsTable extends Migration
 
           $table->foreign('next_lesson')
             ->references('id')->on('lessons')
-            ->onDelete('cascade')
+            ->onDelete('set null')
             ->onUpdate('cascade');
         });
     }
@@ -31,8 +31,10 @@ class AddNextLessonToLessonsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::table('lesson', function (Blueprint $table) {
             //
         });
+        Schema::enableForeignKeyConstraints();
     }
 }

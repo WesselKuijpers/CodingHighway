@@ -2,7 +2,7 @@
   <div class="container">
 
     <a href="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ Auth::user()->organisation()->link }} @else / @endif">
-      <img src="@if(Auth::user() && !empty(Auth::user()->organisation()->media)) {{ Auth::user()->organisation()->media->content }} @else {{"http://www.lorempixel.com/400/400"}} @endif" class="navbar-brand nav-logo pl-3">
+      <img src="@if(Auth::user() && !empty(Auth::user()->organisation()->media)) {{ Auth::user()->organisation()->media->content }} @endif" class="navbar-brand nav-logo pl-3">
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

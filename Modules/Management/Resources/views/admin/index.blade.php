@@ -6,7 +6,7 @@
     @include('shared.error')
     <form action="/management/admin/" method="get">
         <input type="text" name="query" placeholder="Vul een naam of email in">
-        <input type="submit" value="Zoek">
+        <input type="submit" value="Zoek" class="btn btn-primary btn-organisation">
     </form>
 
     <form action="/management/admin" method="post">

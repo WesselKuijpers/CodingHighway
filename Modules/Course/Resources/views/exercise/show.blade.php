@@ -23,7 +23,7 @@
       <input type="hidden" name="user_id" value="{{ Auth::id() }}"/>
       <input type="hidden" name="course_id" value="{{ $exercise->course->id }}"/>
       <input type="hidden" name="exercise_id" value="{{ $exercise->id }}"/>
-      <input type="submit" class="btn btn-primary" value="Opdracht afronden"/>
+      <input type="submit" class="btn btn-primary btn-organisation" value="Opdracht afronden"/>
     </form>
   </p>
 

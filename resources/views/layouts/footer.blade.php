@@ -1,5 +1,5 @@
-<footer class="footer" style="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ "background-color:".Auth::user()->organisation()->color }} @endif">
+<footer class="footer nav-organisation">
     <div class="container">
-        <span style="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ "color:".Auth::user()->organisation()->fontcolor }} @endif">Copyright &copy; 2018 CodingHighway</span>
+        <span class="organisation-text">Copyright &copy; 2018 CodingHighway</span>
     </div>
 </footer>

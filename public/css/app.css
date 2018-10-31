@@ -10673,3 +10673,7 @@ a:hover.no-link {
   cursor: pointer;
 }
 
+.form-control-file {
+  overflow: hidden !important;
+}
+

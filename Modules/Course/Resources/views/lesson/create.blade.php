@@ -21,7 +21,7 @@
 
           <label for="media" class="text-md-right font-weight-bold">Media</label>
           <div class="form-group">
-            <input type="file" id="media" name="media[]" multiple>
+            <input type="file" id="media" name="media[]" class="form-control-file" multiple>
           </div>
 
         @include('course::shared.levels', ['levels' => $levels])

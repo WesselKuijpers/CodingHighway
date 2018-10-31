@@ -34,7 +34,8 @@ class OrganisationCreateTest extends TestCase
       'fontcolor' => '#000',
       'link' => 'https://www.testorg.com',
       'media' => null,
-      'requester' => 1
+      'requester' => 1,
+      'phone' => '0204758673'
     ];
 
     $response = $this->post(route('organisation.store'), $post);
@@ -52,7 +53,8 @@ class OrganisationCreateTest extends TestCase
       $new->color == $post['color'] &&
       $new->fontcolor == $post['fontcolor'] &&
       $new->link == $post['link'] &&
-      $new->image == $post['media']
+      $new->image == $post['media'] &&
+      $new->phone == $post['phone']
     ):
       return $this->assertTrue(true);
     else:

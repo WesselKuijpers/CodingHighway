@@ -31,6 +31,7 @@ class OrganisationHelper
     $organisation->fontcolor = $validated['fontcolor'];
     $organisation->link = $validated['link'];
     $organisation->requester = $validated['requester'];
+    $organisation->phone = $validated['phone'];
 
     if ($organisation->save()):
       $organisation->CompileTheme();
@@ -80,6 +81,7 @@ class OrganisationHelper
     $organisation->color = $validated['color'];
     $organisation->fontcolor = $validated['fontcolor'];
     $organisation->link = $validated['link'];
+    $organisation->phone = $validated['phone'];
 
     if ($organisation->save()):
       $organisation->CompileTheme();

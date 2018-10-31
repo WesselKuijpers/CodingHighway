@@ -50,7 +50,6 @@ class RolePermissionsLoader
 
     $this->ListAttachesS($user, $this->CoursePermissions);
     $this->ListAttachesS($user, $this->ExercisePermissions);
-    $this->ListAttachesS($user, $this->LevelPermissions);
     $this->ListAttachesS($user, $this->LessonPermissions);
 
     $editData = $this->UserPermissions['edit'];

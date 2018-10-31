@@ -24,7 +24,8 @@ class LevelController extends Controller
    */
   public function index()
   {
-    return view('course::level.index');
+    $levels = Level::all();
+    return view('course::level.index', ['levels' => $levels]);
   }
 
   /**
@@ -50,14 +51,6 @@ class LevelController extends Controller
     else :
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     endif;
-  }
-
-  /**
-   * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-   */
-  public function show()
-  {
-    return view('course::level.show');
   }
 
   /**

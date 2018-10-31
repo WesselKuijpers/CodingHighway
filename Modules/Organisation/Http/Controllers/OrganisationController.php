@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\OrganisationRequest;
+use Illuminate\Support\Facades\Redirect;
 use jeremykenedy\LaravelRoles\Models\Role;
 use App\Http\Requests\LicenseCreateRequest;
 use OrganisationHelper;
@@ -104,11 +105,18 @@ class OrganisationController extends Controller
 
   /**
    * Update the specified resource in storage.
-   * @param  Request $request
-   * @return Response
+   * @param  OrganisationRequest $request
+   * @return Redirect
    */
-  public function update(Request $request)
+  public function update(OrganisationRequest $request)
   {
+    if (!$request->authorize()):
+      return redirect()->back->with('error', 'Je hebt geen rechten om dit te mogen doen');
+    endif;
+
+    OrganisationHelper::edit($request);
+
+    return redirect()->route('organisation.show', ['id' => $request->id])->with('msg', 'Wijzigen opgeslagen');
   }
 
   /**

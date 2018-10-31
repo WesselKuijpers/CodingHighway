@@ -63,7 +63,7 @@
                                         <input type="hidden" value="{{ $organisation->id }}" name="organisation_id">
                                         <input type="number" class="form-control" name="amount">
                                         <div class="col-6 m-auto">
-                                            <input type="submit" value="Genereer" class="btn btn-primary form-control mt-2">
+                                            <input type="submit" value="Genereer" class="btn btn-primary btn-organisation form-control mt-2">
                                         </div>
                                     </div>
                                     @if (count($organisation->licenses) != 0)

@@ -16,6 +16,9 @@ class OrganisationStyleHelper
     .nav-link{
       color: '.$fontcolor.';
     }
+    .organisation-text{
+      color: '.$fontcolor.';
+    }
     ';
   }
 }

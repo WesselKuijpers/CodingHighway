@@ -53,7 +53,7 @@
               <form action="{{ route('organisation.activate') }}" method="post">
                 @csrf
                 <input type="hidden" name="organisation_id" value="{{ $organisation->id }}">
-                <input type="submit" value="Activeren" class="btn btn-success">
+                <input type="submit" value="Activeren" class="btn btn-primary btn-organisation">
               </form>
             @else
               Organisatie Al Geactiveerd

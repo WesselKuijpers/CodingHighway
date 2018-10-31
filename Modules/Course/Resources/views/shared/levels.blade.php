@@ -1,7 +1,7 @@
 @if(isset($levels))
-    <div class="row form-group" id="level">
-        <label for="level" class="col-md-4 col-form-label text-md-right font-weight-bold">Moeilijkheidsgraad</label>
-        <div class="col-md-6">
+    <div class="form-group" id="level">
+        <label for="level" class="text-md-right font-weight-bold">Moeilijkheidsgraad</label>
+        <div class="col-12">
             <select name="level_id" class="form-control">
                 @foreach($levels as $level)
                     <option value="{{$level['id']}}">{{$level['name']}}</option>

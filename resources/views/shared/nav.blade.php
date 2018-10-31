@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ "background:".Auth::user()->organisation()->color }} @else {{""}} @endif">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel nav-organisation">
   <div class="container">
 
     <a href="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ Auth::user()->organisation()->link }} @else / @endif">
@@ -28,7 +28,7 @@
           </li>
         @else
           <li class="nav-item dropdown">
-            <a id="navbarDropdown" style="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link dropdown-toggle" href="#" role="button"
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->getFullname() }} <span class="caret"></span>
             </a>
@@ -49,13 +49,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/home') }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">Dashboard</a>
+            <a href="{{ url('/home') }}" class="nav-link">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/course') }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">Cursussen</a>
+            <a href="{{ url('/course') }}" class="nav-link">Cursussen</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/forum') }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">Forum</a>
+            <a href="{{ url('/forum') }}" class="nav-link">Forum</a>
           </li>
         @endguest
       </ul>

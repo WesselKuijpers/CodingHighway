@@ -14,7 +14,7 @@ class CompileOrganisationThemes extends Command
    *
    * @var string
    */
-  protected $signature = 'organisations:theme:compile';
+  protected $signature = 'organisations:compile';
 
   /**
    * The console command description.

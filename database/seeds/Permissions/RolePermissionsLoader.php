@@ -11,7 +11,7 @@ use jeremykenedy\LaravelRoles\Models\Permission;
 
 class RolePermissionsLoader
 {
-  private $UserPermissions, $CoursePermissions, $ExercisePermissions, $LessonPermissions;
+  private $UserPermissions, $CoursePermissions, $ExercisePermissions, $LessonPermissions, $LicensesPermissions;
   private $LevelPermissions, $SystemAdminPermissions, $OverigePermissions, $OrganisationPermissions;
   
   public function __construct()
@@ -24,6 +24,7 @@ class RolePermissionsLoader
     $this->SystemAdminPermissions   = PermissionsLoader::SystemAdminPermissions();
     $this->OverigePermissions       = PermissionsLoader::OverigePermissions();
     $this->OrganisationPermissions  = PermissionsLoader::OrganisationPermissions();
+    $this->LicensesPermissions      = PermissionsLoader::LicensePermissions();
   }
 
   public function SystemAdmin()
@@ -42,6 +43,7 @@ class RolePermissionsLoader
     $admin = Role::where('slug', 'admin')->first();
 
     $this->ListAttaches($admin, $this->OrganisationPermissions);
+    $this->ListAttaches($admin, $this->LicensesPermissions);
   }
 
   public function User()

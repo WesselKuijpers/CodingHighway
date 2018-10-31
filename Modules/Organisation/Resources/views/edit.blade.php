@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('shared.form_title', ['title' => "Vraag een organisatie aan"])
+  @include('shared.form_title', ['title' => "Pas je organisatie aan"])
   @include('shared.error')
-  <form method="POST" action="{{ route('organisation.update') }}" enctype="multipart/form-data">
+  <form method="POST" action="{{ route('organisation.update', ['id' => $organisation->id]) }}" enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="requester" value="{{ Auth::id() }}">
     @include('shared.form_required', ['label' => 'Organisatienaam', 'name'=> 'name', 'type'=> 'text','class' => 'form-control'])

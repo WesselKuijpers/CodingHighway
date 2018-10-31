@@ -94,11 +94,12 @@ class OrganisationController extends Controller
 
   /**
    * Show the form for editing the specified resource.
+   * @param Organisation $id
    * @return Response
    */
-  public function edit()
+  public function edit(Organisation $id)
   {
-    return view('organisation::edit');
+    return view('organisation::edit', ['organisation' => $id]);
   }
 
   /**

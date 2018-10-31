@@ -7,6 +7,7 @@
 @section('content')
 
   <h1>Opdrachten voor de cursus {{$course->name}}</h1>
+  <p>@if(Auth::user()->hasRole('sa'))<a href="{{ route('exercise.create', ['course_id'=>$course->id]) }}">Maak een opdracht aan!</a>@endif</p>
 
   <h3>Reguliere Opdrachten:</h3>
   @if($course->exercises->where('is_final', false)->count() != 0)

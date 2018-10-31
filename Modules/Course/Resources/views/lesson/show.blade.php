@@ -7,7 +7,9 @@
 @section('content')
 
   <h1>{{$lesson->title}}</h1>
-  <p><b>Moeilijkheid:</b> {{$lesson->level->name}}</p>
+  @if($lesson->level != null)
+    <p><b>Moeilijkheid:</b> {{$lesson->level->name}}</p>
+  @endif
   <p>{{$lesson->content}}</p>
     <p>
       <form action="{{ route('progress.create') }}" method="POST">

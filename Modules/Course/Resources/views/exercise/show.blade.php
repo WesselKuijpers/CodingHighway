@@ -7,7 +7,9 @@
 @section('content')
 
   @include('shared.form_title', ['title'=>$exercise->title])
-  <b>{{$exercise->level->name}}</b>
+  @if($exercise->level != null)
+    <p><b>Moeilijkheid:</b> {{$exercise->level->name}}</p>
+  @endif
   <p>Dit is @if($exercise->is_final) een @else geen @endif eindopdracht</p>
   <hr>
   <p>Media:</p>

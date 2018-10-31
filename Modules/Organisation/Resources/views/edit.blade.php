@@ -15,14 +15,15 @@
     @include('shared.form_required', ['label' => 'Straat', 'name'=> 'street', 'type'=> 'text', 'class' => 'form-control', 'value' => $organisation->street])
     @include('shared.form_required', ['label' => 'Huisnummer', 'name'=> 'housenumber', 'type'=> 'text', 'class' => 'form-control', 'value' => $organisation->housenumber])
     @include('shared.form_required', ['label' => 'Postcode', 'name'=> 'zipcode', 'type'=> 'text', 'class' => 'form-control', 'value' => $organisation->zipcode])
-    @include('shared.form_required', ['label' => 'Email', 'name'=> 'email', 'type'=> 'text', 'class' => 'form-control', 'value' => $organisation->email])
+    @include('shared.form_required', ['label' => 'Email', 'name'=> 'email', 'type'=> 'email', 'class' => 'form-control', 'value' => $organisation->email])
+    @include('shared.form_required', ['label' => 'Telefoonnummer', 'name'=> 'phone', 'type'=> 'phone', 'class' => 'form-control', 'value' => $organisation->phone])
     @include('shared.form', ['label' => 'Factuur per post', 'name'=> 'paper_invoice', 'type'=> 'checkbox', 'value' => $organisation->paper_invoice])
     @include('shared.form_required', ['label' => 'Organisatiekleur', 'name'=> 'color', 'type'=> 'color', 'value' => $organisation->color])
     @include('shared.form_required', ['label' => 'Tekstkleur', 'name'=> 'fontcolor', 'type'=> 'color', 'value' => $organisation->fontcolor])
 
     @include('shared.form_required', ['label' => 'Weblink', 'name'=> 'link', 'type'=> 'text',
     'class' => 'form-control', 'value' => $organisation->link])
-    @include('shared.form', ['label' => 'Cursus afbeelding', 'name' => 'media', 'type' => 'file',
+    @include('shared.form', ['label' => 'Logo', 'name' => 'media', 'type' => 'file',
     'class' => ''])
     @include('shared.submit_button')
   </form>

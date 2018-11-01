@@ -56,7 +56,7 @@ class CourseController extends Controller
     if ($data != false):
       return redirect()->route('course');
     else :
-      return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+      return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     endif;
   }
 

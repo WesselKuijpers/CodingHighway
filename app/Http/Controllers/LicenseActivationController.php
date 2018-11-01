@@ -25,9 +25,20 @@ class LicenseActivationController extends Controller
 
   public function save(UserActivateRequest $request)
   {
-    UserHelper::activate($request);
-    Auth::user()->detachPermission(Permission::where('slug', 'user.activate')->first());
+    if (License::where('key', $request->key)->count() == 1):
+      $activate = UserHelper::activate($request);
 
-    return redirect()->route('home')->with('msg', 'Licentie geactiveerd');
+      if ($activate instanceof \Illuminate\Http\RedirectResponse):
+        return $activate;
+      endif;
+
+      Auth::user()->detachPermission(Permission::where('slug', 'user.activate')->first());
+
+      return redirect()->route('home')->with('msg', 'Licentie geactiveerd');
+    else:
+      return redirect()->back()->with('error', 'Dit is geen geldige Licentie code')->withInput();
+    endif;
+
+
   }
 }

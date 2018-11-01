@@ -60,7 +60,7 @@ class ExerciseController extends Controller
         // if false redirect with errors, if true continue
         if ($id != $request['course_id'])
         {
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
         }
         else
         {
@@ -89,7 +89,7 @@ class ExerciseController extends Controller
 
                 return redirect()->route('course.show', ['id' => $id]);
             else :
-                return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+                return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
             endif;
         }
     }
@@ -134,7 +134,7 @@ class ExerciseController extends Controller
         // if false redirect with errors, if true continue
         if ($id != $request['course_id'])
         {
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
         }
         else
         {
@@ -158,7 +158,7 @@ class ExerciseController extends Controller
 
                 return redirect()->route('course.show', ['id' => $id]);
             else :
-                return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+                return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
             endif;
         }
     }

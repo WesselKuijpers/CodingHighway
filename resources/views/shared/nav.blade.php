@@ -57,6 +57,11 @@
           <li class="nav-item">
             <a href="{{ url('/forum') }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">Forum</a>
           </li>
+          @if(Auth::user()->hasRole('admin'))
+            <li class="nav-item">
+            <a href="{{ route('organisation.show', ['id' => Auth::user()->organisation()->id]) }}" style="@if(!empty(Auth::user()->organisation())) {{ "color: ".Auth::user()->organisation()->fontcolor }} @endif" class="nav-link">{{ Auth::user()->organisation()->name }}</a>
+            </li>
+          @endif
         @endguest
       </ul>
     </div>

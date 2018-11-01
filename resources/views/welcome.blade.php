@@ -28,7 +28,7 @@
             <div class="side-block col-6" style="background-color: #009BDC">
               <h5 class="text-center font-weight-bold pt-3">Aan de slag met de cursussen</h5>
               <p class="pt-2">
-                Kun je niet wachten om te beginnen met een cursus? <a href="/courses" class="text-white">Bezoek</a> dan
+                Kun je niet wachten om te beginnen met een cursus? <a href="/course" class="text-white">Bezoek</a> dan
                 onze cursus pagina!
               </p>
             </div>

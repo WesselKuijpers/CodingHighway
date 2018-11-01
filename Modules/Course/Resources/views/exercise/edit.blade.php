@@ -34,7 +34,7 @@
         @include('course::shared.select_exercise', ['exercises' => $exercises, 'id' => $exercise->id, 'course' => $course, 'next_id' => $exercise->next_id])
         @if($course->firstExercise->id != $exercise->id)
           <div class="form-group">
-            <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste opdracht?</label>
+            <label for="is_first" class="font-weight-bold">Eerste opdracht?</label>
 
             <div class="form-group">
               <input type="checkbox" name="is_first" value="1" id="is_first">

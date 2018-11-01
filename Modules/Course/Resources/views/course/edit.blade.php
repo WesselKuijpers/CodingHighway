@@ -9,7 +9,7 @@
     <div class="col-12">
       <div class="container contact-form">
         {{-- Including the form title --}}
-        @include('shared.form_title', ['title' => "Pas een cursus aan"])
+        @include('shared.form_title', ['title' => "Pas de cursus '$course->name' aan"])
         @include('shared.error')
         <form method="post" action="{{ route('course.update', ['id'=> $course->id]) }}" enctype="multipart/form-data">
           <input type="hidden" name="id" value="{{ $course->id }}">

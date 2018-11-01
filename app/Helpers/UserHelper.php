@@ -4,6 +4,7 @@ use App\Http\Requests\UserActivateRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\general\FlashMessage;
 use App\Models\general\License;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -15,14 +16,14 @@ class UserHelper
    * Handling of activation user by means of the license key
    *
    * @param UserActivateRequest $request
-   * @return bool|\Illuminate\Http\RedirectResponse
+   * @return Illuminate\Http\RedirectResponse|License
    */
   public static function activate(UserActivateRequest $request)
   {
     $validated = $request->validated();
 
     $user = Auth::user();
-    if ($request->authorize()):
+    try {
       $license = License::where('key', $validated['key'])->first();
 
       if ($license->user_id != 0 || $license->user_id != null):
@@ -35,10 +36,11 @@ class UserHelper
       if ($license->save()):
         return $license;
       else:
-        return false;
+        return redirect()->back()->with('error', FlashMessage::where('name', 'license.error')->first()->message);
       endif;
-    endif;
-    return false;
+    }catch (QueryException $queryException){
+      return redirect()->back()->with('error', FlashMessage::where('name', 'license.error')->first()->message);
+    }
   }
 
   /**
@@ -52,7 +54,7 @@ class UserHelper
     $validated = $request->validated();
 
     $user = Auth::user();
-    if ($request->authorize()):
+    try {
       $user->firstname = $validated['firstname'];
       $user->insertion = $validated['insertion'];
       $user->lastname = $validated['lastname'];
@@ -61,7 +63,8 @@ class UserHelper
       else:
         return redirect()->back()->with('error', FlashMessage::where('name', 'user.error')->first()->message);
       endif;
-    endif;
-    return redirect()->back()->with('error', FlashMessage::where('name', 'user.invalid')->first()->message);
+    } catch (QueryException $queryException) {
+      return redirect()->back()->with('error', FlashMessage::where('name', 'user.error')->first()->message);
+    }
   }
 }

@@ -74,6 +74,7 @@ body {
 .page-header {
   font-family: 'Galdeano', sans-serif;
   font-size: 35px;
+  padding-top: 30px;
 }
 
 /* Bootstrap Toggle v2.2.2 corrections for Bootsrtap 4*/
@@ -176,7 +177,7 @@ body {
   border-radius:1rem;
 }
 .contact-form form{
-  padding: 14%;
+  padding: 5% 10%;
 }
 .contact-form form .row{
   margin-bottom: -7%;
@@ -201,4 +202,8 @@ body {
   padding: 1.5%;
   border: none;
   cursor: pointer;
+}
+
+.form-control-file {
+  overflow: hidden !important;
 }

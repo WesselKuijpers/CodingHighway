@@ -16,9 +16,13 @@ class OrganisationRequest extends FormRequest
     if (env('APP_ENV') == 'testing'):
       return true;
     endif;
-    if ($this->getMethod() == 'POST') {
-      return true;
-    }
+    switch ($this->getMethod()):
+      case "POST":
+      case "PUT":
+        return true;
+        break;
+    endswitch;
+    return false;
   }
 
   /**
@@ -48,7 +52,8 @@ class OrganisationRequest extends FormRequest
           'fontcolor' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
           'link' => 'nullable|url',
           'media' => 'nullable|file',
-          'requester' => 'required|numeric|exists:users,id'
+          'requester' => 'required|numeric|exists:users,id',
+          'phone' => 'required|string'
         ];
         break;
       case "PUT":
@@ -61,10 +66,11 @@ class OrganisationRequest extends FormRequest
           'city' => 'required|string',
           'email' => 'required|string',
           'paper_invoice' => 'nullable|boolean',
-          'color' => 'required|string',
-          'fontcolor' => 'required|string',
+          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
+          'fontcolor' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
           'link' => 'required|string',
-          'media.*' => 'file',
+          'media' => 'nullable|file',
+          'phone' => 'required|string'
         ];
         break;
       case "DELETE":

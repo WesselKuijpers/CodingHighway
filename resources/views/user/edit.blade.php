@@ -24,8 +24,7 @@
                   <input type="text" id="email" name="email" class="form-control" placeholder="Email *" value="{{ Auth::user()->email }}" readonly>
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="Wijzigen" name="sub" class="btnContact" style="color: @if(!empty(Auth::user()->organisation())) {{ Auth::user()->organisation()->fontcolor}}; @endif
-                  background-color: @if(!empty(Auth::user()->organisation())) {{Auth::user()->organisation()->color}}; @endif" />
+                  <input type="submit" value="Wijzigen" name="sub" class="btnContact btn-organisation">
                 </div>
               </div>
             </div>

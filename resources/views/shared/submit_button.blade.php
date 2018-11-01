@@ -1,3 +1,3 @@
-<div class="text-center col-md-6 offset-4">
-    <input type="submit" value="@if(isset($value)){{$value}} @else opslaan @endif" class="btn btn-primary mb-3 btn-organisation">
+<div class="form-group">
+    <input type="submit" value="@if(isset($value)){{$value}} @else Opslaan @endif" class="btn btn-primary mb-3 btnContact btn-organisation" name="sub" class="btnContact btn-organisation">
 </div>

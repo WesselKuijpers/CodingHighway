@@ -31,6 +31,7 @@ class OrganisationHelper
     $organisation->fontcolor = $validated['fontcolor'];
     $organisation->link = $validated['link'];
     $organisation->requester = $validated['requester'];
+    $organisation->phone = $validated['phone'];
 
     if ($organisation->save()):
       $organisation->CompileTheme();
@@ -51,6 +52,49 @@ class OrganisationHelper
       $userOrg->user_id = $user->id;
       $userOrg->organisation_id = $organisation->id;
       $userOrg->save();
+
+      return $organisation;
+    else:
+      return false;
+    endif;
+  }
+
+  /**
+   * edit
+   *
+   * @param  OrganisationRequest $request
+   *
+   * @return Organisation|boolean $organisation
+   */
+  public static function edit(OrganisationRequest $request)
+  {
+    $validated = $request->validated();
+
+    $organisation = Organisation::find($validated['id']);
+    $organisation->name = $validated['name'];
+    $organisation->street = $validated['street'];
+    $organisation->housenumber = $validated['housenumber'];
+    $organisation->zipcode = $validated['zipcode'];
+    $organisation->city = $validated['city'];
+    $organisation->email = $validated['email'];
+    $organisation->paper_invoice = $validated['paper_invoice'];
+    $organisation->color = $validated['color'];
+    $organisation->fontcolor = $validated['fontcolor'];
+    $organisation->link = $validated['link'];
+    $organisation->phone = $validated['phone'];
+
+    if ($organisation->save()):
+      $organisation->CompileTheme();
+      if (!empty($validated['media'])):
+        $file = FileHelper::store($validated['media']);
+
+        $media = new Media;
+        $media->content = '/storage/media/' . $file->hashName();
+        if ($media->save()):
+          $organisation->image = $media->id;
+        endif;
+        $organisation->save();
+      endif;
 
       return $organisation;
     else:

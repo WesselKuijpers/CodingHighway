@@ -27,4 +27,14 @@ class FlashMessagesLoader
       'user.edit' => 'Wijzigingen succesvol opgeslagen'
     ];
   }
+
+  public static function CourseMessage()
+  {
+    return [
+      'course.create.error' => 'Er ging iets fout tijdens het aanmaken van de cursus',
+      'course.created' => 'Cursus aangemaakt',
+      'course.update.error' => 'Er ging iets fout tijdens het bijwerken van de cursus',
+      'course.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
 }

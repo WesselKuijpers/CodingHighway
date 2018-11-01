@@ -6,7 +6,9 @@ use App\Http\Requests\CourseRequest;
 use App\Models\course\Course;
 use App\Models\course\Exercise;
 use App\Models\course\Lesson;
+use App\Models\general\FlashMessage;
 use CourseHelper;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -53,10 +55,10 @@ class CourseController extends Controller
     $data = CourseHelper::create($request);
 
     // if $data is true redirect to the course overview, else redirect back with an error.
-    if ($data != false):
-      return redirect()->route('course');
+    if ($data instanceof RedirectResponse):
+      return $data;
     else :
-      return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+      return redirect()->route('course')->with('msg', FlashMessage::where('name', 'course.created')->first()->message);
     endif;
   }
 
@@ -100,11 +102,10 @@ class CourseController extends Controller
     // $data variable attempts to update a course via the course helper, if successful return true, else return false.
     $data = CourseHelper::update($request);
 
-    // if $data is true return to course overview else redirect back with errors
-    if ($data != false):
-      return redirect()->route('course');
+    if ($data instanceof RedirectResponse):
+      return $data;
     else :
-      return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+      return redirect()->route('course')->with('msg', FlashMessage::where('name', 'course.updated')->first()->message);
     endif;
   }
 

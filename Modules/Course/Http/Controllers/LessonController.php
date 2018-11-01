@@ -60,7 +60,7 @@ class LessonController extends Controller
         // evaluates if the ID param is the same as the id that was passed in by the request.
         // if false redirect with errors, if true continue
         if ($id != $request['course_id']) {
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
         } else {
             $course = Course::find($id);
             $first = $course->firstLesson;
@@ -87,7 +87,7 @@ class LessonController extends Controller
 
                 return redirect()->route('course.show', ['id' => $id]);
             else:
-                return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+                return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
             endif;
         }
     }
@@ -131,7 +131,7 @@ class LessonController extends Controller
         // evaluates if the ID param is the same as the id that was passed in by the request.
         // if false redirect with errors, if true continue
         if ($id != $request['course_id']) {
-            return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+            return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
         } else {
             $course = Course::find($id);
             $first = $course->firstLesson;
@@ -153,7 +153,7 @@ class LessonController extends Controller
 
                 return redirect()->route('course.show', ['id' => $id]);
             else:
-                return back()->with('status', 'Er is iets mis gegaan met het verzenden!');
+                return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
             endif;
         }
     }

@@ -14,7 +14,7 @@ class UserHelper
    * Handling of activation user by means of the license key
    *
    * @param UserActivateRequest $request
-   * @return bool
+   * @return bool|\Illuminate\Http\RedirectResponse
    */
   public static function activate(UserActivateRequest $request)
   {
@@ -23,6 +23,12 @@ class UserHelper
     $user = Auth::user();
     if ($request->authorize()):
       $license = License::where('key', $validated['key'])->first();
+
+      if ($license->user_id != 0 || $license->user_id != null):
+        return redirect()->back()->with('Error', 'Deze Licentie is al in gebruikt');
+      elseif ($license->expired):
+        return redirect()->back()->with('Error', 'Deze Licentie is verlopen');
+      endif;
 
       $license->user_id = $user->id;
       if ($license->save()):

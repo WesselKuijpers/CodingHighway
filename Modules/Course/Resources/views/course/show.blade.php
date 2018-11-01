@@ -5,7 +5,7 @@
 
 {{-- Placeholder for the page-specific content --}}
 @section('content')
-  <div class="col-12">
+  <div class="col-12"></div>
     <h1>{{$course->name}}</h1>
     <p>{{$course->description}}</p>
     @if(count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)

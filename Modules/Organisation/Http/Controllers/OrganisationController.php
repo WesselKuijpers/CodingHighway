@@ -20,6 +20,7 @@ class OrganisationController extends Controller
   public function __construct()
   {
     $this->middleware('role:sa')->only(['index']);
+    $this->middleware('Organisation')->only(['show']);
     $this->middleware('permission:organisation.show')->only(['show']);
     $this->middleware('permission:organisation.create')->only(['create', 'store']);
     $this->middleware('permission:organisation.edit')->only(['edit', 'update']);

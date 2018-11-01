@@ -19,7 +19,7 @@
                                     <ul class="list-group">
                                         @foreach($organisation->users as $user)
                                             <li class="list-group-item">{{ $user->getFullname() }}
-                                                <button type="button" class="btn btn-primary float-right" data-toggle="collapse" data-target="#collapseExample{{ $user->id }}" aria-expanded="false" aria-controls="collapseExample">
+                                                <button type="button" class="btn btn-primary btn-organisation float-right" data-toggle="collapse" data-target="#collapseExample{{ $user->id }}" aria-expanded="false" aria-controls="collapseExample">
                                                     <i class="fas fa-chevron-down"></i>
                                                 </button>
                                             </li>

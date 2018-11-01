@@ -6,18 +6,18 @@ class OrganisationStyleHelper
   {
     return '
     .btn-organisation, .btn-organisation:hover{
-      color: ' . $fontcolor . ';
-      background-color: ' . $color . ';
-      border: 1px solid '.$color.';
+      color: ' . $fontcolor . ' !important;
+      background-color: ' . $color . ' !important;
+      border: 1px solid '.$color.' !important;
     }
     .nav-organisation{
-      background-color: ' . $color . ';
+      background-color: ' . $color . ' !important;
     }
     .nav-link{
-      color: '.$fontcolor.';
+      color: '.$fontcolor.' !important;
     }
     .organisation-text{
-      color: '.$fontcolor.';
+      color: '.$fontcolor.' !important;
     }
     ';
   }

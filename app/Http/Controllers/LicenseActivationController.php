@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserActivateRequest;
+use App\Models\general\FlashMessage;
 use App\Models\general\License;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,13 +31,15 @@ class LicenseActivationController extends Controller
 
       if ($activate instanceof \Illuminate\Http\RedirectResponse):
         return $activate;
+      elseif ($activate === false):
+        return redirect()->back()->with('error', FlashMessage::where('name', 'license.error')->first()->message);
       endif;
 
       Auth::user()->detachPermission(Permission::where('slug', 'user.activate')->first());
 
-      return redirect()->route('home')->with('msg', 'Licentie geactiveerd');
+      return redirect()->route('home')->with('msg', FlashMessage::where('name', 'license.activated')->first()->message);
     else:
-      return redirect()->back()->with('error', 'Dit is geen geldige Licentie code')->withInput();
+      return redirect()->back()->with('error', FlashMessage::where('name', 'license.invalid')->first()->message);
     endif;
 
 

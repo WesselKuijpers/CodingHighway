@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\general\FlashMessage;
+use Illuminate\Http\RedirectResponse;
 use UserHelper;
 use App\Http\Requests\UserEditRequest;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +23,11 @@ class UserController extends Controller
 
   public function save(UserEditRequest $request)
   {
-    UserHelper::edit($request);
-    return redirect()->route('UserEdit')->with('msg', 'Wijzigingen opgeslagen');
+    $edit = UserHelper::edit($request);
+    if ($edit instanceof RedirectResponse):
+      return $edit;
+    endif;
+
+    return redirect()->route('UserEdit')->with('msg', FlashMessage::where('name', 'user.edit')->first()->message);
   }
 }

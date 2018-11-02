@@ -16,7 +16,7 @@
       @if ($courses->count() != 0)
         @foreach($courses as $course)
         <div class="col-sm-6 col-md-4">
-            <div class="card mb-4" style="background-color: {{$course->color }}">
+            <div class="card custom-card mb-4" style="background-color: {{$course->color }}">
                 <img class="card-img-top img-fluid custom-img" src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif" alt="Afbeelding niet gevonden">
                 <div class="card-body">
                     <h5 class="card-title">{{ $course->name }}</h5>

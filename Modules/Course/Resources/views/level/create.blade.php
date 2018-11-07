@@ -11,7 +11,7 @@
     @include('shared.error')
     <form method="post" action="{{ route('level.store') }}">
         @include('shared.form_required', ['label' => 'Moeilijkheid', 'name'=> 'name', 'type'=> 'text',
-        'class' => 'form-control'])
+        'class' => 'form-control', 'value' => old('name')])
         {{ csrf_field() }}
         @include('shared.submit_button')
     </form>

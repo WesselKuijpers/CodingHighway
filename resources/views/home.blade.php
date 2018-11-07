@@ -75,7 +75,7 @@
                   </div>
                 @endif
                 <p class="font-weight-bold mt-3">Organisatie</p>
-                @if(!empty(Auth::user()->organisation())&& Auth::user()->organisation()->active != 0)
+                @if(!empty(Auth::user()->organisation()) && Auth::user()->organisation()->active != 0)
 
                   <div class="row">
                     <div class="col-3">

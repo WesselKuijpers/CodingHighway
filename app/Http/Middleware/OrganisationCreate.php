@@ -16,10 +16,10 @@ class OrganisationCreate
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->organisation()->count() == 0):
+        if (Auth::user()->organisation() == null):
             return $next($request);
         endif;
 
-        return redirect()->route('home')->with('errors', 'Je hebt geen recht om deze organisatie te bekijken.');
+        return redirect()->route('home')->with('errors', 'Je bent al een lid van een organisatie, dus kan je er geen aanvragen');
     }
 }

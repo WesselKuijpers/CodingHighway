@@ -16,8 +16,8 @@
         <input type="hidden" value="{{$course['id']}}" name="course_id">
         <input type="hidden" name="is_first" value="0" id="is_first">
 
-        @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'class' => 'form-control'])
-        @include('shared.textarea', ['label' => 'Inhoud', 'name' => 'content', 'required' => true])
+        @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'class' => 'form-control', 'value' => old('title')])
+        @include('shared.textarea', ['label' => 'Inhoud', 'name' => 'content', 'required' => true, 'value' => old('content')])
 
           <label for="media" class="text-md-right font-weight-bold">Media</label>
           <div class="form-group">

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Organisation
+class OrganisationCreate
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class Organisation
      */
     public function handle($request, Closure $next)
     {
-        if($request->id == Auth::user()->organisation()->id && Auth::user()->hasRole('admin')):
+        if (Auth::user()->organisation()->count() == 0):
             return $next($request);
         endif;
 
-        return redirect()->route('home')->with('error', 'Je hebt geen recht om deze organisatie te bekijken.');
+        return redirect()->route('home')->with('errors', 'Je hebt geen recht om deze organisatie te bekijken.');
     }
 }

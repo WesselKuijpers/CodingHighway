@@ -54,7 +54,8 @@ class GetTest extends TestCase
         $route->uri == "login" ||
         $route->uri == "register" ||
         $route->uri == "password/reset" ||
-        $route->uri == "email/resend"
+        $route->uri == "email/resend" ||
+        $route->uri == "organisation/create"
       ):
         continue;
       endif;

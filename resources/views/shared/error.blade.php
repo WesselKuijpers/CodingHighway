@@ -1,4 +1,4 @@
-@if ($errors->count() > 0 && Auth::user()->canErrorShow())
+@if (Auth::user() != null && $errors->count() > 0 && Auth::user()->canErrorShow())
   <div class="alert alert-danger">
     <ul>
       @foreach($errors->all() as $error)

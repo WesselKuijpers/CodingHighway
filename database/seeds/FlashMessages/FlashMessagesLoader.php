@@ -37,4 +37,13 @@ class FlashMessagesLoader
       'course.updated' => 'Wijzigingen opgeslagen',
     ];
   }
+  public static function ExerciseMessage()
+  {
+    return [
+      'exercise.create.error' => 'Er ging iets fout tijdens het aanmaken van de oefening',
+      'exercise.created' => 'Oefening aangemaakt',
+      'exercise.update.error' => 'Er ging iets fout tijdens het bijwerken van de oefening',
+      'exercise.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
 }

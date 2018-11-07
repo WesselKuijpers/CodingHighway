@@ -91,8 +91,7 @@ class CourseHelper
    * @param CourseRequest $request
    * @return bool
    */
-  public
-  static function delete(CourseRequest $request)
+  public static function delete(CourseRequest $request)
   {
     $validated = $request->validated();
 

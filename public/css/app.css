@@ -10475,6 +10475,21 @@ a.text-dark:focus {
   <----- Navbar styling ----->
 */
 
+@media (max-width: 450px) {
+  body {
+    margin-top: 50px;
+  }
+
+  .navbar {
+    z-index: 1200;
+    position: fixed;
+    right: 0;
+    left: 0;
+    border-radius: 0;
+    top: 0;
+  }
+}
+
 .navbar-laravel {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

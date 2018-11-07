@@ -1,4 +1,4 @@
-<div class="form-group" id="next-exercise">
+<div class="form-group" id="next-id">
     <label for="next-exercise" class="text-md-right font-weight-bold">Volgende opdracht</label>
     <select name="next_id" class="form-control">
         <option value="0">Geen</option>

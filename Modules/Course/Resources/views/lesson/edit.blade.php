@@ -30,14 +30,26 @@
     @if($course->firstLesson->id != $lesson->id)
       <div class="form-group row">
         <label for="is_first" class="col-md-4 col-form-label text-md-right font-weight-bold">Eerste les?</label>
-
-        <div class="col-md-6">
-          <input type="checkbox" name="is_first" value="1" id="is_first">
-        </div>
+        <input type="checkbox" name="is_first" value="1" id="is-first" onchange="ToggleNextExercise(this)" data-toggle="toggle" data-on="Ja" data-off="Nee">
       </div>
     @endif
 
     @include('shared.submit_button')
   </form>
+  <script>
+    function ToggleNextExercise() {
+        // Get the checkbox
+        var checkBox = document.getElementById("is-first");
+        // Get the output text
+        var text = document.getElementById("next-id");
+  
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == false){
+            text.style.display = "";
+        } else if(checkBox.checked == true) {
+            text.style.display = "none";
+        }
+    }
+  </script>
 
 @endsection

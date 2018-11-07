@@ -34,10 +34,10 @@
         @include('course::shared.select_exercise', ['exercises' => $exercises, 'id' => $exercise->id, 'course' => $course, 'next_id' => $exercise->next_id])
         @if($course->firstExercise->id != $exercise->id)
           <div class="form-group">
-            <label for="is_first" class="font-weight-bold">Eerste opdracht?</label>
+            <label for="is-first" class="font-weight-bold">Eerste opdracht?</label>
 
             <div class="form-group">
-              <input type="checkbox" name="is_first" value="1" id="is_first">
+              <input type="checkbox" name="is_first" value="1" id="is-first" onchange="ToggleNextExercise(this)" data-toggle="toggle" data-on="Ja" data-off="Nee">
             </div>
           </div>
         @else
@@ -49,5 +49,19 @@
     </div>
   </div>
 </div>
+<script>
+  function ToggleNextExercise() {
+      // Get the checkbox
+      var checkBox = document.getElementById("is-first");
+      // Get the output text
+      var text = document.getElementById("next-id");
 
+      // If the checkbox is checked, display the output text
+      if (checkBox.checked == false){
+          text.style.display = "";
+      } else if(checkBox.checked == true) {
+          text.style.display = "none";
+      }
+  }
+</script>
 @endsection

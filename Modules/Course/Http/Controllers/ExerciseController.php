@@ -144,7 +144,9 @@ class ExerciseController extends Controller
       $data = ExerciseHelper::update($request);
 
       // if successful redirect to specific course overview, else redirect back with status
-      if ($data != false):
+      if ($data instanceof RedirectResponse):
+        return $data;
+      else:
         if ($request->next_id != $next_id || $request->is_first):
           if ($course->exercises->count() > 1):
             OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
@@ -152,8 +154,6 @@ class ExerciseController extends Controller
         endif;
 
         return redirect()->route('course.show', ['id' => $id]);
-      else :
-        return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
       endif;
     }
   }

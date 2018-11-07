@@ -97,6 +97,11 @@
                   </div>
                 </div>
               @endif
+              <div class="row">
+                <div class="offset-3 col-6">
+                  <a href="{{$organisation->link }}" class="btn btn-primary btn-organisation">Bezoek website</a>
+                </div>
+              </div>
             </div>
 
             <div class="card-footer">

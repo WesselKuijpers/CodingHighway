@@ -10575,6 +10575,10 @@ a:hover.no-link {
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
+.organisation-card {
+  min-height: 560px;
+}
+
 .img-h-250 {
   height: 250px;
   width: auto;
@@ -10582,17 +10586,6 @@ a:hover.no-link {
 }
 
 /* Dashboard Cards */
-
-.project {
-  width: 100%;
-  height: 300px;
-  background-image: url(https://image.flaticon.com/icons/png/512/186/186319.png);
-  background-color: #0277bd;
-  background-size: cover;
-  background-position: center;
-  padding: 0 !important;
-  float: left;
-}
 
 .project-hover {
   width: 100%;

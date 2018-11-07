@@ -37,6 +37,7 @@ class FlashMessagesLoader
       'course.updated' => 'Wijzigingen opgeslagen',
     ];
   }
+
   public static function ExerciseMessage()
   {
     return [
@@ -44,6 +45,16 @@ class FlashMessagesLoader
       'exercise.created' => 'Oefening aangemaakt',
       'exercise.update.error' => 'Er ging iets fout tijdens het bijwerken van de oefening',
       'exercise.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
+  public static function LessonMessage()
+  {
+    return [
+      'lesson.create.error' => 'Er ging iets fout tijdens het aanmaken van de les',
+      'lesson.created' => 'Oefening aangemaakt',
+      'lesson.update.error' => 'Er ging iets fout tijdens het bijwerken van de les',
+      'lesson.updated' => 'Wijzigingen opgeslagen',
     ];
   }
 }

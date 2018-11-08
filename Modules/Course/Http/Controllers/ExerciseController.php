@@ -144,15 +144,18 @@ class ExerciseController extends Controller
             $next_id = Exercise::find($exercise)->next_id;
             $previous = Exercise::where('next_id', $exercise)->first();
             $request_next_previous = Exercise::where('next_id', $request->next_id)->first();
+            $alreadyFirst = Exercise::find($exercise)->is_first;
             
             // attempts to update the exercise via the ExerciseHelper, passing in the request.
             $data = ExerciseHelper::update($request);
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
-                if ($request->next_id != $next_id || $request->is_first):
-                    if ($course->exercises->count() > 1):
-                        OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+                if(!$alreadyFirst):
+                    if ($request->next_id != $next_id || $request->is_first):
+                        if ($course->exercises->count() > 1):
+                            OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+                        endif;
                     endif;
                 endif;
 

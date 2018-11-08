@@ -1,6 +1,11 @@
 <?php
 
-class OrderUpdateHelper 
+use App\Models\course\Lesson;
+use App\Models\course\Exercise;
+use Illuminate\Support\Facades\DB;
+
+
+class OrderUpdateHelper
 {
     /**
      * Check
@@ -10,28 +15,48 @@ class OrderUpdateHelper
      * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $first $last
      * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $first $previous
      *
-     * @return void
+     * @return boolean
      */
     public static function Check($random, $next_id, $request_next_id, $first, $last, $previous, $request_next_previous)
     {
+        DB::beginTransaction();
+
         if($random->is_first):
             // sit 1 or 2
             if($first->next_id == $random->id):
                 // sit 1, second becomes first
                 $bool = OrderUpdateHelper::SecondBecomesFirst($first, $next_id, $random);
             elseif($random->next_id == null):
-                OrderUpdateHelper::LastBecomesFirst($last, $first, $previous);
+                $bool = OrderUpdateHelper::LastBecomesFirst($last, $first, $previous);
             else:
                 // sit 2, random becomes first
-                OrderUpdateHelper::RandomBecomesFirst($first, $next_id, $random, $previous);
+                $bool = OrderUpdateHelper::RandomBecomesFirst($first, $next_id, $random, $previous);
             endif;
         elseif(empty($request_next_id) && !empty($next_id)):
             //sit 4, random becomes last
-            OrderUpdateHelper::RandomBecomesLast($last, $next_id, $random, $previous);
+            $bool = OrderUpdateHelper::RandomBecomesLast($last, $next_id, $random, $previous);
         else:
-            //sit 3 
-            OrderUpdateHelper::SwitchAdjacent($random, $next_id, $previous, $request_next_previous);
+            //sit 3, other
+            $bool = OrderUpdateHelper::SwitchAdjacent($random, $next_id, $previous, $request_next_previous);
         endif;
+
+        if ($random instanceof Lesson):
+            $countFirst = Lesson::where('course_id', $random->course_id)->where('is_first', 1)->count();
+            $countLast = Lesson::where('course_id', $random->course_id)->where('next_id', null)->count();
+        elseif ($random instanceof Exercise):
+            $countFirst = Exercise::where('course_id', $random->course_id)->where('is_first', 1)->count();
+            $countLast = Exercise::where('course_id', $random->course_id)->where('next_id', null)->count();
+        endif;
+
+        // dd($countFirst, $countLast);
+
+        if ($countFirst == 1 && $countLast == 1):
+            DB::commit();
+        else:
+            DB::rollback();
+        endif;
+
+        return $bool;
     }
     /**
      * SecondBecomesFirst

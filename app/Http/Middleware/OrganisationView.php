@@ -16,7 +16,7 @@ class OrganisationView
      */
     public function handle($request, Closure $next)
     {
-        if($request->id == Auth::user()->organisation()->id && Auth::user()->hasRole('admin')):
+        if(Auth::user()->organisation() != null && $request->id == Auth::user()->organisation()->id && Auth::user()->hasRole('admin')):
             return $next($request);
         endif;
 

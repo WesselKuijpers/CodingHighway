@@ -139,15 +139,18 @@ class LessonController extends Controller
             $next_id = Lesson::find($lesson)->next_id;
             $previous = Lesson::where('next_id', $lesson)->first();
             $request_next_previous = Lesson::where('next_id', $request->next_id)->first();
+            $alreadyFirst = Lesson::find($lesson)->is_first;
 
             // attempts to update the Lesson via the LessonHelper, passing in the request.
             $data = LessonHelper::update($request);
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
-                if ($request->next_id != $next_id || $request->is_first):
-                    if ($course->lessons->count() > 1):
-                        OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+                if(!$alreadyFirst):
+                    if ($request->next_id != $next_id || $request->is_first):
+                        if ($course->lessons->count() > 1):
+                            OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+                        endif;
                     endif;
                 endif;
 

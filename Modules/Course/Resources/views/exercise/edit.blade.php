@@ -18,7 +18,7 @@
         <input type="hidden" value="{{$course->id}}" name="course_id">
         <input type="hidden" name="is_first" value="{{ $exercise->is_first }}" id="is_first">
 
-        @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'value' => $exercise->title
+        @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'value' => $exercise->title 
         , 'class' => 'form-control'])
         @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10, 'value' => $exercise->content])
           <label for="is_final" class="text-md-right font-weight-bold">Eindopdracht</label>

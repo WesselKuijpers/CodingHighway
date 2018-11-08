@@ -12,6 +12,7 @@ use Illuminate\Routing\Controller;
 use LessonHelper;
 use OrderHelper;
 use OrderUpdateHelper;
+use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
@@ -128,6 +129,7 @@ class LessonController extends Controller
      */
     public function update($id, $lesson, LessonRequest $request)
     {
+        DB::beginTransaction();
         // evaluates if the ID param is the same as the id that was passed in by the request.
         // if false redirect with errors, if true continue
         if ($id != $request['course_id']) {
@@ -146,15 +148,22 @@ class LessonController extends Controller
 
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
+                $bool = true;
                 if(!$alreadyFirst):
                     if ($request->next_id != $next_id || $request->is_first):
                         if ($course->lessons->count() > 1):
-                            OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+                            $bool = OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
                         endif;
                     endif;
                 endif;
 
-                return redirect()->route('course.show', ['id' => $id]);
+                if ($bool):
+                    DB::commit();
+                    return redirect()->route('course.show', ['id' => $id]);
+                else:
+                    DB::rollback();
+                    return back()->with('error', 'Er is iets mis gegaan met het verzenden!')->withInputs();
+                endif;
             else:
                 return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
             endif;

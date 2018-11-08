@@ -2,7 +2,6 @@
 
 use App\Models\course\Lesson;
 use App\Models\course\Exercise;
-use Illuminate\Support\Facades\DB;
 
 
 class OrderUpdateHelper
@@ -19,8 +18,6 @@ class OrderUpdateHelper
      */
     public static function Check($random, $next_id, $request_next_id, $first, $last, $previous, $request_next_previous)
     {
-        DB::beginTransaction();
-
         if($random->is_first):
             // sit 1 or 2
             if($first->next_id == $random->id):
@@ -60,12 +57,10 @@ class OrderUpdateHelper
         }
 
         if ($countFirst == 1 && $countLast == 1 && !$recursion):
-            DB::commit();
+            return true;
         else:
-            DB::rollback();
+            return false;
         endif;
-
-        return $bool;
     }
     /**
      * SecondBecomesFirst

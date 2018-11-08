@@ -43,14 +43,23 @@ class OrderUpdateHelper
         if ($random instanceof Lesson):
             $countFirst = Lesson::where('course_id', $random->course_id)->where('is_first', 1)->count();
             $countLast = Lesson::where('course_id', $random->course_id)->where('next_id', null)->count();
+            $list = Lesson::where('course_id', $random->course_id)->get()->groupBy('next_id')->toArray();
         elseif ($random instanceof Exercise):
             $countFirst = Exercise::where('course_id', $random->course_id)->where('is_first', 1)->count();
             $countLast = Exercise::where('course_id', $random->course_id)->where('next_id', null)->count();
+            $list = Exercise::where('course_id', $random->course_id)->get()->groupBy('next_id')->toArray();
         endif;
 
-        // dd($countFirst, $countLast);
+        $recursion = false;
 
-        if ($countFirst == 1 && $countLast == 1):
+        foreach($list as $key => $value){
+            if (count($value) != 1):
+                $recursion = true;
+                break;
+            endif;
+        }
+
+        if ($countFirst == 1 && $countLast == 1 && !$recursion):
             DB::commit();
         else:
             DB::rollback();

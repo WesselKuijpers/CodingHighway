@@ -64,5 +64,7 @@ class Kernel extends HttpKernel
         'permission' => \jeremykenedy\LaravelRoles\Middleware\VerifyPermission::class,
         'level' => \jeremykenedy\LaravelRoles\Middleware\VerifyLevel::class,
         'LicenseCheck' => \App\Http\Middleware\LicenseCheck::class,
+        'OrganisationView' => \App\Http\Middleware\OrganisationView::class,
+        'OrganisationCreate' => \App\Http\Middleware\OrganisationCreate::class,
     ];
 }

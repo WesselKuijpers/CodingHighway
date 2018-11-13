@@ -7,11 +7,11 @@
 @section('content')
 
   <h1>Opdrachten voor de cursus {{$course->name}}</h1>
-  <p>@if(Auth::user()->hasRole('sa'))<a href="{{ route('exercise.create', ['course_id'=>$course->id]) }}">Maak een opdracht aan!</a>@endif</p>
+  <p>@if(Auth::user()->hasRole('sa'))<a href="{{ route('exercise.create', ['course_id'=>$course->id]) }}" class="btn btn-primary btn-organisation">Maak een opdracht</a>@endif</p>
 
-  <h3>Reguliere Opdrachten:</h3>
+  <h3>Reguliere Opdrachten</h3>
   @if($course->exercises->where('is_final', false)->count() != 0)
-    <table>
+    <table class="table">
       <tr>
         <th>Naam:</th>
         <th>Moeilijkheid:</th>
@@ -22,7 +22,7 @@
             <a
               href="{{ route('exercise.show', ['course_id'=>$course->id, 'id'=>$exercise->id]) }}">{{$exercise->title}}</a>
           </td>
-          <td>{{$exercise->level->name}}</td>
+          <td>@if($exercise->level != null) {{$exercise->level->name}} @else Geen moeilijkheid @endif</td>
         </tr>
       @endforeach
     </table>
@@ -32,7 +32,7 @@
   <br>
   <h3>Eindopdrachten</h3>
   @if($course->exercises->where('is_final', true)->count() != 0)
-    <table>
+    <table class="table">
       <tr>
         <th>Naam:</th>
         <th>Moeilijkheid:</th>
@@ -43,7 +43,7 @@
             <a
               href="{{ route('exercise.show', ['course_id'=>$course->id, 'id'=>$exercise->id]) }}">{{$exercise->title}}</a>
           </td>
-          <td>{{$exercise->level->name}}</td>
+          <td>@if($exercise->level != null) {{$exercise->level->name}} @else Geen moeilijkheid @endif</td>
         </tr>
       @endforeach
     </table>

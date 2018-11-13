@@ -40,40 +40,42 @@
                       <input type="submit" class="btn btn-primary btn-organisation btn-oc" value="Gegevens aanpassen">
                     </a>
                   </div>
-                </div>
-                <p class="font-weight-bold mt-3">Licentie informatie</p>
-                <div class="row">
-                  <div class="col-3">
-                    <p>Soort:</p>
+                </div> 
+                @if(Auth::user()->license->count() == 1)
+                  <p class="font-weight-bold mt-3">Licentie</p>
+                  <div class="row">
+                    <div class="col-3">
+                      <p>Soort:</p>
+                    </div>
+                    <div class="col-7">
+                      <p>@if(!empty(Auth::user()->license()->first()->organisation_id))Organisatie @else Persoonlijk @endif</p>
+                    </div>
                   </div>
-                  <div class="col-7">
-                    <p>@if(!empty(Auth::user()->license()->first()->organisation_id))Organisatie @else Persoonlijk @endif</p>
+                  <div class="row">
+                    <div class="col-3">
+                      <p>Geldig tot:</p>
+                    </div>
+                    <div class="col-7">
+                      @if(Auth::user()->license->count() == 1)
+                        <p>{{ \Carbon\Carbon::parse(Auth::user()->license->first()->expires_at, 'UTC')->format('d F Y')}}</p>
+                      @else
+                        <p> - </p>
+                      @endif
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-3">
-                    <p>Geldig tot:</p>
+                  <div class="row">
+                    <div class="col-3">
+                      <p>Code:</p>
+                    </div>
+                    <div class="col-6">
+                      @if(Auth::user()->license->count() == 1)
+                        <p>{{ Auth::user()->license->first()->key }}</p>
+                      @endif
+                    </div>
                   </div>
-                  <div class="col-7">
-                    @if(Auth::user()->license->count() == 1)
-                      <p>{{ \Carbon\Carbon::parse(Auth::user()->license->first()->expires_at, 'UTC')->format('d F Y')}}</p>
-                    @else
-                      <p> - </p>
-                    @endif
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-3">
-                    <p>Code:</p>
-                  </div>
-                  <div class="col-6">
-                    @if(Auth::user()->license->count() == 1)
-                      <p>{{ Auth::user()->license->first()->key }}</p>
-                    @endif
-                  </div>
-                </div>
-                <p class="font-weight-bold mt-3">Organisatie informatie</p>
-                @if(!empty(Auth::user()->organisation())&& Auth::user()->organisation()->active != 0)
+                @endif
+                <p class="font-weight-bold mt-3">Organisatie</p>
+                @if(!empty(Auth::user()->organisation()) && Auth::user()->organisation()->active != 0)
 
                   <div class="row">
                     <div class="col-3">
@@ -105,7 +107,7 @@
                   @endif
 
                 @else
-                  <p>Je maakt nog geen deel uit een organisatie!</p>
+                  <p>Je maakt nog geen deel uit van een organisatie</p>
                 @endif
               </div>
 

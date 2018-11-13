@@ -14,6 +14,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use OrderHelper;
 use OrderUpdateHelper;
+use Illuminate\Support\Facades\DB;
 
 class ExerciseController extends Controller
 {
@@ -128,6 +129,7 @@ class ExerciseController extends Controller
    */
   public function update($id, $exercise, ExerciseRequest $request)
   {
+    DB::beginTransaction();
     // evaluates if the ID param is the same as the id that was passed in by the request.
     // if false redirect with errors, if true continue
     if ($id != $request['course_id']) {
@@ -139,6 +141,7 @@ class ExerciseController extends Controller
       $next_id = Exercise::find($exercise)->next_id;
       $previous = Exercise::where('next_id', $exercise)->first();
       $request_next_previous = Exercise::where('next_id', $request->next_id)->first();
+      $alreadyFirst = Exercise::find($exercise)->is_first;
 
       // attempts to update the exercise via the ExerciseHelper, passing in the request.
       $data = ExerciseHelper::update($request);
@@ -147,13 +150,21 @@ class ExerciseController extends Controller
       if ($data instanceof RedirectResponse):
         return $data;
       else:
-        if ($request->next_id != $next_id || $request->is_first):
-          if ($course->exercises->count() > 1):
-            OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+        $bool = true;
+        if (!$alreadyFirst):
+          if ($request->next_id != $next_id || $request->is_first):
+            if ($course->exercises->count() > 1):
+              $bool = OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+            endif;
           endif;
         endif;
-
-        return redirect()->route('course.show', ['id' => $id]);
+        if ($bool):
+          DB::commit();
+          return redirect()->route('course.show', ['id' => $id]);
+        else:
+          DB::rollback();
+          return back()->with('error', 'Er is iets mis gegaan met het verzenden!')->withInputs();
+        endif;
       endif;
     }
   }

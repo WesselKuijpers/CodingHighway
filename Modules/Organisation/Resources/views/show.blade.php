@@ -103,7 +103,7 @@
                                             @endforeach
                                         @endif
                                     @else
-                                        <p>Geen licentiecodes gevonden, genereer licentiecodes zodat er gebruikers deel kunnen gaan uitmaken van je organisatie</p>
+                                        <p>Geen licentiecodes gevonden, genereer licentiecodes zodat er gebruikers deel kunnen nemen aan deze organisatie</p>
                                     @endif
                                 </form>
                             </div>

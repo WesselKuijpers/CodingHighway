@@ -8,12 +8,11 @@ Route::group(['middleware' => 'web', 'prefix' => 'course', 'namespace' => 'Modul
         'index' => 'level',
         'store' => 'level.store',
         'create' => 'level.create',
-        'show' => 'level.show',
         'destroy' => 'level.destroy',
         'update' => 'level.update',
         'edit' => 'level.edit'
       ]
-    ])->parameter('', 'id');
+    ])->except('show')->parameter('', 'id');
 
     Route::resource('/', 'CourseController', [
       'names' => [

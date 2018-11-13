@@ -13,11 +13,11 @@
             @include('shared.error')
             <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data">
                 @include('shared.form_required', ['label' => 'Titel', 'name'=> 'name', 'type'=> 'text',
-                'class' => 'form-control'])
+                'class' => 'form-control', 'value' => old('name')])
                 @include('shared.textarea', ['label' => 'Beschrijving', 'name'=> 'description', 'type'=> 'text',
-                'required' => true, 'rows' => 7, 'class' => ''])
+                'required' => true, 'rows' => 7, 'class' => '', 'value' => old('description')])
                 @include('shared.form_required', ['label' => 'Cursus kleur', 'name'=> 'color', 'type'=> 'color',
-                'class' => 'w-25'])
+                'class' => 'w-25', 'value' => old('color')])
                 @include('shared.form', ['label' => 'Cursus afbeelding', 'name' => 'media', 'type' => 'file',
                 'class' => ''])
                 {{ csrf_field() }}

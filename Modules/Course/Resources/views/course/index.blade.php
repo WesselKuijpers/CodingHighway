@@ -7,6 +7,10 @@
 @section('content')
   {{-- Title --}}
   @include('shared.form_title', ['title' => "Alle cursussen"])
+  <h2 class="text-center page-header">Alle cursussen</h2>
+  <p class="text-center">
+    <a href="{{ route('course.create') }}" class="btn btn-primary btn-organisation">Maak een cursus</a>
+  </p>
   <div class="col-10 offset-1 mb-3">
     <hr>
   </div>
@@ -26,8 +30,7 @@
         </div>
         @endforeach
       @else
-        <p>Er zijn nog geen cursussen. @if(Auth::user()->hasRole('sa'))<a href="{{ route('course.create') }}">maak er een aan!</a>@endif
+        <p>Er zijn nog geen cursussen. @if(Auth::user()->hasRole('sa'))<a href="{{ route('course.create') }}">Maak er een aan!</a>@endif
       @endif
     </div>
-
 @endsection

@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use LessonHelper;
 use OrderHelper;
 use OrderUpdateHelper;
@@ -131,6 +132,7 @@ class LessonController extends Controller
    */
   public function update($id, $lesson, LessonRequest $request)
   {
+    DB::beginTransaction();
     // evaluates if the ID param is the same as the id that was passed in by the request.
     // if false redirect with errors, if true continue
     if ($id != $request['course_id']) {
@@ -142,6 +144,7 @@ class LessonController extends Controller
       $next_id = Lesson::find($lesson)->next_id;
       $previous = Lesson::where('next_id', $lesson)->first();
       $request_next_previous = Lesson::where('next_id', $request->next_id)->first();
+      $alreadyFirst = Lesson::find($lesson)->is_first;
 
       // attempts to update the Lesson via the LessonHelper, passing in the request.
       $data = LessonHelper::update($request);
@@ -150,13 +153,22 @@ class LessonController extends Controller
       if ($data instanceof RedirectResponse):
         return $data;
       else:
-        if ($request->next_id != $next_id || $request->is_first):
-          if ($course->lessons->count() > 1):
-            OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+        $bool = true;
+        if (!$alreadyFirst):
+          if ($request->next_id != $next_id || $request->is_first):
+            if ($course->lessons->count() > 1):
+              $bool = OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
+            endif;
           endif;
         endif;
 
-        return redirect()->route('course.show', ['id' => $id])->with('msg', FlashMessage::where('name', 'lesson.updated')->first()->message);
+        if ($bool):
+          DB::commit();
+          return redirect()->route('course.show', ['id' => $id]);
+        else:
+          DB::rollback();
+          return back()->with('error', 'Er is iets mis gegaan met het verzenden!')->withInputs();
+        endif;
       endif;
     }
   }

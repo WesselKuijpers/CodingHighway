@@ -16,8 +16,8 @@
             {{ csrf_field() }}
             <input type="hidden" value="{{$course->id}}" name="course_id">
             <input type="hidden" name="is_first" value="0" id="is_first">
-            @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'class' => 'form-control'])
-            @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10])
+            @include('shared.form_required', ['label' => 'Titel', 'name'=> 'title', 'type'=> 'text', 'class' => 'form-control', 'value' => old('title')])
+            @include('shared.textarea', ['label' => 'Inhoud', 'name'=> 'content', 'required' => true, 'rows' => 10, 'value' => old('content')])
 
               <div class="form-group">
               <label for="is_final" class="text-md-right font-weight-bold">Eindopdracht</label>
@@ -38,7 +38,7 @@
                 <label for="is_first" class="text-md-right font-weight-bold">Eerste opdracht?</label>
 
                 <div class="form-group">
-                  <input type="checkbox" name="is_first" value="1" id="is_first" onchange="ToggleNextExercise(this)">
+                  <input type="checkbox" name="is_first" value="1" id="is-first" onchange="ToggleNextExercise(this)" data-toggle="toggle" data-on="Ja" data-off="Nee">
                 </div>
               </div>
             @else
@@ -53,18 +53,18 @@
   </div>
 </div>
 <script>
-    function ToggleNextExercise() {
-        // Get the checkbox
-        var checkBox = document.getElementById("is_first");
-        // Get the output text
-        var text = document.getElementById("next-exercise");
+  function ToggleNextExercise() {
+      // Get the checkbox
+      var checkBox = document.getElementById("is-first");
+      // Get the output text
+      var text = document.getElementById("next-id");
 
-        // If the checkbox is checked, display the output text
-        if (checkBox.checked != true){
-            text.style.display = "";
-        } else {
-            text.style.display = "none";
-        }
-    }
+      // If the checkbox is checked, display the output text
+      if (checkBox.checked == false){
+          text.style.display = "";
+      } else if(checkBox.checked == true) {
+          text.style.display = "none";
+      }
+  }
 </script>
 @endsection

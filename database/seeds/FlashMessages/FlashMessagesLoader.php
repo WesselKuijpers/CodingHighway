@@ -67,4 +67,13 @@ class FlashMessagesLoader
       'level.updated' => 'Wijzigingen opgeslagen',
     ];
   }
+
+  public static function SaCreateMessages()
+  {
+    return [
+      'sa.create.error' => 'Er ging iets fout tijdens het wijzigen',
+      'sa.created' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
 }

@@ -2,6 +2,7 @@
 
 namespace Modules\Management\Http\Controllers;
 
+use App\Models\general\FlashMessage;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,6 +18,7 @@ class AdminController extends Controller
 
   /**
    * Display a listing of the resource.
+   * @param Request $request
    * @return Response
    */
   public function index(Request $request)
@@ -72,6 +74,6 @@ class AdminController extends Controller
       }
     }
     // return back to the index.
-    return back();
+    return redirect()->back()->with('msg', FlashMessage::where('name', 'sa.created')->first()->message);
   }
 }

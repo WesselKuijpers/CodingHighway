@@ -6,7 +6,6 @@
 {{-- Placeholder for the page-specific content --}}
 @section('content')
   {{-- Title --}}
-  @include('shared.form_title', ['title' => "Alle cursussen"])
   <h2 class="text-center page-header">Alle cursussen</h2>
   <p class="text-center">
     <a href="{{ route('course.create') }}" class="btn btn-primary btn-organisation">Maak een cursus</a>

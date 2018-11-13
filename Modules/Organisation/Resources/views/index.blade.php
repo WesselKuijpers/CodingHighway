@@ -1,56 +1,109 @@
 @extends('layouts.app')
 
 @section('content')
+
+  @include('shared.form_title', ['title' => "Organisatie aanvragen"])
   <div class="row">
     @if ($organisations->count() == 0)
-      <p>Geen organisaties gevonden.</p>
+      <p>Er zijn nog geen organisatie aanvragen gevonden.</p>
     @else
       @foreach($organisations as $organisation)
-        <div class="col-4">
-          <div class="card">
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-2 mt-2">
+          <div class="card custom-card organisation-card">
             <div class="card-header">
               {{ $organisation->name }}
             </div>
+
             <div class="card-body">
-              <table>
-                <tr>
-                  <td class="text-right">Straat:</td>
-                  <td>{{ $organisation->street }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Huisnummer:</td>
-                  <td>{{ $organisation->housenumber }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Postcode:</td>
-                  <td>{{ $organisation->zipcode }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Plaats:</td>
-                  <td>{{ $organisation->city }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Papieren Factuur:</td>
-                  <td>{{ ($organisation->paper_invoice) ? "ja" : "nee" }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Achtergrondkleur:</td>
-                  <td>{{ $organisation->color }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Textkleur:</td>
-                  <td>{{ $organisation->fontcolor }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Link:</td>
-                  <td>{{ $organisation->link }}</td>
-                </tr>
-                <tr>
-                  <td class="text-right">Telefoonnummer:</td>
-                  <td>{{ $organisation->phone }}</td>
-                </tr>
-              </table>
+              <div class="row">
+                <div class="col-6">
+                  <p>Straat:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ $organisation->street }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>Huisnummer:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ $organisation->housenumber }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>Postcode:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ $organisation->zipcode }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>Huisnummer:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ $organisation->housenumber }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>Plaats:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ $organisation->city }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>Papieren factuur:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ ($organisation->paper_invoice) ? "ja" : "nee" }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>Achtergrondkleur:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ ($organisation->color) }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <p>Textkleur:</p>
+                </div>
+                <div class="col-6">
+                  <p>{{ ($organisation->fontcolor) }}</p>
+                </div>
+              </div>
+
+              @if(!empty($organisation->phone))
+                <div class="row">
+                  <div class="col-6">
+                    <p>Telefoonnummer:</p>
+                  </div>
+                  <div class="col-6">
+                    <p>{{ ($organisation->phone) }}</p>
+                  </div>
+                </div>
+              @endif
+              <div class="row">
+                <div class="offset-3 col-6">
+                  <a href="{{$organisation->link }}" class="btn btn-primary btn-organisation">Bezoek website</a>
+                </div>
+              </div>
             </div>
+
             <div class="card-footer">
               @if(!$organisation->active)
                 <form action="{{ route('organisation.activate') }}" method="post">
@@ -59,7 +112,7 @@
                   <input type="submit" value="Activeren" class="btn btn-primary btn-organisation">
                 </form>
               @else
-                Organisatie Al Geactiveerd
+                Organisatie geactiveerd
               @endif
             </div>
           </div>

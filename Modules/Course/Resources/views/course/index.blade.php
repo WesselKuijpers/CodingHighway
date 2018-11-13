@@ -1,4 +1,3 @@
-{{-- TODO add db content --}}
 {{-- Page to show all courses --}}
 
 {{-- Extending the layout --}}
@@ -7,31 +6,28 @@
 {{-- Placeholder for the page-specific content --}}
 @section('content')
   {{-- Title --}}
-  <h2 class="text-center page-header">Alle cursussen</h2>
+  @include('shared.form_title', ['title' => "Alle cursussen"])
   <div class="col-10 offset-1 mb-3">
     <hr>
   </div>
-  <div class="row d-flex justify-content-between">
-    {{-- Course loop --}}
-    @if ($courses->count() != 0)
-      @foreach($courses as $course)
-        {{-- Course items --}}
-        <div
-                class="col-xl-3 col-lg-3 col-md-3 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3"
-                @if (!empty($course->media->content))
-                style="background-image: url({{ $course->media->content }}) !important"
-                @endif
-        >
-          <div class="project-hover">
-            <h2>{{$course->name}}</h2>
-            <p class="text-truncate">{{$course->description}}</p>
-            <hr/>
-            <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link">Bekijk</a>
-          </div>
+  <div class="container">
+    <div class="row">
+       {{-- Course loop --}}
+      @if ($courses->count() != 0)
+        @foreach($courses as $course)
+        <div class="col-sm-6 col-md-4">
+            <div class="card custom-card mb-4" style="background-color: {{$course->color }}">
+                <img class="card-img-top img-fluid custom-img" src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif" alt="Afbeelding niet gevonden">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $course->name }}</h5>
+                    <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn btn-outline-dark">Bekijk</a>
+                </div>
+            </div>
         </div>
-      @endforeach
-    @else
+        @endforeach
+      @else
         <p>Er zijn nog geen cursussen. @if(Auth::user()->hasRole('sa'))<a href="{{ route('course.create') }}">maak er een aan!</a>@endif
-    @endif
-  </div>
+      @endif
+    </div>
+
 @endsection

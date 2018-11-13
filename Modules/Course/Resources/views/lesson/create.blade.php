@@ -12,7 +12,7 @@
       @include('shared.form_title', ['title' => "Creeër een nieuwe les in de cursus $course->name"])
       @include('shared.error')
       <form method="post" action="{{ route('lesson.store', ['course_id'=>$course->id]) }}" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        @csrf
         <input type="hidden" value="{{$course['id']}}" name="course_id">
         <input type="hidden" name="is_first" value="0" id="is_first">
 

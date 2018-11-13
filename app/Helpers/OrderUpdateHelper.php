@@ -2,16 +2,18 @@
 
 class OrderUpdateHelper 
 {
-    /**
-     * Check
-     *
-     * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $first $random
-     * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $first $first
-     * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $first $last
-     * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $first $previous
-     *
-     * @return void
-     */
+  /**
+   * Check
+   *
+   * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $random
+   * @param  integer $next_id
+   * @param  integer $request_next_id
+   * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $first
+   * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $last
+   * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $previous
+   * @param  \App\Models\course\Lesson | \App\Models\course\Exercise $request_next_previous
+   * @return void
+   */
     public static function Check($random, $next_id, $request_next_id, $first, $last, $previous, $request_next_previous)
     {
         if($random->is_first):

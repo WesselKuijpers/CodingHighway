@@ -119,9 +119,7 @@
                     <div class="row">
                     <div
                       class="col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3"
-                      @if (!empty($course->media->content))
-                        style="background-image: url({{ $course->media->content }}) !important"
-                      @endif
+                        style="background-image: url( {{ !empty($course->media) ? $course->media->content : asset("storage/img/logo/placeholder.png") }}) !important"
                       >
                       <div class="project-hover">
                         <h2>Opdrachten</h2>
@@ -150,9 +148,7 @@
                     </div>
                     <div
                       class="offset-md-1 offset-lg-1 offset-xl-1 col-xl-5 col-lg-5 col-md-5 col-sm-12 project wow animated animated3 fadeInLeft custom-card mb-3"
-                      @if (!empty($course->media->content))
-                        style="background-image: url({{ $course->media->content }}) !important"
-                      @endif
+                        style="background-image: url({{ !empty($course->media) ? $course->media->content : asset("storage/img/logo/placeholder.png") }}) !important"
                       >
                       <div class="project-hover">
                         <h2>Lessen</h2>

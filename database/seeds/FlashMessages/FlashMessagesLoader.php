@@ -57,4 +57,14 @@ class FlashMessagesLoader
       'lesson.updated' => 'Wijzigingen opgeslagen',
     ];
   }
+
+  public static function LevelMessage()
+  {
+    return [
+      'level.create.error' => 'Er ging iets fout tijdens het aanmaken van een level',
+      'level.created' => 'level aangemaakt',
+      'level.update.error' => 'Er ging iets fout tijdens het bijwerken van een level',
+      'level.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
 }

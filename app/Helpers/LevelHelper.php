@@ -2,6 +2,8 @@
 
 use App\Models\course\Level;
 use App\Http\Requests\LevelRequest;
+use App\Models\general\FlashMessage;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Class LevelHelper
@@ -12,7 +14,7 @@ class LevelHelper
    * Handling of create a new level
    *
    * @param LevelRequest $request
-   * @return Level|bool
+   * @return Level|RedirectResponse
    */
   public static function create(LevelRequest $request)
   {
@@ -24,7 +26,7 @@ class LevelHelper
     if ($level->save()):
       return $level;
     else:
-      return false;
+      return Redirect()->back()->with('error', FlashMessage::where('name', 'level.create.error')->first()->message);
     endif;
   }
 
@@ -32,7 +34,7 @@ class LevelHelper
    * Handling of create a new level
    *
    * @param LevelRequest $request
-   * @return Level|bool
+   * @return Level|RedirectResponse
    */
   public static function update(LevelRequest $request)
   {
@@ -44,7 +46,7 @@ class LevelHelper
     if ($level->save()):
       return $level;
     else:
-      return false;
+      return Redirect()->back()->with('error', FlashMessage::where('name', 'level.update.error')->first()->message);
     endif;
   }
 }

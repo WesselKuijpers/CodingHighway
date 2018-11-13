@@ -52,7 +52,7 @@ class FlashMessagesLoader
   {
     return [
       'lesson.create.error' => 'Er ging iets fout tijdens het aanmaken van de les',
-      'lesson.created' => 'Oefening aangemaakt',
+      'lesson.created' => 'Les aangemaakt',
       'lesson.update.error' => 'Er ging iets fout tijdens het bijwerken van de les',
       'lesson.updated' => 'Wijzigingen opgeslagen',
     ];

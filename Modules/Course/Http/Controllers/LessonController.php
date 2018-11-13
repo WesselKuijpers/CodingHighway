@@ -9,10 +9,10 @@ use App\Models\course\Level;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use LessonHelper;
 use OrderHelper;
 use OrderUpdateHelper;
-use Illuminate\Support\Facades\DB;
 
 class LessonController extends Controller
 {
@@ -149,7 +149,7 @@ class LessonController extends Controller
             // if successful redirect to specific course overview, else redirect back with status
             if ($data != false):
                 $bool = true;
-                if(!$alreadyFirst):
+                if (!$alreadyFirst):
                     if ($request->next_id != $next_id || $request->is_first):
                         if ($course->lessons->count() > 1):
                             $bool = OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);

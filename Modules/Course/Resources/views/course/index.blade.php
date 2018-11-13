@@ -7,9 +7,11 @@
 @section('content')
   {{-- Title --}}
   <h2 class="text-center page-header">Alle cursussen</h2>
-  <p class="text-center">
-    <a href="{{ route('course.create') }}" class="btn btn-primary btn-organisation">Maak een cursus</a>
-  </p>
+  @permission('course.create')
+    <p class="text-center">
+      <a href="{{ route('course.create') }}" class="btn btn-primary btn-organisation">Maak een cursus</a>
+    </p>
+  @endpermission
   <div class="col-10 offset-1 mb-3">
     <hr>
   </div>

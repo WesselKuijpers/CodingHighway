@@ -2,9 +2,11 @@
 
 namespace Modules\Organisation\Http\Controllers;
 
+use App\Models\general\FlashMessage;
 use App\Models\general\Organisation;
 use App\Models\course\Course;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -45,7 +47,7 @@ class OrganisationController extends Controller
     if (!empty($data['organisation_id'])):
       $organisation = Organisation::find($data['organisation_id']);
       $organisation->active = 1;
-      
+
       $user = User::find($organisation->requester);
       $user->attachRole(Role::where('slug', 'admin')->first());
 
@@ -69,7 +71,7 @@ class OrganisationController extends Controller
   /**
    * Store a newly created resource in storage.
    * @param  OrganisationRequest $request
-   * @return Response
+   * @return Organisation|RedirectResponse
    */
   public function store(OrganisationRequest $request)
   {
@@ -77,15 +79,16 @@ class OrganisationController extends Controller
     $data = OrganisationHelper::create($request);
 
     // if $data is true redirect to the organisation overview, else redirect back with an error.
-    if ($data != false):
-      return redirect()->route('organisation');
+    if ($data instanceof RedirectResponse):
+      return $data;
     else:
-      return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+      return redirect()->route('home')->with('msg', FlashMessage::where('name','organisation.created')->first()->message);
     endif;
   }
 
   /**
    * Show the specified resource.
+   * @param $id
    * @return Response
    */
   public function show($id)
@@ -108,7 +111,7 @@ class OrganisationController extends Controller
   /**
    * Update the specified resource in storage.
    * @param  OrganisationRequest $request
-   * @return Redirect
+   * @return RedirectResponse|Redirect
    */
   public function update(OrganisationRequest $request)
   {
@@ -116,9 +119,13 @@ class OrganisationController extends Controller
       return redirect()->back->with('error', 'Je hebt geen rechten om dit te mogen doen');
     endif;
 
-    OrganisationHelper::edit($request);
+    $data = OrganisationHelper::edit($request);
 
-    return redirect()->route('organisation.show', ['id' => $request->id])->with('msg', 'Wijzigen opgeslagen');
+    if ($data instanceof RedirectResponse):
+      return $data;
+    endif;
+
+    return redirect()->route('organisation.show', ['id' => $request->id])->with('msg', FlashMessage::where('name', 'organisation.updated')->first()->message);
   }
 
   /**
@@ -131,9 +138,9 @@ class OrganisationController extends Controller
 
   public function generateLicenses(LicenseCreateRequest $request)
   {
-      $data = $request->validated();
-      LicenseKeyHelper::OrganisationKey($data['amount'], $data['organisation_id']);
+    $data = $request->validated();
+    LicenseKeyHelper::OrganisationKey($data['amount'], $data['organisation_id']);
 
-      return redirect()->route('organisation.show', ['id' => $data['organisation_id']]);
+    return redirect()->route('organisation.show', ['id' => $data['organisation_id']]);
   }
 }

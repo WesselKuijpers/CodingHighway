@@ -76,4 +76,14 @@ class FlashMessagesLoader
     ];
   }
 
+  public static function OrganisationMessages()
+  {
+    return [
+      'organisation.create.error' => 'Er ging iets fout tijdens het aanvragen van uw organisatie',
+      'organisation.created' => 'Organisatie aangevraagd',
+      'organisation.update.error' => 'Er ging iets fout tijdens het bijwerken van uw organisatie',
+      'organisation.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
 }

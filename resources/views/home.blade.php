@@ -118,11 +118,11 @@
                   <p class="font-weight-bold mt-3">Voortgang van de {{ $course->name }} cursus</p>
 
                   <div class="row">
-                      <div class="col-sm-12 col-md-4 col-lg-6">
+                      <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="card custom-card mb-4" style="background-color: {{$course->color }}">
                           <img class="card-img-top img-fluid custom-img" src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif" alt="Afbeelding niet gevonden">
                           <div class="card-body">
-                            <h2>Opdrachten</h2>
+                            <h2 class="text-center">Opdrachten</h2>
                             <hr/>
                             @if (!empty(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next))
                               <p>{{ Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->title }}</p>
@@ -148,11 +148,11 @@
                         </div>
                       </div>
 
-                    <div class="col-sm-12 col-md-4 col-lg-6">
+                    <div class="col-sm-12 col-md-12 col-lg-6">
                       <div class="card custom-card mb-4" style="background-color: {{$course->color }}">
                         <img class="card-img-top img-fluid custom-img" src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif" alt="Afbeelding niet gevonden">
                         <div class="card-body">
-                        <h2>Lessen</h2>
+                        <h2 class="text-center">Lessen</h2>
                         <hr/>
                         @if (!empty(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next))
                           <p>{{ Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->title }}</p>

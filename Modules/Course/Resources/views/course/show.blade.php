@@ -7,6 +7,11 @@
 @section('content')
   <div class="col-12"></div>
     <h1>{{$course->name}}</h1>
+    @permission('course.create')
+      @if($course->startExam == null)
+        <a href="{{ route('startExam.create', ['course_id' => $course->id]) }}" class="btn btn-danger">Maak eerst een starttoets aan!</a>
+      @endif
+    @endpermission
     <p>{{$course->description}}</p>
     @if(count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
       <form action="{{ route('progress.reset') }}" method="POST">

@@ -50,6 +50,18 @@ Route::group(['middleware' => 'web', 'prefix' => 'course', 'namespace' => 'Modul
       ]
     ])->parameter('', 'id');
 
+    Route::resource('/{course_id}/startexam/', 'StartExamController', [
+      'names' => [
+        'index' => 'startExam',
+        'store' => 'startExam.store',
+        'create' => 'startExam.create',
+        'show' => 'startExam.show',
+        'destroy' => 'startExam.destroy',
+        'update' => 'startExam.update',
+        'edit' => 'startExam.edit'
+      ]
+    ])->parameter('', 'id');
+
     Route::post('/progress', 'ProgressController@Create')->name('progress.create');
 
     Route::post('/progress/reset', 'ProgressController@reset')->name('progress.reset');

@@ -191,13 +191,15 @@ body {
 
 :root {
   /* theme color variables to use in RGB declarations */
-  --red: 200;
-  --green: 60;
-  --blue: 255;
   /*the threshold at which colors are considered "light".
 Range: decimals from 0 to 1,
 recommended 0.5 - 0.6*/
   --threshold: 0.6;
+
+  --redCustom: #000000;
+  --blueCustom: #000000;
+  --greenCustom: #000000;
+
   /*the threshold at which a darker border will be applied.
 Range: decimals from 0 to 1,
 recommended 0.8+*/
@@ -206,15 +208,19 @@ recommended 0.8+*/
 
 .btn-test {
   /*sets the background for the base class*/
-  background: rgb(var(--red), var(--green), var(--blue));
+  background: rgb(var(--redCustom), var(--greenCustom), var(--blueCustom));
 
   /*
   W3C luma method
   lightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255
 */
-  --r: calc(var(--red) * 0.299);
-  --g: calc(var(--green) * 0.587);
-  --b: calc(var(--blue) * 0.114);
+  --r: calc(var(--redCustom) * 0.2126);
+  --g: calc(var(--greenCustom) * 0.7152);
+  --b: calc(var(--blueCustom) * 0.0722);
+
+  --sum: calc(var(--r) + var(--g) + var(--b));
+
+  --perceived-lightness: calc(var(--sum) / 255);
 
   /*
   1) Any lightness value above the threshold will be considered "light", therefore apply a black text color. Any bellow will be considered dark, and use white color.
@@ -231,5 +237,5 @@ recommended 0.8+*/
 
   border-width: .2em;
   border-style: solid;
-  border-color: rgba(calc(var(--red) - 50), calc(var(--green) - 50), calc(var(--blue) - 50), var(--border-alpha));
+  border-color: rgba(calc(var(--redCustom) - 50), calc(var(--greenCustom) - 50), calc(var(--blueCustom) - 50), var(--border-alpha));
 }

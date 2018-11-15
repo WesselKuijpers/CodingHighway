@@ -37,7 +37,7 @@
                 <div class="row">
                   <div class="offset-3 col-6">
                     <a href="{{url('user/edit')}}">
-                      <input type="submit" class="btn btn-primary btn-organisation btn-oc" value="Gegevens aanpassen">
+                      <input type="submit" class="btn btn-test" value="Gegevens aanpassen">
                     </a>
                   </div>
                 </div> 

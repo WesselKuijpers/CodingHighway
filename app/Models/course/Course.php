@@ -35,4 +35,9 @@ class Course extends Model
   {
     return $this->hasOne(Lesson::class)->where('is_first', true);
   }
+
+  public function startExam()
+  {
+    return $this->hasOne(StartExam::class);
+  }
 }

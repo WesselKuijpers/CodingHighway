@@ -10,6 +10,8 @@
     @permission('course.create')
       @if($course->startExam == null)
         <a href="{{ route('startExam.create', ['course_id' => $course->id]) }}" class="btn btn-danger">Maak eerst een starttoets aan!</a>
+      @else
+        <a href="{{ route('startExam.show', ['course_id' => $course->id, 'id' => $course->startExam->id]) }}" class="btn btn-primary btn-organisation">Bekijk de starttoets</a>
       @endif
     @endpermission
     <p>{{$course->description}}</p>

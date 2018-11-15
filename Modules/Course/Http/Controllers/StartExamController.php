@@ -53,7 +53,8 @@ class StartExamController extends Controller
      */
     public function show($courseId, $id)
     {
-        return view('course::startexam.show');
+        $course = Course::find($courseId);
+        return view('course::startexam.show', ['course' => $course]);
     }
 
     /**
@@ -62,7 +63,8 @@ class StartExamController extends Controller
      */
     public function edit($courseId, $id)
     {
-        return view('course::startexam.edit');
+        $exam = StartExam::find($id);
+        return view('course::startexam.edit', ['startExam' => $exam]);
     }
 
     /**

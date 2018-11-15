@@ -8,3 +8,10 @@ window.hexToRgb = function(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+
+var style = document.createElement('style');
+style.type = 'text/css';
+style.innerHTML = '.cssClass { color: #F00; }';
+document.getElementsByTagName('head')[0].appendChild(style);
+
+document.getElementById('someElementId').className = 'cssClass';

@@ -13,6 +13,7 @@ class RolePermissionsLoader
 {
   private $UserPermissions, $CoursePermissions, $ExercisePermissions, $LessonPermissions, $LicensesPermissions;
   private $LevelPermissions, $SystemAdminPermissions, $OverigePermissions, $OrganisationPermissions;
+  private $RoleAdminPermissions;
   
   public function __construct()
   {
@@ -25,6 +26,7 @@ class RolePermissionsLoader
     $this->OverigePermissions       = PermissionsLoader::OverigePermissions();
     $this->OrganisationPermissions  = PermissionsLoader::OrganisationPermissions();
     $this->LicensesPermissions      = PermissionsLoader::LicensePermissions();
+    $this->RoleAdminPermissions      = PermissionsLoader::RoleAdminPermissions();
   }
 
   public function SystemAdmin()
@@ -36,6 +38,7 @@ class RolePermissionsLoader
     $this->ListAttachesCUD($sa, $this->LessonPermissions);
     $this->ListAttaches($sa, $this->LevelPermissions);
     $this->ListAttaches($sa, $this->SystemAdminPermissions);
+    $this->ListAttaches($sa, $this->RoleAdminPermissions);
   }
 
   public function Admin()

@@ -21,6 +21,7 @@ class PermissionSeeder extends Seeder
     $this->Creator(PermissionsLoader::OverigePermissions());
     $this->Creator(PermissionsLoader::OrganisationPermissions());
     $this->Creator(PermissionsLoader::LicensePermissions());
+    $this->Creator(PermissionsLoader::RoleAdminPermissions());
   }
 
   private function Creator($list)

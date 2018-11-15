@@ -27,7 +27,12 @@
             </td>
             <td>
               <a href="{{ route('role.edit', ['id' => $role->id]) }}" class="btn btn-primary">Edit</a>
-              <a href="#" class="btn btn-danger">Delete</a>
+              <form action="{{ route('role.destroy', ['id'=> $role->id]) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" value="{{ $role->id }}">
+                <input type="submit" value="DELETE" class="btn btn-danger">
+              </form>
             </td>
           </tr>
         @endforeach

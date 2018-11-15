@@ -89,9 +89,13 @@ class RoleController extends Controller
 
   /**
    * Remove the specified resource from storage.
+   * @param Role $role
    * @return Response
+   * @throws \Exception
    */
-  public function destroy()
+  public function destroy(Role $role)
   {
+    $role->delete();
+    return redirect()->back();
   }
 }

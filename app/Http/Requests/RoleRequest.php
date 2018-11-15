@@ -31,16 +31,15 @@ class RoleRequest extends FormRequest
           endif;
           break;
         case "DELETE":
-          if (Auth::user()->canRoleEdit()):
+          if (Auth::user()->canRoleDelete()):
             return true;
           else:
             return false;
           endif;
           break;
       endswitch;
-    else:
-      return false;
     endif;
+    return false;
   }
 
   /**
@@ -70,6 +69,9 @@ class RoleRequest extends FormRequest
           'level' => 'required',
           'permissions.*' => 'required|numeric'
         ];
+        break;
+      case "DELETE":
+        $rules = ['id' => 'required|numeric|exists:roles'];
         break;
     endswitch;
 

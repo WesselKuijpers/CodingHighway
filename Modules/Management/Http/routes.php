@@ -20,7 +20,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'management', 'namespace' => 'M
         'create' => 'role.create',
         'destroy' => 'role.destroy',
         'update' => 'role.update',
-        'edit' => 'role.edit'
+        'edit' => 'role.edit',
       ]
     ]);
 });

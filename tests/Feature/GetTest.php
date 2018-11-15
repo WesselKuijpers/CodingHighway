@@ -80,7 +80,7 @@ class GetTest extends TestCase
         $route->uri == "password/reset"
       ):
         $response = $this->get($route->uri);
-        if ($response->getStatusCode() == 302):
+        if ($response->getStatusCode() == 500):
           dd($response);
         endif;
         $response->assertSuccessful();

@@ -8,7 +8,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" type="image/png" href="{{ asset('storage/img/logo/codinghighway.png') }}" />
 
-  <title>{{ config('app.name', 'CodingHighway') }}</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -31,22 +31,8 @@
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 <body>
-@if(session('msg'))
-  <div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-    </button>
-    <p class="notice">{{ session('msg') }}</p>
-  </div>
-@endif
-@if(session('error'))
-  <div class="alert alert-danger alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-    </button>
-    <p class="notice">{{ session('error') }}</p>
-  </div>
-@endif
-
-
+@include('layouts.error')
+@include('layouts.msg')
 <div id="app">
   <!-- Including navbar partial -->
 @include('shared.nav')

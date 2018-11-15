@@ -4,6 +4,8 @@ namespace Modules\Course\Http\Controllers;
 
 use App\Http\Requests\LevelRequest;
 use App\Models\course\Level;
+use App\Models\general\FlashMessage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -46,10 +48,10 @@ class LevelController extends Controller
     $data = LevelHelper::create($request);
 
     // if successful redirect to level overview, if not redirect back with errors
-    if ($data != false):
-      return redirect()->route('course');
+    if ($data instanceof RedirectResponse):
+      return $data;
     else :
-      return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+      return redirect()->route('level')->with('msg', FlashMessage::where('name', 'level.created')->first()->message);
     endif;
   }
 
@@ -74,10 +76,10 @@ class LevelController extends Controller
     $data = LevelHelper::update($request);
 
     // if successful redirect to the level overview, if not redirect back with errors
-    if ($data != false):
-      return redirect()->route('course');
+    if ($data instanceof RedirectResponse):
+      return $data;
     else :
-      return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
+      return redirect()->route('level')->with('msg', FlashMessage::where('name', 'level.updated')->first()->message);
     endif;
   }
 

@@ -17,6 +17,10 @@ class FlashMessagesSeeder extends Seeder
     $this->Creator(FlashMessagesLoader::CourseMessage());
     $this->Creator(FlashMessagesLoader::ExerciseMessage());
     $this->Creator(FlashMessagesLoader::LessonMessage());
+    $this->Creator(FlashMessagesLoader::LevelMessage());
+    $this->Creator(FlashMessagesLoader::SaCreateMessages());
+    $this->Creator(FlashMessagesLoader::OrganisationMessages());
+    $this->Creator(FlashMessagesLoader::RoleAdminMessages());
   }
 
   private function Creator($list)

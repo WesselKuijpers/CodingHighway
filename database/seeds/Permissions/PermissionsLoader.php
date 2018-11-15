@@ -211,4 +211,34 @@ class PermissionsLoader
       ]
     ];
   }
+
+  public static function RoleAdminPermissions()
+  {
+    return [
+      'show' => [
+        'name' => 'RoleShow',
+        'slug' => 'role.show',
+        'model' => '',
+        'description' => 'Permission to show the roles'
+      ],
+      'create' => [
+        'name' => 'RoleCreate',
+        'slug' => 'role.create',
+        'model' => '',
+        'description' => 'Permission to create a role'
+      ],
+      'edit' => [
+        'name' => 'RoleEdit',
+        'slug' => 'role.edit',
+        'model' => '',
+        'description' => 'Permission to edit a role'
+      ],
+      'delete' => [
+        'name' => 'RoleDelete',
+        'slug' => 'role.delete',
+        'model' => '',
+        'description' => 'Permission to delete a role'
+      ]
+    ];
+  }
 }

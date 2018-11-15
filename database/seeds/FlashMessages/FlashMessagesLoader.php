@@ -57,4 +57,44 @@ class FlashMessagesLoader
       'lesson.updated' => 'Wijzigingen opgeslagen',
     ];
   }
+
+  public static function LevelMessage()
+  {
+    return [
+      'level.create.error' => 'Er ging iets fout tijdens het aanmaken van een level',
+      'level.created' => 'level aangemaakt',
+      'level.update.error' => 'Er ging iets fout tijdens het bijwerken van een level',
+      'level.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
+  public static function SaCreateMessages()
+  {
+    return [
+      'sa.create.error' => 'Er ging iets fout tijdens het wijzigen',
+      'sa.created' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
+  public static function OrganisationMessages()
+  {
+    return [
+      'organisation.create.error' => 'Er ging iets fout tijdens het aanvragen van uw organisatie',
+      'organisation.created' => 'Organisatie aangevraagd',
+      'organisation.update.error' => 'Er ging iets fout tijdens het bijwerken van uw organisatie',
+      'organisation.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
+  public static function RoleAdminMessages()
+  {
+    return [
+      'role.create.error' => 'Er ging iets fout tijdens het aanmaken van de Rol',
+      'role.created' => 'Rol aangemaakt',
+      'role.update.error' => 'Er ging iets fout tijdens het bijwerken van de Rol',
+      'role.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
+  
 }

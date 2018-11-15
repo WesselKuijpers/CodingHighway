@@ -8,10 +8,10 @@
     <input type="hidden" name="requester" value="{{ Auth::id() }}">
     <input type="hidden" name="paper_invoice" value="0">
     @include('shared.form_required', ['label' => 'Organisatienaam', 'name'=> 'name', 'type'=> 'text','class' => 'form-control', 'value' => old('name')])
-    @include('shared.form_required', ['label' => 'Stad', 'name'=> 'city', 'type'=> 'text','class' => 'form-control', 'value' => old('city')])
     @include('shared.form_required', ['label' => 'Straat', 'name'=> 'street', 'type'=> 'text', 'class' => 'form-control', 'value' => old('street')])
     @include('shared.form_required', ['label' => 'Huisnummer', 'name'=> 'housenumber', 'type'=> 'text', 'class' => 'form-control', 'value' => old('housenumber')])
     @include('shared.form_required', ['label' => 'Postcode', 'name'=> 'zipcode', 'type'=> 'text', 'class' => 'form-control', 'value' => old('zipcode')])
+    @include('shared.form_required', ['label' => 'Stad', 'name'=> 'city', 'type'=> 'text','class' => 'form-control', 'value' => old('city')])
     @include('shared.form_required', ['label' => 'Email', 'name'=> 'email', 'type'=> 'email', 'class' => 'form-control', 'value' => old('email')])
     @include('shared.form_required', ['label' => 'Telefoonnummer', 'name'=> 'phone', 'type'=> 'phone', 'class' => 'form-control', 'value' => old('phone')])
     @include('shared.form', ['label' => 'Factuur per post', 'name'=> 'paper_invoice', 'type'=> 'checkbox', 'value' => '1'])

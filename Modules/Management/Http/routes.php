@@ -23,4 +23,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'management', 'namespace' => 'M
         'edit' => 'role.edit',
       ]
     ]);
+
+    Route::group(['prefix'=>'/user/role'], function(){
+      Route::get('/', 'RoleUserController@index')->name('RoleUser');
+    });
 });

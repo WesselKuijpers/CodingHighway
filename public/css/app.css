@@ -10493,6 +10493,7 @@ a.text-dark:focus {
 .navbar-laravel {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  background: white;
 }
 
 /*
@@ -10600,52 +10601,6 @@ a:hover.no-link {
   margin: 0px auto;
 }
 
-/* Dashboard Cards */
-
-.project-hover {
-  width: 100%;
-  height: 100%;
-  color: #fff;
-  opacity: 0;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 25% 30px !important;
-}
-
-.project-hover hr {
-  height: 30px;
-  width: 0;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  background-color: white;
-  border: 0;
-}
-
-.project-hover a {
-  color: white;
-  padding: 2px 22px;
-  line-height: 40px;
-  border: 2px solid white;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-
-.project-hover a:hover {
-  border-color: #333333;
-  color: #333333;
-  background-color: #FFF;
-}
-
-.project:hover .project-hover {
-  opacity: 1;
-}
-
-.project:hover .project-hover hr {
-  width: 100%;
-  height: 5px;
-}
-
 .contact-form {
   -webkit-box-shadow: 5px 5px 10px grey;
           box-shadow: 5px 5px 10px grey;
@@ -10695,8 +10650,8 @@ a:hover.no-link {
 }
 
 .custom-img {
-  height: 350px;
   width: auto;
+  max-height: 350px;
 }
 
 .btn-outline-dark:hover {
@@ -10704,5 +10659,41 @@ a:hover.no-link {
   background-color: transparent;
   background-image: none;
   border-color: #343a40;
+}
+
+.progress-bar {
+  background-color: black;
+  color: white;
+}
+
+:root {
+  --threshold: 0.6;
+  --redCustom: #000000;
+  --blueCustom: #000000;
+  --greenCustom: #000000;
+  --border-threshold: 0.8;
+}
+
+.btn-organisation {
+  background: rgb(var(--redCustom), var(--greenCustom), var(--blueCustom));
+  --r: calc(var(--redCustom) * 0.2126);
+  --g: calc(var(--greenCustom) * 0.7152);
+  --b: calc(var(--blueCustom) * 0.0722);
+  --sum: calc(var(--r) + var(--g) + var(--b));
+  --perceived-lightness: calc(var(--sum) / 255);
+  /*
+  1) Any lightness value above the threshold will be considered "light", therefore apply a black text color. Any bellow will be considered dark, and use white color.
+  This results from appying either a sub-zero (negative) or a higher-than-100 lightness value, which are capped to 0 and 100 respectively, to a HSL declaration
+  */
+  color: hsl(0, 0%, calc((var(--perceived-lightness) - var(--threshold)) * -10000000%));
+  /*
+  2) sets the border as a 50% darker shade of the base color, ONLY if background color luma is higher than the border threshold.
+  To achieve this I use the same sub-zero or higher-than-max technique, only this time using the Alpha value from an RGBA declaration.
+  This results in a border that's either fully transparent or fully opaque
+  */
+  --border-alpha: calc((var(--perceived-lightness) - var(--border-threshold)) * 100);
+  border-width: .2em;
+  border-style: solid;
+  border-color: rgba(calc(var(--redCustom) - 50), calc(var(--greenCustom) - 50), calc(var(--blueCustom) - 50), var(--border-alpha));
 }
 

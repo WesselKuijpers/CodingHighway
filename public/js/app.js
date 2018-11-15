@@ -13949,7 +13949,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(49);
+module.exports = __webpack_require__(50);
 
 
 /***/ }),
@@ -13973,6 +13973,7 @@ __webpack_require__(17);
 
 __webpack_require__(40);
 __webpack_require__(48);
+__webpack_require__(49);
 
 /***/ }),
 /* 17 */
@@ -58163,6 +58164,28 @@ if (document.getElementsByClassName('progressbar')) {
 
 /***/ }),
 /* 49 */
+/***/ (function(module, exports) {
+
+// Function that parses a hexadecimal into rgb code
+window.hexToRgb = function (hex) {
+    // Splits the hexadecimal into 3 groups
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+};
+
+var style = document.createElement('style');
+style.type = 'text/css';
+style.innerHTML = '.cssClass { color: #F00; }';
+document.getElementsByTagName('head')[0].appendChild(style);
+
+document.getElementById('someElementId').className = 'cssClass';
+
+/***/ }),
+/* 50 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

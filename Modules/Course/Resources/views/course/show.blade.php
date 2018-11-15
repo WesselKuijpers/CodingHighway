@@ -24,7 +24,11 @@
     <br>
     <h3>Lessen</h3>
     @if(Auth::user()->hasRole('sa'))
-      <a href="{{ route('lesson.create', ['course_id'=>$course->id]) }}" class="btn btn-primary btn-organisation">Maak een les</a>
+      @if($course->startExam != null)
+        <a href="{{ route('lesson.create', ['course_id'=>$course->id]) }}" class="btn btn-primary btn-organisation">Maak een les</a>
+      @else
+        <p>Maak eerst een starttoets aan!</p>
+      @endif
     @endif
     <br>
     <br>
@@ -48,8 +52,10 @@
       </ul>
     @endif
     <h3>Opdrachten</h3>
-    @if(Auth::user()->hasRole('sa'))
+    @if($course->startExam != null)
       <a href="{{ route('exercise.create', ['course_id'=>$course->id]) }}" class="btn btn-primary btn-organisation">Maak een opdracht</a>
+    @else
+      <p>Maak eerst een starttoets aan!</p>
     @endif
     <br>
     <br>

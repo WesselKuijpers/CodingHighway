@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use App\Models\course\Course;
 use App\Models\course\Level;
 use App\Http\Requests\StartExamRequest;
+use StartExamHelper;
 
 class StartExamController extends Controller
 {
@@ -26,7 +27,8 @@ class StartExamController extends Controller
      */
     public function create($courseId)
     {
-        return view('course::startexam.create');
+        $course = Course::find($courseId);
+        return view('course::startexam.create', ['course' => $course]);
     }
 
     /**
@@ -34,8 +36,15 @@ class StartExamController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store($courseId, $id, StartExamRequest $request)
+    public function store($courseId, StartExamRequest $request)
     {
+        $data = StartExamHelper::create($request);
+
+        if($data == false):
+            return redirect()->back()->with('error', FlashMessage::where('name', 'lesson.create.error')->first()->message);
+        else:
+            return redirect()->route('course.show', ['id' => $courseId]);
+        endif;
     }
 
     /**

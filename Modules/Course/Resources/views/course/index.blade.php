@@ -25,7 +25,7 @@
                     <img class="card-img-top img-fluid custom-img" src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif" alt="Afbeelding niet gevonden">
                     <div class="card-body">
                         <h5 class="card-title">{{ $course->name }}</h5>
-                        @if($course->startExam != null):
+                        @if($course->startExam != null)
                           <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn btn-outline-dark">Bekijk</a>
                         @else
                           <p>Deze cursus is nog niet klaar voor gebruik!</p>

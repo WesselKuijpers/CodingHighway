@@ -13,6 +13,6 @@ class StartExam extends Model
 
     public function questions()
     {
-        return $this->hasMany(StartExamQuestions::class);
+        return $this->hasMany(StartExamQuestion::class);
     }
 }

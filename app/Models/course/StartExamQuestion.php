@@ -13,6 +13,11 @@ class StartExamQuestion extends Model
 
     public function answers()
     {
-        return $this->hasMany(StartExamAnswer::class);
+        return $this->hasMany(StartExamAnswer::class, 'question_id');
+    }
+
+    public function correctAnswer()
+    {
+        return $this->hasOne(StartExamAnswer::class, 'question_id')->where('id', $this->correct_answer_id);
     }
 }

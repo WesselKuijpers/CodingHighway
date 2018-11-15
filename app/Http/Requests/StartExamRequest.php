@@ -13,7 +13,7 @@ class StartExamRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class StartExamRequest extends FormRequest
           case "POST":
             $rules = [
               'course_id' => 'required|numeric',
-              'questions' => 'required|array|gte:10',
+              'questions' => 'required|array',
             ];
             break;
           case "PUT":

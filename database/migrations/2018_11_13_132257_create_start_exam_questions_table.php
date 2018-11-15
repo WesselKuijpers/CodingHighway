@@ -16,12 +16,12 @@ class CreateStartExamQuestionsTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('start_exam_questions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('exam_id')->nullable();
+            $table->unsignedInteger('start_exam_id')->nullable();
             $table->string('content');
             $table->unsignedInteger('correct_answer_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('exam_id')
+            $table->foreign('start_exam_id')
                 ->references('id')->on('start_exams')
                 ->onDelete('set null')
                 ->onUpdate('cascade');

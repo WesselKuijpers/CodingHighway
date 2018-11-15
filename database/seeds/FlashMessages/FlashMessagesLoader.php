@@ -86,4 +86,15 @@ class FlashMessagesLoader
     ];
   }
 
+  public static function RoleAdminMessages()
+  {
+    return [
+      'role.create.error' => 'Er ging iets fout tijdens het aanmaken van de Rol',
+      'role.created' => 'Rol aangemaakt',
+      'role.update.error' => 'Er ging iets fout tijdens het bijwerken van de Rol',
+      'role.updated' => 'Wijzigingen opgeslagen',
+    ];
+  }
+
+  
 }

@@ -247,4 +247,16 @@ class PermissionsLoader
       ]
     ];
   }
+
+  public static function ModulePermissions()
+  {
+    return [
+      'modulemanagement' => [
+        'name' => 'ModuleManagement',
+        'slug' => 'module.management',
+        'model' => '',
+        'description' => 'permission to enable/disable a module'
+      ]
+    ];
+  }
 }

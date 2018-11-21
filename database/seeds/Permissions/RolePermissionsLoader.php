@@ -13,7 +13,7 @@ class RolePermissionsLoader
 {
   private $UserPermissions, $CoursePermissions, $ExercisePermissions, $LessonPermissions, $LicensesPermissions;
   private $LevelPermissions, $SystemAdminPermissions, $OverigePermissions, $OrganisationPermissions;
-  private $RoleAdminPermissions;
+  private $RoleAdminPermissions, $ModulePermissions;
   
   public function __construct()
   {
@@ -26,7 +26,8 @@ class RolePermissionsLoader
     $this->OverigePermissions       = PermissionsLoader::OverigePermissions();
     $this->OrganisationPermissions  = PermissionsLoader::OrganisationPermissions();
     $this->LicensesPermissions      = PermissionsLoader::LicensePermissions();
-    $this->RoleAdminPermissions      = PermissionsLoader::RoleAdminPermissions();
+    $this->RoleAdminPermissions     = PermissionsLoader::RoleAdminPermissions();
+    $this->ModulePermissions        = PermissionsLoader::ModulePermissions();
   }
 
   public function SystemAdmin()
@@ -39,6 +40,7 @@ class RolePermissionsLoader
     $this->ListAttaches($sa, $this->LevelPermissions);
     $this->ListAttaches($sa, $this->SystemAdminPermissions);
     $this->ListAttaches($sa, $this->RoleAdminPermissions);
+    $this->ListAttaches($sa, $this->ModulePermissions);
   }
 
   public function Admin()

@@ -66,8 +66,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'course', 'namespace' => 'Modul
 
     Route::post('/progress/reset', 'ProgressController@reset')->name('progress.reset');
 
-    Route::post('/solution/create', 'SolutionController@create')->name('solution.create');
-    Route::post('/solution/update/{id}', 'SolutionController@update')->name('solution.update');
-    Route::post('/solution/delete/{id}', 'SolutionController@delete')->name('solution.delete');
+    Route::post('/solution/create', 'SolutionController@store')->name('solution.create');
+    Route::put('/solution/update/{id}', 'SolutionController@update')->name('solution.update');
+    Route::delete('/solution/delete/{id}', 'SolutionController@destroy')->name('solution.delete');
 
 });

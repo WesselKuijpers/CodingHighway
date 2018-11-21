@@ -20,6 +20,40 @@
     @endif
   <p>{{$exercise->content}}</p>
   <p>
+    <form action="{{$solution != null ? route('solution.update', ['id' => $solution->id]) : route('solution.create')}}" method="POST">
+      @csrf
+      @if($solution != null)
+        @method('PUT')
+        <input type="hidden" name="id" value={{$solution->id}}> 
+      @endif
+      <input type="hidden" name="exercise_id" value={{$exercise->id}}>
+      <div class="row">
+        <div class="col-12">
+          <textarea name="content" placeholder="Plaats jouw oplossing hier" class="form-control" rows="10">@if($solution != null){{$solution->content}}@endif</textarea>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-1">
+          <input type="submit" class="btn btn-primary btn-organisation" value="Opslaan">
+        </div>
+    </form>
+      @if($solution != null)
+        <form method="POST" action="{{route('solution.delete', ['id' => $solution->id])}}">
+          <div class="col-1">
+            @csrf
+            @method('DELETE')
+            <input type="hidden" name="id" value={{$solution->id}}>
+            @if($solution != null)
+              <input type="submit" class="btn btn-danger" value="Verwijderen">
+            @endif
+          </div>
+        </form>
+      @endif
+    </div>
+  </p>
+  <hr>
+  <p>
     <form action="{{ route('progress.create') }}" method="POST">
       @csrf
       <input type="hidden" name="user_id" value="{{ Auth::id() }}"/>

@@ -38,7 +38,7 @@ class SolutionHelper
         endif;
     }
 
-    public static function Delete(SolutionRequest $request)
+    public static function Destroy(SolutionRequest $request)
     {
         $validated = $request->validated();
         $solution = Solution::find($validated['id']);

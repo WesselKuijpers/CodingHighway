@@ -15,6 +15,8 @@ use Illuminate\Routing\Controller;
 use OrderHelper;
 use OrderUpdateHelper;
 use Illuminate\Support\Facades\DB;
+use App\Solution;
+use Illuminate\Support\Facades\Auth;
 
 class ExerciseController extends Controller
 {
@@ -101,7 +103,8 @@ class ExerciseController extends Controller
   public function show($courseId, $id)
   {
     $exercise = Exercise::find($id);
-    return view('course::exercise.show', ['exercise' => $exercise]);
+    $solution = Solution::where('user_id', Auth::id())->where('exercise_id', $id)->first();
+    return view('course::exercise.show', ['exercise' => $exercise, 'solution' => $solution]);
   }
 
   /**

@@ -17,6 +17,8 @@ Route::group(['middleware'=>'auth:api'], function() {
   Route::post('/progress', 'api\ProgressController@load')->name('ApiProgress');
   Route::post('/role/user', 'api\RoleUserManagementController@change')->name('ApiRoleUserManagement');
 });
+
+Route::post('/startexam', 'api\StartExamController@load')->name('ApiStartExam');
 /*
   Route::group(['prefix' => 'course'], function (){
     Route::post('/', 'api\CourseController@create')->name('ApiCourseCreate');

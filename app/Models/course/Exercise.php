@@ -26,4 +26,9 @@ class Exercise extends Model
   {
     return $this->belongsTo(Exercise::class, 'next_id');
   }
+
+  public function solutions()
+  {
+      return $this->hasMany('App\Solutions');
+  }
 }

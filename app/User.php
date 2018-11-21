@@ -89,4 +89,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
   {
     return $this->hasMany(UserProgress::class)->where('course_id', $course_id);
   }
+
+  public function solutions()
+  {
+      return $this->hasMany('App\Solutions');
+  }
 }

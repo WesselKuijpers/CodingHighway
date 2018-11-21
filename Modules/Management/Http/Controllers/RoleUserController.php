@@ -12,7 +12,7 @@ class RoleUserController extends Controller
 {
   public function __construct()
   {
-    $this->middleware('permissions:roleuser.management');
+    $this->middleware('permission:roleuser.management');
   }
 
   public function index()

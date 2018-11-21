@@ -27,7 +27,6 @@ class SolutionRequest extends FormRequest
         switch ($this->getMethod()):
           case "POST":
             $rules = [
-              'user_id' => 'required|numeric',
               'exercise_id' => 'required|numeric',
               'content' => 'required|string',
             ];
@@ -35,7 +34,6 @@ class SolutionRequest extends FormRequest
           case "PUT":
             $rules = [
               'id' => 'required|numeric',
-              'user_id' => 'required|numeric',
               'exercise_id' => 'required|numeric',
               'content' => 'required|string',
             ];

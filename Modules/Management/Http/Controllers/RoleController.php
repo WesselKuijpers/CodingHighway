@@ -14,6 +14,15 @@ use RoleHelper;
 
 class RoleController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('permissions:role.show')->only(['index']);
+    $this->middleware('permissions:role.create')->only(['create', 'store']);
+    $this->middleware('permissions:role.edit')->only(['edit', 'update']);
+    $this->middleware('permissions:role.delete')->only(['destroy']);
+
+  }
+
   /**
    * Display a listing of the resource.
    * @return Response

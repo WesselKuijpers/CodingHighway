@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware'=>'auth:api'], function() {
   Route::post('/progress', 'api\ProgressController@load')->name('ApiProgress');
+  Route::post('/role/user', 'api\RoleUserManagementController@change')->name('ApiRoleUserManagement');
 });
 /*
   Route::group(['prefix' => 'course'], function (){

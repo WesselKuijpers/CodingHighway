@@ -10,6 +10,11 @@ use jeremykenedy\LaravelRoles\Models\Role;
 
 class RoleUserController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('permissions:roleuser.management');
+  }
+
   public function index()
   {
     $users = User::all();

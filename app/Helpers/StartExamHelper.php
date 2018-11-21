@@ -86,4 +86,44 @@ class StartExamHelper
         endif;
     }
 
+    public static function Update(StartExamRequest $request){
+        // validate the request
+        $validated = $request->validated();
+
+        $startExam = StartExam::find($validated['id']);
+
+        foreach($validated['questions'] as $id => $newQuestion):
+            $oldQuestion = StartExamQuestion::find($id);
+            $oldQuestion->content = $newQuestion['content'];
+
+            foreach($newQuestion['correct'] as $id => $newCorrect):
+                $oldCorrect = StartExamAnswer::find($id);
+                $oldCorrect->content = $newCorrect;
+                
+                $oldCorrect->save();
+            endforeach;
+            
+            foreach($newQuestion['inCorrect'] as $id => $inCorrect):
+                $oldIncorrect = StartExamAnswer::find($id);
+                $oldIncorrect->content = $inCorrect;
+                $oldIncorrect->save();
+            endforeach;
+
+            $oldQuestion->save();
+        endforeach;
+        return true;
+    }
+
+    public static function Delete(StartExamRequest $request){
+        // validate the request
+        $validated = $request->validated();
+        $startExam = StartExam::find($validated['id']);
+
+        if($startExam->delete()):
+            return true;
+        else:
+            return false;
+        endif;
+    }
+
 }

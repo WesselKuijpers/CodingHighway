@@ -7,11 +7,20 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Models\course\Course;
 use App\Models\course\Level;
+use App\Models\course\StartExam;
 use App\Http\Requests\StartExamRequest;
 use StartExamHelper;
 
 class StartExamController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('permission:course.show')->only(['index','show']);
+      $this->middleware('permission:course.create')->only(['create', 'store']);
+      $this->middleware('permission:course.edit')->only(['edit', 'update']);
+      $this->middleware('permission:course.delete')->only(['destroy']);
+    }
+    
     /**
      * Display a listing of the resource.
      * @return Response
@@ -38,10 +47,10 @@ class StartExamController extends Controller
      */
     public function store($courseId, StartExamRequest $request)
     {
-        $data = StartExamHelper::create($request);
+        $data = StartExamHelper::Create($request);
 
         if($data == false):
-            return redirect()->back()->with('error', FlashMessage::where('name', 'lesson.create.error')->first()->message);
+            return redirect()->back()->with('error', 'Er is wat mis gegaan bij het aanmaken van de starttoets!');
         else:
             return redirect()->route('course.show', ['id' => $courseId]);
         endif;
@@ -74,13 +83,28 @@ class StartExamController extends Controller
      */
     public function update($courseId, $id, StartExamRequest $request)
     {
+        $data = StartExamHelper::Update($request);
+
+        if($data == false):
+            return redirect()->back()->with('error', 'Er is wat mis gegaan bij het aanpassen van de starttoets!');
+        else:
+            return redirect()->route('course.show', ['id' => $courseId]);
+        endif;
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy($courseId, $id)
+    public function destroy($courseId, $id, StartExamRequest $request)
     {
+        $data = StartExamHelper::Delete($request);
+
+        if($data == false):
+            return redirect()->back()->with('error', 'Er is wat mis gegaan bij het verwijderen van de starttoets!');
+        else:
+            return redirect()->route('course.show', ['id' => $courseId]);
+        endif;
+
     }
 }

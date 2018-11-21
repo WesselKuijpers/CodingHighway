@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TestExerciseSeeder::class);
         $this->call(TestUserSeeder::class);
         $this->call(TestUserProgressSeeder::class);
+        $this->call(StartExamSeeder::class);
         Schema::enableForeignKeyConstraints();
         break;
       case 'demo':

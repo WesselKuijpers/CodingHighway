@@ -21,7 +21,7 @@ class CreateStartExamsTable extends Migration
 
             $table->foreign('course_id')
                 ->references('id')->on('courses')
-                ->onDelete('set null')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
         Schema::enableForeignKeyConstraints();

@@ -11,8 +11,21 @@
       @if($course->startExam == null)
         <a href="{{ route('startExam.create', ['course_id' => $course->id]) }}" class="btn btn-danger">Maak eerst een starttoets aan!</a>
       @else
-        <a href="{{ route('startExam.show', ['course_id' => $course->id, 'id' => $course->startExam->id]) }}" class="btn btn-primary btn-organisation">Bekijk de starttoets</a>
+        <div class="row">
+          <div class="col-2">
+            <a href="{{ route('startExam.show', ['course_id' => $course->id, 'id' => $course->startExam->id]) }}" class="btn btn-primary btn-organisation">Bekijk de starttoets</a>
+          </div>
+          <div class="col-2">
+            <form method="POST" action="{{route('startExam.destroy', ['course_id' => $course->id, 'id' => $course->startExam->id])}}">
+              @method('DELETE')
+              @csrf
+              <input type="hidden" value={{$course->startExam->id}} name="id">
+              <input type="submit" value="Verwijderen" class="btn btn-danger">
+            </form>
+          </div>
+        </div>
       @endif
+      <br>
     @endpermission
     <p>{{$course->description}}</p>
     @if(count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)

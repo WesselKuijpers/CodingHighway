@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+// use Illuminate\Support\Facades\Auth;
 
 class StartExamRequest extends FormRequest
 {
@@ -13,7 +14,38 @@ class StartExamRequest extends FormRequest
      */
     public function authorize()
     {
+      if (env('APP_ENV') == 'testing'):
         return true;
+      endif;
+      switch ($this->getMethod()):
+        case 'POST':
+          if (Auth::user()->canCourseCreate()):
+            return true;
+          else:
+            return false;
+          endif;
+  
+          break;
+        case 'PUT':
+          if (Auth::user()->canCourseEdit()):
+            return true;
+          else:
+            return false;
+          endif;
+  
+          break;
+        case 'DELETE':
+          if (Auth::user()->canCourseDelete()):
+            return true;
+          else:
+            return false;
+          endif;
+  
+          break;
+        default:
+          return false;
+          break;
+      endswitch;
     }
 
     /**
@@ -35,7 +67,7 @@ class StartExamRequest extends FormRequest
             $rules = [
               'id' => 'required|numeric',
               'course_id' => 'required|numeric',
-              'questions' => 'required|array|gte:10',
+              'questions' => 'required|array',
             ];
             break;
           case "DELETE":

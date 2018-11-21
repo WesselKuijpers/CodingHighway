@@ -22,7 +22,7 @@ class CreateStartExamAnswersTable extends Migration
 
             $table->foreign('question_id')
                 ->references('id')->on('start_exam_questions')
-                ->onDelete('set null')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
         Schema::enableForeignKeyConstraints();

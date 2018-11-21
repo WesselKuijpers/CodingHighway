@@ -23,7 +23,7 @@ class CreateStartExamQuestionsTable extends Migration
 
             $table->foreign('start_exam_id')
                 ->references('id')->on('start_exams')
-                ->onDelete('set null')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->foreign('correct_answer_id')

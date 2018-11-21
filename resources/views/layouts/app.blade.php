@@ -52,6 +52,7 @@
     $(".alert").alert('close');
   });
 </script>
+@yield('scripts')
 <!-- Including footer partial -->
 @include('layouts.footer')
 </body>

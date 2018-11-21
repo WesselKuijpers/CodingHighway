@@ -6,12 +6,14 @@ use App\Http\Requests\CourseRequest;
 use App\Models\course\Course;
 use App\Models\course\Exercise;
 use App\Models\course\Lesson;
+use App\models\course\Result;
 use App\Models\general\FlashMessage;
 use CourseHelper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use OrderHelper;
 
 class CourseController extends Controller
@@ -69,6 +71,8 @@ class CourseController extends Controller
   public function show($id)
   {
     $course = Course::find($id);
+    $startResult = Result::where('user_id', Auth::id())->where('course_id', $course->id)->get();
+
     $exercises = $course->exercises;
     if(count($exercises) != 0):
       $exercises = OrderHelper::sortList($exercises);
@@ -79,7 +83,7 @@ class CourseController extends Controller
       $lessons = OrderHelper::sortList($lessons);
     endif;
 
-    return view('course::course.show', ['course' => $course, 'exercises' => $exercises, 'lessons' => $lessons]);
+    return view('course::course.show', compact('course', 'exercises', 'lessons', 'startResult'));
   }
 
   /**

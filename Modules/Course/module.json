@@ -8,7 +8,7 @@
     "providers": [
         "Modules\\Course\\Providers\\CourseServiceProvider"
     ],
-    "aliases": {},
+    "aliases": [],
     "files": [
         "start.php"
     ],

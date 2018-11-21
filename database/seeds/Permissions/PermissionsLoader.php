@@ -238,6 +238,24 @@ class PermissionsLoader
         'slug' => 'role.delete',
         'model' => '',
         'description' => 'Permission to delete a role'
+      ],
+      'roleuser' => [
+        'name' => 'RoleUser',
+        'slug' => 'roleuser.management',
+        'model' => '',
+        'description' => 'Permission to attach/detach roles from users'
+      ]
+    ];
+  }
+
+  public static function ModulePermissions()
+  {
+    return [
+      'modulemanagement' => [
+        'name' => 'ModuleManagement',
+        'slug' => 'module.management',
+        'model' => '',
+        'description' => 'permission to enable/disable a module'
       ]
     ];
   }

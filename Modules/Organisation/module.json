@@ -8,7 +8,7 @@
     "providers": [
         "Modules\\Organisation\\Providers\\OrganisationServiceProvider"
     ],
-    "aliases": {},
+    "aliases": [],
     "files": [
         "start.php"
     ],

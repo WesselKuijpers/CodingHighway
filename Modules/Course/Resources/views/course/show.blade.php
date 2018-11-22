@@ -68,9 +68,11 @@
         </div>
         <ul>
           @foreach($lessons as $lesson)
-            <li><a
-                href="{{ route('lesson.show', ['course_id' => $course->id, 'id'=> $lesson->id]) }}">{{$lesson->title}}</a>
-            </li>
+            @if($startResult->first()->level->degree <= $lesson->level->degree)
+              <li><a
+                  href="{{ route('lesson.show', ['course_id' => $course->id, 'id'=> $lesson->id]) }}">{{$lesson->title}}</a>
+              </li>
+            @endif
           @endforeach
         </ul>
       @endif

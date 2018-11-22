@@ -16,5 +16,6 @@ require('./bootstrap');
 require('./components/Example');
 require('./components/ProgressBars');
 require('./components/RoleCheckBox');
+require('./components/StartExamQuestion');
 require('./components/StartExam');
 require('./colorCalculator');

@@ -5,11 +5,9 @@
 
 {{-- Placeholder for the page-specific content --}}
 @section('content')
-  @if($startResult->count() != 1)
+  @if($startResult->count() != 1 ){{--&& !Auth::user()->hasPermission('course.create'))
     {{--TODO render exam--}}
-    <div class="col-12 startexam">
-
-    </div>
+    <div class="col-12 startexam" data-course_id="{{ $course->id }}"/>
   @else
     <div class="col-12">
       <h1>{{$course->name}}</h1>

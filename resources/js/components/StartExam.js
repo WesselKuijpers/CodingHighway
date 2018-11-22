@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import StartExamQuestion from './StartExamQuestion'
-import {Redirect} from 'react-router-dom'
 
 export default class StartExam extends Component {
   constructor() {
@@ -13,7 +12,6 @@ export default class StartExam extends Component {
       answers: [],
       load: false,
       api: '',
-      redirect: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,7 +24,7 @@ export default class StartExam extends Component {
     this.state.answers[data.question] = data.id;
 
     console.log(this.state.answers);
-    $.each($("a[data-question='"+data.question+"']"), function (index, element) {
+    $.each($("a[data-question='" + data.question + "']"), function (index, element) {
       element.classList.add('disabled');
     })
 
@@ -36,17 +34,17 @@ export default class StartExam extends Component {
   submit(event) {
     let post = {course_id: this.state.course_id, answers: {}};
 
-    this.state.answers.map(function(item, index){
+    this.state.answers.map(function (item, index) {
       post['answers'][index] = item;
     })
 
     console.log(post);
-    axios.post('/api/result?api_token='+this.state.api,post)
-    .then(response => {
-      if(response.data == "ok!"){
-        this.setState({redirect: true});
-      }
-    }).catch(error => {
+    axios.post('/api/result?api_token=' + this.state.api, post)
+      .then(response => {
+        if (response.data == "ok!") {
+          window.location = "/course/" + this.state.course_id;
+        }
+      }).catch(error => {
       console.log("ERROR: " + error)
     })
   }
@@ -69,9 +67,6 @@ export default class StartExam extends Component {
   }
 
   render() {
-    if(this.state.redirect){
-      return <Redirect to="/course/{this.state.course_id}"/>
-    }
     if (!this.state.load) {
       return <div>loading</div>
     } else {

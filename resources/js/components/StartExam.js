@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import StartExamQuestion from './StartExamQuestion'
+import {Redirect} from 'react-router-dom'
 
 export default class StartExam extends Component {
   constructor() {
@@ -10,7 +11,9 @@ export default class StartExam extends Component {
       course_id: 0,
       questions: [],
       answers: [],
-      load: false
+      load: false,
+      api: '',
+      redirect: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -31,17 +34,28 @@ export default class StartExam extends Component {
   }
 
   submit(event) {
-    let post = {};
+    let post = {course_id: this.state.course_id, answers: {}};
 
     this.state.answers.map(function(item, index){
-      post[index] = item;
+      post['answers'][index] = item;
     })
 
     console.log(post);
+    axios.post('/api/result?api_token='+this.state.api,post)
+    .then(response => {
+      if(response.data == "ok!"){
+        this.setState({redirect: true});
+      }
+    }).catch(error => {
+      console.log("ERROR: " + error)
+    })
   }
 
   componentDidMount() {
-    this.setState({course_id: this.props.course_id});
+    this.setState({
+      course_id: this.props.course_id,
+      api: this.props.api
+    });
 
     axios.post('/api/startexam', {course_id: this.props.course_id})
       .then(response => {
@@ -55,6 +69,9 @@ export default class StartExam extends Component {
   }
 
   render() {
+    if(this.state.redirect){
+      return <Redirect to="/course/{this.state.course_id}"/>
+    }
     if (!this.state.load) {
       return <div>loading</div>
     } else {

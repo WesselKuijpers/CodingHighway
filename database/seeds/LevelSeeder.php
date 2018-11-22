@@ -23,5 +23,11 @@ class LevelSeeder extends Seeder
           $level->name = 'Expert';
           $level->save();
         endif;
+
+        if (Level::where('name', 'Gemiddeld')->count() != 1):
+          $level = new Level;
+          $level->name = 'Gemiddeld';
+          $level->save();
+        endif;
     }
 }

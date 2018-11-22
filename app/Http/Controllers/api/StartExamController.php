@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Models\course\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use ResultHelper;
+use App\Http\Requests\ResultRequest;
 
 class StartExamController extends Controller
 {
@@ -16,5 +18,11 @@ class StartExamController extends Controller
 
     return json_encode($questions);
 
+  }
+
+  public function result(Request $request)
+  {
+    $data = ResultHelper::result($request);
+    return 'ok!';
   }
 }

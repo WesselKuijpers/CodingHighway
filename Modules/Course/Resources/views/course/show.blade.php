@@ -5,9 +5,9 @@
 
 {{-- Placeholder for the page-specific content --}}
 @section('content')
-  @if($startResult->count() != 1 ){{--&& !Auth::user()->hasPermission('course.create'))
+  @if($startResult->count() != 1 && !Auth::user()->hasPermission('course.create'))
     {{--TODO render exam--}}
-    <div class="col-12 startexam" data-course_id="{{ $course->id }}"/>
+    <div class="col-12 startexam" data-course_id="{{ $course->id }}" data-api="{{Auth::user()->api_token}}"/>
   @else
     <div class="col-12">
       <h1>{{$course->name}}</h1>

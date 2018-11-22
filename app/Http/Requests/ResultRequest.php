@@ -13,7 +13,7 @@ class ResultRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class ResultRequest extends FormRequest
     public function rules()
     {
         return [
-            '*' => 'required|numeric|exists:start_exam_answers, id'
+            '*' => 'required|numeric|exists:start_exam_answers,id'
         ];
     }
 }

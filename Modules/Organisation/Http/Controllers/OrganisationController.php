@@ -48,8 +48,10 @@ class OrganisationController extends Controller
       $organisation = Organisation::find($data['organisation_id']);
       $organisation->active = 1;
 
-      $user = User::find($organisation->requester);
-      $user->attachRole(Role::where('slug', 'admin')->first());
+      if(!empty($data['requester'])):
+        $user = User::find($organisation->requester);
+        $user->attachRole(Role::where('slug', 'admin')->first());
+      endif;
 
       if ($organisation->save()):
         return redirect()->route('organisation');

@@ -66,6 +66,42 @@
               <a href="{{ route('organisation.create') }}" class="nav-link">Organisatie aanvraag</a>
             </li>
           @endif
+          @if(Auth::user()->hasPermission('module.management') || Auth::user()->hasPermission('role.show') || Auth::user()->hasPermission('roleuser.management'))
+            <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                Management <span class="caret"></span>
+              </a>
+  
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                @if(Auth::user()->hasPermission('role.show'))
+                  <a class="dropdown-item" href="{{ route('role') }}" >
+                    Rollen
+                  </a>
+                @endif
+                @if(Auth::user()->hasPermission('roleuser.management'))
+                  <a class="dropdown-item" href="{{ route('RoleUser') }}">
+                    Gebruikers
+                  </a>
+                @endif
+                @if(Auth::user()->hasPermission('module.management'))
+                  <a class="dropdown-item" href="{{ route('Module') }}">
+                    Modules
+                  </a>
+                @endif
+                @if(Auth::user()->hasPermission('organisation.activate'))
+                  <a class="dropdown-item" href="{{ route('organisation') }}">
+                    Organisaties
+                  </a>
+                @endif
+                @if(Auth::user()->hasPermission('course.create'))
+                  <a class="dropdown-item" href="{{ route('course.create') }}">
+                    Cursus aanmaken
+                  </a>
+                @endif
+              </div>
+            </li>
+          @endif
         @endguest
       </ul>
     </div>

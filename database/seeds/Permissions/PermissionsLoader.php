@@ -154,6 +154,12 @@ class PermissionsLoader
         'slug' => 'sa.create',
         'model' => '',
         'description' => 'Access to be able of enabling / disabling the sa role'
+      ],
+      'activate' => [
+        'name' => 'OrganisationActivate',
+        'slug' => 'organisation.activate',
+        'model' => '',
+        'description' => 'Permission to activate an organisation'
       ]
     ];
   }

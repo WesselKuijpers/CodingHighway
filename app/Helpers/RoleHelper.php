@@ -24,7 +24,9 @@ class RoleHelper
       $role->level = $data['level'];
 
       if ($role->save()):
-        $role->syncPermissions($data['permissions']);
+        if(!empty($data['permissions'])):
+          $role->syncPermissions($data['permissions']);
+        endif;
         return $role;
       else:
         return redirect()->back()->with('error', FlashMessage::where('name', 'role.create.error')->first()->message);
@@ -52,7 +54,9 @@ class RoleHelper
       $role->level = $data['level'];
 
       if ($role->save()):
-        $role->syncPermissions($data['permissions']);
+        if(!empty($data['permissions'])):
+          $role->syncPermissions($data['permissions']);
+        endif;
         return $role;
       else:
         return redirect()->back()->with('error', FlashMessage::where('name', 'role.update.error')->first()->message);

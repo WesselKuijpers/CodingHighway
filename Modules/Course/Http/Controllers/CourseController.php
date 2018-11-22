@@ -6,7 +6,7 @@ use App\Http\Requests\CourseRequest;
 use App\Models\course\Course;
 use App\Models\course\Exercise;
 use App\Models\course\Lesson;
-use App\models\course\Result;
+use App\Models\course\Result;
 use App\Models\general\FlashMessage;
 use CourseHelper;
 use Illuminate\Http\RedirectResponse;

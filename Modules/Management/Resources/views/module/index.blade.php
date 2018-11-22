@@ -6,25 +6,29 @@
       <thead>
       <tr>
         <th>Module name</th>
-        <th>Live / uit</th>
+        <th>Status</th>
+        <th>Actie:</th>
       </tr>
       </thead>
       <tbody>
       @foreach($modules as $module)
-        <tr>
-          <td>{{ $module->name }}</td>
-          @if($module->enabled())
-            <td>Live</td>
-          @else
-            <td>Uit</td>
-          @endif
-          <td>
-            <a href="{{ route('ModuleAan', ['module' => $module->name]) }}" class="btn btn-success">Zet aan</a>
-          </td>
-          <td>
-            <a href="{{ route('ModuleUit', ['module' => $module->name]) }}" class="btn btn-danger">Zet uit</a>
-          </td>
-        </tr>
+        @if($module->name != "Management")
+          <tr>
+            <td>{{ $module->name }}</td>
+            @if($module->enabled())
+              <td>Aan</td>
+            @else
+              <td>Uit</td>
+            @endif
+            <td>
+              @if($module->enabled())
+                <a href="{{ route('ModuleUit', ['module' => $module->name]) }}" class="btn btn-danger">Zet uit</a>
+              @else
+                <a href="{{ route('ModuleAan', ['module' => $module->name]) }}" class="btn btn-success">Zet aan</a>
+              @endif
+            </td>
+          </tr>
+        @endif
       @endforeach
       </tbody>
     </table>

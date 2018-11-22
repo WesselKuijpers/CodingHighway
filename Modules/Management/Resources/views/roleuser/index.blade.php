@@ -7,7 +7,6 @@
         <thead>
         <tr>
           <th>Gebruiker</th>
-          <th>Rollen:</th>
           @foreach($roles as $role)
             <th>{{ $role->name }}</th>
           @endforeach
@@ -17,7 +16,6 @@
         @foreach($users as $user)
           <tr>
             <td>{{ $user->getFullName() }}</td>
-            <td />
             @foreach($roles as $role)
               <td
                 class="rcb"

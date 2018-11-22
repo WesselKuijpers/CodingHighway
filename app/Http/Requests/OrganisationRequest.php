@@ -53,7 +53,7 @@ class OrganisationRequest extends FormRequest
           'link' => 'nullable|url',
           'media' => 'nullable|file',
           'requester' => 'required|numeric|exists:users,id',
-          'phone' => 'required|string'
+          'phone' => 'required|string|gte:10'
         ];
         break;
       case "PUT":
@@ -70,7 +70,7 @@ class OrganisationRequest extends FormRequest
           'fontcolor' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
           'link' => 'required|string',
           'media' => 'nullable|file',
-          'phone' => 'required|string'
+          'phone' => 'required|string|gte:10'
         ];
         break;
       case "DELETE":

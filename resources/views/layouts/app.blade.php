@@ -18,6 +18,8 @@
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
   <!-- Styles -->
+  <link rel="stylesheet" href="{{route('CourseColors')}}">
+  <link rel="stylesheet" href="{{route('CalculateColors')}}">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   @if (Auth::user())
     @if(Auth::user()->organisation())

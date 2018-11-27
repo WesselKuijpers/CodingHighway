@@ -73,7 +73,7 @@ export default class StartExam extends Component {
       return (
         <div>
           {this.state.questions.map((item, index) => {
-            return <StartExamQuestion question={item} clicklistener={this.handleChange}/>
+            return <StartExamQuestion question={item} clicklistener={this.handleChange} key={item.id}/>
           })}
 
           <button className="btn btn-primary btn-organisation" onClick={this.submit}>Verzenden</button>

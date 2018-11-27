@@ -37,14 +37,16 @@ class ResultHelper {
         $result->level_id = $level->id;
         $result->course_id = $request->course_id;
 
-        $lowerLevel = Level::where('degree', '<', $level->degree);
+        $lowerLevel = Level::where('degree', '<', $level->degree)->get();
 
-        foreach($lowerLevel->lessons as $lesson):
-            $progress = new UserProgress;
-            $progress->user_id = Auth::id();
-            $progress->course_id = $lesson->course_id;
-            $progress->lesson_id = $lesson->id;
-            $progress->save();
+        foreach($lowerLevel as $level):
+            foreach($level->lessons()->where('course_id', $request->course_id)->get() as $lesson):
+                $progress = new UserProgress;
+                $progress->user_id = Auth::id();
+                $progress->course_id = $lesson->course_id;
+                $progress->lesson_id = $lesson->id;
+                $progress->save();
+            endforeach;
         endforeach;
         
         if($result->save()):

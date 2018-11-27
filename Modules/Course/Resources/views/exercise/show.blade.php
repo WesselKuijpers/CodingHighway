@@ -13,12 +13,10 @@
   <p>Dit is @if($exercise->is_final) een @else geen @endif eindopdracht</p>
   <hr>
   <p>Media:</p>
-  @if($exercise->media_content)
-    {{$exercise->media_content}}
-    @else
-      Geen media
-    @endif
-  <p>{{$exercise->content}}</p>
+  @foreach($exercise->media as $media)
+    <a href="{{ $media->content }}" class="btn btn-primary btn-organisation" target="_blank">File {{ $media->id }}</a>
+  @endforeach
+  <p>{!! $exercise->content !!}</p>
   <p>
     <form action="{{$solution != null ? route('solution.update', ['id' => $solution->id]) : route('solution.create')}}" method="POST">
       @csrf

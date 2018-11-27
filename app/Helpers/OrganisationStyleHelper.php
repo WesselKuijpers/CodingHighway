@@ -3,21 +3,28 @@
 class OrganisationStyleHelper
 {
   public static function load($color, $fontcolor)
+
   {
+    $color = str_replace("#", "", $color);
+    $color = str_split($color, 2);
+
+    $r = hexdec($color[0]);
+    $g = hexdec($color[1]);
+    $b = hexdec($color[2]);
     return '
     .btn-organisation, .btn-organisation:hover{
-      color: ' . $fontcolor . ' !important;
-      background-color: ' . $color . ' !important;
-      border: 1px solid '.$color.' !important;
+      color: hsl(0, 0%, calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)) !important;
+      background: rgb(' . $r . $g . $b . ');
+      border: 1px solid ' . $color . ' !important;
     }
     .nav-organisation{
       background-color: ' . $color . ' !important;
     }
     .nav-link{
-      color: '.$fontcolor.' !important;
+      color: ' . $fontcolor . ' !important;
     }
     .organisation-text{
-      color: '.$fontcolor.' !important;
+      color: ' . $fontcolor . ' !important;
     }
     ';
   }

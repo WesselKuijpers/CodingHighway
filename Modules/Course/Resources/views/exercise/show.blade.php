@@ -22,12 +22,12 @@
       @csrf
       @if($solution != null)
         @method('PUT')
-        <input type="hidden" name="id" value={{$solution->id}}> 
+        <input type="hidden" name="id" value={{$solution->id}}>
       @endif
-      <input type="hidden" name="exercise_id" value={{$exercise->id}}>
+      <input type="hidden" name="exercise_id" value={!! $exercise->id}}>
       <div class="row">
         <div class="col-12">
-          <textarea name="content" placeholder="Plaats jouw oplossing hier" class="form-control" rows="10">@if($solution != null){{$solution->content}}@endif</textarea>
+          <textarea name="content" placeholder="Plaats jouw oplossing hier" class="form-control" rows="10">@if($solution != null){{$solution->content !!}@endif</textarea>
         </div>
       </div>
       <br>

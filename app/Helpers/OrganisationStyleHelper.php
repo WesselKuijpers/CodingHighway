@@ -15,10 +15,10 @@ class OrganisationStyleHelper
     .btn-organisation, .btn-organisation:hover{
       color: hsl(0, 0%, calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)) !important;
       background: rgb(' . $r . $g . $b . ');
-      border: 1px solid ' . $color . ' !important;
+      border: 1px solid ' . $r . $g . $b . ' !important;
     }
     .nav-organisation{
-      background-color: ' . $color . ' !important;
+      background: rgb(' . $r . $g . $b . ');
     }
     .nav-link{
       color: ' . $fontcolor . ' !important;

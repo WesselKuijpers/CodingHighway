@@ -30,7 +30,18 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.5/css/rowReorder.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+  <link rel="stylesheet" href="{{asset('css/prism.css')}}">
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=gj9mlkj3395o6q4s8tyd5vpjkq1benlr6mcd6ze377vsvqfz"></script>
+  <script>
+      tinymce.init({
+          selector: '.textarea',
+          plugins: ["codesample", "preview"],
+          height: 500,
+
+      });
+  </script>
 </head>
 <body>
 @include('layouts.error')
@@ -54,7 +65,7 @@
     $(".alert").alert('close');
   });
 </script>
-@yield('scripts')
+<script src="{{asset('js/prism.js')}}"></script>
 <!-- Including footer partial -->
 @include('layouts.footer')
 </body>

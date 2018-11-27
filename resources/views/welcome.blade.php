@@ -9,7 +9,9 @@
         <div class="main-text-block col-11 ml-3" style="background-color: #FAC275">
           <h5 class="text-center font-weight-bold pt-3">Programmeren voor iedereen!</h5>
           <p class="pt-2">
-            Programmeren voor iedereen. Wie wil er allemaal leren programmeren? Wie kan er allemaal leren programmeren? Nogmaals programmeren voor iedereen. Elke student/leerling die wil leren hoe je iets voor elkaar krijgt met programmeercode moet hier zijn.  
+            Programmeren voor iedereen. Wie wil er allemaal leren programmeren? Wie kan er allemaal leren programmeren?
+            Nogmaals programmeren voor iedereen. Elke student/leerling die wil leren hoe je iets voor elkaar krijgt met
+            programmeercode moet hier zijn.
           </p>
         </div>
       </div>
@@ -18,6 +20,7 @@
         <div class="col-11 ml-3">
           <div class="row mt-3">
 
+            @if(Module::find('Course')->enabled())
             <div class="side-block col-6" style="background-color: #009BDC">
               <h5 class="text-center font-weight-bold pt-3">Aan de slag met de cursussen</h5>
               <p class="pt-2">
@@ -25,15 +28,16 @@
                 onze cursus pagina!
               </p>
             </div>
-
-            <div class="side-block col-6 ml-auto" style="background-color: #009BDC">
-              <h5 class="text-center font-weight-bold pt-3">Stel een vraag</h5>
-              <p class="pt-2">
-                Heb je een vraag over één van de opdrachten of lessen? Stel deze dan gerust <a href="/forum"
-                                                                                               class="text-white">hier</a>.
-              </p>
-            </div>
-
+            @endif
+            @if(Module::find('Forum')->enabled())
+              <div class="side-block col-6 ml-auto" style="background-color: #009BDC">
+                <h5 class="text-center font-weight-bold pt-3">Stel een vraag</h5>
+                <p class="pt-2">
+                  Heb je een vraag over één van de opdrachten of lessen? Stel deze dan gerust
+                  <a href="/forum" class="text-white">hier</a>.
+                </p>
+              </div>
+            @endif
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@
         <a href="{{ route('startExam.show', ['course_id' => $course->id, 'id' => $course->startExam->id]) }}" class="btn btn-primary btn-organisation">Bekijk de starttoets</a>
       @endif
     @endpermission
-    <p>{{$course->description}}</p>
+    <p>{!! $course->description !!}</p>
     @if(count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
       <form action="{{ route('progress.reset') }}" method="POST">
         @csrf

@@ -167,7 +167,7 @@ class LessonController extends Controller
           return redirect()->route('course.show', ['id' => $id]);
         else:
           DB::rollback();
-          return back()->with('error', 'Er is iets mis gegaan met het verzenden!')->withInputs();
+          return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
         endif;
       endif;
     }

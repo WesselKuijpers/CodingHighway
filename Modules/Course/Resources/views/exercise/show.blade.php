@@ -18,7 +18,7 @@
     @else
       Geen media
     @endif
-  <p>{{$exercise->content}}</p>
+  <p>{!! $exercise->content !!}</p>
   <p>
     <form action="{{ route('progress.create') }}" method="POST">
       @csrf

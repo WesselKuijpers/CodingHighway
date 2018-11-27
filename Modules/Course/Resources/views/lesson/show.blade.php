@@ -10,7 +10,7 @@
   @if($lesson->level != null)
     <p><b>Moeilijkheid:</b> {{$lesson->level->name}}</p>
   @endif
-  <p>{{$lesson->content}}</p>
+  <p>{!! $lesson->content !!}</p>
     <p>
       <form action="{{ route('progress.create') }}" method="POST">
         @csrf

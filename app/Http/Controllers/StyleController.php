@@ -86,7 +86,7 @@ class StyleController extends Controller
       $styles .= "border-color: rgba(calc($r - 50), calc($g - 50), calc(v$b - 50), var(--border-alpha)) !important; \n";
       $styles .= "} \n";
     }
-    
+
     // Returning the variable as css
     return Response::make($styles, 200)->header("Content-Type", "text/css");
   }

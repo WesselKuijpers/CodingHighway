@@ -4,6 +4,8 @@ use App\Models\course\Result;
 use App\Models\course\StartExamQuestion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\UserProgress;
+use App\Models\course\Lesson;
 
 
 class ResultHelper {

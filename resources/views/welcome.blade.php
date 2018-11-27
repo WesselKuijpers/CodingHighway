@@ -3,20 +3,13 @@
 @section('content')
   <div class="container">
     <div class="flex-center position-ref full-height">
-      <h2 class="text-center pt-1 pb-3">BootCamp</h2>
+      <h2 class="text-center pt-1 pb-3">{{env('APP_NAME')}}</h2>
 
       <div class="row">
         <div class="main-text-block col-11 ml-3" style="background-color: #FAC275">
-          <h5 class="text-center font-weight-bold pt-3">BootCamp voor iedereen!</h5>
+          <h5 class="text-center font-weight-bold pt-3">Programmeren voor iedereen!</h5>
           <p class="pt-2">
-            Bacon ipsum dolor amet shank buffalo beef spare ribs ham frankfurter bresaola flank alcatra beef ribs corned
-            beef.
-            Cupim ground round porchetta meatloaf corned beef, ball tip filet mignon ham hock flank frankfurter
-            burgdoggen shankle.
-            Tri-tip ribeye porchetta, drumstick shank ground round jerky ball tip pork loin pancetta strip steak kevin.
-            Meatloaf short ribs pancetta sausage swine, ham pork chop t-bone. Drumstick turducken buffalo picanha pork
-            loin brisket.
-            Frankfurter meatball tongue pork loin.
+            Programmeren voor iedereen. Wie wil er allemaal leren programmeren? Wie kan er allemaal leren programmeren? Nogmaals programmeren voor iedereen. Elke student/leerling die wil leren hoe je iets voor elkaar krijgt met programmeercode moet hier zijn.  
           </p>
         </div>
       </div>

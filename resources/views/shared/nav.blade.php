@@ -5,9 +5,8 @@
       <img src="@if(Auth::user() && !empty(Auth::user()->organisation()->media)) {{ Auth::user()->organisation()->media->content }} @endif" class="navbar-brand nav-logo pl-3">
     </a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-      <span class="navbar-toggler-icon"></span>
+    <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler btn-organisation">
+      <i class="fa fa-bars"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">

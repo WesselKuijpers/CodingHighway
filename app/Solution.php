@@ -20,4 +20,9 @@ class Solution extends Model
     {
         return $this->belongsToMany('App\Models\general\Media', 'solution_media');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

@@ -13,6 +13,8 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use App\Review;
+use App\Solution;
 
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 use Laravel\Scout\Searchable;
@@ -65,6 +67,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
     return $this->belongsToMany(Organisation::class, 'licenses')->first();
   }
 
+  public function organisations()
+  {
+    return $this->belongsToMany(Organisation::class, 'licenses');
+  }
+
   public function questions()
   {
     return $this->hasMany(Question::class);
@@ -92,6 +99,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
   public function solutions()
   {
-      return $this->hasMany('App\Solutions');
+      return $this->hasMany(Solution::class);
+  }
+
+  public function reviews()
+  {
+      return $this->hasMany(Review::class);
   }
 }

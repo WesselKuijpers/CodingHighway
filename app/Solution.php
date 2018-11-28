@@ -15,4 +15,9 @@ class Solution extends Model
     {
         return $this->belongsTo('App\Models\course\Exercise');
     }
+
+    public function media()
+    {
+        return $this->belongsToMany('App\Models\general\Media', 'solution_media');
+    }
 }

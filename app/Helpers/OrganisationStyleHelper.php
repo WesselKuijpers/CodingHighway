@@ -21,7 +21,7 @@ class OrganisationStyleHelper
 //    $styles .= "color: hsl(0, 0%, calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)); \n";
     return '
 .btn-organisation, .btn-organisation:hover{
-      background: rgb(' . $r . ',' . $g . ',' . $b . ');
+      background: rgb(' . $r . ',' . $g . ',' . $b . ') !important;
       --r: calc(' . $r . ' * 0.2126);
       --g: calc(' . $g . ' * 0.7152);
       --b: calc(' . $b . ' * 0.0722);

@@ -28,7 +28,7 @@
           </li>
         @else
           <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+            <a id="navbarDropdown" class="nav-link dropdown-toggle organisation-link" href="#" role="button"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->getFullname() }} <span class="caret"></span>
             </a>
@@ -49,26 +49,26 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/home') }}" class="nav-link">Dashboard</a>
+            <a href="{{ url('/home') }}" class="nav-link organisation-link">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/course') }}" class="nav-link">Cursussen</a>
+            <a href="{{ url('/course') }}" class="nav-link organisation-link">Cursussen</a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/forum') }}" class="nav-link">Forum</a>
+            <a href="{{ url('/forum') }}" class="nav-link organisation-link">Forum</a>
           </li>
           @if(Auth::user()->hasRole('admin') && Auth::user()->organisation() != null)
             <li class="nav-item">
-              <a href="{{ route('organisation.show', ['id' => Auth::user()->organisation()->id]) }}" class="nav-link">{{ Auth::user()->organisation()->name }}</a>
+              <a href="{{ route('organisation.show', ['id' => Auth::user()->organisation()->id]) }}" class="nav-link organisation-link">{{ Auth::user()->organisation()->name }}</a>
             </li>
           @elseif(Auth::user()->organisation() == null)
             <li>
-              <a href="{{ route('organisation.create') }}" class="nav-link">Organisatie aanvraag</a>
+              <a href="{{ route('organisation.create') }}" class="nav-link organisation-link">Organisatie aanvraag</a>
             </li>
           @endif
           @if(Auth::user()->hasPermission('module.management') || Auth::user()->hasPermission('role.show') || Auth::user()->hasPermission('roleuser.management'))
             <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+              <a id="navbarDropdown" class="nav-link dropdown-toggle organisation-link" href="#" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Management <span class="caret"></span>
               </a>

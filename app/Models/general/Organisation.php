@@ -32,7 +32,7 @@ class Organisation extends Model
 
   public function CompileTheme()
   {
-    $output = OrganisationStyleHelper::load($this->color, $this->fontcolor);
+    $output = OrganisationStyleHelper::load($this->color);
     Storage::disk('css')->put("organisations/organisation" . $this->id . ".css", $output);
   }
 }

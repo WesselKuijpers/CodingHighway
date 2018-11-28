@@ -46,7 +46,7 @@ class CompileOrganisationThemes extends Command
     $bar = $this->output->createProgressBar(count($organisations));
 
     foreach ($organisations as $organisation) {
-      $output = OrganisationStyleHelper::load($organisation->color, $organisation->fontcolor);
+      $output = OrganisationStyleHelper::load($organisation->color);
       Storage::disk('css')->put("organisations/organisation" . $organisation->id . ".css", $output);
 
       $bar->advance();

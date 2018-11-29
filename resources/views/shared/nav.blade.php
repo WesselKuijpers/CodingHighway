@@ -60,7 +60,7 @@
             <li class="nav-item">
               <a href="{{ route('organisation.show', ['id' => Auth::user()->organisation()->id]) }}" class="nav-link organisation-link">{{ Auth::user()->organisation()->name }}</a>
             </li>
-          @elseif(Auth::user()->organisation() == null)
+          @elseif(\App\Models\general\Organisation::where('requester', Auth::id())->count() != 1)
             <li>
               <a href="{{ route('organisation.create') }}" class="nav-link organisation-link">Organisatie aanvraag</a>
             </li>

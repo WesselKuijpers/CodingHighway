@@ -6,7 +6,7 @@
       <h2 class="text-center pt-1 pb-3">{{env('APP_NAME')}}</h2>
 
       <div class="row">
-        <div class="main-text-block col-11 ml-3" style="background-color: #FAC275">
+        <div class="main-text-block col-12 ml-3" style="background-color: #FAC275">
           <h5 class="text-center font-weight-bold pt-3">Programmeren voor iedereen!</h5>
           <p class="pt-2">
             Programmeren voor iedereen. Wie wil er allemaal leren programmeren? Wie kan er allemaal leren programmeren?
@@ -21,7 +21,7 @@
           <div class="row mt-3">
 
             @if(Module::find('Course')->enabled())
-            <div class="side-block col-6" style="background-color: #009BDC">
+            <div class="side-block col-6">
               <h5 class="text-center font-weight-bold pt-3">Aan de slag met de cursussen</h5>
               <p class="pt-2">
                 Kun je niet wachten om te beginnen met een cursus? <a href="/course" class="text-white">Bezoek</a> dan
@@ -29,15 +29,15 @@
               </p>
             </div>
             @endif
-            @if(Module::find('Forum')->enabled())
-              <div class="side-block col-6 ml-auto" style="background-color: #009BDC">
+            {{--@if(Module::find('Forum')->enabled())--}}
+              <div class="side-block col-6 ml-auto">
                 <h5 class="text-center font-weight-bold pt-3">Stel een vraag</h5>
                 <p class="pt-2">
                   Heb je een vraag over één van de opdrachten of lessen? Stel deze dan gerust
                   <a href="/forum" class="text-white">hier</a>.
                 </p>
               </div>
-            @endif
+              {{--@endif--}}
           </div>
         </div>
       </div>

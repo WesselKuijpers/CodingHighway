@@ -11,14 +11,6 @@ class OrganisationStyleHelper
     $r = hexdec($color[0]);
     $g = hexdec($color[1]);
     $b = hexdec($color[2]);
-
-//    $styles .= "background: " . "rgb($r, -$g, $b); \n";
-//    $styles .= "--r: calc($r * 0.2126); \n";
-//    $styles .= "--g: calc($g * 0.7152); \n";
-//    $styles .= "--b: calc($b * 0.0722); \n";
-//    $styles .= "--sum: calc(var(--r) + var(--g) + var(--b)); \n";
-//    $styles .= "--perceived-lightness: calc(var(--sum) / 255); \n";
-//    $styles .= "color: hsl(0, 0%, calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)); \n";
     return '
 .btn-organisation, .btn-organisation:hover{
       background: rgb(' . $r . ',' . $g . ',' . $b . ') !important;

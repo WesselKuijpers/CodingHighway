@@ -58653,7 +58653,7 @@ var StartExam = function (_Component) {
           'div',
           null,
           this.state.questions.map(function (item, index) {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__StartExamQuestion__["default"], { question: item, clicklistener: _this4.handleChange });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__StartExamQuestion__["default"], { question: item, clicklistener: _this4.handleChange, key: item.id });
           }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'button',

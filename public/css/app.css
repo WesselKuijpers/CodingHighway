@@ -10508,6 +10508,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: rgba(200, 200, 200, 0.4);
 }
 
 .footer {
@@ -10537,6 +10538,11 @@ body {
   -ms-flex: 0 0 46.66666667%;
   flex: 1 0 46.666667%;
   max-width: 46.666667%;
+  top: -75px;
+  background-color: white;
+  margin: auto;
+  -moz-box-shadow: 0 -5px 6px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 .nav-logo {
@@ -10559,6 +10565,7 @@ body {
 
 .page-header {
   font-family: 'Galdeano', sans-serif;
+  margin-bottom: 30px;
   font-size: 35px;
   padding-top: 30px;
 }
@@ -10667,9 +10674,6 @@ a:hover.no-link {
 }
 
 :root {
-  --organisationRed: #000000;
-  --organisationGreen: #000000;
-  --organisationBlue: #000000;
   --threshold: 0.6;
   --border-threshold: 0.8;
 }

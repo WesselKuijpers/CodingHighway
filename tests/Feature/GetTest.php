@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\User;
 use jeremykenedy\LaravelRoles\Models\Permission;
 use jeremykenedy\LaravelRoles\Models\Role;
+use App\Models\general\License;
 
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
@@ -46,6 +47,9 @@ class GetTest extends TestCase
     $user->detachAllRoles();
     $user->attachRole($sa);
     $user->attachPermission($activate);
+    $license = License::where('user_id', null)->first();
+    $license->user_id = $user->id;
+    $license->save();
 
     $routes = \Route::getRoutes()->getRoutesByMethod()["GET"];
 
@@ -61,7 +65,7 @@ class GetTest extends TestCase
       endif;
       if (strpos($route->uri, '{') === false):
         $response = $this->actingAs($user)->get($route->uri);
-        if ($response->getStatusCode() == 302):
+        if ($response->getStatusCode() == 500):
           dd($response);
         endif;
         $response->assertSuccessful();

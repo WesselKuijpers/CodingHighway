@@ -16,6 +16,7 @@ class PermissionsAndRoleSeeder extends Seeder
 
     $rpl = new RolePermissionsLoader();
     $rpl->User();
+    $rpl->Teacher();
     $rpl->Admin();
     $rpl->SystemAdmin();
   }

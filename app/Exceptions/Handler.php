@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
   public function render($request, Exception $exception)
   {
     if ($exception instanceof \jeremykenedy\LaravelRoles\Exceptions\PermissionDeniedException):
-      return redirect()->back()->with('error', 'Je heb geen rechten om deze pagina te bekijken');
+      return redirect()->route('home')->with('error', 'Je heb geen rechten om deze pagina te bekijken');
     endif;
     return parent::render($request, $exception);
   }

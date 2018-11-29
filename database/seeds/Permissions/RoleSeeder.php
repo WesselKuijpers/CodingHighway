@@ -16,7 +16,7 @@ class RoleSeeder extends Seeder
       Role::create([
         'name' => 'System Administrator',
         'slug' => 'sa',
-        'level' => 3
+        'level' => 4
       ]);
     endif;
 
@@ -24,6 +24,14 @@ class RoleSeeder extends Seeder
       Role::create([
         'name' => 'Administrator',
         'slug' => 'admin',
+        'level' => 3
+      ]);
+    endif;
+    
+    if (Role::where('slug', 'teacher')->count() != 1):
+      Role::create([
+        'name' => 'Docent',
+        'slug' => 'teacher',
         'level' => 2
       ]);
     endif;

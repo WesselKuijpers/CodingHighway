@@ -265,4 +265,34 @@ class PermissionsLoader
       ]
     ];
   }
+  
+  public static function TeacherPermissions()
+  {
+    return [
+      'teacherCheck' => [
+        'name' => 'teacherCheck',
+        'slug' => 'teacher.check',
+        'model' => '',
+        'description' => 'permission to check a student\'s exercises'
+      ],
+      'teacherCheckCreate' => [
+        'name' => 'teacherCheckCreate',
+        'slug' => 'teacher.check.create',
+        'model' => '',
+        'description' => 'permission to check a student\'s exercises, and give a comment'
+      ],
+      'teacherCheckUpdate' => [
+        'name' => 'teacherCheckUpdate',
+        'slug' => 'teacher.check.update',
+        'model' => '',
+        'description' => 'permission to check a student\'s exercises, and update a given comment'
+      ],
+      'teacherCheckDelete' => [
+        'name' => 'teacherCheckDelete',
+        'slug' => 'teacher.check.delete',
+        'model' => '',
+        'description' => 'permission to check a student\'s exercises, and delete a given comment'
+      ],
+    ];
+  }
 }

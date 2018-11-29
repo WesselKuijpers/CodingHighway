@@ -20,13 +20,13 @@ class DatabaseSeeder extends Seeder
         $this->call(LicensesSeeder::class);
         $this->call(OrganisationsSeeder::class);
 
-        $this->call(LicensesSeeder::class);
         $this->call(LevelSeeder::class);
         $this->call(CourseSeeder::class);
         $this->call(TestLessonSeeder::class);
         $this->call(TestExerciseSeeder::class);
         $this->call(TestUserSeeder::class);
         $this->call(TestUserProgressSeeder::class);
+        $this->call(UserLicensesSeeder::class);
         $this->call(StartExamSeeder::class);
         $this->call(SolutionSeeder::class);
         Schema::enableForeignKeyConstraints();
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LicensesSeeder::class);
         $this->call(OrganisationsSeeder::class);
         $this->call(UserTableSeeder::class);
-        $this->call(UserOrganisationLicensesSeeder::class);
+        $this->call(UserLicensesSeeder::class);
 
         Schema::disableForeignKeyConstraints();
         $this->call(LevelSeeder::class);

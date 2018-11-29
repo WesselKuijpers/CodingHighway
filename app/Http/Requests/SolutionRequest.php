@@ -29,6 +29,7 @@ class SolutionRequest extends FormRequest
             $rules = [
               'exercise_id' => 'required|numeric',
               'content' => 'required|string',
+              'media.*' => 'nullable|file'
             ];
             break;
           case "PUT":
@@ -36,6 +37,7 @@ class SolutionRequest extends FormRequest
               'id' => 'required|numeric',
               'exercise_id' => 'required|numeric',
               'content' => 'required|string',
+              'media.*' => 'nullable|file'
             ];
             break;
           case "DELETE":

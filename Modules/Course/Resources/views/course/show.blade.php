@@ -106,8 +106,11 @@
         </div>
         <ul>
           @foreach($exercises as $exercise)
-            <li><a
-                href="{{ route('exercise.show', ['course_id' => $course->id, 'id'=> $exercise->id]) }}">{{$exercise->title}}</a>
+            <li>
+              <a href="{{ route('exercise.show', ['course_id' => $course->id, 'id'=> $exercise->id]) }}">{{$exercise->title}}</a>
+              @if($exercise->solutions->count() != 0 && $exercise->solutions->where('user_id', Auth::id())->first()->reviews->count() > 0)
+                <span class="fa fa-check"></span>
+              @endif
             </li>
           @endforeach
         </ul>

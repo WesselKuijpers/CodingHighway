@@ -36,9 +36,9 @@ class LicenseActivationController extends Controller
 
       Auth::user()->detachPermission(Permission::where('slug', 'user.activate')->first());
 
-      return redirect()->route('home')->with('msg', FlashMessage::where('name', 'license.activated')->first()->message);
+      return redirect()->route('home')->with('msg', FlashMessageLoad('license.activated'));
     else:
-      return redirect()->back()->with('error', FlashMessage::where('name', 'license.invalid')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('license.invalid'));
     endif;
 
 

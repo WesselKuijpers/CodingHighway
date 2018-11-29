@@ -16,6 +16,7 @@ use LessonHelper;
 use OrderHelper;
 use OrderUpdateHelper;
 
+//TODO Changed with to flashmessages
 class LessonController extends Controller
 {
   public function __construct()
@@ -91,7 +92,7 @@ class LessonController extends Controller
           endif;
         endif;
 
-        return redirect()->route('course.show', ['id' => $id])->with('msg', FlashMessage::where('name', 'lesson.created')->first()->message);;
+        return redirect()->route('course.show', ['id' => $id])->with('msg', FlashMessageLoad('lesson.created'));
       endif;
     }
   }

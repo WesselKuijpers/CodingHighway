@@ -52,11 +52,11 @@ class LessonHelper
 
         return $lesson;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'lesson.create.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('lesson.create.error'));
       endif;
     }
     catch (\Illuminate\Database\QueryException $queryException){
-      return redirect()->back()->with('error', FlashMessage::where('name', 'lesson.create.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('lesson.create.error'));
     }
   }
 
@@ -101,11 +101,11 @@ class LessonHelper
 
         return $lesson;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'lesson.create.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('lesson.update.error'));
       endif;
     }
     catch (\Illuminate\Database\QueryException $queryException){
-      return redirect()->back()->with('error', FlashMessage::where('name', 'lesson.create.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('lesson.update.error'));
     }
   }
 }

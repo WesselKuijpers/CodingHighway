@@ -26,7 +26,7 @@ class LevelHelper
     if ($level->save()):
       return $level;
     else:
-      return Redirect()->back()->with('error', FlashMessage::where('name', 'level.create.error')->first()->message);
+      return Redirect()->back()->with('error', FlashMessageLoad('level.create.error'));
     endif;
   }
 
@@ -46,7 +46,7 @@ class LevelHelper
     if ($level->save()):
       return $level;
     else:
-      return Redirect()->back()->with('error', FlashMessage::where('name', 'level.update.error')->first()->message);
+      return Redirect()->back()->with('error', FlashMessageLoad('level.create.error'));
     endif;
   }
 }

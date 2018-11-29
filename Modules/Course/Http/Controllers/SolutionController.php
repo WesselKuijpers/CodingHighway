@@ -10,6 +10,7 @@ use App\Http\Requests\SolutionRequest;
 use App\Models\course\Exercise;
 use App\Solution;
 
+//TODO Change to FlashMessages
 class SolutionController extends Controller
 {
     /**

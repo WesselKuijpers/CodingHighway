@@ -71,6 +71,20 @@
     </div>
   </p>
   <hr>
+  @if($solution != null && $solution->reviews->count() != null)
+    <div class="row">
+      <div class="col-12">
+      <h3>Bestaande reviews:</h3>
+      @foreach($solution->reviews as $review)
+        <hr>
+        <p><strong>Geplaatst door: </strong>{{$review->user->getFullname()}}</p>
+        {!!$review->content!!}
+        <p><strong>Beoordeling: </strong>{{($review->rating == 1) ? "Positief" : "Negatief"}}</p>
+      @endforeach
+      </div>
+    </div>
+    <hr>
+  @endif
   <p>
     <form action="{{ route('progress.create') }}" method="POST">
       @csrf

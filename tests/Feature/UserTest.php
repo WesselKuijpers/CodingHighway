@@ -102,7 +102,7 @@ class UserTest extends TestCase
 
     $this->post(route('register'), $post);
     $user = User::latest('id')->first();
-    $license = License::first();
+    $license = License::where('user_id', null)->first();
 
     $post2 = [
       'user_id' => $user->id,
@@ -111,7 +111,7 @@ class UserTest extends TestCase
 
     $repspone = $this->actingAs($user)->post(route('UserActivateLicenseSave'), $post2);
     $user = User::latest('id')->first();
-    $license = License::first();
+    $license = License::where('user_id', $user->id)->first();
 
     if (
       $user->license->count() ==  1 &&

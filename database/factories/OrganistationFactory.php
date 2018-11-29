@@ -14,6 +14,7 @@ $factory->define(Organisation::class, function (Faker $faker) {
     'paper_invoice' => $faker->boolean,
     'color' => $faker->hexColor,
     'fontcolor' => $faker->hexcolor,
-    'link' => $faker->url
+    'link' => $faker->url,
+    'active' => true
   ];
 });

@@ -105,14 +105,16 @@
         >
         </div>
         <ul>
-          @foreach($exercises as $exercise)
-            <li>
-              <a href="{{ route('exercise.show', ['course_id' => $course->id, 'id'=> $exercise->id]) }}">{{$exercise->title}}</a>
-              @if($exercise->solutions->count() != 0 && $exercise->solutions->where('user_id', Auth::id())->first()->reviews->count() > 0)
-                <span class="fa fa-check"></span>
-              @endif
-            </li>
-          @endforeach
+            @foreach($exercises as $exercise)
+              <li>
+                <a href="{{ route('exercise.show', ['course_id' => $course->id, 'id'=> $exercise->id]) }}">{{$exercise->title}}</a>
+                @if($exercise->solutions->where('user_id', Auth::id())->count() != 0)
+                  @if($exercise->solutions->where('user_id', Auth::id())->first()->reviews->count() > 0)
+                    <span class="fa fa-check"></span>
+                  @endif
+                @endif
+              </li>
+            @endforeach
         </ul>
       @endif
     </div>@endif

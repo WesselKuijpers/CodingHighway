@@ -22,7 +22,7 @@
     @include('shared.textarea', ['label' => 'Inhoud', 'name' => 'content', 'value' => $lesson->content, 'required' => true
     , 'class' => 'form-control'])
     @include('shared.form', ['label' => 'Media', 'name' => 'media[]', 'type' => 'file',
-        'class' => ''])
+        'class' => '', 'multiple' => true])
 
     @include('course::shared.levels', ['levels' => $levels])
 

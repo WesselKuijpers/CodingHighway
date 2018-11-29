@@ -102,6 +102,11 @@
               </div>
             </li>
           @endif
+          @permission('teacher.check')
+            @if(Auth::user()->organisation() != null)
+              <li><a class="nav-link" href="{{route('teacherCheckIndex')}}">Nakijken</a></li>
+            @endif
+          @endpermission
         @endguest
       </ul>
     </div>

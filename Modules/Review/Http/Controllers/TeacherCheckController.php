@@ -14,6 +14,12 @@ use ReviewHelper;
 
 class TeacherCheckController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:teacher.check')->only(['index']);
+        $this->middleware('permission:teacher.check.create')->only(['show', 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -21,6 +27,10 @@ class TeacherCheckController extends Controller
     public function index()
     {
         $organisation = Auth::user()->organisation();
+        if($organisation == null):
+            return redirect()->route('home');
+        endif;
+        
         $students = User::has('solutions')->whereHas('organisations', function($query) use ($organisation) { $query->where('organisations.id', '=', $organisation->id);})->get();
         $courses = Course::all();
         return view('review::teacher.index', compact('organisation', 'students', 'courses'));

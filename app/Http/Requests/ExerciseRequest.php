@@ -84,6 +84,7 @@ class ExerciseRequest extends FormRequest
           'is_first' => 'nullable|boolean',
           'next_id' => 'nullable|numeric',
           'level_id' => 'required|numeric',
+          'media.*' => 'file'
         ];
         break;
       case "DELETE":

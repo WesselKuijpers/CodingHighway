@@ -59,7 +59,7 @@ class LessonController extends Controller
    */
   public function store($id, LessonRequest $request)
   {
-    // dd($_POST);
+     // dd($_POST);
     // evaluates if the ID param is the same as the id that was passed in by the request.
     // if false redirect with errors, if true continue
     if ($id != $request['course_id']) {
@@ -130,7 +130,7 @@ class LessonController extends Controller
    * @param LessonRequest $request
    * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
    */
-  public function update($id, $lesson, LessonRequest $request)
+  public function update($id, $lesson, Lessonrequest $request)
   {
     DB::beginTransaction();
     // evaluates if the ID param is the same as the id that was passed in by the request.
@@ -155,7 +155,7 @@ class LessonController extends Controller
       else:
         $bool = true;
         if (!$alreadyFirst):
-          if ($request->next_id != $next_id || $request->is_first):
+          if (!empty($request->next_id) && $request->next_id != $next_id || $request->is_first):
             if ($course->lessons->count() > 1):
               $bool = OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
             endif;

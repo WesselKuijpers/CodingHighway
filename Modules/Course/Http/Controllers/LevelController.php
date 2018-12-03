@@ -51,7 +51,7 @@ class LevelController extends Controller
     if ($data instanceof RedirectResponse):
       return $data;
     else :
-      return redirect()->route('level')->with('msg', FlashMessage::where('name', 'level.created')->first()->message);
+      return redirect()->route('level')->with('msg', FlashMessageLoad('level.created'));
     endif;
   }
 
@@ -79,7 +79,7 @@ class LevelController extends Controller
     if ($data instanceof RedirectResponse):
       return $data;
     else :
-      return redirect()->route('level')->with('msg', FlashMessage::where('name', 'level.updated')->first()->message);
+      return redirect()->route('level')->with('msg', FlashMessageLoad('level.updated'));
     endif;
   }
 

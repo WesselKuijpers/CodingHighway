@@ -27,19 +27,19 @@ class UserHelper
       $license = License::where('key', $validated['key'])->first();
 
       if ($license->user_id != 0 || $license->user_id != null):
-        return redirect()->back()->with('error', FlashMessage::where('name', 'license.active')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('license.active'));
       elseif ($license->expired):
-        return redirect()->back()->with('error', FlashMessage::where('name', 'license.expired')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('license.expired'));
       endif;
 
       $license->user_id = $user->id;
       if ($license->save()):
         return $license;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'license.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('license.error'));
       endif;
     }catch (QueryException $queryException){
-      return redirect()->back()->with('error', FlashMessage::where('name', 'license.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('license.error'));
     }
   }
 
@@ -61,10 +61,10 @@ class UserHelper
       if ($user->save()):
         return $user;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'user.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('user.error'));
       endif;
     } catch (QueryException $queryException) {
-      return redirect()->back()->with('error', FlashMessage::where('name', 'user.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('user.error'));
     }
   }
 }

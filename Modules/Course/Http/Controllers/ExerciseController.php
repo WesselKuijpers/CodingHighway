@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use App\Solution;
 use Illuminate\Support\Facades\Auth;
 
+//TODO add FlashMessages
 class ExerciseController extends Controller
 {
   public function __construct()

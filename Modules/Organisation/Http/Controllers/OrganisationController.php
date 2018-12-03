@@ -17,6 +17,7 @@ use App\Http\Requests\LicenseCreateRequest;
 use OrganisationHelper;
 use LicenseKeyHelper;
 
+//TODO added and change to FlashMessages
 class OrganisationController extends Controller
 {
   public function __construct()
@@ -84,7 +85,7 @@ class OrganisationController extends Controller
     if ($data instanceof RedirectResponse):
       return $data;
     else:
-      return redirect()->route('home')->with('msg', FlashMessage::where('name','organisation.created')->first()->message);
+      return redirect()->route('home')->with('msg', FlashMessageLoad('organisation.created'));
     endif;
   }
 
@@ -127,7 +128,7 @@ class OrganisationController extends Controller
       return $data;
     endif;
 
-    return redirect()->route('organisation.show', ['id' => $request->id])->with('msg', FlashMessage::where('name', 'organisation.updated')->first()->message);
+    return redirect()->route('organisation.show', ['id' => $request->id])->with('msg', FlashMessageLoad('organisation.updated'));
   }
 
   /**

@@ -17,11 +17,11 @@
           starttoets aan!</a>
       @else
         <div class="row">
-          <div class="col-2">
+          <div class="ml-3  mb-2">
             <a href="{{ route('startExam.show', ['course_id' => $course->id, 'id' => $course->startExam->id]) }}"
                class="btn btn-primary btn-organisation">Bekijk de starttoets</a>
           </div>
-          <div class="col-2">
+          <div class="offset-1">
             <form method="POST"
                   action="{{route('startExam.destroy', ['course_id' => $course->id, 'id' => $course->startExam->id])}}">
               @method('DELETE')

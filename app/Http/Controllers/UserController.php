@@ -28,6 +28,6 @@ class UserController extends Controller
       return $edit;
     endif;
 
-    return redirect()->route('UserEdit')->with('msg', FlashMessage::where('name', 'user.edit')->first()->message);
+    return redirect()->route('UserEdit')->with('msg', FlashMessageLoad('user.edit'));
   }
 }

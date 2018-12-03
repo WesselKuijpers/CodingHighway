@@ -29,12 +29,12 @@ class RoleHelper
         endif;
         return $role;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'role.create.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('role.create.error'));
       endif;
     }
     catch (\Illuminate\Database\QueryException $queryException){
       dd($queryException);
-      return redirect()->back()->with('error', FlashMessage::where('name', 'role.create.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('role.create.error'));
     }
   }
 
@@ -59,12 +59,12 @@ class RoleHelper
         endif;
         return $role;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'role.update.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('role.update.error'));
       endif;
     }
     catch (\Illuminate\Database\QueryException $queryException){
       dd($queryException);
-      return redirect()->back()->with('error', FlashMessage::where('name', 'role.update.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('role.update.error'));
     }
   }
 }

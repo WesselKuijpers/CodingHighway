@@ -60,7 +60,7 @@ class CourseController extends Controller
     if ($data instanceof RedirectResponse):
       return $data;
     else :
-      return redirect()->route('course')->with('msg', FlashMessage::where('name', 'course.created')->first()->message);
+      return redirect()->route('course')->with('msg', FlashMessageLoad('course.created'));
     endif;
   }
 
@@ -109,7 +109,7 @@ class CourseController extends Controller
     if ($data instanceof RedirectResponse):
       return $data;
     else :
-      return redirect()->route('course')->with('msg', FlashMessage::where('name', 'course.updated')->first()->message);
+      return redirect()->route('course')->with('msg', FlashMessageLoad('course.updated'));
     endif;
   }
 

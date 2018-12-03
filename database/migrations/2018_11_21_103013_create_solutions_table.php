@@ -17,7 +17,7 @@ class CreateSolutionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('exercise_id');
-            $table->string('content');
+            $table->text('content');
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -156,7 +156,7 @@ class LessonController extends Controller
       else:
         $bool = true;
         if (!$alreadyFirst):
-          if (!empty($request->next_id) && $request->next_id != $next_id || $request->is_first):
+          if ($request->next_id != $next_id || $request->is_first):
             if ($course->lessons->count() > 1):
               $bool = OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
             endif;

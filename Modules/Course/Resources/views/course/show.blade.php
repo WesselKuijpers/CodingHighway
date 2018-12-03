@@ -35,7 +35,7 @@
       <br>
       @endpermission
       <p>{!! $course->description !!}</p>
-      @if(count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
+      @if(count(Auth::user()->progress($course->id)->latest('id')->get()) != 0)
         <form action="{{ route('progress.reset') }}" method="POST">
           @csrf
           <input type="hidden" value="{{ Auth::id() }}" name="user_id"/>

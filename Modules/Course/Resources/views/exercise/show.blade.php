@@ -32,7 +32,7 @@
       </div>
       <br>
       <div class="row">
-        <div class="col-1">
+        <div class="offset-1">
           <strong>Bestanden:</strong>
         </div>
         <div class="col-2">
@@ -52,13 +52,13 @@
       @endif
       <br>
       <div class="row">
-        <div class="col-1">
+        <div class="ml-3 mb-2">
           <input type="submit" class="btn btn-primary btn-organisation" value="Opslaan">
         </div>
     </form>
       @if($solution != null)
         <form method="POST" action="{{route('solution.delete', ['id' => $solution->id])}}">
-          <div class="col-1">
+          <div class="offset-1">
             @csrf
             @method('DELETE')
             <input type="hidden" name="id" value={{$solution->id}}>

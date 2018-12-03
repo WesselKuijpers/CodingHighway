@@ -81,7 +81,8 @@ class LessonRequest extends FormRequest
           'course_id' => 'required|numeric',
           'is_first' => 'nullable|boolean',
           'next_id' => 'nullable|numeric',
-          'level_id' => 'nullable|numeric'
+          'level_id' => 'nullable|numeric',
+          'media.*' => 'file'
         ];
         break;
       case "DELETE":

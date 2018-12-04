@@ -41,6 +41,8 @@ class CreateStartExamQuestionsTable extends Migration
    */
   public function down()
   {
+    Schema::disableForeignKeyConstraints();
     Schema::dropIfExists('start_exam_questions');
+    Schema::enableForeignKeyConstraints();
   }
 }

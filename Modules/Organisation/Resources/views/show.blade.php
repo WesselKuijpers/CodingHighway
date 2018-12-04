@@ -18,41 +18,43 @@
                                 @else
                                     <ul class="list-group">
                                         @foreach($organisation->users as $user)
-                                            <li class="list-group-item">{{ $user->getFullname() }}
-                                                <button type="button" class="btn btn-primary btn-organisation float-right" data-toggle="collapse" data-target="#collapseExample{{ $user->id }}" aria-expanded="false" aria-controls="collapseExample">
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </button>
-                                            </li>
-                                            <div class="collapse" id="collapseExample{{ $user->id }}">
-                                                <div class="card card-body">
-                                                    <p><strong>Email: </strong>{{ $user->email }}</p>
-                                                    <h4>Voortgang:</h4>
-                                                    @foreach($courses as $course)
-                                                        <strong>{{ $course->name }}</strong>
-                                                        <p>Lessen: 
-                                                            <div
-                                                                class="progressbar"
-                                                                data-user_id="{{ $user->id }}"
-                                                                data-course_id="{{ $course->id }}"
-                                                                data-lessons="1"
-                                                                data-token="{{ Auth::user()->api_token }}"
-                                                            >
-                                                            </div>
-                                                        </p>
-                                                        
-                                                        <p>Opdrachten: 
-                                                            <div
-                                                                class="progressbar"
-                                                                data-user_id="{{ $user->id }}"
-                                                                data-course_id="{{ $course->id }}"
-                                                                data-exercises="1"
-                                                                data-token="{{ Auth::user()->api_token }}"
-                                                            >
-                                                            </div>
-                                                        </p>
-                                                    @endforeach
+                                            @if($user->isUser())
+                                                <li class="list-group-item">{{ $user->getFullname() }}
+                                                    <button type="button" class="btn btn-primary btn-organisation float-right" data-toggle="collapse" data-target="#collapseExample{{ $user->id }}" aria-expanded="false" aria-controls="collapseExample">
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                </li>
+                                                <div class="collapse" id="collapseExample{{ $user->id }}">
+                                                    <div class="card card-body">
+                                                        <p><strong>Email: </strong>{{ $user->email }}</p>
+                                                        <h4>Voortgang:</h4>
+                                                        @foreach($courses as $course)
+                                                            <strong>{{ $course->name }}</strong>
+                                                            <p>Lessen: 
+                                                                <div
+                                                                    class="progressbar"
+                                                                    data-user_id="{{ $user->id }}"
+                                                                    data-course_id="{{ $course->id }}"
+                                                                    data-lessons="1"
+                                                                    data-token="{{ Auth::user()->api_token }}"
+                                                                >
+                                                                </div>
+                                                            </p>
+                                                            
+                                                            <p>Opdrachten: 
+                                                                <div
+                                                                    class="progressbar"
+                                                                    data-user_id="{{ $user->id }}"
+                                                                    data-course_id="{{ $course->id }}"
+                                                                    data-exercises="1"
+                                                                    data-token="{{ Auth::user()->api_token }}"
+                                                                >
+                                                                </div>
+                                                            </p>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         @endforeach
                                     </ul>
                                 @endif

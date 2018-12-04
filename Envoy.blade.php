@@ -1,10 +1,15 @@
-@servers(['web' => 'ADSDCH@adsd.clow.nl'])
+@servers(['web' => 'matthijs@alpha.m-dv.nl'])
 
 @setup
 $git['url']     = 'git@gitlab.com:codinghighway/codinghighway.git';
-$git['branch']  = 'dev';
+$git['branch']  = $branch;
 
-$base           = '/home/adsdch/codinghighway';
+if($branch == "master"):
+$base           = '/var/www/production/codinghighway';
+elseif($branch == "dev"):
+$base           = '/var/www/dev/codinghighway';
+endif;
+
 $shared         = ['vendor', 'node_modules', '.env'];
 $current        = \Carbon\Carbon::now()->format('YmdHis');
 @endsetup

@@ -1,4 +1,4 @@
-@servers(['web' => 'matthijs@alpha.m-dv.nl'])
+@servers(['web' => 'deployer@alpha.m-dv.nl'])
 
 @setup
 $git['url']     = 'git@gitlab.com:codinghighway/codinghighway.git';

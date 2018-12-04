@@ -11,7 +11,7 @@ variables:
 
 stages:
 - test
-- deploy
+- deploy_dev
 
 unit_test:
   stage: test
@@ -24,3 +24,19 @@ unit_test:
   - php artisan migrate
   - php artisan migrate --env=testing
   - vendor/bin/phpunit
+
+deploy_dev:
+  stage: deploy_dev
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+    - ~/.composer/vendor/bin/envoy run deploy --branch=dev
+  environment:
+    name: development
+    url: http://dev.codinghighway.nl
+  only:
+    - dev

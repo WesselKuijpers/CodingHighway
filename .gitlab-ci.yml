@@ -12,6 +12,8 @@ variables:
 stages:
 - test
 - deploy_dev
+- deploy_staging
+- deploy
 
 unit_test:
   stage: test
@@ -40,3 +42,35 @@ deploy_dev:
     url: http://dev.codinghighway.nl
   only:
     - dev
+
+deploy_staging:
+  stage: deploy_staging
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+    - ~/.composer/vendor/bin/envoy run deploy --branch=staging
+  environment:
+    name: staging
+    url: http://staging.codinghighway.nl
+  only:
+    - staging
+
+deploy:
+  stage: deploy
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+    - ~/.composer/vendor/bin/envoy run deploy --branch=master
+  environment:
+    name: production
+    url: http://codinghighway.nl
+  only:
+    - master

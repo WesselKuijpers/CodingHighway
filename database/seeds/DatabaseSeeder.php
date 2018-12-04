@@ -32,14 +32,26 @@ class DatabaseSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
         break;
       case 'demo':
+        Schema::disableForeignKeyConstraints();
         $this->call(PermissionsAndRoleSeeder::class);
         $this->call(FlashMessagesSeeder::class);
 
         $this->call(LicensesSeeder::class);
         $this->call(LevelSeeder::class);
-        $this->call(OrganisationsSeeder::class);
 
         $this->call(DemoUserSeeder::class);
+
+        $this->call(CoursesTableSeeder::class);
+        $this->call(LessonsTableSeeder::class);
+        $this->call(ExercisesTableSeeder::class);
+        $this->call(StartExamsTableSeeder::class);
+        $this->call(StartExamQuestionsTableSeeder::class);
+        $this->call(StartExamAnswersTableSeeder::class);
+        $this->call(MediaTableSeeder::class);
+        $this->call(LessonMediaTableSeeder::class);
+        $this->call(ExerciseMediaTableSeeder::class);
+        $this->call(OrganisationsTableSeeder::class);
+        Schema::enableForeignKeyConstraints();
         break;
       default:
         $this->call(PermissionsAndRoleSeeder::class);
@@ -60,5 +72,5 @@ class DatabaseSeeder extends Seeder
         $this->call(ForumSeeder::class);
         break;
     endswitch;
-  }
+    }
 }

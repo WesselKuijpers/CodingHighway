@@ -6,7 +6,7 @@
       <h2 class="text-center pt-1 pb-3">{{env('APP_NAME')}}</h2>
 
       <div class="row">
-        <div class="main-text-block col-12 ml-3" style="background-color: #FAC275">
+        <div class="main-text-block col-12 ml-3">
           <h5 class="text-center font-weight-bold pt-3">Programmeren voor iedereen!</h5>
           <p class="pt-2">
             Programmeren voor iedereen. Wie wil er allemaal leren programmeren? Wie kan er allemaal leren programmeren?

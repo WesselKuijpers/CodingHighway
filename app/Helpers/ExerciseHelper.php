@@ -53,11 +53,11 @@ class ExerciseHelper
 
         return $exercise;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'exercise.create.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('exercise.create.error'));
       endif;
     }
     catch (\Illuminate\Database\QueryException $queryException){
-      return redirect()->back()->with('error', FlashMessage::where('name', 'exercise.create.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('exercise.create.error'));
     }
   }
 
@@ -103,11 +103,11 @@ class ExerciseHelper
 
         return $exercise;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'exercise.update.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('exercise.create.error'));
       endif;
     }
     catch (\Illuminate\Database\QueryException $queryException){
-      return redirect()->back()->with('error', FlashMessage::where('name', 'exercise.update.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('exercise.create.error'));
     }
   }
 

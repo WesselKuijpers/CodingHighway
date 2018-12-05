@@ -41,10 +41,10 @@ class CourseHelper
 
         return $course;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'course.create.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('course.create.error'));
       endif;
     } catch (QueryException $queryException) {
-      return redirect()->back()->with('error', FlashMessage::where('name', 'course.create.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('course.create.error'));
     }
   }
 
@@ -78,10 +78,10 @@ class CourseHelper
 
         return $course;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'course.update.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('course.update.error'));
       endif;
     } catch (QueryException $queryException) {
-      return redirect()->back()->with('error', FlashMessage::where('name', 'course.update.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('course.create.error'));
     }
   }
 

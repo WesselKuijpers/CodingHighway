@@ -16,6 +16,7 @@ use LessonHelper;
 use OrderHelper;
 use OrderUpdateHelper;
 
+//TODO Changed with to flashmessages
 class LessonController extends Controller
 {
   public function __construct()
@@ -91,7 +92,7 @@ class LessonController extends Controller
           endif;
         endif;
 
-        return redirect()->route('course.show', ['id' => $id])->with('msg', FlashMessage::where('name', 'lesson.created')->first()->message);;
+        return redirect()->route('course.show', ['id' => $id])->with('msg', FlashMessageLoad('lesson.created'));
       endif;
     }
   }
@@ -155,7 +156,7 @@ class LessonController extends Controller
       else:
         $bool = true;
         if (!$alreadyFirst):
-          if (!empty($request->next_id) && $request->next_id != $next_id || $request->is_first):
+          if ($request->next_id != $next_id || $request->is_first):
             if ($course->lessons->count() > 1):
               $bool = OrderUpdateHelper::Check($data, $next_id, $request->next_id, $first, $last, $previous, $request_next_previous);
             endif;

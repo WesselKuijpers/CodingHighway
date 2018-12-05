@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use App\Models\course\Lesson;
 use App\Models\course\Exercise;
 
+//TODO add FlashMessages
 class ProgressController extends Controller
 {
   public function Create(ProgressRequest $request)

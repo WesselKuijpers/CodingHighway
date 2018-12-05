@@ -35,7 +35,7 @@
       <br>
       @endpermission
       <p>{!! $course->description !!}</p>
-      @if(count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
+      @if(count(Auth::user()->progress($course->id)->latest('id')->get()) != 0)
         <form action="{{ route('progress.reset') }}" method="POST">
           @csrf
           <input type="hidden" value="{{ Auth::id() }}" name="user_id"/>
@@ -105,14 +105,16 @@
         >
         </div>
         <ul>
-          @foreach($exercises as $exercise)
-            <li>
-              <a href="{{ route('exercise.show', ['course_id' => $course->id, 'id'=> $exercise->id]) }}">{{$exercise->title}}</a>
-              @if($exercise->solutions->count() != 0 && $exercise->solutions->where('user_id', Auth::id())->first()->reviews->count() > 0)
-                <span class="fa fa-check"></span>
-              @endif
-            </li>
-          @endforeach
+            @foreach($exercises as $exercise)
+              <li>
+                <a href="{{ route('exercise.show', ['course_id' => $course->id, 'id'=> $exercise->id]) }}">{{$exercise->title}}</a>
+                @if($exercise->solutions->where('user_id', Auth::id())->count() != 0)
+                  @if($exercise->solutions->where('user_id', Auth::id())->first()->reviews->count() > 0)
+                    <span class="fa fa-check"></span>
+                  @endif
+                @endif
+              </li>
+            @endforeach
         </ul>
       @endif
     </div>@endif

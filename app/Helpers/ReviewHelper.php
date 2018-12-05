@@ -3,6 +3,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Solution;
 use App\Review;
 
+//TODO add flash messages
 class ReviewHelper
 {
     public static function Create(ReviewRequest $request)

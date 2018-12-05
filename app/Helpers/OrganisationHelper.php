@@ -56,10 +56,10 @@ class OrganisationHelper
 
         return $organisation;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'organisation.create.error'));
+        return redirect()->back()->with('error', FlashMessageLoad('organisation.create.error'));
       endif;
     } catch (\Illuminate\Database\QueryException $queryException) {
-      return redirect()->back()->with('error', FlashMessage::where('name', 'organisation.create.error'));
+      return redirect()->back()->with('error', FlashMessageLoad('organisation.create.error'));
     }
   }
 
@@ -102,10 +102,10 @@ class OrganisationHelper
 
         return $organisation;
       else:
-        return redirect()->back()->with('error', FlashMessage::where('name', 'organisation.update.error')->first()->message);
+        return redirect()->back()->with('error', FlashMessageLoad('organisation.update.error'));
       endif;
     } catch (\Illuminate\Database\QueryException $queryException) {
-      return redirect()->back()->with('error', FlashMessage::where('name', 'organisation.update.error')->first()->message);
+      return redirect()->back()->with('error', FlashMessageLoad('organisation.update.error'));
     }
   }
 }

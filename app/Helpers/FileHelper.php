@@ -20,6 +20,5 @@ class FileHelper
         return false;
       endif;
     endif;
-
   }
 }

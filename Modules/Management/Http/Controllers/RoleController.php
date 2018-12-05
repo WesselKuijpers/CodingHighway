@@ -55,7 +55,7 @@ class RoleController extends Controller
     if ($data instanceof RedirectResponse):
       return $data;
     else:
-      return redirect()->route('role')->with('msg', FlashMessage::where('name', 'role.created')->first()->message);
+      return redirect()->route('role')->with('msg', FlashMessageLoad('role.created'));
     endif;
   }
 
@@ -92,7 +92,7 @@ class RoleController extends Controller
     if ($data instanceof RedirectResponse):
       return $data;
     else:
-      return redirect()->route('role')->with('msg', FlashMessage::where('name', 'role.updated')->first()->message);
+      return redirect()->route('role')->with('msg', FlashMessageLoad('role.updated'));
     endif;
   }
 

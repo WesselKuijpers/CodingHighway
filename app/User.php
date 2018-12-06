@@ -49,10 +49,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
     $total = $this->firstname;
 
     if (!empty($this->insertion)):
-      $total .= " ".$this->insertion;
+      $total .= " " . $this->insertion;
     endif;
 
-    $total .= " ".$this->lastname;
+    $total .= " " . $this->lastname;
 
     return $total;
   }
@@ -92,18 +92,22 @@ class User extends Authenticatable implements MustVerifyEmailContract
     return $this->hasMany(Reply::class);
   }
 
-  public function progress($course_id)
+  public function progress($course_id = null)
   {
-    return $this->hasMany(UserProgress::class)->where('course_id', $course_id);
+    if ($course_id == null):
+      return $this->hasMany(UserProgress::class);
+    else:
+      return $this->hasMany(UserProgress::class)->where('course_id', $course_id);
+    endif;
   }
 
   public function solutions()
   {
-      return $this->hasMany(Solution::class);
+    return $this->hasMany(Solution::class);
   }
 
   public function reviews()
   {
-      return $this->hasMany(Review::class);
+    return $this->hasMany(Review::class);
   }
 }

@@ -17,29 +17,26 @@
       </div>
 
       <div class="row">
-        <div class="col-11 ml-3">
-          <div class="row mt-3">
-
             @if(Module::find('Course')->enabled())
-            <div class="side-block col-6">
+            <div class="side-block col-sm-12 col-md-5">
               <h5 class="text-center font-weight-bold pt-3">Aan de slag met de cursussen</h5>
               <p class="pt-2">
-                Kun je niet wachten om te beginnen met een cursus? <a href="/course" class="text-white">Bezoek</a> dan
+                Kun je niet wachten om te beginnen met een cursus? <a href="/course">Bezoek</a> dan
                 onze cursus pagina!
               </p>
             </div>
             @endif
             {{--@if(Module::find('Forum')->enabled())--}}
-              <div class="side-block col-6 ml-auto">
+              <div class="side-block col-sm-12 col-md-5 offset-sm-1">
                 <h5 class="text-center font-weight-bold pt-3">Stel een vraag</h5>
                 <p class="pt-2">
                   Heb je een vraag over één van de opdrachten of lessen? Stel deze dan gerust
-                  <a href="/forum" class="text-white">hier</a>.
+                  <a href="/forum">hier</a>.
                 </p>
               </div>
               {{--@endif--}}
-          </div>
         </div>
+
       </div>
     </div>
   </div>

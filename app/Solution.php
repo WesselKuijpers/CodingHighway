@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solution extends Model
 {
+  protected $connection = 'mysql-auth';
+
     public function user()
     {
        return $this->belongsTo('App\User');

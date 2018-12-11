@@ -21,7 +21,8 @@
     "laravel/tinker": "^1.0",
     "leafo/scssphp": "^0.7.7",
     "nwidart/laravel-modules": "^3.3",
-    "teamtnt/laravel-scout-tntsearch-driver": "^3.2"
+    "teamtnt/laravel-scout-tntsearch-driver": "^3.2",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "orangehill/iseed": "dev-master",

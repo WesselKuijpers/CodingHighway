@@ -11,6 +11,8 @@ class Course extends Model
 {
   use SoftDeletes;
 
+  protected $connection = 'mysql-course';
+
   public function exercises()
   {
     return $this->hasMany(Exercise::class);

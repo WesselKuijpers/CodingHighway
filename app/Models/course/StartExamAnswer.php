@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class StartExamAnswer extends Model
 {
-    public function question()
-    {
-        return $this->belongsTo(StartExamQuestion::class);
-    }
+  protected $connection = 'mysql-course';
+
+  public function question()
+  {
+    return $this->belongsTo(StartExamQuestion::class);
+  }
 }

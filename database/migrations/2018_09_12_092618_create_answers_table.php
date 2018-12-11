@@ -20,7 +20,7 @@ class CreateAnswersTable extends Migration
             $table->unsignedInteger('question_id');
 
             $table->foreign('user_id')
-                ->references('id')->on('codinghighway_auth.users')
+                ->references('id')->on('codinghighway.users')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 

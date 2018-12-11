@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Organisation extends Model
 {
+  protected $connection = 'mysql-general';
+
   public function users()
   {
     return $this->belongsToMany(User::class, 'licenses');

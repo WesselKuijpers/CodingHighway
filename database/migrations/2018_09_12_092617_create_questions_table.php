@@ -22,7 +22,7 @@ class CreateQuestionsTable extends Migration
             $table->string('content');
 
             $table->foreign('user_id')
-                ->references('id')->on('codinghighway_auth.users')
+                ->references('id')->on('codinghighway.users')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 

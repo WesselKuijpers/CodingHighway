@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql-auth')->create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('firstname');
             $table->string('insertion')->nullable();
@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::connection('mysql-auth')->dropIfExists('users');
+        Schema::dropIfExists('users');
         Schema::enableForeignKeyConstraints();
     }
 }

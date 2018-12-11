@@ -7,6 +7,8 @@ use App\Models\general\Media;
 
 class Exercise extends Model
 {
+  protected $connection = 'mysql-course';
+
   public function course()
   {
     return $this->belongsTo(Course::class);

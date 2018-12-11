@@ -21,7 +21,7 @@ class CreateSolutionsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')
-                ->references('id')->on('codinghighway_auth.users')
+                ->references('id')->on('codinghighway.users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

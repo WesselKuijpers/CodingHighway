@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class InvoiceLine extends Model
 {
+  protected $connection = 'mysql-general';
+
   public function invoice()
   {
     return $this->belongsTo(Invoice::class);

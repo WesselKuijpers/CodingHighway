@@ -6,22 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    public function user()
-    {
-        $this->belongsTo('App\User');
-    }
+  protected $connection = 'mysql-forum';
 
-    public function question()
-    {
-        $this->belongsTo('App\Question');
-    }
+  public function user()
+  {
+    $this->belongsTo('App\User');
+  }
 
-    public function replies()
-    {
-        $this->hasMany('App\Reply');
-    }
+  public function question()
+  {
+    $this->belongsTo('App\Question');
+  }
 
-    protected $fillable = [
-        'content', 'question_id'
-    ];
+  public function replies()
+  {
+    $this->hasMany('App\Reply');
+  }
+
+  protected $fillable = [
+    'content', 'question_id'
+  ];
 }

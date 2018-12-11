@@ -8,6 +8,8 @@ use App\Models\general\Media;
 
 class LessonMedia extends Model
 {
+  protected $connection = 'mysql-course';
+
   public function lesson()
   {
     return $this->belongsTo(Lesson::class);

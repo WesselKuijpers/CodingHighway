@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    public function answer()
-    {
-        $this->belongsTo('App\Answer');
-    }
-    
-    protected $fillable = [
-        'content'
-    ];
+  protected $connection = 'mysql-forum';
+
+  public function answer()
+  {
+    $this->belongsTo('App\Answer');
+  }
+
+  protected $fillable = [
+    'content'
+  ];
 }

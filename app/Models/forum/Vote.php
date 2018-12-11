@@ -6,22 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-    public function user()
-    {
-        $this->belongsTo('App\User');
-    }
+  protected $connection = 'mysql-forum';
 
-    public function answer()
-    {
-        $this->belongsTo('App\Answer');
-    }
+  public function user()
+  {
+    $this->belongsTo('App\User');
+  }
 
-    public function question()
-    {
-        $this->belongsTo('App\Question');
-    }
+  public function answer()
+  {
+    $this->belongsTo('App\Answer');
+  }
 
-    protected $fillable = [
-        'increment', 'answer_id', 'question_id'
-    ];
+  public function question()
+  {
+    $this->belongsTo('App\Question');
+  }
+
+  protected $fillable = [
+    'increment', 'answer_id', 'question_id'
+  ];
 }

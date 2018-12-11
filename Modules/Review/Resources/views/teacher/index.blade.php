@@ -62,7 +62,7 @@
                                     @endif
                                   </div>
                                   @if($exercise->solutions->where('user_id', $student->id)->count() == 1)
-                                    @if($exercise->solutions->where('user_id', $student->id)->first()->reviews()->where('user_id', Auth::id())->count() <= 1)
+                                    @if($exercise->solutions->where('user_id', $student->id)->first()->reviews()->where('user_id', Auth::id())->count() != 0)
                                       <div class="col-4">
                                         <strong>Je hebt al een beoordeling gegeven.</strong>
                                       </div>

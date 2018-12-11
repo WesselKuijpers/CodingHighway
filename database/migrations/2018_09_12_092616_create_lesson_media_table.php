@@ -13,7 +13,7 @@ class CreateLessonMediaTable extends Migration
    */
   public function up()
   {
-    Schema::create('lesson_media', function (Blueprint $table) {
+    Schema::connection('mysql-course')->create('lesson_media', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('lesson_id');
       $table->unsignedInteger('media_id');
@@ -39,7 +39,7 @@ class CreateLessonMediaTable extends Migration
   public function down()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::dropIfExists('lesson_media');
+    Schema::connection('mysql-course')->dropIfExists('lesson_media');
     Schema::enableForeignKeyConstraints();
   }
 }

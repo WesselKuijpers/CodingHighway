@@ -13,7 +13,7 @@ class AddUnqiueToCourseName extends Migration
      */
     public function up()
     {
-        Schema::table('courses', function(Blueprint $table){
+        Schema::connection('mysql-course')->table('courses', function(Blueprint $table){
           $table->string('name')->unique()->change();
         });
     }

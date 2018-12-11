@@ -13,10 +13,10 @@ class ChangeNextFields extends Migration
      */
     public function up()
     {
-      Schema::table('exercises', function (Blueprint $table) {
+      Schema::connection('mysql-course')->table('exercises', function (Blueprint $table) {
         $table->renameColumn('next_exercise', 'next_id');
       });
-      Schema::table('lessons', function (Blueprint $table) {
+      Schema::connection('mysql-course')->table('lessons', function (Blueprint $table) {
         $table->renameColumn('next_lesson', 'next_id');
       });
     }

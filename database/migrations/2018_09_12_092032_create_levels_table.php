@@ -13,7 +13,7 @@ class CreateLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('levels', function (Blueprint $table) {
+        Schema::connection('mysql-course')->create('levels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -28,7 +28,7 @@ class CreateLevelsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('levels');
+        Schema::connection('mysql-course')->dropIfExists('levels');
         Schema::enableForeignKeyConstraints();
     }
 }

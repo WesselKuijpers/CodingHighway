@@ -15,7 +15,7 @@ class CreateResultsTable extends Migration
   {
     Schema::disableForeignKeyConstraints();
 
-    Schema::create('results', function (Blueprint $table) {
+    Schema::connection('mysql-course')->create('results', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('user_id');
       $table->unsignedInteger('course_id');
@@ -48,6 +48,6 @@ class CreateResultsTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('results');
+    Schema::connection('mysql-course')->dropIfExists('results');
   }
 }

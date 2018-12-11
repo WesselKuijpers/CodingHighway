@@ -13,7 +13,7 @@ class CreateUserProgressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_progresses', function (Blueprint $table) {
+        Schema::connection('mysql-general')->create('user_progresses', function (Blueprint $table) {
           $table->increments('id');
           $table->unsignedInteger('user_id');
           $table->unsignedInteger('course_id');
@@ -51,7 +51,7 @@ class CreateUserProgressesTable extends Migration
     public function down()
     {
       Schema::disableForeignKeyConstraints();
-      Schema::dropIfExists('user_progresses');
+      Schema::connection('mysql-general')->dropIfExists('user_progresses');
       Schema::enableForeignKeyConstraints();
     }
 }

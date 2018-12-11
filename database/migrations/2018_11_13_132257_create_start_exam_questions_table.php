@@ -14,7 +14,7 @@ class CreateStartExamQuestionsTable extends Migration
   public function up()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::create('start_exam_questions', function (Blueprint $table) {
+    Schema::connection('mysql-course')->create('start_exam_questions', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('start_exam_id')->nullable();
       $table->string('content');
@@ -42,7 +42,7 @@ class CreateStartExamQuestionsTable extends Migration
   public function down()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::dropIfExists('start_exam_questions');
+    Schema::connection('mysql-course')->dropIfExists('start_exam_questions');
     Schema::enableForeignKeyConstraints();
   }
 }

@@ -13,7 +13,7 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::connection('mysql-forum')->create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->unsignedInteger('user_id')->nullable();
@@ -49,7 +49,7 @@ class CreateQuestionsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('questions');
+        Schema::connection('mysql-forum')->dropIfExists('questions');
         Schema::enableForeignKeyConstraints();
     }
 }

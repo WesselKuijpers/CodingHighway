@@ -13,7 +13,7 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::connection('mysql-forum')->create('answers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('content');
             $table->unsignedInteger('user_id')->nullable();
@@ -42,7 +42,7 @@ class CreateAnswersTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('answers');
+        Schema::connection('mysql-forum')->dropIfExists('answers');
         Schema::enableForeignKeyConstraints();
     }
 }

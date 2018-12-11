@@ -13,7 +13,7 @@ class CreateOrganisationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organisations', function (Blueprint $table) {
+        Schema::connection('mysql-general')->create('organisations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('street');
@@ -35,7 +35,7 @@ class CreateOrganisationsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('organisations');
+        Schema::connection('mysql-general')->dropIfExists('organisations');
         Schema::enableForeignKeyConstraints();
     }
 }

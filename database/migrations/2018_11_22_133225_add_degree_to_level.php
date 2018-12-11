@@ -13,7 +13,7 @@ class AddDegreeToLevel extends Migration
      */
     public function up()
     {
-      Schema::table('levels', function (Blueprint $table) {
+      Schema::connection('mysql-course')->table('levels', function (Blueprint $table) {
         $table->integer('degree')->default(0)->after('name');
       });
     }

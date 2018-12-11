@@ -13,7 +13,7 @@ class CreateInvoiceLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoice_lines', function (Blueprint $table) {
+        Schema::connection('mysql-general')->create('invoice_lines', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('invoice_id');
             $table->unsignedInteger('product_id');
@@ -40,7 +40,7 @@ class CreateInvoiceLinesTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('invoice_lines');
+        Schema::connection('mysql-general')->dropIfExists('invoice_lines');
         Schema::enableForeignKeyConstraints();
     }
 }

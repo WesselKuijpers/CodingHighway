@@ -13,7 +13,7 @@ class AddFieldsToLesson extends Migration
      */
     public function up()
     {
-      Schema::table('lessons', function (Blueprint $table) {
+      Schema::connection('mysql-course')->table('lessons', function (Blueprint $table) {
         $table->string('title')->unique()->change();
       });
     }

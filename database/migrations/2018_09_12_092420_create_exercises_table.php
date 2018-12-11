@@ -13,7 +13,7 @@ class CreateExercisesTable extends Migration
    */
   public function up()
   {
-    Schema::create('exercises', function (Blueprint $table) {
+    Schema::connection('mysql-course')->create('exercises', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('course_id');
       $table->text('content');
@@ -41,7 +41,7 @@ class CreateExercisesTable extends Migration
   public function down()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::dropIfExists('exercises');
+    Schema::connection('mysql-course')->dropIfExists('exercises');
     Schema::enableForeignKeyConstraints();
   }
 }

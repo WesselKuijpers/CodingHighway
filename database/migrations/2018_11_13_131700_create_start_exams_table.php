@@ -14,7 +14,7 @@ class CreateStartExamsTable extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('start_exams', function (Blueprint $table) {
+        Schema::connection('mysql-course')->create('start_exams', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('course_id')->nullable();
             $table->timestamps();
@@ -34,6 +34,6 @@ class CreateStartExamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('start_exams');
+        Schema::connection('mysql-course')->dropIfExists('start_exams');
     }
 }

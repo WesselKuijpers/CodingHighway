@@ -13,7 +13,7 @@ class AddNextExerciseToExercisesTable extends Migration
      */
     public function up()
     {
-        Schema::table('exercises', function (Blueprint $table) {
+        Schema::connection('mysql-course')->table('exercises', function (Blueprint $table) {
           $table->boolean('is_first')->default(false);
           $table->unsignedInteger('next_exercise')->nullable();
 
@@ -32,7 +32,7 @@ class AddNextExerciseToExercisesTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::table('exercise', function (Blueprint $table) {
+        Schema::connection('mysql-course')->table('exercise', function (Blueprint $table) {
             //
         });
         Schema::enableForeignKeyConstraints();

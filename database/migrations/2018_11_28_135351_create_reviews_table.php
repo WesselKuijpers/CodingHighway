@@ -13,7 +13,7 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::connection('mysql-course')->create('reviews', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('solution_id');
             $table->text('content');
@@ -27,7 +27,7 @@ class CreateReviewsTable extends Migration
                 ->onUpdate('cascade');
 
             $table->foreign('user_id')
-                ->references('id')->on('users')
+                ->references('id')->on('codinghighway_auth.users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
@@ -40,6 +40,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::connection('mysql-course')->dropIfExists('reviews');
     }
 }

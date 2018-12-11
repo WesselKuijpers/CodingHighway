@@ -13,7 +13,7 @@ class CreateLicensesTable extends Migration
      */
     public function up()
     {
-        Schema::create('licenses', function (Blueprint $table) {
+        Schema::connection('mysql-general')->create('licenses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key')->unique();
             $table->unsignedInteger('user_id')->nullable();
@@ -23,7 +23,7 @@ class CreateLicensesTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')
-                  ->references('id')->on('users')
+                  ->references('id')->on('codinghighway_auth.users')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
 
@@ -42,7 +42,7 @@ class CreateLicensesTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('licenses');
+        Schema::connection('mysql-general')->dropIfExists('licenses');
         Schema::enableForeignKeyConstraints();
     }
 }

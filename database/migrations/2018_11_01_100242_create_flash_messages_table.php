@@ -13,7 +13,7 @@ class CreateFlashMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('flash_messages', function (Blueprint $table) {
+        Schema::connection('mysql-general')->create('flash_messages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
             $table->string('message');
@@ -28,6 +28,6 @@ class CreateFlashMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('flash_messages');
+        Schema::connection('mysql-general')->dropIfExists('flash_messages');
     }
 }

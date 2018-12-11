@@ -13,7 +13,7 @@ class AddActiveToOrganisation extends Migration
      */
     public function up()
     {
-      Schema::table('organisations', function (Blueprint $table) {
+      Schema::connection('mysql-general')->table('organisations', function (Blueprint $table) {
         $table->boolean('active')->default(0)->after('link');
         $table->boolean('requester')->after('active')->nullable();
       });

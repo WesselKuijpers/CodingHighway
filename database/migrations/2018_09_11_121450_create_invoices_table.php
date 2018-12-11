@@ -13,7 +13,7 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::connection('mysql-general')->create('invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('number');
             $table->date('date');
@@ -34,7 +34,7 @@ class CreateInvoicesTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('invoices');
+        Schema::connection('mysql-general')->dropIfExists('invoices');
         Schema::enableForeignKeyConstraints();
     }
 }

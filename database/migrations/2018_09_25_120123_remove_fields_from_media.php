@@ -13,7 +13,7 @@ class RemoveFieldsFromMedia extends Migration
      */
     public function up()
     {
-      Schema::table('media', function (Blueprint $table) {
+      Schema::connection('mysql-general')->table('media', function (Blueprint $table) {
         $table->dropColumn(['name', 'mtype']);
       });
     }
@@ -26,7 +26,7 @@ class RemoveFieldsFromMedia extends Migration
     public function down()
     {
       Schema::disableForeignKeyConstraints();
-      Schema::table('media', function (Blueprint $table) {
+      Schema::connection('mysql-general')->table('media', function (Blueprint $table) {
         $table->string('name');
         $table->string('mtype');
       });

@@ -13,7 +13,7 @@ class CreateExerciseMediaTable extends Migration
    */
   public function up()
   {
-    Schema::create('exercise_media', function (Blueprint $table) {
+    Schema::connection('mysql-course')->create('exercise_media', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('exercise_id');
       $table->unsignedInteger('media_id');
@@ -25,7 +25,7 @@ class CreateExerciseMediaTable extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('media_id')
-        ->references('id')->on('media')
+        ->references('id')->on('codinghighway_general.media')
         ->onDelete('cascade')
         ->onUpdate('cascade');
     });
@@ -39,7 +39,7 @@ class CreateExerciseMediaTable extends Migration
   public function down()
   {
     Schema::disableForeignKeyConstraints();
-    Schema::dropIfExists('exercise_media');
+    Schema::connection('mysql-course')->dropIfExists('exercise_media');
     Schema::enableForeignKeyConstraints();
   }
 }

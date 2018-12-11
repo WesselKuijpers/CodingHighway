@@ -25,7 +25,7 @@ class CreateSolutionMediaTable extends Migration
                 ->onUpdate('cascade');
 
             $table->foreign('media_id')
-                ->references('id')->on('media')
+                ->references('id')->on('codinghighway_general.media')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

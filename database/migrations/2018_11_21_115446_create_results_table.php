@@ -23,7 +23,7 @@ class CreateResultsTable extends Migration
       $table->timestamps();
 
       $table->foreign('user_id')
-        ->references('id')->on('users')
+        ->references('id')->on('codinghighway_auth.users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 

@@ -20,7 +20,7 @@ class CreateRepliesTable extends Migration
       $table->unsignedInteger('user_id')->nullable();
 
       $table->foreign('user_id')
-        ->references('id')->on('users')
+        ->references('id')->on('codinghighway_auth.users')
         ->onDelete('set null')
         ->onUpdate('cascade');
 

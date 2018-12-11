@@ -22,17 +22,17 @@ class CreateQuestionsTable extends Migration
             $table->string('content');
 
             $table->foreign('user_id')
-                ->references('id')->on('users')
+                ->references('id')->on('codinghighway_auth.users')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 
             $table->foreign('exercise_id')
-                ->references('id')->on('exercises')
+                ->references('id')->on('codinghighway_course.exercises')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->foreign('lesson_id')
-                ->references('id')->on('lessons')
+                ->references('id')->on('codinghighway_course.lessons')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

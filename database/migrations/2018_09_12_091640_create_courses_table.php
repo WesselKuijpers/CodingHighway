@@ -23,7 +23,7 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
 
           $table->foreign('media_id')
-                ->references('id')->on('media')
+                ->references('id')->on('codinghighway_general.media')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
         });

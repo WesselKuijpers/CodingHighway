@@ -22,22 +22,22 @@ class CreateUserProgressesTable extends Migration
           $table->timestamps();
 
           $table->foreign('user_id')
-            ->references('id')->on('users')
+            ->references('id')->on('codinghighway_auth.users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
           $table->foreign('course_id')
-            ->references('id')->on('courses')
+            ->references('id')->on('codinghighway_course.courses')
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
           $table->foreign('lesson_id')
-            ->references('id')->on('lessons')
+            ->references('id')->on('codinghighway_course.lessons')
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
           $table->foreign('exercise_id')
-            ->references('id')->on('exercises')
+            ->references('id')->on('codinghighway_course.exercises')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });

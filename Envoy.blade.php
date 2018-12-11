@@ -6,6 +6,8 @@ $git['branch']  = $branch;
 
 if($branch == "master"):
 $base           = '/var/www/production/codinghighway';
+elseif($branch == "staging"):
+$base           = '/var/www/staging/codinghighway';
 elseif($branch == "dev"):
 $base           = '/var/www/dev/codinghighway';
 endif;
@@ -81,6 +83,7 @@ cd {{ $base.'/releases/'.$current }}
   cd {{ $base.'/current' }}
   chmod 777 -R storage/
   php artisan storage:link
+  php artisan organisation:compile
 @endtask
 
 @task('set:up')

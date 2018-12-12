@@ -10532,12 +10532,16 @@ body {
   background: #ebf1f6;
   height: 300px;
   padding-top: 10px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.16);
 }
 
 .side-block {
   -webkit-box-flex: 0;
   background-color: white;
-  -moz-box-shadow: 0 -5px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
   margin-top: 25px;
 }

@@ -10528,12 +10528,35 @@ body {
   <----- Homepage styling ----->
 */
 
+.main-text-block {
+  background: #ebf1f6;
+  height: 300px;
+  padding-top: 10px;
+}
+
 .side-block {
   -webkit-box-flex: 0;
   background-color: white;
   -moz-box-shadow: 0 -5px 6px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
   margin-top: 25px;
+}
+
+@media (min-width: 768px) {
+  #left-block {
+    left: 15px;
+    top: -50px;
+  }
+
+  #right-block {
+    right: 15px;
+    top: -50px;
+  }
+
+  .home-card-img {
+    width: 300px;
+    height: auto;
+  }
 }
 
 .nav-logo {
@@ -10580,6 +10603,7 @@ body {
 .no-link,
 a:hover.no-link {
   text-decoration: none;
+  color: black;
 }
 
 .custom-card {
@@ -10591,6 +10615,18 @@ a:hover.no-link {
 
 .organisation-card {
   min-height: 560px;
+}
+
+.list-card {
+  margin: 5px;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.list-card:hover {
+  background: #f3f3f3;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .img-h-250 {

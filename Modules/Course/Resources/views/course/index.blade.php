@@ -26,11 +26,11 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $course->name }}</h5>
                         @if($course->startExam != null)
-                          <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn course-button-{{$course->id}}">Bekijk</a>
+                          <a href="{{ route('course.show', ['id' => $course->id]) }}" class="btn course-button-{{$course->id}}">Bekijk</a>
                         @else
                           <p>Deze cursus is nog niet klaar voor gebruik!</p>
                           @permission('course.create')
-                            <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn course-button-{{$course->id}}">Bekijk</a>
+                            <a href="{{ route('course.show', ['id' => $course->id]) }}" class="btn course-button-{{$course->id}}">Bekijk</a>
                           @endpermission
                         @endif
                     </div>

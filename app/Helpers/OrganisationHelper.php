@@ -46,13 +46,6 @@ class OrganisationHelper
           $organisation->save();
         endif;
 
-        // Adds current user to newly created organisation as first memeber
-        $user = Auth::user();
-        $userOrg = new UserOrganisations;
-        $userOrg->user_id = $user->id;
-        $userOrg->organisation_id = $organisation->id;
-        $userOrg->save();
-
         return $organisation;
       else:
         return redirect()->back()->with('error', FlashMessageLoad('organisation.create.error'));

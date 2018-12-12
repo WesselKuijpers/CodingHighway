@@ -34,6 +34,6 @@ class UserTableSeeder extends Seeder
     $user->attachRole(Role::where('slug', 'sa')->first());
     $user->attachPermission(Permission::where('slug', 'error.show')->first());
 
-    factory(User::class, 20)->create();
+//    factory(User::class, 20)->create();
   }
 }

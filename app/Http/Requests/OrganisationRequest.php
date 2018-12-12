@@ -35,7 +35,7 @@ class OrganisationRequest extends FormRequest
     $rules = [];
     if ($this->url() == route('organisation.activate')):
       return $rules = [
-        'organisation_id' => 'required|numeric|exists:organisations,id'
+        'organisation_id' => 'required|numeric'
       ];
     endif;
     switch ($this->getMethod()):

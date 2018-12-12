@@ -15,18 +15,18 @@ class UserLicensesSeeder extends Seeder
    */
   public function run()
   {
-    $users = User::all();
-
-    foreach($users as $user):
-      $license = License::where('user_id', null)->first();
-      $license->user_id = $user->id;
-      $license->save();
-    endforeach;
-
-    $licenses = License::all();
-    foreach ($licenses as $l):
-      $l->organisation_id = Organisation::inRandomOrder()->first()->id;
-      $l->save();
-    endforeach;
+//    $users = User::all();
+//
+//    foreach($users as $user):
+//      $license = License::where('user_id', null)->first();
+//      $license->user_id = $user->id;
+//      $license->save();
+//    endforeach;
+//
+//    $licenses = License::all();
+//    foreach ($licenses as $l):
+//      $l->organisation_id = Organisation::inRandomOrder()->first()->id;
+//      $l->save();
+//    endforeach;
   }
 }

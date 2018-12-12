@@ -12,6 +12,6 @@ class LicensesSeeder extends Seeder
      */
     public function run()
     {
-      factory(License::class, 50)->create();
+//      factory(License::class, 50)->create();
     }
 }

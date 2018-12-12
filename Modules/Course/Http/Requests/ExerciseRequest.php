@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Modules\Course\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class LessonRequest
- * Request class to validate the requests of create, edit and delete Lesson
+ * Class ExerciseRequest
+ * Request class to validate the requests of create, edit and delete Exercises
  * @package App\Http\Requests
  */
-class LessonRequest extends FormRequest
+class ExerciseRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class LessonRequest extends FormRequest
     endif;
     switch ($this->getMethod()):
       case 'POST':
-        if (Auth::user()->canLessonCreate()):
+        if (Auth::user()->canExerciseCreate()):
           return true;
         else:
           return false;
@@ -32,7 +32,7 @@ class LessonRequest extends FormRequest
 
         break;
       case 'PUT':
-        if (Auth::user()->canLessonEdit()):
+        if (Auth::user()->canExerciseEdit()):
           return true;
         else:
           return false;
@@ -40,7 +40,7 @@ class LessonRequest extends FormRequest
 
         break;
       case 'DELETE':
-        if (Auth::user()->canLessonDelete()):
+        if (Auth::user()->canExerciseDelete()):
           return true;
         else:
           return false;
@@ -64,10 +64,11 @@ class LessonRequest extends FormRequest
     switch ($this->getMethod()):
       case "POST":
         $rules = [
+          'course_id' => 'required|numeric',
           'title' => 'required|string|max:60',
           'content' => 'required|string',
-          'course_id' => 'required|numeric',
-          'level_id' => 'nullable|numeric',
+          'is_final' => 'required|boolean',
+          'level_id' => 'required|numeric',
           'is_first' => 'nullable|boolean',
           'next_id' => 'nullable|numeric',
           'media.*' => 'file'
@@ -76,12 +77,13 @@ class LessonRequest extends FormRequest
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
+          'course_id' => 'required|numeric',
           'title' => 'required|string|max:60',
           'content' => 'required|string',
-          'course_id' => 'required|numeric',
+          'is_final' => 'required|boolean',
           'is_first' => 'nullable|boolean',
           'next_id' => 'nullable|numeric',
-          'level_id' => 'nullable|numeric',
+          'level_id' => 'required|numeric',
           'media.*' => 'file'
         ];
         break;

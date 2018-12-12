@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Requests\CourseRequest;
-use App\Models\course\Course;
-use App\Models\general\FlashMessage;
+use Modules\Course\Http\Requests\CourseRequest;
+use Modules\Course\Entities\Course;
 use App\Models\general\Media;
 use Illuminate\Database\QueryException;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\forum;
+namespace Modules\Forum\Enteties;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ class Tag extends Model
 
   public function questions()
   {
-    $this->hasManyThrough('App\Question', 'App\QuestionTag');
+    $this->belongsToMany(Question::class, 'question_tags');
   }
 
   protected $fillable = [

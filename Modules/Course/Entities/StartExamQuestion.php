@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\course;
+namespace Modules\Course\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ class StartExamQuestion extends Model
 
   public function startExam()
   {
-    return $this->belongsTo(startExam::class);
+    return $this->belongsTo(StartExam::class);
   }
 
   public function answers()

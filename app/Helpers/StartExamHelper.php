@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Requests\StartExamRequest;
-use App\Models\course\StartExam;
-use App\Models\course\StartExamQuestion;
-use App\Models\course\StartExamAnswer;
+use Modules\Course\Http\Requests\StartExamRequest;
+use Modules\Course\Entities\StartExam;
+use Modules\Course\Entities\StartExamQuestion;
+use Modules\Course\Entities\StartExamAnswer;
 use Illuminate\Support\Facades\DB;
 
 class StartExamHelper

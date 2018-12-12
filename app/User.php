@@ -8,17 +8,15 @@ use App\Models\forum\Reply;
 use App\Models\forum\Vote;
 use App\Models\general\License;
 use App\Models\general\Organisation;
-use App\Models\general\UserOrganisation;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use App\Review;
-use App\Solution;
+use Modules\Course\Entities\Review;
+use Modules\Course\Entities\Solution;
 
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 use Laravel\Scout\Searchable;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {

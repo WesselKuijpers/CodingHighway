@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models\forum;
+namespace Modules\Forum\Enteties;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
@@ -10,17 +11,17 @@ class Vote extends Model
 
   public function user()
   {
-    $this->belongsTo('App\User');
+    $this->belongsTo(User::class);
   }
 
   public function answer()
   {
-    $this->belongsTo('App\Answer');
+    $this->belongsTo(Answer::class);
   }
 
   public function question()
   {
-    $this->belongsTo('App\Question');
+    $this->belongsTo(Question::class);
   }
 
   protected $fillable = [

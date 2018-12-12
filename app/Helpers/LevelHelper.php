@@ -1,8 +1,7 @@
 <?php
 
-use App\Models\course\Level;
-use App\Http\Requests\LevelRequest;
-use App\Models\general\FlashMessage;
+use Modules\Course\Entities\Level;
+use Modules\Course\Http\Requests\LevelRequest;
 use Illuminate\Http\RedirectResponse;
 
 /**

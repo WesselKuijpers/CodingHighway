@@ -1,9 +1,8 @@
 <?php
 
-use App\Models\course\Exercise;
-use App\Http\Requests\ExerciseRequest;
-use App\Models\course\ExerciseMedia;
-use App\Models\general\FlashMessage;
+use Modules\Course\Entities\Exercise;
+use Modules\Course\Http\Requests\ExerciseRequest;
+use Modules\Course\Entities\ExerciseMedia;
 use App\Models\general\Media;
 
 /**

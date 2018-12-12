@@ -1,12 +1,11 @@
 <?php
-use App\Models\course\Level;
-use App\Models\course\Result;
-use App\Models\course\StartExamQuestion;
+
+use Modules\Course\Entities\Level;
+use Modules\Course\Entities\Result;
+use Modules\Course\Entities\StartExamQuestion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\UserProgress;
-use App\Models\course\Lesson;
-
 
 class ResultHelper {
     public static function result(Request $request)

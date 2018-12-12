@@ -1,7 +1,9 @@
 <?php
 
-namespace App;
+namespace Modules\Course\Entities;
 
+use App\User;
+use App\Models\general\Media;
 use Illuminate\Database\Eloquent\Model;
 
 class Solution extends Model
@@ -10,17 +12,17 @@ class Solution extends Model
 
     public function user()
     {
-       return $this->belongsTo('App\User');
+       return $this->belongsTo(User::class);
     }
 
     public function exercise()
     {
-        return $this->belongsTo('App\Models\course\Exercise');
+        return $this->belongsTo(Exercise::class);
     }
 
     public function media()
     {
-        return $this->belongsToMany('App\Models\general\Media', 'solution_media');
+        return $this->belongsToMany(Media::class, 'solution_media');
     }
 
     public function reviews()

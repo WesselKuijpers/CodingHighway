@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models\course;
+namespace Modules\Course\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\general\Media;
 
-class ExerciseMedia extends Model
+class LessonMedia extends Model
 {
   protected $connection = 'mysql-course';
 
-  public function exercise()
+  public function lesson()
   {
-    return $this->belongsTo(Exercise::class);
+    return $this->belongsTo(Lesson::class);
   }
 
   public function media()

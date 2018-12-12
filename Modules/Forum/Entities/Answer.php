@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models\forum;
+namespace Modules\Forum\Enteties;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
@@ -10,17 +11,17 @@ class Answer extends Model
 
   public function user()
   {
-    $this->belongsTo('App\User');
+    $this->belongsTo(User::class);
   }
 
   public function question()
   {
-    $this->belongsTo('App\Question');
+    $this->belongsTo(Question::class);
   }
 
   public function replies()
   {
-    $this->hasMany('App\Reply');
+    $this->hasMany(Reply::class);
   }
 
   protected $fillable = [

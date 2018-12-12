@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\forum;
+namespace Modules\Forum\Enteties;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,7 +10,7 @@ class Reply extends Model
 
   public function answer()
   {
-    $this->belongsTo('App\Answer');
+    $this->belongsTo(Answer::class);
   }
 
   protected $fillable = [

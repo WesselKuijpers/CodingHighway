@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\forum;
+namespace Modules\Forum\Enteties;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,11 +10,11 @@ class QuestionTag extends Model
 
   public function question()
   {
-    $this->belongsTo('App\Question');
+    $this->belongsTo(Question::class);
   }
 
   public function tag()
   {
-    $this->belongsTo('App\Tag');
+    $this->belongsTo(Tag::class);
   }
 }

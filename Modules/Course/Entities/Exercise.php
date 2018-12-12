@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\course;
+namespace Modules\Course\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\general\Media;
@@ -31,6 +31,6 @@ class Exercise extends Model
 
   public function solutions()
   {
-      return $this->hasMany('App\Solution');
+      return $this->hasMany(Solution::class);
   }
 }

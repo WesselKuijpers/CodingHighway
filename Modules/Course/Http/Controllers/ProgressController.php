@@ -5,8 +5,8 @@ namespace Modules\Course\Http\Controllers;
 use App\Http\Requests\ProgressRequest;
 use App\UserProgress;
 use Illuminate\Routing\Controller;
-use App\Models\course\Lesson;
-use App\Models\course\Exercise;
+use Modules\Course\Entities\Lesson;
+use Modules\Course\Entities\Exercise;
 
 //TODO add FlashMessages
 class ProgressController extends Controller

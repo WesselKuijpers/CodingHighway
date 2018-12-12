@@ -2,20 +2,18 @@
 
 namespace Modules\Course\Http\Controllers;
 
-use App\Http\Requests\ExerciseRequest;
-use App\Models\course\Course;
-use App\Models\course\Exercise;
-use App\Models\course\Lesson;
-use App\Models\course\Level;
+use Modules\Course\Http\Requests\ExerciseRequest;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\Exercise;
+use Modules\Course\Entities\Level;
 use ExerciseHelper;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use OrderHelper;
 use OrderUpdateHelper;
 use Illuminate\Support\Facades\DB;
-use App\Solution;
+use Modules\Course\Entities\Solution;
 use Illuminate\Support\Facades\Auth;
 
 //TODO add FlashMessages

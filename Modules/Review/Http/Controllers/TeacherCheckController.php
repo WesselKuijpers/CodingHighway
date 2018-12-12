@@ -2,14 +2,13 @@
 
 namespace Modules\Review\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 use App\User;
-use App\Solution;
-use App\Http\Requests\ReviewRequest;
+use Modules\Course\Entities\Solution;
+use Modules\Course\Http\Requests\ReviewRequest;
 use ReviewHelper;
 
 class TeacherCheckController extends Controller

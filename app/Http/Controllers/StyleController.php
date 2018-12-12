@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 use App\Models\general\Organisation;
 use Illuminate\Support\Facades\Response;
 

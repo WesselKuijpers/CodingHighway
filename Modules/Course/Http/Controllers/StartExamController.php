@@ -5,10 +5,9 @@ namespace Modules\Course\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use App\Models\course\Course;
-use App\Models\course\Level;
-use App\Models\course\StartExam;
-use App\Http\Requests\StartExamRequest;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\StartExam;
+use Modules\Course\Http\Requests\StartExamRequest;
 use StartExamHelper;
 
 //TODO Change to flash messages

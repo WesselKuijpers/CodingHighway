@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use SolutionHelper;
-use App\Http\Requests\SolutionRequest;
-use App\Models\course\Exercise;
-use App\Solution;
+use Modules\Course\Http\Requests\SolutionRequest;
 
 //TODO Change to FlashMessages
 class SolutionController extends Controller

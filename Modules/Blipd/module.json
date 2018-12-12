@@ -1,0 +1,16 @@
+{
+    "name": "Blipd",
+    "alias": "blipd",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Blipd\\Providers\\BlipdServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

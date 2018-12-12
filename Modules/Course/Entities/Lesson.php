@@ -21,7 +21,7 @@ class Lesson extends Model
 
   public function media()
   {
-    return $this->belongsToMany(Media::class, 'codinghighway_course.lesson_media');
+    return $this->belongsToMany(Media::class, env('DB_DATABASE_COURSE').'.lesson_media');
   }
 
   public function next()

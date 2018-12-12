@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Models\course\Course;
-use App\Models\course\Exercise;
-use App\Models\course\Lesson;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\Exercise;
+use Modules\Course\Entities\Lesson;
 use Illuminate\Database\Eloquent\Model;
 
 class UserProgress extends Model

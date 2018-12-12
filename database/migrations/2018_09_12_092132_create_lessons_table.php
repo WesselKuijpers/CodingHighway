@@ -40,8 +40,8 @@ class CreateLessonsTable extends Migration
    */
   public function down()
   {
-    Schema::disableForeignKeyConstraints();
+    Schema::connection('mysql-course')->disableForeignKeyConstraints();
     Schema::connection('mysql-course')->dropIfExists('lessons');
-    Schema::enableForeignKeyConstraints();
+    Schema::connection('mysql-course')->enableForeignKeyConstraints();
   }
 }

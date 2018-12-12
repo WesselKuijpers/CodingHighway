@@ -21,7 +21,7 @@ class Exercise extends Model
 
   public function media()
   {
-    return $this->belongsToMany(Media::class, 'codinghighway_course.exercise_media');
+    return $this->belongsToMany(Media::class, env('DB_DATABASE_COURSE').'.exercise_media');
   }
 
   public function next()

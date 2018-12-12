@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\general;
+namespace Modules\COurse\Entities;
 
-use Solution;
 use Illuminate\Database\Eloquent\Model;
 
 class SolutionMedia extends Model

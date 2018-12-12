@@ -45,11 +45,12 @@
   <div class="row">
     <div class="col-12">
     <h3>Bestaande reviews:</h3>
-    @foreach($solution->reviews as $review)
+    @foreach($solution->reviews->sortByDesc('created_at') as $review)
       <hr>
-      <p><strong>Geplaatst door: </strong>{{$review->user->getFullname()}}</p>
-      {!!$review->content!!}
+      <p><strong>Beoordelaar: </strong>{{$review->user->getFullname()}}</p>
+      <p><strong>Geplaatst: </strong>{{\Carbon\Carbon::parse($review->created_at)->diffForHumans()}}</p>
       <p><strong>Beoordeling: </strong>{{($review->rating == 1) ? "Positief" : "Negatief"}}</p>
+      {!!$review->content!!}
     @endforeach
     </div>
   </div>

@@ -10627,6 +10627,18 @@ a:hover.no-link {
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
 
+@media only screen and (max-width: 575px) {
+  .list-card {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+  }
+
+  .progressbar {
+    left: 0;
+    width: 100%;
+  }
+}
+
 .list-card:hover {
   background: #f3f3f3;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

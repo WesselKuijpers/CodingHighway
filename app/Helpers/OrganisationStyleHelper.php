@@ -40,6 +40,25 @@ background: rgb(' . $r . ', ' . $g . ', ' . $b . ');
 --perceived-lightness: calc(var(--sum) / 255); 
 color: hsl(0, 0%, calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)) !important; 
 }
+
+.progress {
+ background: white;
+}
+
+.progressbar {
+  left: -20px;
+}
+
+.progress-bar {
+    background-color: #'. $color[0].$color[1].$color[2]. ' !important;
+    left: -20px !important;
+    --r: calc(' . $r . ' * 0.2126); 
+    --g: calc(' . $g . ' * 0.7152);
+    --b: calc(' . $b . ' * 0.0722); 
+    --sum: calc(var(--r) + var(--g) + var(--b));
+    --perceived-lightness: calc(var(--sum) / 255); 
+    color: hsl(0, 0%, calc((var(--perceived-lightness) - var(--threshold)) * -10000000%)) !important; 
+}
 .
 nav - link{
   color:

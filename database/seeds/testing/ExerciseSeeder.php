@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\course\Course;
-use App\Models\course\Exercise;
-use App\Models\course\Level;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\Exercise;
+use Modules\Course\Entities\Level;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 

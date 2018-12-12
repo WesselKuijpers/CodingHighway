@@ -68,8 +68,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TestLessonSeeder::class);
         $this->call(TestExerciseSeeder::class);
         Schema::enableForeignKeyConstraints();
-
-        $this->call(ForumSeeder::class);
         break;
     endswitch;
     }

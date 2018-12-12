@@ -2,9 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\UserProgress;
-use App\Models\course\Lesson;
-use App\Models\course\Exercise;
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 use App\User;
 
 class TestUserProgressSeeder extends Seeder

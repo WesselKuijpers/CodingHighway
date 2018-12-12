@@ -70,7 +70,8 @@ class LessonRequest extends FormRequest
           'level_id' => 'nullable|numeric',
           'is_first' => 'nullable|boolean',
           'next_id' => 'nullable|numeric',
-          'media.*' => 'file'
+          'media.*' => 'file',
+          'exercises.*' => 'numeric'
         ];
         break;
       case "PUT":
@@ -82,7 +83,8 @@ class LessonRequest extends FormRequest
           'is_first' => 'nullable|boolean',
           'next_id' => 'nullable|numeric',
           'level_id' => 'nullable|numeric',
-          'media.*' => 'file'
+          'media.*' => 'file',
+          'exercises.*' => 'numeric'
         ];
         break;
       case "DELETE":

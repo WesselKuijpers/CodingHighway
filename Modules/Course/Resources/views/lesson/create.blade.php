@@ -28,7 +28,7 @@
         @if($course->lessons->count() != 0)
           @include('course::shared.select_lesson', ['lessons' => $lessons, 'id' => 0])
           <div class="form-group">
-            <label for="is_first" class="text-md-right font-weight-bold">Eerste opdracht?</label>
+            <label for="is_first" class="text-md-right font-weight-bold">Eerste les?</label>
 
             <div class="form-group">
               <input type="checkbox" name="is_first" value="1" id="is-first" data-toggle="toggle" data-on="Ja" data-off="Nee" onchange="ToggleNextExercise(this)">
@@ -37,6 +37,16 @@
         @else
           <input type="hidden" name="is_first" value="1">
           <input type="hidden" name="next_id" value="0">
+        @endif
+
+        @if($course->exercises->count() != 0)
+          <strong>Bijbehorende opdrachten:</strong>
+          @foreach ($course->exercises as $exercise)
+            <div class="form-group">
+              <label for="excheck{{$exercise->id}}" class="text-md-right font-weight-bold">{{$exercise->title}}</label>
+              <input type="checkbox" name="exercises[]" value="{{$exercise->id}}" id="excheck{{$exercise->id}}">
+            </div>
+          @endforeach
         @endif
 
         @include('shared.submit_button')

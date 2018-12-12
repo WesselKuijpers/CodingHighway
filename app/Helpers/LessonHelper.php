@@ -1,6 +1,7 @@
 <?php
 
 use Modules\Course\Entities\Lesson;
+use Modules\Course\Entities\ExerciseLessons;
 use Modules\Course\Http\Requests\LessonRequest;
 use Modules\Course\Entities\LessonMedia;
 use App\Models\general\Media;
@@ -19,7 +20,7 @@ class LessonHelper
   public static function create(LessonRequest $request)
   {
     $validated = $request->validated();
-
+    
     try {
       $lesson = new Lesson;
       $lesson->title = $validated['title'];
@@ -46,6 +47,15 @@ class LessonHelper
               $ml->lesson_id = $lesson->id;
               $ml->save();
             endif;
+          endforeach;  
+        endif;
+
+        if (!empty($validated['exercises'])):
+          foreach($validated['exercises'] as $exercise):
+            $le = new ExerciseLessons;
+            $le->lesson_id = $lesson->id;
+            $le->exercise_id = $exercise;
+            $le->save();
           endforeach;
         endif;
 
@@ -55,6 +65,7 @@ class LessonHelper
       endif;
     }
     catch (\Illuminate\Database\QueryException $queryException){
+      dd($queryException);
       return redirect()->back()->with('error', FlashMessageLoad('lesson.create.error'));
     }
   }

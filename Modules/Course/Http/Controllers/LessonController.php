@@ -48,6 +48,7 @@ class LessonController extends Controller
     $levels = Level::all();
 
     $lessons = OrderHelper::SortList($course->lessons);
+    // dd($lessons);
     return view('course::lesson.create', ['course' => $course, 'levels' => $levels, 'lessons' => $lessons]);
   }
 

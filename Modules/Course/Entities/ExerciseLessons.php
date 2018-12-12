@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExerciseLessons extends Model
 {
+    protected $connection = 'mysql-course';
+
     public function lesson()
     {
         return $this->belongsTo(Lesson::class);

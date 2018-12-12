@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
   use Searchable;
 
   protected $table = null;
+  protected $connection = 'mysql';
 
   /**
    * The attributes that are mass assignable.

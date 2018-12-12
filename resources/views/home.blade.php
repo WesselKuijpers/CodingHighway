@@ -40,7 +40,7 @@
                       <input type="submit" class="btn btn-organisation" value="Gegevens aanpassen">
                     </a>
                   </div>
-                </div> 
+                </div>
                 @if(Auth::user()->license->count() == 1)
                   <p class="font-weight-bold mt-3">Licentie</p>
                   <div class="row">
@@ -48,7 +48,8 @@
                       <p>Soort:</p>
                     </div>
                     <div class="col-7">
-                      <p>@if(!empty(Auth::user()->license()->first()->organisation_id))Organisatie @else Persoonlijk @endif</p>
+                      <p>@if(!empty(Auth::user()->license()->first()->organisation_id))Organisatie @else
+                          Persoonlijk @endif</p>
                     </div>
                   </div>
                   <div class="row">
@@ -115,12 +116,14 @@
 
                 @foreach($courses as $course)
                   @if(App\UserProgress::where('user_id', Auth::id())->where('course_id', $course->id)->count() != 0)
-                  <p class="font-weight-bold mt-3">Voortgang van de {{ $course->name }} cursus</p>
+                    <p class="font-weight-bold mt-3">Voortgang van de {{ $course->name }} cursus</p>
 
-                  <div class="row">
+                    <div class="row">
                       <div class="col-sm-12 col-md-12 col-lg-6">
                         <div class="card custom-card mb-4 course-card">
-                          <img class="card-img-top img-fluid custom-img" src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif" alt="Afbeelding niet gevonden">
+                          <img class="card-img-top img-fluid custom-img"
+                               src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif"
+                               alt="Afbeelding niet gevonden">
                           <div class="card-body">
                             <h2 class="text-center text-color">Opdrachten</h2>
                             <hr/>
@@ -128,63 +131,73 @@
                               <p>{{ Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->title }}</p>
 
                               <div
-                                      class="progressbar"
-                                      data-user_id="{{ Auth::id() }}"
-                                      data-course_id="{{ $course->id }}"
-                                      data-exercises="1"
-                                      data-token="{{ Auth::user()->api_token }}"
+                                class="progressbar"
+                                data-user_id="{{ Auth::id() }}"
+                                data-course_id="{{ $course->id }}"
+                                data-exercises="1"
+                                data-token="{{ Auth::user()->api_token }}"
                               >
                               </div>
 
-                              <a href="{{ route('exercise.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->id]) }}" class="no-link btn btn-outline-dark">Ga verder</a>
+                              <a
+                                href="{{ route('exercise.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->id]) }}"
+                                class="no-link btn btn-outline-dark">Ga verder</a>
                             @elseif (count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
                               <p>Je hebt deze opdrachten al afgerond</p>
-                              <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn btn-outline-dark">Bekijk</a>
+                              <a href="{{ route('course.show', ['id' => $course->id]) }}"
+                                 class="no-link btn btn-outline-dark">Bekijk</a>
                             @else
                               <p>Je bent nog niet begonnen aan deze opdrachten</p>
-                              <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn btn-outline-dark">Start</a>
+                              <a href="{{ route('course.show', ['id' => $course->id]) }}"
+                                 class="no-link btn btn-outline-dark">Start</a>
                             @endif
                           </div>
                         </div>
                       </div>
 
-                    <div class="col-sm-12 col-md-12 col-lg-6">
-                      <div class="card custom-card mb-4 course-card">
-                        <img class="card-img-top img-fluid custom-img" src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif" alt="Afbeelding niet gevonden">
-                        <div class="card-body">
-                        <h2 class="text-center text-color">Lessen</h2>
-                        <hr/>
-                        @if (!empty(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next))
-                          <p>{{ Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->title }}</p>
+                      <div class="col-sm-12 col-md-12 col-lg-6">
+                        <div class="card custom-card mb-4 course-card">
+                          <img class="card-img-top img-fluid custom-img"
+                               src="@if (!empty($course->media->content)) {{ $course->media->content }} @else {{asset("storage/img/logo/placeholder.png")}} @endif"
+                               alt="Afbeelding niet gevonden">
+                          <div class="card-body">
+                            <h2 class="text-center text-color">Lessen</h2>
+                            <hr/>
+                            @if (!empty(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next))
+                              <p>{{ Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->title }}</p>
 
-                          <div
-                            class="progressbar"
-                            data-user_id="{{ Auth::id() }}"
-                            data-course_id="{{ $course->id }}"
-                            data-lessons="1"
-                            data-token="{{ Auth::user()->api_token }}"
-                          >
+                              <div
+                                class="progressbar"
+                                data-user_id="{{ Auth::id() }}"
+                                data-course_id="{{ $course->id }}"
+                                data-lessons="1"
+                                data-token="{{ Auth::user()->api_token }}"
+                              >
+                              </div>
+
+                              <a
+                                href="{{ route('lesson.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->id]) }}"
+                                class="no-link btn btn-outline-dark">Ga verder</a>
+                            @elseif (count(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->get()) != 0)
+                              <p>Je hebt deze lessen al afgerond</p>
+                              <a href="{{ route('course.show', ['id' => $course->id]) }}"
+                                 class="no-link btn btn-outline-dark">Bekijk</a>
+                            @else
+                              <p>Je bent nog niet begonnen aan deze lessen</p>
+                              <a href="{{ route('course.show', ['id' => $course->id]) }}"
+                                 class="no-link btn btn-outline-dark">Start</a>
+                            @endif
                           </div>
+                        </div>
 
-                        <a href="{{ route('lesson.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->id]) }}" class="no-link btn btn-outline-dark">Ga verder</a>
-                        @elseif (count(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->get()) != 0)
-                          <p>Je hebt deze lessen al afgerond</p>
-                          <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn btn-outline-dark">Bekijk</a>
-                        @else
-                          <p>Je bent nog niet begonnen aan deze lessen</p>
-                          <a href="{{ route('course.show', ['id' => $course->id]) }}" class="no-link btn btn-outline-dark">Start</a>
-                        @endif
                       </div>
+                      @endif
+                      @endforeach
                     </div>
-
-                  </div>
-                @endif
-              @endforeach
-            </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 @endsection

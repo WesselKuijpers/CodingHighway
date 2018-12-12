@@ -28,4 +28,9 @@ class Lesson extends Model
   {
     return $this->belongsTo(Lesson::class, 'next_id');
   }
+
+  public function exercises()
+  {
+      return $this->belongsToMany(Exercise::class, 'codinghighway_course.exercise_lessons');
+  }
 }

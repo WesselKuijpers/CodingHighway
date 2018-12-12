@@ -21,7 +21,7 @@ class Exercise extends Model
 
   public function media()
   {
-    return $this->belongsToMany(Media::class);
+    return $this->belongsToMany(Media::class, 'codinghighway_course.exercise_media');
   }
 
   public function next()

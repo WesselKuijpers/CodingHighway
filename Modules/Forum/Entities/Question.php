@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Forum\Enteties;
+namespace Modules\Forum\Entities;
 
 use App\User;
 use Modules\Course\Entities\Exercise;

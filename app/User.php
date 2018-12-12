@@ -2,13 +2,12 @@
 
 namespace App;
 
-use App\Models\forum\Answer;
-use App\Models\forum\Question;
-use App\Models\forum\Reply;
-use App\Models\forum\Vote;
+use Modules\Forum\Entities\Answer;
+use Modules\Forum\Entities\Question;
+use Modules\Forum\Entities\Reply;
+use Modules\Forum\Entities\Vote;
 use App\Models\general\License;
 use App\Models\general\Organisation;
-use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
@@ -23,6 +22,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
   use Notifiable;
   use HasRoleAndPermission;
   use Searchable;
+
+  protected $table = 'codinghighway.users';
 
   /**
    * The attributes that are mass assignable.
@@ -62,12 +63,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
   public function organisation()
   {
-    return $this->belongsToMany(Organisation::class, 'licenses')->first();
+    return $this->belongsToMany(Organisation::class, 'codinghighway_general.licenses')->first();
   }
 
   public function organisations()
   {
-    return $this->belongsToMany(Organisation::class, 'licenses');
+    return $this->belongsToMany(Organisation::class, 'codinghighway_general.licenses');
   }
 
   public function questions()

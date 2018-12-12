@@ -8,6 +8,7 @@ use App\User;
 class License extends Model
 {
   protected $connection = 'mysql-general';
+  protected $table = 'codinghighway_general.licenses';
 
   public function user()
   {

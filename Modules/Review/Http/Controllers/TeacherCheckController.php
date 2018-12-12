@@ -5,6 +5,7 @@ namespace Modules\Review\Http\Controllers;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Modules\Course\Entities\Course;
 use App\User;
 use Modules\Course\Entities\Solution;
@@ -33,7 +34,8 @@ class TeacherCheckController extends Controller
     $students = User::has('solutions')->whereHas('organisations', function ($query) use ($organisation) {
       $query->where('organisations.id', '=', $organisation->id);
     })->get();
-    $courses = Course::all()->load('exercises')->load('exercises.solutions')->load('exercises.solutions.reviews');
+    
+    $courses = Course::all();
     return view('review::teacher.index', compact('organisation', 'students', 'courses'));
   }
 

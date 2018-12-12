@@ -22,6 +22,7 @@
     <input type="hidden" name="course_id" value="{{ $lesson->course->id }}"/>
     <input type="hidden" name="lesson_id" value="{{ $lesson->id }}"/>
     <input type="submit" class="btn btn-primary btn-organisation" value="Les afronden"/>
+    <input type="submit" class="btn btn-" value="Terug">
   </form>
   </p>
 @endsection

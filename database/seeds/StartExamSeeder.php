@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\course\StartExam;
-use App\Models\course\StartExamQuestion;
-use App\Models\course\StartExamAnswer;
-use App\Models\course\Course;
+use Modules\Course\Entities\StartExam;
+use Modules\Course\Entities\StartExamQuestion;
+use Modules\Course\Entities\StartExamAnswer;
+use Modules\Course\Entities\Course;
 
 class StartExamSeeder extends Seeder
 {

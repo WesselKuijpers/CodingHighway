@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\course\Lesson;
-use App\Models\course\Exercise;
+use Modules\Course\Entities\Lesson;
+use Modules\Course\Entities\Exercise;
 
 class OrderUpdateHelper
 {

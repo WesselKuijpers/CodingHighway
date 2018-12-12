@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\course;
+namespace Modules\Course\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Course extends Model
 {
   use SoftDeletes;
+
+  protected $connection = 'mysql-course';
 
   public function exercises()
   {

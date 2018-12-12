@@ -2,7 +2,6 @@
 
 use App\Http\Requests\UserActivateRequest;
 use App\Http\Requests\UserEditRequest;
-use App\Models\general\FlashMessage;
 use App\Models\general\License;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;

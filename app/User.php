@@ -2,29 +2,28 @@
 
 namespace App;
 
-use App\Models\forum\Answer;
-use App\Models\forum\Question;
-use App\Models\forum\Reply;
-use App\Models\forum\Vote;
+use Modules\Forum\Entities\Answer;
+use Modules\Forum\Entities\Question;
+use Modules\Forum\Entities\Reply;
+use Modules\Forum\Entities\Vote;
 use App\Models\general\License;
 use App\Models\general\Organisation;
-use App\Models\general\UserOrganisation;
-use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use App\Review;
-use App\Solution;
+use Modules\Course\Entities\Review;
+use Modules\Course\Entities\Solution;
 
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 use Laravel\Scout\Searchable;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
   use Notifiable;
   use HasRoleAndPermission;
   use Searchable;
+
+  protected $table = 'codinghighway.users';
 
   /**
    * The attributes that are mass assignable.
@@ -49,10 +48,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
     $total = $this->firstname;
 
     if (!empty($this->insertion)):
-      $total .= " ".$this->insertion;
+      $total .= " " . $this->insertion;
     endif;
 
-    $total .= " ".$this->lastname;
+    $total .= " " . $this->lastname;
 
     return $total;
   }
@@ -64,12 +63,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
   public function organisation()
   {
-    return $this->belongsToMany(Organisation::class, 'licenses')->first();
+    return $this->belongsToMany(Organisation::class, 'codinghighway_general.licenses')->first();
   }
 
   public function organisations()
   {
-    return $this->belongsToMany(Organisation::class, 'licenses');
+    return $this->belongsToMany(Organisation::class, 'codinghighway_general.licenses');
   }
 
   public function questions()
@@ -92,18 +91,22 @@ class User extends Authenticatable implements MustVerifyEmailContract
     return $this->hasMany(Reply::class);
   }
 
-  public function progress($course_id)
+  public function progress($course_id = null)
   {
-    return $this->hasMany(UserProgress::class)->where('course_id', $course_id);
+    if ($course_id == null):
+      return $this->hasMany(UserProgress::class);
+    else:
+      return $this->hasMany(UserProgress::class)->where('course_id', $course_id);
+    endif;
   }
 
   public function solutions()
   {
-      return $this->hasMany(Solution::class);
+    return $this->hasMany(Solution::class);
   }
 
   public function reviews()
   {
-      return $this->hasMany(Review::class);
+    return $this->hasMany(Review::class);
   }
 }

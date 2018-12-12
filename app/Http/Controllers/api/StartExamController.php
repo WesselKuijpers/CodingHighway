@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use ResultHelper;
-use App\Http\Requests\ResultRequest;
 
 class StartExamController extends Controller
 {

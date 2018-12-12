@@ -12,7 +12,7 @@ elseif($branch == "dev"):
 $base           = '/var/www/dev/codinghighway';
 endif;
 
-$shared         = ['vendor', 'node_modules', '.env'];
+$shared         = ['vendor', 'node_modules', '.env', '.env.demo'];
 $current        = \Carbon\Carbon::now()->format('YmdHis');
 @endsetup
 

@@ -2,13 +2,11 @@
 
 namespace Modules\Course\Http\Controllers;
 
-use App\Http\Requests\LessonRequest;
-use App\Models\course\Course;
-use App\Models\course\Lesson;
-use App\Models\course\Level;
-use App\Models\general\FlashMessage;
+use Modules\Course\Http\Requests\LessonRequest;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\Lesson;
+use Modules\Course\Entities\Level;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;

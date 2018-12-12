@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Requests\ApiProgressReqeust;
-use App\Models\course\Exercise;
-use App\Models\course\Lesson;
+use Modules\Course\Entities\Exercise;
+use Modules\Course\Entities\Lesson;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;

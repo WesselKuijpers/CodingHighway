@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Modules\Course\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class CourseRequest
- * Request class to validate the requests of create, edit and delete Course
+ * Class LevelRequest
+ * Request class to validate the requests of create, edit and delete Level
  * @package App\Http\Requests
  */
-class CourseRequest extends FormRequest
+class LevelRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class CourseRequest extends FormRequest
     endif;
     switch ($this->getMethod()):
       case 'POST':
-        if (Auth::user()->canCourseCreate()):
+        if (Auth::user()->canLevelCreate()):
           return true;
         else:
           return false;
@@ -32,7 +32,7 @@ class CourseRequest extends FormRequest
 
         break;
       case 'PUT':
-        if (Auth::user()->canCourseEdit()):
+        if (Auth::user()->canLevelEdit()):
           return true;
         else:
           return false;
@@ -40,7 +40,7 @@ class CourseRequest extends FormRequest
 
         break;
       case 'DELETE':
-        if (Auth::user()->canCourseDelete()):
+        if (Auth::user()->canLevelDelete()):
           return true;
         else:
           return false;
@@ -61,22 +61,16 @@ class CourseRequest extends FormRequest
   public function rules()
   {
     $rules = [];
-    switch ($this->getMethod()):
+    switch($this->getMethod()):
       case "POST":
         $rules = [
-          'name' => 'required|string|max:255',
-          'description' => 'required|string',
-          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
-          'media' => 'nullable|file'
+          'name' => 'required|string|max:60',
         ];
         break;
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'name' => 'required|string|max:255',
-          'description' => 'required|string',
-          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
-          'media' => 'nullable|file'
+          'name' => 'required|string|max:60'
         ];
         break;
       case "DELETE":

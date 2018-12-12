@@ -121,7 +121,11 @@
                                     {{$exercise->title}}
                                     @if($exercise->solutions->where('user_id', Auth::id())->count() != 0)
                                         @if($exercise->solutions->where('user_id', Auth::id())->first()->reviews->count() > 0)
-                                            <span class="fa fa-check"></span>
+                                            @if($exercise->solutions->where('user_id', Auth::id())->first()->reviews->sortByDesc('created_at')->first()->rating == -1)
+                      <span class="fa fa-times"></span>
+                    @elseif($exercise->solutions->where('user_id', Auth::id())->first()->reviews->sortByDesc('created_at')->first()->rating == 1)
+                      <span class="fa fa-check"></span>
+                    @endif
                                         @endif
                                     @endif
                                 </li>

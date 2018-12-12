@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 
 class HomeController extends Controller
 {

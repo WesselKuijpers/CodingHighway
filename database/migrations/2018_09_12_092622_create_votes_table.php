@@ -13,7 +13,7 @@ class CreateVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('votes', function (Blueprint $table) {
+        Schema::connection('mysql-forum')->create('votes', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('increment');
             $table->unsignedInteger('user_id')->nullable();
@@ -21,7 +21,7 @@ class CreateVotesTable extends Migration
             $table->unsignedInteger('question_id')->nullable();
 
             $table->foreign('user_id')
-                ->references('id')->on('users')
+                ->references('id')->on('codinghighway.users')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
 
@@ -47,7 +47,7 @@ class CreateVotesTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('votes');
+        Schema::connection('mysql-forum')->dropIfExists('votes');
         Schema::enableForeignKeyConstraints();
     }
 }

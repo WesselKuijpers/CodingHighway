@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Requests\SolutionRequest;
-use App\Solution;
+use Modules\Course\Http\Requests\SolutionRequest;
+use Modules\Course\Entities\Solution;
 use Illuminate\Support\Facades\Auth;
 use App\Models\general\SolutionMedia;
 use App\Models\general\Media;

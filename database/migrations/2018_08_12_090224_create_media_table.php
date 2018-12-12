@@ -13,7 +13,7 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::connection('mysql-general')->create('media', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('content');
@@ -30,7 +30,7 @@ class CreateMediaTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('media');
+        Schema::connection('mysql-general')->dropIfExists('media');
         Schema::enableForeignKeyConstraints();
     }
 }

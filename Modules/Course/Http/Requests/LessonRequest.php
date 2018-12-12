@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Modules\Course\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class LevelRequest
- * Request class to validate the requests of create, edit and delete Level
+ * Class LessonRequest
+ * Request class to validate the requests of create, edit and delete Lesson
  * @package App\Http\Requests
  */
-class LevelRequest extends FormRequest
+class LessonRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class LevelRequest extends FormRequest
     endif;
     switch ($this->getMethod()):
       case 'POST':
-        if (Auth::user()->canLevelCreate()):
+        if (Auth::user()->canLessonCreate()):
           return true;
         else:
           return false;
@@ -32,7 +32,7 @@ class LevelRequest extends FormRequest
 
         break;
       case 'PUT':
-        if (Auth::user()->canLevelEdit()):
+        if (Auth::user()->canLessonEdit()):
           return true;
         else:
           return false;
@@ -40,7 +40,7 @@ class LevelRequest extends FormRequest
 
         break;
       case 'DELETE':
-        if (Auth::user()->canLevelDelete()):
+        if (Auth::user()->canLessonDelete()):
           return true;
         else:
           return false;
@@ -61,16 +61,28 @@ class LevelRequest extends FormRequest
   public function rules()
   {
     $rules = [];
-    switch($this->getMethod()):
+    switch ($this->getMethod()):
       case "POST":
         $rules = [
-          'name' => 'required|string|max:60',
+          'title' => 'required|string|max:60',
+          'content' => 'required|string',
+          'course_id' => 'required|numeric',
+          'level_id' => 'nullable|numeric',
+          'is_first' => 'nullable|boolean',
+          'next_id' => 'nullable|numeric',
+          'media.*' => 'file'
         ];
         break;
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'name' => 'required|string|max:60'
+          'title' => 'required|string|max:60',
+          'content' => 'required|string',
+          'course_id' => 'required|numeric',
+          'is_first' => 'nullable|boolean',
+          'next_id' => 'nullable|numeric',
+          'level_id' => 'nullable|numeric',
+          'media.*' => 'file'
         ];
         break;
       case "DELETE":

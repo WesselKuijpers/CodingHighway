@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Solution;
+use Modules\Course\Entities\Solution;
 use App\User;
-use App\Models\Course\Exercise;
+use Modules\Course\Entities\Exercise;
 
 class SolutionSeeder extends Seeder
 {

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\course\Level;
+use Modules\Course\Entities\Level;
 use Illuminate\Database\Seeder;
 
 class LevelSeeder extends Seeder

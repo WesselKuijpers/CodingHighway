@@ -2,12 +2,10 @@
 
 namespace Modules\Organisation\Http\Controllers;
 
-use App\Models\general\FlashMessage;
 use App\Models\general\Organisation;
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 use App\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\OrganisationRequest;

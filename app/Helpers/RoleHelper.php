@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Requests\RoleRequest;
-use App\Models\general\FlashMessage;
-use jeremykenedy\LaravelRoles\Models\Permission;
 use jeremykenedy\LaravelRoles\Models\Role;
 
 class RoleHelper

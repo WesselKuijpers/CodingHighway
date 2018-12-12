@@ -13,7 +13,7 @@ class CreateSolutionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('solutions', function (Blueprint $table) {
+        Schema::connection('mysql-course')->create('solutions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('exercise_id');
@@ -21,7 +21,7 @@ class CreateSolutionsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')
-                ->references('id')->on('users')
+                ->references('id')->on('codinghighway.users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
@@ -39,6 +39,6 @@ class CreateSolutionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solutions');
+        Schema::connection('mysql-course')->dropIfExists('solutions');
     }
 }

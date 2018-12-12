@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Modules\Course\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class ExerciseRequest
- * Request class to validate the requests of create, edit and delete Exercises
+ * Class CourseRequest
+ * Request class to validate the requests of create, edit and delete Course
  * @package App\Http\Requests
  */
-class ExerciseRequest extends FormRequest
+class CourseRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class ExerciseRequest extends FormRequest
     endif;
     switch ($this->getMethod()):
       case 'POST':
-        if (Auth::user()->canExerciseCreate()):
+        if (Auth::user()->canCourseCreate()):
           return true;
         else:
           return false;
@@ -32,7 +32,7 @@ class ExerciseRequest extends FormRequest
 
         break;
       case 'PUT':
-        if (Auth::user()->canExerciseEdit()):
+        if (Auth::user()->canCourseEdit()):
           return true;
         else:
           return false;
@@ -40,7 +40,7 @@ class ExerciseRequest extends FormRequest
 
         break;
       case 'DELETE':
-        if (Auth::user()->canExerciseDelete()):
+        if (Auth::user()->canCourseDelete()):
           return true;
         else:
           return false;
@@ -64,27 +64,19 @@ class ExerciseRequest extends FormRequest
     switch ($this->getMethod()):
       case "POST":
         $rules = [
-          'course_id' => 'required|numeric',
-          'title' => 'required|string|max:60',
-          'content' => 'required|string',
-          'is_final' => 'required|boolean',
-          'level_id' => 'required|numeric',
-          'is_first' => 'nullable|boolean',
-          'next_id' => 'nullable|numeric',
-          'media.*' => 'file'
+          'name' => 'required|string|max:255',
+          'description' => 'required|string',
+          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
+          'media' => 'nullable|file'
         ];
         break;
       case "PUT":
         $rules = [
           'id' => 'required|numeric',
-          'course_id' => 'required|numeric',
-          'title' => 'required|string|max:60',
-          'content' => 'required|string',
-          'is_final' => 'required|boolean',
-          'is_first' => 'nullable|boolean',
-          'next_id' => 'nullable|numeric',
-          'level_id' => 'required|numeric',
-          'media.*' => 'file'
+          'name' => 'required|string|max:255',
+          'description' => 'required|string',
+          'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
+          'media' => 'nullable|file'
         ];
         break;
       case "DELETE":

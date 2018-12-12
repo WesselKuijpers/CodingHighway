@@ -2,11 +2,9 @@
 
 namespace Modules\Course\Http\Controllers;
 
-use App\Http\Requests\LevelRequest;
-use App\Models\course\Level;
-use App\Models\general\FlashMessage;
+use Modules\Course\Http\Requests\LevelRequest;
+use Modules\Course\Entities\Level;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use LevelHelper;

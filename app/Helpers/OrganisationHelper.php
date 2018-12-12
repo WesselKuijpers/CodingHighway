@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Requests\OrganisationRequest;
-use App\Models\general\FlashMessage;
 use App\Models\general\Media;
 use App\Models\general\Organisation;
 use App\Models\general\UserOrganisations;

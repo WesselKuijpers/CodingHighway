@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Storage;
 
 class Organisation extends Model
 {
+  protected $connection = 'mysql-general';
+  protected $table = 'codinghighway_general.organisations';
+
   public function users()
   {
-    return $this->belongsToMany(User::class, 'licenses');
+    return $this->belongsToMany(User::class, 'codinghighway_general.licenses');
   }
 
   public function licenses()

@@ -1,7 +1,8 @@
 <?php
-use App\Http\Requests\ReviewRequest;
-use App\Solution;
-use App\Review;
+
+use Modules\Course\Http\Requests\ReviewRequest;
+use Modules\Course\Entities\Solution;
+use Modules\Course\Entities\Review;
 
 //TODO add flash messages
 class ReviewHelper

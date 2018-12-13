@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExerciseMediaTable extends Migration
+class CreateSolutionsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,19 +13,22 @@ class CreateExerciseMediaTable extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-course')->create('exercise_media', function (Blueprint $table) {
+    $base = env('DB_DATABASE', false);
+
+    Schema::connection('mysql-course')->create('solutions', function (Blueprint $table) use ($base) {
       $table->increments('id');
+      $table->unsignedInteger('user_id');
       $table->unsignedInteger('exercise_id');
-      $table->unsignedInteger('media_id');
+      $table->text('content');
       $table->timestamps();
 
-      $table->foreign('exercise_id')
-        ->references('id')->on('exercises')
+      $table->foreign('user_id')
+        ->references('id')->on($base.'.users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
-      $table->foreign('media_id')
-        ->references('id')->on('codinghighway_general.media')
+      $table->foreign('exercise_id')
+        ->references('id')->on('exercises')
         ->onDelete('cascade')
         ->onUpdate('cascade');
     });
@@ -38,8 +41,6 @@ class CreateExerciseMediaTable extends Migration
    */
   public function down()
   {
-    Schema::disableForeignKeyConstraints();
-    Schema::connection('mysql-course')->dropIfExists('exercise_media');
-    Schema::enableForeignKeyConstraints();
+    Schema::connection('mysql-course')->dropIfExists('solutions');
   }
 }

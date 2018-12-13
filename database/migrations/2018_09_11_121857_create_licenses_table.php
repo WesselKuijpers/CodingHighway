@@ -6,43 +6,45 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLicensesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::connection('mysql-general')->create('licenses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('key')->unique();
-            $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('organisation_id')->nullable();
-            $table->dateTime('expires_at');
-            $table->boolean('expired');
-            $table->timestamps();
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    $base = env('DB_DATABASE', false);
 
-            $table->foreign('user_id')
-                  ->references('id')->on('codinghighway.users')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
+    Schema::connection('mysql-general')->create('licenses', function (Blueprint $table) use ($base) {
+      $table->increments('id');
+      $table->string('key')->unique();
+      $table->unsignedInteger('user_id')->nullable();
+      $table->unsignedInteger('organisation_id')->nullable();
+      $table->dateTime('expires_at');
+      $table->boolean('expired');
+      $table->timestamps();
 
-            $table->foreign('organisation_id')
-                  ->references('id')->on('organisations')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
-        });
-    }
+      $table->foreign('user_id')
+        ->references('id')->on($base.'.users')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::disableForeignKeyConstraints();
-        Schema::connection('mysql-general')->dropIfExists('licenses');
-        Schema::enableForeignKeyConstraints();
-    }
+      $table->foreign('organisation_id')
+        ->references('id')->on('organisations')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
+    });
+  }
+
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::connection('mysql-general')->disableForeignKeyConstraints();
+    Schema::connection('mysql-general')->dropIfExists('licenses');
+    Schema::connection('mysql-general')->enableForeignKeyConstraints();
+  }
 }

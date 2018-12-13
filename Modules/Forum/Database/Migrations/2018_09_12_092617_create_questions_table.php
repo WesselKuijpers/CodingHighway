@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserProgressesTable extends Migration
+class CreateQuestionsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -16,21 +16,21 @@ class CreateUserProgressesTable extends Migration
     $base = env('DB_DATABASE', false);
     $course = env('DB_DATABASE_COURSE', false);
 
-    Schema::connection('mysql-general')->create('user_progresses', function (Blueprint $table) use ($base, $course) {
+    Schema::connection('mysql-forum')->create('questions', function (Blueprint $table) use ($base, $course) {
       $table->increments('id');
-      $table->unsignedInteger('user_id');
-      $table->unsignedInteger('course_id');
-      $table->unsignedInteger('lesson_id')->nullable();
+      $table->string('title');
+      $table->unsignedInteger('user_id')->nullable();
       $table->unsignedInteger('exercise_id')->nullable();
-      $table->timestamps();
+      $table->unsignedInteger('lesson_id')->nullable();
+      $table->string('content');
 
       $table->foreign('user_id')
         ->references('id')->on($base.'.users')
-        ->onDelete('cascade')
+        ->onDelete('set null')
         ->onUpdate('cascade');
 
-      $table->foreign('course_id')
-        ->references('id')->on($course.'.courses')
+      $table->foreign('exercise_id')
+        ->references('id')->on($course.'.exercises')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
@@ -39,10 +39,8 @@ class CreateUserProgressesTable extends Migration
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
-      $table->foreign('exercise_id')
-        ->references('id')->on($course.'.exercises')
-        ->onDelete('cascade')
-        ->onUpdate('cascade');
+      $table->boolean('solved');
+      $table->timestamps();
     });
   }
 
@@ -53,8 +51,8 @@ class CreateUserProgressesTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-general')->disableForeignKeyConstraints();
-    Schema::connection('mysql-general')->dropIfExists('user_progresses');
-    Schema::connection('mysql-general')->enableForeignKeyConstraints();
+    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
+    Schema::connection('mysql-forum')->dropIfExists('questions');
+    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
   }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Modules\Blipd\Database\Seeders\StateTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -69,7 +70,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TestExerciseSeeder::class);
         Schema::enableForeignKeyConstraints();
 
-        $this->call(Modules\Blipd\Database\Seeders\StateTableSeeder::class);
+        $this->call(StateTableSeeder::class);
         break;
     endswitch;
     }

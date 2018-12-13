@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsTable extends Migration
+class CreateTagsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,11 +13,9 @@ class CreateProductsTable extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-general')->create('products', function (Blueprint $table) {
+    Schema::connection('mysql-forum')->create('tags', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
-      $table->integer('price');
-      $table->integer('discount');
       $table->timestamps();
     });
   }
@@ -29,8 +27,8 @@ class CreateProductsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-general')->disableForeignKeyConstraints();
-    Schema::connection('mysql-general')->dropIfExists('products');
-    Schema::connection('mysql-general')->enableForeignKeyConstraints();
+    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
+    Schema::connection('mysql-forum')->dropIfExists('tags');
+    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
   }
 }

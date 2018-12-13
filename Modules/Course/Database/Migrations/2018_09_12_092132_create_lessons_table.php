@@ -22,14 +22,14 @@ class CreateLessonsTable extends Migration
       $table->timestamps();
 
       $table->foreign('course_id')
-            ->references('id')->on('courses')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
+        ->references('id')->on('courses')
+        ->onDelete('cascade')
+        ->onUpdate('cascade');
 
       $table->foreign('level_id')
-            ->references('id')->on('levels')
-            ->onDelete('set null')
-            ->onUpdate('cascade');
+        ->references('id')->on('levels')
+        ->onDelete('set null')
+        ->onUpdate('cascade');
     });
   }
 

@@ -6,25 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 class ChangeOrganisationPhoneNumberFromIntToString extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::connection('mysql-general')->table('organisations', function (Blueprint $table) {
-            $table->string('phone')->change();
-        });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::connection('mysql-general')->table('organisations', function (Blueprint $table) {
+      $table->string('phone')->change();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    //
+  }
 }

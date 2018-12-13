@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResultsTable extends Migration
+class CreateExercisesTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,19 +13,13 @@ class CreateResultsTable extends Migration
    */
   public function up()
   {
-    Schema::disableForeignKeyConstraints();
-
-    Schema::connection('mysql-course')->create('results', function (Blueprint $table) {
+    Schema::connection('mysql-course')->create('exercises', function (Blueprint $table) {
       $table->increments('id');
-      $table->unsignedInteger('user_id');
       $table->unsignedInteger('course_id');
-      $table->unsignedInteger('level_id');
+      $table->text('content');
+      $table->boolean('is_final');
+      $table->unsignedInteger('level_id')->nullable();
       $table->timestamps();
-
-      $table->foreign('user_id')
-        ->references('id')->on('codinghighway.users')
-        ->onDelete('cascade')
-        ->onUpdate('cascade');
 
       $table->foreign('course_id')
         ->references('id')->on('courses')
@@ -34,11 +28,9 @@ class CreateResultsTable extends Migration
 
       $table->foreign('level_id')
         ->references('id')->on('levels')
-        ->onDelete('cascade')
+        ->onDelete('set null')
         ->onUpdate('cascade');
     });
-
-    Schema::enableForeignKeyConstraints();
   }
 
   /**
@@ -48,6 +40,8 @@ class CreateResultsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-course')->dropIfExists('results');
+    Schema::connection('mysql-course')->disableForeignKeyConstraints();
+    Schema::connection('mysql-course')->dropIfExists('exercises');
+    Schema::connection('mysql-course')->enableForeignKeyConstraints();
   }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNullableWeblinkAndPhoneNumberToOrganisation extends Migration
+class ChangeNextFields extends Migration
 {
   /**
    * Run the migrations.
@@ -13,9 +13,11 @@ class AddNullableWeblinkAndPhoneNumberToOrganisation extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-general')->table('organisations', function (Blueprint $table) {
-      $table->string('link')->nullable()->change();
-      $table->integer('phone')->nullable()->after('link');
+    Schema::connection('mysql-course')->table('exercises', function (Blueprint $table) {
+      $table->renameColumn('next_exercise', 'next_id');
+    });
+    Schema::connection('mysql-course')->table('lessons', function (Blueprint $table) {
+      $table->renameColumn('next_lesson', 'next_id');
     });
   }
 

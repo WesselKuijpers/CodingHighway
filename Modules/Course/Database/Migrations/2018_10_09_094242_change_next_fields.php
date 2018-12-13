@@ -28,6 +28,11 @@ class ChangeNextFields extends Migration
    */
   public function down()
   {
-    //
+    Schema::connection('mysql-course')->table('exercises', function (Blueprint $table) {
+      $table->renameColumn('next_id', 'next_exercise');
+    });
+    Schema::connection('mysql-course')->table('lessons', function (Blueprint $table) {
+      $table->renameColumn('next_id', 'next_lesson');
+    });
   }
 }

@@ -33,7 +33,8 @@ class AddNextLessonToLessonsTable extends Migration
   {
     Schema::connection('mysql-course')->disableForeignKeyConstraints();
     Schema::connection('mysql-course')->table('lessons', function (Blueprint $table) {
-      $table->dropColumn(['is_first', 'next_exercise']);
+      $table->dropForeign('lessons_next_lesson_foreign');
+      $table->dropColumn(['is_first', 'next_lesson']);
     });
     Schema::connection('mysql-course')->enableForeignKeyConstraints();
   }

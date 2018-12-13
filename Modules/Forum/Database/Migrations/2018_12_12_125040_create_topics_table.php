@@ -43,6 +43,8 @@ class CreateTopicsTable extends Migration
    */
   public function down()
   {
+    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
     Schema::connection('mysql-forum')->dropIfExists('topics');
+    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
   }
 }

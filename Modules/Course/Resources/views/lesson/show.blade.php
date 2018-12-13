@@ -15,6 +15,16 @@
       <a target="_blank" class="btn btn-primary btn-organisation" href="{{ $media->content }}">File {{ $media->id }}</a>
     @endforeach
   </p>
+  @if($lesson->exercises->count() != 0)
+    <h4>Gerelateerde opdrachten:</h4>
+    <ul>
+      @foreach ($lesson->exercises as $exercise)
+          <li>
+            <a href="{{route('exercise.show', ['course_id' => $lesson->course->id, 'id' => $exercise->id])}}">{{$exercise->title}}</a>
+          </li>
+      @endforeach
+    </ul>
+  @endif
   <p>
   <form action="{{ route('progress.create') }}" method="POST">
     @csrf

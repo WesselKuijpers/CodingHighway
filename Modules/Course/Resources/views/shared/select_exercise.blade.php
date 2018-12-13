@@ -3,7 +3,7 @@
     <select name="next_id" class="form-control">
         <option value="0">Geen</option>
         
-        @if(App\Models\course\Exercise::count() != 0 && $course->firstExercise->id != $id)
+        @if(Modules\Course\Entities\Exercise::count() != 0 && $course->firstExercise->id != $id)
             @foreach($exercises as $exercise)
                 @if($exercise->id != $id && $exercise->id != $course->firstExercise->id)
                     <option value="{{$exercise->id}}" 

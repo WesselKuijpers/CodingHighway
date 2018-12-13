@@ -38,8 +38,9 @@ class DatabaseCreateCommand extends Command
     $database_course = env('DB_DATABASE_COURSE', false);
     $database_general = env('DB_DATABASE_GENERAL', false);
     $database_forum = env('DB_DATABASE_FORUM', false);
+    $database_blipd = env('DB_DATABASE_BLIPD', false);
 
-    if (!$database || !$database_course || !$database_forum || !$database_general) {
+    if (!$database || !$database_course || !$database_forum || !$database_general || !$database_blipd) {
       $this->info('Skipping creation of database as env(DB_DATABASE) is empty');
       return;
     }
@@ -49,6 +50,7 @@ class DatabaseCreateCommand extends Command
       $database_course,
       $database_forum,
       $database_general,
+      $database_blipd,
     ];
 
     try {

@@ -68,6 +68,8 @@ class DatabaseSeeder extends Seeder
         $this->call(TestLessonSeeder::class);
         $this->call(TestExerciseSeeder::class);
         Schema::enableForeignKeyConstraints();
+
+        $this->call(Modules\Blipd\Database\Seeders\StateTableSeeder::class);
         break;
     endswitch;
     }

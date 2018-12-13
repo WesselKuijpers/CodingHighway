@@ -24,6 +24,7 @@ make:link
 install
 set:live
 set:fin
+createdb
 @endstory
 
 @story('deploy')
@@ -84,6 +85,12 @@ cd {{ $base.'/releases/'.$current }}
   chmod 777 -R storage/
   php artisan storage:link
   php artisan organisation:compile
+  php artisan migrate
+@endtask
+
+@task('createdb')
+  cd {{ $base.'/current' }}
+  php artisan db:create
 @endtask
 
 @task('set:up')

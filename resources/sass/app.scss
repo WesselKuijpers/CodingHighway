@@ -1,5 +1,6 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 // Variables
 @import 'variables';
 // Bootstrap
@@ -8,6 +9,8 @@
 /*
   <----- Navbar styling ----->
 */
+
+//Fixed navbar on mobile
 @media (max-width: 450px) {
   body {
     margin-top: 50px;
@@ -22,6 +25,9 @@
   }
 }
 
+p {
+  font-family: 'Raleway', sans-serif;
+}
 .navbar-laravel {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   background: rgba(255, 255, 255, 1);
@@ -152,6 +158,7 @@ body {
   margin: 5px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16)
 }
+// Card styling on phone
 @media only screen and (max-width: 575px) {
   .list-card {
     margin-left: 15px !important;

@@ -29,5 +29,12 @@ class PlanningController extends Controller
     public function store(PlanningRequest $request)
     {
         $data = PlanningHelper::create($request);
+
+        if ($data instanceof RedirectResponse):
+            return $data;
+        else :
+            // TODO: change to dynamic flashmessage
+            return redirect()->route('blipd')->with('msg', "Planning met succes aangemaakt.");
+        endif;
     }
 }

@@ -5,5 +5,5 @@
 
 {{-- Placeholder for the page-specific content --}}
 @section('content')
-
+  
 @endsection

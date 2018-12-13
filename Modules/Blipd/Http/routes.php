@@ -2,7 +2,7 @@
 
 Route::group(['middleware' => 'web', 'prefix' => 'blipd', 'namespace' => 'Modules\Blipd\Http\Controllers'], function()
 {
-    Route::get('/', 'BoardController@index');
+    Route::get('/', 'BoardController@index')->name('blipd');
 
     Route::resource('/planning', 'PlanningController', [
         'names' => [

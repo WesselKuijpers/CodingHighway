@@ -14,5 +14,15 @@ class Planning extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function lessons()
+    {
+        return $this->hasMany(LessonCard::class);
+    }
+
+    public function exercises()
+    {
+        return $this->hasMany(ExerciseCard::class);
+    }
+
     protected $dates = ['finished'];
 }

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Raleway);/*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10490,6 +10490,10 @@ a.text-dark:focus {
   }
 }
 
+p {
+  font-family: 'Raleway', sans-serif;
+}
+
 .navbar-laravel {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10532,12 +10536,16 @@ body {
   background: #ebf1f6;
   height: 300px;
   padding-top: 10px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.16);
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16), 0 2px 3px rgba(0, 0, 0, 0.16);
 }
 
 .side-block {
   -webkit-box-flex: 0;
   background-color: white;
-  -moz-box-shadow: 0 -5px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
   margin-top: 25px;
 }
@@ -10621,6 +10629,18 @@ a:hover.no-link {
   margin: 5px;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+@media only screen and (max-width: 575px) {
+  .list-card {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+  }
+
+  .progressbar {
+    left: 0;
+    width: 100%;
+  }
 }
 
 .list-card:hover {

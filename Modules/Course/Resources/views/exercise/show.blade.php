@@ -93,6 +93,8 @@
       <input type="hidden" name="course_id" value="{{ $exercise->course->id }}"/>
       <input type="hidden" name="exercise_id" value="{{ $exercise->id }}"/>
       <input type="submit" class="btn btn-primary btn-organisation" value="Opdracht afronden"/>
+      <input type="button" class="btn btn-primary" value="Terug" onclick="location.href='{{ route('course.show',
+      ['course_id' => $exercise->course->id])}}'">
     </form>
   </p>
 

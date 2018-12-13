@@ -103,7 +103,7 @@
           @endif
           @permission('teacher.check')
             @if(Auth::user()->organisation() != null)
-              <li><a class="nav-link" href="{{route('teacherCheckIndex')}}">Nakijken</a></li>
+              <li><a class="nav-link organisation-link" href="{{route('teacherCheckIndex')}}">Nakijken</a></li>
             @endif
           @endpermission
         @endguest

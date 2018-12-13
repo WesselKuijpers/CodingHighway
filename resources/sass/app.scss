@@ -25,9 +25,10 @@
   }
 }
 
-p {
+p, a, h5, h4, h3, h2, h1, th, tr, div {
   font-family: 'Raleway', sans-serif;
 }
+
 .navbar-laravel {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   background: rgba(255, 255, 255, 1);
@@ -173,6 +174,14 @@ body {
 .list-card:hover {
   background: #f3f3f3;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.blipd-card {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.20), 0 1px 7px 0 rgba(0, 0, 0, 0.20);
+}
+
+.table-bordered {
+  border: 1px solid black !important;
 }
 
 .img-h-250 {

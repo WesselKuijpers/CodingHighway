@@ -10490,7 +10490,16 @@ a.text-dark:focus {
   }
 }
 
-p {
+p,
+a,
+h5,
+h4,
+h3,
+h2,
+h1,
+th,
+tr,
+div {
   font-family: 'Raleway', sans-serif;
 }
 
@@ -10647,6 +10656,15 @@ a:hover.no-link {
   background: #f3f3f3;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.blipd-card {
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.2);
+}
+
+.table-bordered {
+  border: 1px solid black !important;
 }
 
 .img-h-250 {

@@ -8,21 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Topic extends Model
 {
+  protected $connection = 'mysql-forum';
   protected $fillable = [];
 
   public function course()
   {
-    $this->belongsTo(Course::class);
+    return $this->belongsTo(Course::class);
   }
 
   public function media()
   {
-    $this->belongsTo(Media::class);
+    return $this->belongsTo(Media::class);
   }
 
   public function questions()
   {
-    $this->hasMany(Question::class);
+    return $this->hasMany(Question::class);
   }
 
 }

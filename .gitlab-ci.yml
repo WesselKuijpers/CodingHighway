@@ -21,6 +21,7 @@ unit_test:
   - cp .env.example .env
   - cp .env.example .env.testing
   - composer install
+  - php artisan db:create
   - php artisan key:generate
   - php artisan key:generate --env=testing
   - php artisan migrate

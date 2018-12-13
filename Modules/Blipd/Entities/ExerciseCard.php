@@ -7,6 +7,8 @@ use Modules\Course\Entities\Exercise;
 
 class ExerciseCard extends Model
 {
+    protected $connection = 'mysql-blipd';
+    
     public function planning()
     {
         return $this->belongsTo(Planning::class);

@@ -13,9 +13,7 @@ class CreateCoursesTable extends Migration
    */
   public function up()
   {
-    $gen = env('DB_DATABASE_GENERAL', false);
-
-    Schema::create('courses', function (Blueprint $table) use ($gen) {
+    Schema::create('courses', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
       $table->text('description');
@@ -25,7 +23,7 @@ class CreateCoursesTable extends Migration
       $table->timestamps();
 
       $table->foreign('media_id')
-        ->references('id')->on($gen.'.media')
+        ->references('id')->on('media')
         ->onDelete('set null')
         ->onUpdate('cascade');
     });

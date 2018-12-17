@@ -13,16 +13,14 @@ class CreateAnswersTable extends Migration
    */
   public function up()
   {
-    $base = env('DB_DATABASE', false);
-
-    Schema::create('answers', function (Blueprint $table) use ($base) {
+    Schema::create('answers', function (Blueprint $table) {
       $table->increments('id');
       $table->string('content');
       $table->unsignedInteger('user_id')->nullable();
       $table->unsignedInteger('question_id');
 
       $table->foreign('user_id')
-        ->references('id')->on($base.'.users')
+        ->references('id')->on('users')
         ->onDelete('set null')
         ->onUpdate('cascade');
 

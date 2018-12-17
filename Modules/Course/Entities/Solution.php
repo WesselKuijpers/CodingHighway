@@ -8,15 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solution extends Model
 {
-
-  protected $table = null;
-
-  public function __construct()
-  {
-    parent::__construct();
-    $this->table = env('DB_DATABASE_COURSE').'.solutions';
-  }
-
   public function user()
   {
     return $this->belongsTo(User::class);
@@ -29,7 +20,7 @@ class Solution extends Model
 
   public function media()
   {
-    return $this->belongsToMany(Media::class, env('DB_DATABASE_COURSE').'.solution_media');
+    return $this->belongsToMany(Media::class, 'solution_media');
   }
 
   public function reviews()

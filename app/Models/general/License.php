@@ -8,14 +8,6 @@ use App\User;
 class License extends Model
 {
 
-  protected $table = null;
-
-  public function __construct()
-  {
-    parent::__construct();
-    $this->table = env('DB_DATABASE_GENERAL').'.licenses';
-  }
-
   public function user()
   {
     return $this->belongsTo(User::class);

@@ -13,10 +13,8 @@ class CreateUserProgressesTable extends Migration
    */
   public function up()
   {
-    $base = env('DB_DATABASE', false);
-    $course = env('DB_DATABASE_COURSE', false);
 
-    Schema::create('user_progresses', function (Blueprint $table) use ($base, $course) {
+    Schema::create('user_progresses', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('user_id');
       $table->unsignedInteger('course_id');
@@ -25,22 +23,22 @@ class CreateUserProgressesTable extends Migration
       $table->timestamps();
 
       $table->foreign('user_id')
-        ->references('id')->on($base.'.users')
+        ->references('id')->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
       $table->foreign('course_id')
-        ->references('id')->on($course.'.courses')
+        ->references('id')->on('courses')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
       $table->foreign('lesson_id')
-        ->references('id')->on($course.'.lessons')
+        ->references('id')->on('lessons')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 
       $table->foreign('exercise_id')
-        ->references('id')->on($course.'.exercises')
+        ->references('id')->on('exercises')
         ->onDelete('cascade')
         ->onUpdate('cascade');
     });

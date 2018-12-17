@@ -13,9 +13,7 @@ class CreateReviewsTable extends Migration
    */
   public function up()
   {
-    $base = env('DB_DATABASE', false);
-
-    Schema::create('reviews', function (Blueprint $table) use ($base) {
+    Schema::create('reviews', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('solution_id');
       $table->text('content');
@@ -29,7 +27,7 @@ class CreateReviewsTable extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('user_id')
-        ->references('id')->on($base.'.users')
+        ->references('id')->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
     });

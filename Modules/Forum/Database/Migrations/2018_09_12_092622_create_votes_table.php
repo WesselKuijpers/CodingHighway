@@ -13,9 +13,7 @@ class CreateVotesTable extends Migration
    */
   public function up()
   {
-    $base = env('DB_DATABASE', false);
-
-    Schema::create('votes', function (Blueprint $table) use ($base) {
+    Schema::create('votes', function (Blueprint $table) {
       $table->increments('id');
       $table->boolean('increment');
       $table->unsignedInteger('user_id')->nullable();
@@ -23,7 +21,7 @@ class CreateVotesTable extends Migration
       $table->unsignedInteger('question_id')->nullable();
 
       $table->foreign('user_id')
-        ->references('id')->on($base.'.users')
+        ->references('id')->on('users')
         ->onDelete('set null')
         ->onUpdate('cascade');
 

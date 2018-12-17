@@ -13,9 +13,7 @@ class CreateLicensesTable extends Migration
    */
   public function up()
   {
-    $base = env('DB_DATABASE', false);
-
-    Schema::create('licenses', function (Blueprint $table) use ($base) {
+    Schema::create('licenses', function (Blueprint $table) {
       $table->increments('id');
       $table->string('key')->unique();
       $table->unsignedInteger('user_id')->nullable();
@@ -25,7 +23,7 @@ class CreateLicensesTable extends Migration
       $table->timestamps();
 
       $table->foreign('user_id')
-        ->references('id')->on($base.'.users')
+        ->references('id')->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 

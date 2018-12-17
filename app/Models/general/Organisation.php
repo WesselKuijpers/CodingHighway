@@ -11,17 +11,9 @@ use Illuminate\Support\Facades\Storage;
 class Organisation extends Model
 {
 
-  protected $table = null;
-
-  public function __construct()
-  {
-    parent::__construct();
-    $this->table = env('DB_DATABASE_GENERAL').'.organisations';
-  }
-
   public function users()
   {
-    return $this->belongsToMany(User::class, env('DB_DATABASE_GENERAL').'.licenses');
+    return $this->belongsToMany(User::class, 'licenses');
   }
 
   public function licenses()

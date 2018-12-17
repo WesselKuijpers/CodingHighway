@@ -13,9 +13,7 @@ class CreateExerciseMediaTable extends Migration
    */
   public function up()
   {
-    $gen = env('DB_DATABASE_GENERAL', false);
-
-    Schema::create('exercise_media', function (Blueprint $table) use ($gen) {
+    Schema::create('exercise_media', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('exercise_id');
       $table->unsignedInteger('media_id');
@@ -27,7 +25,7 @@ class CreateExerciseMediaTable extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('media_id')
-        ->references('id')->on($gen.'.media')
+        ->references('id')->on('media')
         ->onDelete('cascade')
         ->onUpdate('cascade');
     });

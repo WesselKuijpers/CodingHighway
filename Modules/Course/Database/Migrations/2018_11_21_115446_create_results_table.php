@@ -13,10 +13,9 @@ class CreateResultsTable extends Migration
    */
   public function up()
   {
-    $base = env('DB_DATABASE', false);
     Schema::disableForeignKeyConstraints();
 
-    Schema::create('results', function (Blueprint $table) use ($base) {
+    Schema::create('results', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('user_id');
       $table->unsignedInteger('course_id');
@@ -24,7 +23,7 @@ class CreateResultsTable extends Migration
       $table->timestamps();
 
       $table->foreign('user_id')
-        ->references('id')->on($base.'.users')
+        ->references('id')->on('users')
         ->onDelete('cascade')
         ->onUpdate('cascade');
 

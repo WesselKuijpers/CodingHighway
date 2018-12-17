@@ -21,7 +21,7 @@ class Lesson extends Model
 
   public function media()
   {
-    return $this->belongsToMany(Media::class, env('DB_DATABASE_COURSE').'.lesson_media');
+    return $this->belongsToMany(Media::class, 'lesson_media');
   }
 
   public function next()
@@ -31,6 +31,6 @@ class Lesson extends Model
 
   public function exercises()
   {
-      return $this->belongsToMany(Exercise::class, 'codinghighway_course.exercise_lessons');
+      return $this->belongsToMany(Exercise::class, 'exercise_lessons');
   }
 }

@@ -15,7 +15,7 @@ class CreateReviewsTable extends Migration
   {
     $base = env('DB_DATABASE', false);
 
-    Schema::connection('mysql-course')->create('reviews', function (Blueprint $table) use ($base) {
+    Schema::create('reviews', function (Blueprint $table) use ($base) {
       $table->increments('id');
       $table->unsignedInteger('solution_id');
       $table->text('content');
@@ -42,6 +42,6 @@ class CreateReviewsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-course')->dropIfExists('reviews');
+    Schema::dropIfExists('reviews');
   }
 }

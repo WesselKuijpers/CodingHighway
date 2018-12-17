@@ -13,7 +13,7 @@ class CreateTagsTable extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-forum')->create('tags', function (Blueprint $table) {
+    Schema::create('tags', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
       $table->timestamps();
@@ -27,8 +27,8 @@ class CreateTagsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
-    Schema::connection('mysql-forum')->dropIfExists('tags');
-    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
+    Schema::dropIfExists('tags');
+    Schema::enableForeignKeyConstraints();
   }
 }

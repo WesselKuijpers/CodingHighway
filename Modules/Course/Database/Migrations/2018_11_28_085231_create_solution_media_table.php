@@ -15,7 +15,7 @@ class CreateSolutionMediaTable extends Migration
   {
     $gen = env('DB_DATABASE_GENERAL', false);
 
-    Schema::connection('mysql-course')->create('solution_media', function (Blueprint $table) use ($gen) {
+    Schema::create('solution_media', function (Blueprint $table) use ($gen) {
       $table->increments('id');
       $table->unsignedInteger('solution_id');
       $table->unsignedInteger('media_id');
@@ -40,6 +40,6 @@ class CreateSolutionMediaTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-course')->dropIfExists('solution_media');
+    Schema::dropIfExists('solution_media');
   }
 }

@@ -7,7 +7,7 @@ use App\User;
 
 class License extends Model
 {
-  protected $connection = 'mysql-general';
+
   protected $table = null;
 
   public function __construct()

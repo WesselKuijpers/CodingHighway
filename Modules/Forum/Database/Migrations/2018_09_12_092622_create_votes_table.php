@@ -15,7 +15,7 @@ class CreateVotesTable extends Migration
   {
     $base = env('DB_DATABASE', false);
 
-    Schema::connection('mysql-forum')->create('votes', function (Blueprint $table) use ($base) {
+    Schema::create('votes', function (Blueprint $table) use ($base) {
       $table->increments('id');
       $table->boolean('increment');
       $table->unsignedInteger('user_id')->nullable();
@@ -48,8 +48,8 @@ class CreateVotesTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
-    Schema::connection('mysql-forum')->dropIfExists('votes');
-    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
+    Schema::dropIfExists('votes');
+    Schema::enableForeignKeyConstraints();
   }
 }

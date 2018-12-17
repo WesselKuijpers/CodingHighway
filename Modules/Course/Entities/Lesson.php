@@ -7,7 +7,7 @@ use App\Models\general\Media;
 
 class Lesson extends Model
 {
-  protected $connection = 'mysql-course';
+
 
   public function course()
   {

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Organisation extends Model
 {
-  protected $connection = 'mysql-general';
+
   protected $table = null;
 
   public function __construct()

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solution extends Model
 {
-  protected $connection = 'mysql-course';
+
   protected $table = null;
 
   public function __construct()

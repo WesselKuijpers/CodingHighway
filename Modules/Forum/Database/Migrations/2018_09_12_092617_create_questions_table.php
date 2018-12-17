@@ -16,7 +16,7 @@ class CreateQuestionsTable extends Migration
     $base = env('DB_DATABASE', false);
     $course = env('DB_DATABASE_COURSE', false);
 
-    Schema::connection('mysql-forum')->create('questions', function (Blueprint $table) use ($base, $course) {
+    Schema::create('questions', function (Blueprint $table) use ($base, $course) {
       $table->increments('id');
       $table->string('title');
       $table->unsignedInteger('user_id')->nullable();
@@ -51,8 +51,8 @@ class CreateQuestionsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
-    Schema::connection('mysql-forum')->dropIfExists('questions');
-    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
+    Schema::dropIfExists('questions');
+    Schema::enableForeignKeyConstraints();
   }
 }

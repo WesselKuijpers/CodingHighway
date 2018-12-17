@@ -13,7 +13,7 @@ class AddFieldsToExercise extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-course')->table('exercises', function (Blueprint $table) {
+    Schema::table('exercises', function (Blueprint $table) {
       $table->string('title')->unique()->after('id');
     });
   }

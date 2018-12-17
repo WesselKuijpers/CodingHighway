@@ -13,7 +13,7 @@ class CreatePlanningsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql-blipd')->create('plannings', function (Blueprint $table) {
+        Schema::create('plannings', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->dateTime('finished');
@@ -33,6 +33,6 @@ class CreatePlanningsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql-blipd')->dropIfExists('plannings');
+        Schema::dropIfExists('plannings');
     }
 }

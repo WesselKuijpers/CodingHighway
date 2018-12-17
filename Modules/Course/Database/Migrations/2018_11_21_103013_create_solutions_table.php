@@ -15,7 +15,7 @@ class CreateSolutionsTable extends Migration
   {
     $base = env('DB_DATABASE', false);
 
-    Schema::connection('mysql-course')->create('solutions', function (Blueprint $table) use ($base) {
+    Schema::create('solutions', function (Blueprint $table) use ($base) {
       $table->increments('id');
       $table->unsignedInteger('user_id');
       $table->unsignedInteger('exercise_id');
@@ -41,6 +41,6 @@ class CreateSolutionsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-course')->dropIfExists('solutions');
+    Schema::dropIfExists('solutions');
   }
 }

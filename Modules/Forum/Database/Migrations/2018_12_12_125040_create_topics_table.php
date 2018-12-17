@@ -16,7 +16,7 @@ class CreateTopicsTable extends Migration
     $general = env('DB_DATABASE_GENERAL', false);
     $course = env('DB_DATABASE_COURSE', false);
 
-    Schema::connection('mysql-forum')->create('topics', function (Blueprint $table) use ($general, $course) {
+    Schema::create('topics', function (Blueprint $table) use ($general, $course) {
       $table->increments('id');
       $table->string('name')->unique();
       $table->unsignedInteger('media_id')->nullable();
@@ -43,8 +43,8 @@ class CreateTopicsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
-    Schema::connection('mysql-forum')->dropIfExists('topics');
-    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
+    Schema::dropIfExists('topics');
+    Schema::enableForeignKeyConstraints();
   }
 }

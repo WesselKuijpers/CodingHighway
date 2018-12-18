@@ -2,9 +2,9 @@
 
 namespace Modules\Course\Tests;
 
-use App\Models\course\Course;
-use App\Models\course\Lesson;
-use App\Models\course\Level;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\Lesson;
+use Modules\Course\Entities\Level;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Artisan;

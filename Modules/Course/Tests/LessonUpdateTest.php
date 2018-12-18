@@ -2,8 +2,8 @@
 
 namespace Modules\Course\Tests;
 
-use app\Models\course\Course;
-use app\Models\course\Lesson;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\Lesson;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleWare;
 use Illuminate\Support\Facades\Artisan;

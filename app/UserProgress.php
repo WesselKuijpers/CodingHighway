@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserProgress extends Model
 {
-  protected $connection = 'mysql-general';
+
 
   protected $fillable = [
     'user_id',

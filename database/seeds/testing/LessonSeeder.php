@@ -15,7 +15,7 @@ class TestLessonSeeder extends Seeder
    */
   public function run()
   {
-    Schema::connection('mysql-course')->disableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
     $html = Course::where('name', 'HTML')->first();
     $css = Course::where('name', 'CSS')->first();
     $js = Course::where('name', 'JS')->first();
@@ -193,6 +193,6 @@ class TestLessonSeeder extends Seeder
       $lesson->next_id = null;
       $lesson->save();
     endif;
-    Schema::connection('mysql-course')->enableForeignKeyConstraints();
+    Schema::enableForeignKeyConstraints();
   }
 }

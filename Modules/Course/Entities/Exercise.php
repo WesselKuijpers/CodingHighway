@@ -7,7 +7,7 @@ use App\Models\general\Media;
 
 class Exercise extends Model
 {
-  protected $connection = 'mysql-course';
+
 
   public function course()
   {
@@ -21,7 +21,7 @@ class Exercise extends Model
 
   public function media()
   {
-    return $this->belongsToMany(Media::class, env('DB_DATABASE_COURSE').'.exercise_media');
+    return $this->belongsToMany(Media::class, 'exercise_media');
   }
 
   public function next()

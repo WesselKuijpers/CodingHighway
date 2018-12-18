@@ -13,7 +13,7 @@ class AddTopicIdToQuestion extends Migration
      */
     public function up()
     {
-      Schema::connection('mysql-forum')->table('questions', function (Blueprint $table) {
+      Schema::table('questions', function (Blueprint $table) {
         $table->unsignedInteger('topic_id')->after('lesson_id')->nullable();
 
         $table->foreign('topic_id')

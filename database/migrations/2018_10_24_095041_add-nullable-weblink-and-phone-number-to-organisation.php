@@ -13,7 +13,7 @@ class AddNullableWeblinkAndPhoneNumberToOrganisation extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-general')->table('organisations', function (Blueprint $table) {
+    Schema::table('organisations', function (Blueprint $table) {
       $table->string('link')->nullable()->change();
       $table->integer('phone')->nullable()->after('link');
     });

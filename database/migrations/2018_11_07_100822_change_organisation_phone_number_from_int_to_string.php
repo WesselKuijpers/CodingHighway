@@ -13,7 +13,7 @@ class ChangeOrganisationPhoneNumberFromIntToString extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-general')->table('organisations', function (Blueprint $table) {
+    Schema::table('organisations', function (Blueprint $table) {
       $table->string('phone')->change();
     });
   }

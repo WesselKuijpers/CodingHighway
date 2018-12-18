@@ -11,7 +11,7 @@ class Course extends Model
 {
   use SoftDeletes;
 
-  protected $connection = 'mysql-course';
+
 
   public function exercises()
   {

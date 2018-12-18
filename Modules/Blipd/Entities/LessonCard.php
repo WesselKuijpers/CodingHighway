@@ -7,7 +7,7 @@ use Modules\Course\Entities\Lesson;
 
 class LessonCard extends Model
 {
-    protected $connection = 'mysql-blipd';
+
     
     public function planning()
     {

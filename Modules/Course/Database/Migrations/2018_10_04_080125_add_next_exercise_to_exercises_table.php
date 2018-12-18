@@ -13,7 +13,7 @@ class AddNextExerciseToExercisesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql-course')->table('exercises', function (Blueprint $table) {
+        Schema::table('exercises', function (Blueprint $table) {
           $table->boolean('is_first')->default(false);
           $table->unsignedInteger('next_exercise')->nullable();
 
@@ -31,10 +31,11 @@ class AddNextExerciseToExercisesTable extends Migration
      */
     public function down()
     {
-      Schema::connection('mysql-course')->disableForeignKeyConstraints();
-      Schema::connection('mysql-course')->table('exercise', function (Blueprint $table) {
+      Schema::disableForeignKeyConstraints();
+      Schema::table('exercises', function (Blueprint $table) {
+        $table->dropForeign('exercises_next_exercise_foreign');
         $table->dropColumn(['is_first', 'next_exercise']);
       });
-      Schema::connection('mysql-course')->enableForeignKeyConstraints();
+      Schema::enableForeignKeyConstraints();
     }
 }

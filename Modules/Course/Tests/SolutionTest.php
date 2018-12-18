@@ -5,9 +5,9 @@ namespace Modules\Course\Tests;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use App\Solution;
+use Modules\Course\Entities\Solution;
 use Illuminate\Support\Facades\Artisan;
-use App\Models\course\Exercise;
+use Modules\Course\Entities\Exercise;
 use App\User;
 
 class SolutionTest extends TestCase

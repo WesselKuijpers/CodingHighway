@@ -20,7 +20,7 @@ class CreatePlanningsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')
-                ->references('id')->on('codinghighway.users')
+                ->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

@@ -21,7 +21,7 @@ class CreateExerciseCardsTable extends Migration
             $table->timestamps();
 
             $table->foreign('exercise_id')
-                ->references('id')->on('codinghighway_course.exercises')
+                ->references('id')->on('exercises')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

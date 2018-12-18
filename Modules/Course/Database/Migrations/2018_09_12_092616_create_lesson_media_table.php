@@ -25,7 +25,7 @@ class CreateLessonMediaTable extends Migration
         ->onUpdate('cascade');
 
       $table->foreign('media_id')
-        ->references('id')->on('codinghighway_general.media')
+        ->references('id')->on('media')
         ->onDelete('cascade')
         ->onUpdate('cascade');
     });

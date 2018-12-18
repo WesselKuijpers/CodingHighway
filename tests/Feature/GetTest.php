@@ -59,13 +59,14 @@ class GetTest extends TestCase
         $route->uri == "register" ||
         $route->uri == "password/reset" ||
         $route->uri == "email/resend" ||
-        $route->uri == "organisation/create"
+        $route->uri == "organisation/create" ||
+        strpos($route->uri, 'blipd') !== false
       ):
         continue;
       endif;
       if (strpos($route->uri, '{') === false):
         $response = $this->actingAs($user)->get($route->uri);
-        if ($response->getStatusCode() == 302):
+        if ($response->getStatusCode() == 500):
           dd($response);
         endif;
         $response->assertSuccessful();

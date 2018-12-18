@@ -21,7 +21,7 @@ class CreateLessonCardsTable extends Migration
             $table->timestamps();
 
             $table->foreign('lesson_id')
-                ->references('id')->on('codinghighway_course.lessons')
+                ->references('id')->on('lessons')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

@@ -3,7 +3,7 @@
 namespace Modules\Blipd\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\Course\Entities\Exercise;
+use Modules\Course\Entities\Lesson;
 
 class LessonCard extends Model
 {

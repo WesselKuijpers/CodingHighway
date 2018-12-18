@@ -19,3 +19,4 @@
         @endif
     @endauth
 </script>
+@yield('scripts')

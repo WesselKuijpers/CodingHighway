@@ -11,6 +11,12 @@ use PlanningHelper;
 
 class PlanningController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('LicenseCheck');
+      $this->middleware('permission:blipd.planning.create');
+    }
+
     /**
      * Show the form for creating a new resource.
      * @return Response

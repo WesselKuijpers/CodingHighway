@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class BoardController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('LicenseCheck');
+      $this->middleware('permission:blipd.board');
+    }
     /**
      * Display a listing of the resource.
      * @return Response

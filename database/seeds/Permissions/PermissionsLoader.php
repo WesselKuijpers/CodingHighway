@@ -295,4 +295,22 @@ class PermissionsLoader
       ],
     ];
   }
+
+  public static function BlipdPermissions()
+  {
+    return [
+      'BlipdBoard' => [
+        'name' => 'BlipdBoard',
+        'slug' => 'blipd.board',
+        'model' => '',
+        'description' => 'permission to view the blipd board'
+      ],
+      'BlipdPlanningCreate' => [
+        'name' => 'BlipdPlanningCreate',
+        'slug' => 'blipd.planning.create',
+        'model' => '',
+        'description' => 'permission to create a planning'
+      ]
+    ];
+  }
 }

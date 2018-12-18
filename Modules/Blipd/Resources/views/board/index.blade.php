@@ -10,10 +10,13 @@
             <thead>
             <tr>
                 <th scope="col"></th>
-                <th scope="col">Backlog</th>
-                <th scope="col">In progress</th>
-                <th scope="col">Done</th>
-                <th scope="col">Failure</th>
+                @foreach($states as $state)
+                    <th>{{ $state->name }}</th>
+                @endforeach
+                {{--<th scope="col">Backlog</th>--}}
+                {{--<th scope="col">In progress</th>--}}
+                {{--<th scope="col">Done</th>--}}
+                {{--<th scope="col">Failure</th>--}}
             </tr>
             </thead>
             <tbody>

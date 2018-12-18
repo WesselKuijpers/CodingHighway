@@ -56,6 +56,9 @@
           <li class="nav-item">
             <a href="{{ url('/forum') }}" class="nav-link organisation-link">Forum</a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('/blipd') }}" class="nav-link organisation-link">Planning</a>
+          </li>
           @if(Auth::user()->hasRole('admin') && Auth::user()->organisation() != null)
             <li class="nav-item">
               <a href="{{ route('organisation.show', ['id' => Auth::user()->organisation()->id]) }}" class="nav-link organisation-link">{{ Auth::user()->organisation()->name }}</a>
@@ -103,7 +106,9 @@
           @endif
           @permission('teacher.check')
             @if(Auth::user()->organisation() != null)
-              <li><a class="nav-link organisation-link" href="{{route('teacherCheckIndex')}}">Nakijken</a></li>
+              <li>
+                <a class="nav-link organisation-link" href="{{route('teacherCheckIndex')}}">Nakijken</a>
+              </li>
             @endif
           @endpermission
         @endguest

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-  protected $connection = 'mysql-forum';
+
 
   public function user()
   {

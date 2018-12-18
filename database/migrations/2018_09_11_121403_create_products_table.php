@@ -13,7 +13,7 @@ class CreateProductsTable extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-general')->create('products', function (Blueprint $table) {
+    Schema::create('products', function (Blueprint $table) {
       $table->increments('id');
       $table->string('name');
       $table->integer('price');
@@ -29,8 +29,8 @@ class CreateProductsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-general')->disableForeignKeyConstraints();
-    Schema::connection('mysql-general')->dropIfExists('products');
-    Schema::connection('mysql-general')->enableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
+    Schema::dropIfExists('products');
+    Schema::enableForeignKeyConstraints();
   }
 }

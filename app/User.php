@@ -23,9 +23,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
   use HasRoleAndPermission;
   use Searchable;
 
-  protected $table = null;
-  protected $connection = 'mysql';
-
   /**
    * The attributes that are mass assignable.
    *
@@ -43,12 +40,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
   protected $hidden = [
     'password', 'remember_token',
   ];
-
-  public function __construct()
-  {
-    parent::__construct();
-    $this->table = env('DB_DATABASE').'.users';
-  }
 
   public function getFullname()
   {
@@ -70,12 +61,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
   public function organisation()
   {
-    return $this->belongsToMany(Organisation::class, env('DB_DATABASE_GENERAL').'.licenses')->first();
+    return $this->belongsToMany(Organisation::class, 'licenses')->first();
   }
 
   public function organisations()
   {
-    return $this->belongsToMany(Organisation::class, env('DB_DATABASE_GENERAL').'.licenses');
+    return $this->belongsToMany(Organisation::class, 'licenses');
   }
 
   public function questions()

@@ -13,16 +13,14 @@ class CreateRepliesTable extends Migration
    */
   public function up()
   {
-    $base = env('DB_DATABASE', false);
-
-    Schema::connection('mysql-forum')->create('replies', function (Blueprint $table) use ($base) {
+    Schema::create('replies', function (Blueprint $table) {
       $table->increments('id');
       $table->string('content');
       $table->unsignedInteger('answer_id');
       $table->unsignedInteger('user_id')->nullable();
 
       $table->foreign('user_id')
-        ->references('id')->on($base.'.users')
+        ->references('id')->on('users')
         ->onDelete('set null')
         ->onUpdate('cascade');
 
@@ -42,8 +40,8 @@ class CreateRepliesTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-forum')->disableForeignKeyConstraints();
-    Schema::connection('mysql-forum')->dropIfExists('replies');
-    Schema::connection('mysql-forum')->enableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
+    Schema::dropIfExists('replies');
+    Schema::enableForeignKeyConstraints();
   }
 }

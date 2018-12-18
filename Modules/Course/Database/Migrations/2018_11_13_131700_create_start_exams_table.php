@@ -13,8 +13,8 @@ class CreateStartExamsTable extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-course')->disableForeignKeyConstraints();
-    Schema::connection('mysql-course')->create('start_exams', function (Blueprint $table) {
+    Schema::disableForeignKeyConstraints();
+    Schema::create('start_exams', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('course_id')->nullable();
       $table->timestamps();
@@ -25,7 +25,7 @@ class CreateStartExamsTable extends Migration
         ->onUpdate('cascade');
     });
 
-    Schema::connection('mysql-course')->create('start_exam_answers', function (Blueprint $table) {
+    Schema::create('start_exam_answers', function (Blueprint $table) {
       $table->increments('id');
       $table->string('content');
       $table->unsignedInteger('question_id')->nullable();
@@ -37,7 +37,7 @@ class CreateStartExamsTable extends Migration
         ->onUpdate('cascade');
     });
 
-    Schema::connection('mysql-course')->create('start_exam_questions', function (Blueprint $table) {
+    Schema::create('start_exam_questions', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('start_exam_id')->nullable();
       $table->string('content');
@@ -54,7 +54,7 @@ class CreateStartExamsTable extends Migration
         ->onDelete('set null')
         ->onUpdate('cascade');
     });
-    Schema::connection('mysql-course')->enableForeignKeyConstraints();
+    Schema::enableForeignKeyConstraints();
   }
 
   /**
@@ -64,10 +64,10 @@ class CreateStartExamsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-course')->disableForeignKeyConstraints();
-    Schema::connection('mysql-course')->dropIfExists('start_exams');
-    Schema::connection('mysql-course')->dropIfExists('start_exam_answers');
-    Schema::connection('mysql-course')->dropIfExists('start_exam_questions');
-    Schema::connection('mysql-course')->enableForeignKeyConstraints();
+    Schema::disableForeignKeyConstraints();
+    Schema::dropIfExists('start_exams');
+    Schema::dropIfExists('start_exam_answers');
+    Schema::dropIfExists('start_exam_questions');
+    Schema::enableForeignKeyConstraints();
   }
 }

@@ -13,7 +13,7 @@ class CreateStatesTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql-blipd')->create('states', function (Blueprint $table) {
+        Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('level');
@@ -28,6 +28,6 @@ class CreateStatesTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql-blipd')->dropIfExists('states');
+        Schema::dropIfExists('states');
     }
 }

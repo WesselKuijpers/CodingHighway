@@ -13,7 +13,7 @@ class AddFieldsToOrganisation extends Migration
      */
     public function up()
     {
-      Schema::connection('mysql-general')->table('organisations', function (Blueprint $table) {
+      Schema::table('organisations', function (Blueprint $table) {
         $table->string('fontcolor')->after('color');
         $table->unsignedInteger('image')->nullable()->after('fontcolor');
         $table->string('link')->after('image');

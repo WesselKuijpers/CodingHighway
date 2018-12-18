@@ -13,7 +13,7 @@ class CreateExerciseLessonsTable extends Migration
    */
   public function up()
   {
-    Schema::connection('mysql-course')->create('exercise_lessons', function (Blueprint $table) {
+    Schema::create('exercise_lessons', function (Blueprint $table) {
       $table->increments('id');
       $table->unsignedInteger('lesson_id');
       $table->unsignedInteger('exercise_id');
@@ -39,6 +39,6 @@ class CreateExerciseLessonsTable extends Migration
    */
   public function down()
   {
-    Schema::connection('mysql-course')->dropIfExists('exercise_lessons');
+    Schema::dropIfExists('exercise_lessons');
   }
 }

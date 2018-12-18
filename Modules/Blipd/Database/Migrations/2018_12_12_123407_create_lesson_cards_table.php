@@ -13,7 +13,7 @@ class CreateLessonCardsTable extends Migration
      */
     public function up()
     {
-        Schema::connection('mysql-blipd')->create('lesson_cards', function (Blueprint $table) {
+        Schema::create('lesson_cards', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('lesson_id');
             $table->unsignedInteger('planning_id');
@@ -44,6 +44,6 @@ class CreateLessonCardsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql-blipd')->dropIfExists('lesson_cards');
+        Schema::dropIfExists('lesson_cards');
     }
 }

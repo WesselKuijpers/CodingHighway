@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-  protected $connection = 'mysql-forum';
+
 
   public function user()
   {

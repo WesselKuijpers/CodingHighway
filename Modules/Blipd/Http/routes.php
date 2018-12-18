@@ -7,7 +7,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'blipd', 'namespace' => 'Module
     Route::resource('/planning', 'PlanningController', [
         'names' => [
           'store' => 'planning.store',
-          'create' => 'planing.create',
+          'create' => 'planning.create',
         ]
       ])->parameter('', 'id')->only(['create', 'store']);
 });

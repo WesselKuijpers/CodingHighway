@@ -2,10 +2,11 @@
 
 namespace Modules\Forum\Database\Seeders;
 
+use Modules\Forum\Entities\Topic;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class ForumDatabaseSeeder extends Seeder
+class TopicSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -14,6 +15,10 @@ class ForumDatabaseSeeder extends Seeder
    */
   public function run()
   {
-    $this->call(TopicSeeder::class);
+    if (Topic::where('name', 'BUG REPORT')->count() != 1):
+      $topic = new Topic;
+      $topic->name = 'BUG REPORT';
+      $topic->save();
+    endif;
   }
 }

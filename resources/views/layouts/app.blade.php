@@ -36,6 +36,7 @@
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=gj9mlkj3395o6q4s8tyd5vpjkq1benlr6mcd6ze377vsvqfz"></script>
     <script>
         tinymce.init({
+            statusbar: false,
             selector: '.textarea',
             height: 500,
             theme: 'modern',

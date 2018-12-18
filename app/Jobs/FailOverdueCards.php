@@ -35,14 +35,20 @@ class FailOverdueCards implements ShouldQueue
      */
     public function handle()
     {
+        // get the required states; these are always the same because thay are seeded
         $f = State::where('name', 'F')->first();
         $d = State::where('name', 'D')->first();
+
+        // get all the plannings that should be finished
         $plannings = Planning::where('finished', '<=', Carbon::now())->get();
         
+        // for every one of those plannings;
         foreach($plannings as $planning):
+            // get the unfinished, unfailed tasks;
             $lessonCards = $planning->lessons->where('state_id', '!=', $f->id)->where('state_id', '!=', $d->id);
             $exerciseCards = $planning->exercises->where('state_id', '!=', $f->id)->where('state_id', '!=', $d->id);
 
+            // fail them.
             OverdueCardHelper::FailCards($lessonCards);
             OverdueCardHelper::FailCards($exerciseCards);
         endforeach;

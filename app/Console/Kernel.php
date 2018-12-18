@@ -25,11 +25,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // schedule for failing overdue cards:
         if (env('APP_ENV') == 'local'):
             $schedule->job(new FailOverdueCards)->everyMinute();
         endif;
 
-        $schedule->job(new FailOverdueCards)->daily();
+        $schedule->job(new FailOverdueCards)->daily()->between('1:00', '6:00');
+        // end of failing overdue cards schedule
     }
 
     /**

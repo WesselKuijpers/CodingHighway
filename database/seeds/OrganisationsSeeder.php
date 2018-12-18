@@ -12,6 +12,11 @@ class OrganisationsSeeder extends Seeder
      */
     public function run()
     {
-//      factory(Organisation::class, 10)->create();
+      factory(Organisation::class, 10)->create();
+
+      foreach (Organisation::all() as $organisation) {
+        $organisation->active = 1;
+        $organisation->save();
+      }
     }
 }

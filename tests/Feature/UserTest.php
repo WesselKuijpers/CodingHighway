@@ -44,9 +44,9 @@ class UserTest extends TestCase
       $user->lastname == 'Tester' &&
       $user->email == 'test@test.nl'
     ):
-      return $this->assertTrue(true);
+      $this->assertTrue(true);
     else:
-      return $this->assertTrue(false);
+      $this->assertTrue(false);
     endif;
   }
 

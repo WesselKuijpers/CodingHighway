@@ -2,7 +2,7 @@
 
 namespace Modules\Course\Tests;
 
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;

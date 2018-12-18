@@ -2,10 +2,8 @@
 
 namespace Modules\Course\Tests;
 
-use App\Models\course\Course;
-use App\Models\course\StartExam;
-use App\Models\course\StartExamQuestion;
-use App\Models\course\StartExamAnswer;
+use Modules\Course\Entities\Course;
+use Modules\Course\Entities\StartExam;
 use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;

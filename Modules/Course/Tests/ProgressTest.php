@@ -4,9 +4,7 @@ namespace Modules\Course\Tests;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\course\Lesson;
-use App\Models\course\Exercise;
-use App\Models\course\Course;
+use Modules\Course\Entities\Course;
 use App\UserProgress;
 use App\User;
 use Illuminate\Foundation\Testing\WithoutMiddleWare;

@@ -3,13 +3,10 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\general\License;
 use App\Models\general\Organisation;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-use App\User;
 
 class LicenseTest extends TestCase
 {

@@ -12,6 +12,26 @@ class Question extends Model
     'title', 'content', 'exercise_id', 'solved'
   ];
 
+  public function getRouteKeyName()
+  {
+    return 'slug';
+  }
+
+  public static function boot()
+  {
+    parent::boot();
+
+    self::created(function($model){
+      $model->slug = str_slug($model->title, '-');
+      $model->save();
+    });
+
+    self::updated(function($model){
+      $model->slug = str_slug($model->title, '-');
+      $model->save();
+    });
+  }
+
   public function user()
   {
     return  $this->belongsTo(User::class);

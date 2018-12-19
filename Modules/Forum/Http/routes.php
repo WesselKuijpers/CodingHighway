@@ -4,6 +4,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'forum', 'namespace' => 'Module
   Route::get('/', 'ForumController@index')->name('ForumIndex');
 
   Route::group(['prefix'=>'topic'], function(){
-    Route::get('/{topic}/view', 'QuestionController@index')->name('QuestionIndex');
+    Route::get('/create', 'TopicController@create')->name('TopicCreate');
+    Route::post('/create', 'TopicController@save')->name('TopicSave');
+    Route::get('/{topic}/view', 'TopicController@index')->name('TopicIndex');
+    Route::get('/{topic}/{question}/view', 'QuestionController@index')->name('QuestionShow');
   });
 });

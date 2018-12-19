@@ -4,18 +4,13 @@ namespace Modules\Forum\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Forum\Entities\Question;
 use Modules\Forum\Entities\Topic;
 
 class QuestionController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   * @param Topic $topic
-   * @return Response
-   */
-  public function index(Topic $topic)
+  public function show(Topic $topic, Question $question)
   {
-    $questions = $topic->questions;
-    return view('forum::question.index', compact('topic', 'questions'));
+    return view('forum::question.show', compact('topic', 'question'));
   }
 }

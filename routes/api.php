@@ -19,8 +19,6 @@ Route::group(['middleware'=>'auth:api'], function() {
   Route::post('/result', 'api\StartExamController@result')->name('ApiResult');
   Route::post('/blipd/lesson', 'api\BlipdController@lessonUpdate')->name('ApiBlipdLesson');
   Route::post('/blipd/exercise', 'api\BlipdController@ExerciseUpdate')->name('ApiBlipdExercise');
-  Route::post('/blipd/lesson', 'api\BlipdController@lessonUpdate')->name('ApiBlipdLessonMobile');
-  Route::post('/blipd/exercise', 'api\BlipdController@ExerciseUpdate')->name('ApiBlipdExerciseMobile');
 });
 
 Route::post('/startexam', 'api\StartExamController@load')->name('ApiStartExam');

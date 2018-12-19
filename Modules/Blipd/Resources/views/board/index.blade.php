@@ -97,9 +97,13 @@
                                 </a>
                             </p>
                             <span class="blipd-points-badge bg-info text-white">5 punten</span>
-                            @foreach($states as $state)
-                                <button class="btn btn-danger btn-{{$lessonCard->id}}" onclick="BlipdUpdateLessonState({{$state->id}}, {{$lessonCard->id}})">{{$state->name}}</button>
-                            @endforeach
+                            {{-- Todo: Change to dynamic state from loop --}}
+                            <select class="lessons" onchange="LessonChange({{$lessonCard->id}},{{$state->id}})">
+                                @foreach($states as $state)
+                                    <option value="{{$state->id}}">{{$state->name}}</option>
+                                    {{--<button id=" lcard{{$lessonCard->id}}{{ $lessonCard->state_id }}" class="btn btn-danger" onclick="BlipdUpdateLessonState({{$state->id}}, {{$lessonCard->id}})">{{$state->name}}</button>--}}
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 @endforeach
@@ -126,10 +130,13 @@
                                 </a>
                             </p>
                             <span class="blipd-points-badge bg-info text-white">5 punten</span>
-
-                            @foreach($states as $state)
-                                <button class="btn btn-danger btn-{{ $exerciseCard->id }}btn-danger" onclick="BlipdUpdateExerciseState({{$state->id}}, {{$exerciseCard->id}})">{{$state->name}}</button>
-                            @endforeach
+                            {{-- Todo: Change to dynamic state from loop --}}
+                            <select class="exercises" onchange="ExerciseChange({{$exerciseCard->id}},{{$exerciseCard->state_id}})">
+                                @foreach($states as $state)
+                                    <option value="{{$state->id}}">{{$state->name}}</option>
+                                    {{--<button id="ecard{{ $exerciseCard->id }}{{ $exerciseCard->state_id }}" class="btn btn-danger" onclick="BlipdUpdateExerciseState({{$state->id}}, {{$exerciseCard->id}})">{{$state->name}}</button>--}}
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 @endforeach
@@ -192,26 +199,51 @@
     @endforeach
     @enddesktop
     @handheld
-        <script type="text/javascript">
-            function BlipdUpdateExerciseState(state, id) {
-                // Todo: color button green depending on state
-                $.post("{{route('ApiBlipdExerciseMobile')}}?api_token={{Auth::user()->api_token}}", {
-                    exercise_id: "ecard"+id,
-                    state_id: "estate"+state
+    <script type="text/javascript">
+
+        function ExerciseChange(state, id) {
+                $.post("{{route('ApiBlipdExercise')}}?api_token={{Auth::user()->api_token}}", {
+                    exercise_id: "ecard" + id,
+                    state_id: "estate" + state
                 }, function (data) {
-                    console.log(data)
-                })
-            }
-            function BlipdUpdateLessonState(state, id) {
-                // Todo: color button green depending on state
-                console.log($(this).removeClass('btn-danger').addClass('btn-success'));
-                $.post("{{route('ApiBlipdLessonMobile')}}?api_token={{Auth::user()->api_token}}", {
-                    lesson_id: "lcard"+id,
-                    state_id: "lstate"+state,
+                    console.log(data);
+                });
+        }
+
+        function LessonChange(state, id) {
+                $.post("{{route('ApiBlipdLesson')}}?api_token={{Auth::user()->api_token}}", {
+                    lesson_id: "lcard" + id,
+                    state_id: "lstate" + state,
                 }, function (data) {
-                    console.log(data)
-                })
-            }
-        </script>
+                    console.log(data);
+                });
+        }
+
+        {{--function BlipdUpdateExerciseState(state, id) {--}}
+        {{--// Todo: color button green depending on state--}}
+        {{--$.post("{{route('ApiBlipdExercise')}}?api_token={{Auth::user()->api_token}}", {--}}
+        {{--exercise_id: "ecard" + id,--}}
+        {{--state_id: "estate" + state--}}
+        {{--}, function (data) {--}}
+        {{--console.log(data + " " + state + " " + id);--}}
+        {{--$("#" + data + state).removeClass('btn-danger').addClass('btn-success');--}}
+        {{--})--}}
+        {{--}--}}
+
+        {{--function BlipdUpdateLessonState(state, id) {--}}
+        {{--// Todo: color button green depending on state--}}
+        {{--$.post("{{route('ApiBlipdLesson')}}?api_token={{Auth::user()->api_token}}", {--}}
+        {{--lesson_id: "lcard" + id,--}}
+        {{--state_id: "lstate" + state,--}}
+        {{--}, function (data) {--}}
+        {{--console.log(data);--}}
+        {{--if ($("#" + data + state).hasClass('btn-danger')) {--}}
+        {{--$("#" + data + state).removeClass('btn-danger').addClass('btn-success');--}}
+        {{--} else {--}}
+        {{--$("#" + data + state).removeClass('btn-success').addClass('btn-danger');--}}
+        {{--}--}}
+        {{--})--}}
+        {{--}--}}
+    </script>
     @endhandheld
 @endsection

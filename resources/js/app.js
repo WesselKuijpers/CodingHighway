@@ -18,4 +18,5 @@ require('./components/ProgressBars');
 require('./components/RoleCheckBox');
 require('./components/StartExamQuestion');
 require('./components/StartExam');
+require('./components/BlipdButtons');
 require('./colorCalculator');

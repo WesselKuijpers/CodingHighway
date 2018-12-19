@@ -10,11 +10,11 @@ class QuestionTag extends Model
 
   public function question()
   {
-    $this->belongsTo(Question::class);
+    return $this->belongsTo(Question::class);
   }
 
   public function tag()
   {
-    $this->belongsTo(Tag::class);
+    return $this->belongsTo(Tag::class);
   }
 }

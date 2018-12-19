@@ -11,20 +11,10 @@ let mix = require('laravel-mix');
  |
  */
 
+/* Allow multiple Laravel Mix applications*/
+require('laravel-mix-merge-manifest');
+mix.mergeManifest();
+/*----------------------------------------*/
+
 mix.react('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
-/*
-let fs = require('fs');
-
-let getFiles = function (dir) {
-  // get all 'files' in this directory
-  // filter directories
-  return fs.readdirSync(dir).filter(file => {
-    return fs.statSync(`${dir}/${file}`).isFile();
-  });
-};
-
-getFiles('resources/sass/organisations').forEach(function (filepath) {
-  mix.sass('resources/sass/organisations/' + filepath, 'public/css');
-});
-*/

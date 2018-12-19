@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Topic extends Model
 {
 
-  protected $fillable = [];
-
   public function course()
   {
     return $this->belongsTo(Course::class);

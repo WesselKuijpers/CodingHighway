@@ -7,24 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-
+  protected $fillable = [
+    'increment', 'answer_id', 'question_id'
+  ];
 
   public function user()
   {
-    $this->belongsTo(User::class);
+    return $this->belongsTo(User::class);
   }
 
   public function answer()
   {
-    $this->belongsTo(Answer::class);
+    return $this->belongsTo(Answer::class);
   }
 
   public function question()
   {
-    $this->belongsTo(Question::class);
+    return $this->belongsTo(Question::class);
   }
-
-  protected $fillable = [
-    'increment', 'answer_id', 'question_id'
-  ];
 }

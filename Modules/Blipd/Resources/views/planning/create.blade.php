@@ -26,30 +26,34 @@
                       <h4>Lessen:</h4>
                       <hr>
                       @foreach($course->lessons as $lesson)
-                        <div class="row">
-                          <div class="col-10">
-                            <label for="lcheck{{$lesson->id}}">{{$lesson->title}}</label>
+                        @if(!in_array($lesson->id, $oldLessonCards))
+                          <div class="row">
+                            <div class="col-10">
+                              <label for="lcheck{{$lesson->id}}">{{$lesson->title}}</label>
+                            </div>
+                            <div class="col-1">
+                              <input id="lcheck{{$lesson->id}}" type="checkbox" name="lessons[]" value={{$lesson->id}}>
+                            </div>
                           </div>
-                          <div class="col-1">
-                            <input id="lcheck{{$lesson->id}}" type="checkbox" name="lessons[]" value={{$lesson->id}}>
-                          </div>
-                        </div>
-                        <br>
+                          <br>
+                        @endif
                       @endforeach
                     </div>
                     <div class="col-6">
                       <h4>Opdrachten:</h4>
                       <hr>
                       @foreach($course->exercises as $exercise)
-                        <div class="row">
-                          <div class="col-10">
-                            <label for="echeck{{$exercise->id}}">{{$exercise->title}}</label>
+                        @if(!in_array($exercise->id, $oldExerciseCards))
+                          <div class="row">
+                            <div class="col-10">
+                              <label for="echeck{{$exercise->id}}">{{$exercise->title}}</label>
+                            </div>
+                            <div class="col-1">
+                              <input id="echeck{{$exercise->id}}" type="checkbox" name="exercises[]" value={{$exercise->id}}>
+                            </div>
                           </div>
-                          <div class="col-1">
-                            <input id="echeck{{$exercise->id}}" type="checkbox" name="exercises[]" value={{$exercise->id}}>
-                          </div>
-                        </div>
-                        <br>
+                          <br>
+                        @endif
                       @endforeach
                     </div>
                   </div>

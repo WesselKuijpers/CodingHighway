@@ -28,7 +28,23 @@ class PlanningController extends Controller
         $courses = Course::all();
         $previousPlanning = Auth::user()->plannings()->latest('created_at')->first();
         $f = State::where('name', 'F')->first();
+        $d = State::where('name', 'D')->first();
         $failed = [];
+        $oldLessonCards = [];
+        $oldExerciseCards = [];
+
+        foreach(Auth::user()->plannings as $planning):
+            foreach($planning->lessons as $lesson):
+                if($lesson->state_id == $d->id):
+                    array_push($oldLessonCards, $lesson->lesson->id);
+                endif;
+            endforeach;
+            foreach($planning->exercises as $exercise):
+                if($exercise->state_id == $d->id):
+                    array_push($oldExerciseCards, $exercise->exercise->id);
+                endif;
+            endforeach;
+        endforeach;
 
         if(!empty($previousPlanning)):
             if($previousPlanning->lessons->where('state_id', $f->id)->where('reason', null)->count()):
@@ -39,7 +55,7 @@ class PlanningController extends Controller
             endif;
         endif;
 
-        return view('blipd::planning.create', compact('courses', 'failed'));
+        return view('blipd::planning.create', compact('courses', 'failed', 'oldLessonCards', 'oldExerciseCards'));
     }
 
     /**

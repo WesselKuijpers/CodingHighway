@@ -4,8 +4,15 @@
   <div class="row">
     <div class="col-12 page-header">
       <h1><strong>TOPIC:</strong> {{ $topic->name }}</h1>
+      @if (!empty($topic->course_id))
+        <hr>
+        <h3><strong>Cursus: </strong>{{ $topic->course->name }}</h3>
+      @endif
     </div>
     <div class="col-12">
+      <a class="btn btn-primary btn-organisation" href="{{ route('QuestionCreate', ['topic'=>$topic->slug]) }}">
+        Maak een nieuwe vraag
+      </a>
       @foreach($questions as $question)
         <a href="#" class="list-group-item list-group-item-action">
           {{ $question->title }}

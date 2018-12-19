@@ -2,10 +2,13 @@
 
 namespace Modules\Forum\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Course\Entities\Course;
 use Modules\Forum\Entities\Topic;
+use Modules\Forum\Http\Requests\TopicRequest;
+use TopicHelper;
 
 class TopicController extends Controller
 {
@@ -21,8 +24,14 @@ class TopicController extends Controller
     return view('forum::topic.create', compact('courses'));
   }
 
-  public function save(Request $request)
+  public function save(TopicRequest $request)
   {
-    dd($request);
+    $data = TopicHelper::create($request);
+
+    if ($data instanceof RedirectResponse):
+      return $data;
+    else:
+      return redirect()->route('ForumIndex')->with('msg', 'Topic aangemaakt');
+    endif;
   }
 }

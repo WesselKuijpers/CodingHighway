@@ -310,6 +310,12 @@ class PermissionsLoader
         'slug' => 'blipd.planning.create',
         'model' => '',
         'description' => 'permission to create a planning'
+      ],
+      'BlipdReview' => [
+        'name' => 'BlipdPlanningReview',
+        'slug' => 'blipd.planning.review',
+        'model' => '',
+        'description' => 'permissions to review one\'s students plannings'
       ]
     ];
   }

@@ -104,11 +104,27 @@
               </div>
             </li>
           @endif
-          @permission('teacher.check')
+          @permission('teacher.check' || 'blipd.planning.review')
             @if(Auth::user()->organisation() != null)
-              <li>
-                <a class="nav-link organisation-link" href="{{route('teacherCheckIndex')}}">Nakijken</a>
-              </li>
+              <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle organisation-link" href="#" role="button"
+                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    Docent <span class="caret"></span>
+                  </a>
+      
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    @if(Auth::user()->hasPermission('teacher.check'))
+                      <a class="dropdown-item" href="{{ route('teacherCheckIndex') }}" >
+                        Nakijken
+                      </a>
+                    @endif
+                    @if(Auth::user()->hasPermission('blipd.planning.review'))
+                      <a class="dropdown-item" href="{{ route('blipd.teacher') }}">
+                        Planningen
+                      </a>
+                    @endif
+                  </div>
+                </li>
             @endif
           @endpermission
         @endguest

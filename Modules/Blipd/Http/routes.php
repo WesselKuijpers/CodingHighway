@@ -10,4 +10,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'blipd', 'namespace' => 'Module
           'create' => 'planning.create',
         ]
       ])->parameter('', 'id')->only(['create', 'store']);
+
+    Route::post('/reason', 'ReasonController@store')->name('reason.store');
+    
+    Route::get('/teacher', 'TeacherController@index')->name('blipd.teacher');
 });

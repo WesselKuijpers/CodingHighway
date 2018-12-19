@@ -28,7 +28,7 @@
                   @foreach($states as $state)
                     <td id="lstate{{$state->id}}">
                         @foreach($planning->lessons->where('state_id', $state->id) as $lessonCard)
-                          <div class="card blipd-card m-3" id="lcard{{$lessonCard->id}}" draggable="true">
+                          <div class="card blipd-card m-3" id="lcard{{$lessonCard->id}}" @if($lessonCard->state->name != 'F')draggable="true"@endif>
                               <div class="card-body">
                                 <a href="{{route('lesson.show', ['course_id' => $lessonCard->lesson->course_id, 'id' => $lessonCard->lesson->id])}}">
                                   <h3>{{$lessonCard->lesson->title}}</h3>
@@ -50,7 +50,7 @@
                   @foreach($states as $state)
                     <td id="estate{{$state->id}}">
                         @foreach($planning->exercises->where('state_id', $state->id) as $exerciseCard)
-                          <div class="card blipd-card m-3" id="ecard{{$exerciseCard->id}}" draggable="true">
+                          <div class="card blipd-card m-3" id="ecard{{$exerciseCard->id}}" @if($exerciseCard->state->name != 'F')draggable="true"@endif>
                               <div class="card-body">
                                 <a href="{{route('exercise.show', ['course_id' => $exerciseCard->exercise->course_id, 'id' => $exerciseCard->exercise->id])}}">
                                   <h3>{{$exerciseCard->exercise->title}}</h3>

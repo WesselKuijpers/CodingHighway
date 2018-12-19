@@ -22,7 +22,7 @@ class BoardController extends Controller
      */
     public function index()
     {
-        $planning = Planning::where('user_id', Auth::id())->latest('created_at')->first();
+        $planning = Auth::user()->plannings()->latest('created_at')->first();
         $states = State::all();
         return view('blipd::board.index', compact('planning', 'states'));
     }

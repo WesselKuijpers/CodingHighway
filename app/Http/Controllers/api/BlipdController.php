@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Modules\Blipd\Entities\LessonCard;
 use Modules\Blipd\Entities\ExerciseCard;
+use Modules\Blipd\Entities\Planning;
 
 class BlipdController extends Controller
 {
@@ -39,5 +40,12 @@ class BlipdController extends Controller
         else:
             return "bad";
         endif;
+    }
+
+    public function GetPlanning(Request $request)
+    {
+        $plannings = Planning::where('user_id', $request->user_id)->with('lessons.lesson.course', 'lessons.state')->with('exercises.exercise.course', 'exercises.state')->orderBy('created_at', 'desc')->get();
+
+        return $plannings;
     }
 }

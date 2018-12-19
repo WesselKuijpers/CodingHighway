@@ -7,7 +7,9 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Course\Entities\Course;
 use Modules\Blipd\Http\Requests\PlanningRequest;
+use Modules\Blipd\Entities\State;
 use PlanningHelper;
+use Illuminate\Support\Facades\Auth;
 
 class PlanningController extends Controller
 {
@@ -24,7 +26,20 @@ class PlanningController extends Controller
     public function create()
     {
         $courses = Course::all();
-        return view('blipd::planning.create', compact('courses'));
+        $previousPlanning = Auth::user()->plannings()->latest('created_at')->first();
+        $f = State::where('name', 'F')->first();
+        $failed = [];
+
+        if(!empty($previousPlanning)):
+            if($previousPlanning->lessons->where('state_id', $f->id)->where('reason', null)->count()):
+                $failed['lessons'] = $previousPlanning->lessons->where('state_id', $f->id)->where('reason', null);
+            endif;
+            if($previousPlanning->exercises->where('state_id', $f->id)->where('reason', null)->count()):
+                $failed['exercises'] = $previousPlanning->exercises->where('state_id', $f->id)->where('reason', null);
+            endif;
+        endif;
+
+        return view('blipd::planning.create', compact('courses', 'failed'));
     }
 
     /**

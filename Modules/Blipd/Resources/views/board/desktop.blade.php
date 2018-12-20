@@ -4,19 +4,19 @@
         <a href="{{route('planning.create')}}" class="btn btn-primary btn-organisation">Maak een planning</a>
     </div>
 </div>
-<div class="row card dashboard-card mt-2 pt-3">
+<div class="row card dashboard-card mt-2">
     <table class="table table-bordered text-center">
         <thead>
         <tr>
             <th scope="col"></th>
             @foreach($states as $state)
-                <th scope="col">{{$state->name}}</th>
+                <th scope="col" class="blipd-table-head">{{$state->name}}</th>
             @endforeach
         </tr>
         </thead>
         <tbody>
         <tr id="lessonBoard">
-            <th scope="row">Lessen</th>
+            <th scope="row" class="blipd-table-left">Lessen</th>
             @foreach($states as $state)
                 <td id="lstate{{$state->id}}">
                     @foreach($planning->lessons->where('state_id', $state->id) as $lessonCard)
@@ -40,7 +40,7 @@
             @endforeach
         </tr>
         <tr id="exerciseBoard">
-            <th scope="row">Opdrachten</th>
+            <th scope="row" class="blipd-table-left">Opdrachten</th>
             @foreach($states as $state)
                 <td id="estate{{$state->id}}">
                     @foreach($planning->exercises->where('state_id', $state->id) as $exerciseCard)

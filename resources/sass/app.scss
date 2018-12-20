@@ -185,6 +185,10 @@ body {
   cursor: grab;
 }
 
+.blipd-card-mobile:last-child {
+  margin-bottom: 75px !important;
+}
+
 .blipd-title {
   margin-left: 50px;
 }
@@ -199,9 +203,35 @@ body {
   font-size: 14px;
 }
 
-.table-bordered {
-  border: 1px solid black !important;
+.blipd-table-head {
+  box-shadow: 0px 3px 7px 3px rgba(0,0,0,0.125);
+  font-size: 25px;
 }
+
+.blipd-table-left {
+  padding-top: 75px !important;
+  font-size: 25px;
+  box-shadow: 5px 0px 8px 0px rgba(0,0,0,0.250);
+}
+
+// Table styling
+
+table {
+  margin-bottom: 0 !important;
+  border: none;
+}
+
+thead, th {
+  background: black;
+  color: white;
+  border: none;
+}
+
+thead tr th {
+  padding: 50px !important;
+  color: white;
+}
+
 
 .img-h-250 {
   height: 250px;

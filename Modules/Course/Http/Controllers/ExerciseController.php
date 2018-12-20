@@ -36,7 +36,8 @@ class ExerciseController extends Controller
   {
     $course = Course::find($id);
 
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
 
@@ -52,7 +53,7 @@ class ExerciseController extends Controller
   {
     // finds the course by the ID param, fetches all the levels and exercises from the DB and gives it to the view
     $course = Course::find($id);
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $levels = Level::all();
@@ -73,7 +74,8 @@ class ExerciseController extends Controller
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $course = Course::find($id);
-      if($course->organisation_id != Auth::user()->organisation()->id):
+      
+      if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
         return redirect()->route('course')->with('error', 'Deze cursus is privé');
       endif;
       $first = $course->firstExercise;
@@ -114,7 +116,7 @@ class ExerciseController extends Controller
   {
     $exercise = Exercise::find($id);
     $course = Course::find($courseId);
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $solution = Solution::where('user_id', Auth::id())->where('exercise_id', $id)->first();
@@ -130,7 +132,7 @@ class ExerciseController extends Controller
   {
     // fetches course and exercise from the passed in params, fetch all levels
     $course = Course::find($courseId);
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $exercise = Exercise::find($excerciseId);
@@ -156,6 +158,9 @@ class ExerciseController extends Controller
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $course = Course::find($id);
+      if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
+        return redirect()->route('course')->with('error', 'Deze cursus is privé');
+      endif;
       $first = $course->firstExercise;
       $last = $course->exercises->where('next_id', null)->first();
       $next_id = Exercise::find($exercise)->next_id;

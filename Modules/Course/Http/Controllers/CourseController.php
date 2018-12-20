@@ -68,7 +68,7 @@ class CourseController extends Controller
   {
     $course = Course::find($id);
 
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $startResult = Result::where('user_id', Auth::id())->where('course_id', $course->id)->get();
@@ -95,7 +95,7 @@ class CourseController extends Controller
     // finds course by ID param and gives it to the view.
     $course = Course::find($id);
 
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
 

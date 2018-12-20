@@ -34,7 +34,7 @@ class LessonController extends Controller
   public function index($id)
   {
     $course = Course::find($id);
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $lessons = OrderHelper::sortList($course->lessons);
@@ -49,7 +49,7 @@ class LessonController extends Controller
   {
     //fetches the course by id in params, fetches all levels and other lessons and pass them to the view.
     $course = Course::find($id);
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $levels = Level::all();
@@ -73,7 +73,7 @@ class LessonController extends Controller
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $course = Course::find($id);
-      if($course->organisation_id != Auth::user()->organisation()->id):
+      if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
         return redirect()->route('course')->with('error', 'Deze cursus is privé');
       endif;
       $first = $course->firstLesson;
@@ -114,7 +114,7 @@ class LessonController extends Controller
   public function show($courseId, $id)
   {
     $course = Course::find($courseId);
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $lesson = Lesson::find($id);
@@ -130,7 +130,7 @@ class LessonController extends Controller
   {
     // fetches course and lesson from their ids in the params, fetches all levels
     $course = Course::find($courseId);
-    if($course->organisation_id != Auth::user()->organisation()->id):
+    if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
       return redirect()->route('course')->with('error', 'Deze cursus is privé');
     endif;
     $lesson = Lesson::find($lessonId);
@@ -156,7 +156,7 @@ class LessonController extends Controller
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $course = Course::find($id);
-      if($course->organisation_id != Auth::user()->organisation()->id):
+      if($course->organisation_id != null && $course->organisation_id != Auth::user()->organisation()->id):
         return redirect()->route('course')->with('error', 'Deze cursus is privé');
       endif;
       $first = $course->firstLesson;

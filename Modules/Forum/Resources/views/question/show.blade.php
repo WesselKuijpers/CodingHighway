@@ -11,6 +11,7 @@
           {!! $question->content !!}
         </div>
         <div class="card-footer">
+          @questionOwner($question->user->id)
           <form class="d-inline"
                 action="{{ route('QuestionSolve', ['topic' => $question->topic->slug, 'question' => $question->slug]) }}"
                 method="post">
@@ -18,6 +19,7 @@
             <input type="hidden" name="question_id" value="{{ $question->id }}">
             <input type="submit" value="Sluit vraag" class="btn btn-success btn-organisation">
           </form>&emsp;
+          @endQuestionOwner
           <strong>Door: </strong>{{ $question->user->getFullName() }}&emsp;
           @if(!empty($topic->course))
             <strong>Cursus: </strong>{{ $topic->course->name }}&emsp;
@@ -50,6 +52,7 @@
 
           </div>
           <div class="card-footer">
+            @questionOwner($question->user->id)
             <form action="{{ route('BestAnswer', ['topic' => $question->topic->slug]) }}"
                   class="d-inline"
                   method="post">
@@ -57,6 +60,7 @@
               <input type="hidden" name="answer_id" value="{{ $answer->id }}">
               <input type="submit" class="btn btn-success btn-organisation" value="Beste antwoord"/>&emsp;
             </form>
+            @endQuestionOwner
             <strong>Door: </strong>{{ $answer->user->getFullName() }}&emsp;
           </div>
         </div>

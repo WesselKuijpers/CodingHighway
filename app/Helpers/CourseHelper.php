@@ -25,7 +25,7 @@ class CourseHelper
       $course->name = $validated['name'];
       $course->description = $validated['description'];
       $course->color = $validated['color'];
-      $course->organisation_id = $validated['private'];
+      $course->organisation_id = (!empty($validated['private'])) ? $validated['private'] : null;
 
       if ($course->save()):
         if (!empty($validated['media'])):
@@ -63,7 +63,7 @@ class CourseHelper
       $course->name = $validated['name'];
       $course->description = $validated['description'];
       $course->color = $validated['color'];
-      $course->organisation_id = $validated['private'];
+      $course->organisation_id = (!empty($validated['private'])) ? $validated['private'] : null;
 
       if ($course->save()):
         if (!empty($validated['media'])):

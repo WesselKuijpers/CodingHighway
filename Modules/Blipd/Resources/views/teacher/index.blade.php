@@ -16,9 +16,9 @@
       <ul>
         @if(!empty($students))
           @foreach($students as $student)
-            {{-- @unless($student->id == Auth::id()) --}}
+            @unless($student->id == Auth::id())
               <li><a href="#" onclick="focusStudent({{$student->id}}, '{{$student->getFullname()}}')">{{$student->getFullname()}}</a></li>
-            {{-- @endunless --}}
+            @endunless
           @endforeach
         @endif
       </ul>

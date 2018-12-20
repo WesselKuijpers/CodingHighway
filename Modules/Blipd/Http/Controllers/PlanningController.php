@@ -25,7 +25,7 @@ class PlanningController extends Controller
      */
     public function create()
     {
-        $courses = Course::all();
+        $courses = Course::where('organisation_id', Auth::user()->organisation_id)->orWhere('organisation_id', null)->get();
         $previousPlanning = Auth::user()->plannings()->latest('created_at')->first();
         $f = State::where('name', 'F')->first();
         $d = State::where('name', 'D')->first();

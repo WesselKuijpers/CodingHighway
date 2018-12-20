@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use LessonHelper;
 use OrderHelper;
 use OrderUpdateHelper;
+use Illuminate\Support\Facades\Auth;
 
 //TODO Changed with to flashmessages
 class LessonController extends Controller
@@ -33,6 +34,9 @@ class LessonController extends Controller
   public function index($id)
   {
     $course = Course::find($id);
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $lessons = OrderHelper::sortList($course->lessons);
     return view('course::lesson.index', ['course' => $course, 'lessons' => $lessons]);
   }
@@ -45,6 +49,9 @@ class LessonController extends Controller
   {
     //fetches the course by id in params, fetches all levels and other lessons and pass them to the view.
     $course = Course::find($id);
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $levels = Level::all();
 
     $lessons = OrderHelper::SortList($course->lessons);
@@ -66,6 +73,9 @@ class LessonController extends Controller
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $course = Course::find($id);
+      if($course->organisation_id != Auth::user()->organisation()->id):
+        return redirect()->route('course')->with('error', 'Deze cursus is privé');
+      endif;
       $first = $course->firstLesson;
       $last = $course->lessons->where('next_id', null)->first();
       // attempts to create the lesson via the LessonHelper, passing in the request.
@@ -103,6 +113,10 @@ class LessonController extends Controller
    */
   public function show($courseId, $id)
   {
+    $course = Course::find($courseId);
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $lesson = Lesson::find($id);
     return view('course::lesson.show', ['lesson' => $lesson]);
   }
@@ -116,6 +130,9 @@ class LessonController extends Controller
   {
     // fetches course and lesson from their ids in the params, fetches all levels
     $course = Course::find($courseId);
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $lesson = Lesson::find($lessonId);
     $levels = Level::all();
     $lessons = OrderHelper::SortList($course->lessons);
@@ -139,6 +156,9 @@ class LessonController extends Controller
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $course = Course::find($id);
+      if($course->organisation_id != Auth::user()->organisation()->id):
+        return redirect()->route('course')->with('error', 'Deze cursus is privé');
+      endif;
       $first = $course->firstLesson;
       $last = $course->lessons->where('next_id', null)->first();
       $next_id = Lesson::find($lesson)->next_id;

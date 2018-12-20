@@ -29,7 +29,7 @@ class CourseController extends Controller
    */
   public function index()
   {
-    $courses = Course::all();
+    $courses = Course::where('organisation_id', null)->orWhere('organisation_id', Auth::user()->organisation()->id)->get();
     return view('course::course.index', ['courses' => $courses]);
   }
 
@@ -67,6 +67,10 @@ class CourseController extends Controller
   public function show($id)
   {
     $course = Course::find($id);
+
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $startResult = Result::where('user_id', Auth::id())->where('course_id', $course->id)->get();
 
     $exercises = $course->exercises;
@@ -90,6 +94,11 @@ class CourseController extends Controller
   {
     // finds course by ID param and gives it to the view.
     $course = Course::find($id);
+
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
+
     return view('course::course.edit', ['course' => $course]);
   }
 

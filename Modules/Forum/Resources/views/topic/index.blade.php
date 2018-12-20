@@ -14,7 +14,8 @@
         Maak een nieuwe vraag
       </a>
       @foreach($questions as $question)
-        <a href="#" class="list-group-item list-group-item-action">
+        <a href="{{ route('QuestionShow', ['topic' => $topic->slug, 'question' => $question->slug]) }}"
+           class="list-group-item list-group-item-action">
           {{ $question->title }}
           <span class="float-right">
             Antwoorden bij deze vraag:

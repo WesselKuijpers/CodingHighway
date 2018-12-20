@@ -32,9 +32,9 @@
 
         <div class="input-group form-group">
           <div class="input-group-prepend">
-            <label for="lesson_id" class="input-group-text">Opdracht</label>
+            <label for="exercise_id" class="input-group-text">Opdracht</label>
           </div>
-          <select name="lesson_id" id="lesson_id" class="form-control">
+          <select name="exercise_id" id="exercise_id" class="form-control">
             <option selected disabled>------------------</option>
             @foreach($exercises as $exercise)
               <option value="{{ $exercise->id }}">{{ $exercise->title }}</option>

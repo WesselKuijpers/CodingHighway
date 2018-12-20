@@ -5,6 +5,7 @@ namespace Modules\Forum\Entities;
 use App\User;
 use Modules\Course\Entities\Exercise;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Course\Entities\Lesson;
 
 class Question extends Model
 {
@@ -38,6 +39,11 @@ class Question extends Model
   public function exercise()
   {
     return $this->belongsTo(Exercise::class);
+  }
+
+  public function lesson()
+  {
+    return $this->belongsTo(Lesson::class);
   }
 
   public function tags()

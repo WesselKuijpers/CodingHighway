@@ -3,6 +3,7 @@
 namespace Modules\Forum\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Course\Entities\Exercise;
@@ -35,5 +36,15 @@ class QuestionController extends Controller
     else:
       return redirect()->route('TopicIndex', ['topic' => $question->topic->slug]);
     endif;
+  }
+
+  public function solve(Request $request)
+  {
+
+    $question = Question::find($request->question_id);
+    $question->solved = 1;
+    $question->save();
+
+    return redirect()->route('QuestionShow', ['topic' => $question->topic->slug, 'question' => $question->slug]);
   }
 }

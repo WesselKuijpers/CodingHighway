@@ -14,6 +14,13 @@ Route::group(['middleware' => 'web', 'prefix' => 'forum', 'namespace' => 'Module
         Route::get('/{question}/view', 'QuestionController@show')->name('QuestionShow');
         Route::get('/create', 'QuestionController@create')->name('QuestionCreate');
         Route::post('/create', 'QuestionController@save')->name('QuestionSave');
+
+        Route::post('/{question}/solve', 'QuestionController@solve')->name('QuestionSolve');
+
+        Route::group(['prefix'=> 'answer'], function(){
+          Route::post('best', 'AnswerController@best')->name('BestAnswer');
+          Route::post('save', 'AnswerController@save')->name('AnswerSave');
+        });
       });
     });
   });

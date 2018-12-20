@@ -7,6 +7,7 @@ use OrganisationStyleHelper;
 use App\Models\invoice\Invoice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Modules\Course\Entities\Course;
 
 class Organisation extends Model
 {
@@ -35,5 +36,10 @@ class Organisation extends Model
   {
     $output = OrganisationStyleHelper::load($this->color);
     Storage::disk('css')->put("organisations/organisation" . $this->id . ".css", $output);
+  }
+
+  public function courses()
+  {
+    return $this->hasMany(Course::class);
   }
 }

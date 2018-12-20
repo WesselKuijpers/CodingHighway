@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\general\Media;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\general\Organisation;
 
 class Course extends Model
 {
   use SoftDeletes;
-
-
 
   public function exercises()
   {
@@ -41,5 +40,10 @@ class Course extends Model
   public function startExam()
   {
     return $this->hasOne(StartExam::class);
+  }
+
+  public function organisation()
+  {
+    return $this->belongsTo(Organisation::class);
   }
 }

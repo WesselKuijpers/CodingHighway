@@ -11,13 +11,18 @@ use Illuminate\Support\Facades\Auth;
 
 class BoardController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('LicenseCheck');
+      $this->middleware('permission:blipd.board');
+    }
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        $planning = Planning::where('user_id', Auth::id())->latest('created_at')->first();
+        $planning = Auth::user()->plannings()->latest('created_at')->first();
         $states = State::all();
         return view('blipd::board.index', compact('planning', 'states'));
     }

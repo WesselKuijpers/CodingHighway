@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Modules\Course\Entities\Review;
 use Modules\Course\Entities\Solution;
+use Modules\Blipd\Entities\Planning;
 
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 use Laravel\Scout\Searchable;
@@ -106,5 +107,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
   public function reviews()
   {
     return $this->hasMany(Review::class);
+  }
+
+  public function plannings()
+  {
+    return $this->hasMany(Planning::class);
   }
 }

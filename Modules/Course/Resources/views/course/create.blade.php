@@ -20,6 +20,7 @@
                 'class' => 'w-25', 'value' => old('color')])
                 @include('shared.form', ['label' => 'Cursus afbeelding', 'name' => 'media', 'type' => 'file',
                 'class' => ''])
+                @include('shared.form', ['label' => 'Privé', 'name'=> 'private', 'type'=> 'checkbox','value' => Auth::user()->organisation()->id])
                 {{ csrf_field() }}
                 @include('shared.submit_button')
             </form>

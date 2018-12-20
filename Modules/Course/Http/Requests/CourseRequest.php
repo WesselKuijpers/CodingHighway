@@ -67,7 +67,8 @@ class CourseRequest extends FormRequest
           'name' => 'required|string|max:255',
           'description' => 'required|string',
           'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
-          'media' => 'nullable|file'
+          'media' => 'nullable|file',
+          'private' => 'numeric'
         ];
         break;
       case "PUT":
@@ -76,7 +77,8 @@ class CourseRequest extends FormRequest
           'name' => 'required|string|max:255',
           'description' => 'required|string',
           'color' => 'required|string|regex:/#([a-fA-F0-9]){3,6}/',
-          'media' => 'nullable|file'
+          'media' => 'nullable|file',
+          'private' => 'numeric'
         ];
         break;
       case "DELETE":

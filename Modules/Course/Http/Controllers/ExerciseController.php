@@ -35,6 +35,11 @@ class ExerciseController extends Controller
   public function index($id)
   {
     $course = Course::find($id);
+
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
+
     $exercises = OrderHelper::sortList($course->exercises);
     return view('course::exercise.index', ['course' => $course, 'exercises' => $exercises]);
   }
@@ -47,6 +52,9 @@ class ExerciseController extends Controller
   {
     // finds the course by the ID param, fetches all the levels and exercises from the DB and gives it to the view
     $course = Course::find($id);
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $levels = Level::all();
     $exercises = OrderHelper::SortList($course->exercises);
     return view('course::exercise.create', ['course' => $course, 'levels' => $levels, 'exercises' => $exercises]);
@@ -65,6 +73,9 @@ class ExerciseController extends Controller
       return back()->with('error', 'Er is iets mis gegaan met het verzenden!');
     } else {
       $course = Course::find($id);
+      if($course->organisation_id != Auth::user()->organisation()->id):
+        return redirect()->route('course')->with('error', 'Deze cursus is privé');
+      endif;
       $first = $course->firstExercise;
       $last = $course->exercises->where('next_id', null)->first();
       // attempts to create the exercise via the ExerciseHelper, passing in the request.
@@ -102,6 +113,10 @@ class ExerciseController extends Controller
   public function show($courseId, $id)
   {
     $exercise = Exercise::find($id);
+    $course = Course::find($courseId);
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $solution = Solution::where('user_id', Auth::id())->where('exercise_id', $id)->first();
     return view('course::exercise.show', ['exercise' => $exercise, 'solution' => $solution]);
   }
@@ -115,6 +130,9 @@ class ExerciseController extends Controller
   {
     // fetches course and exercise from the passed in params, fetch all levels
     $course = Course::find($courseId);
+    if($course->organisation_id != Auth::user()->organisation()->id):
+      return redirect()->route('course')->with('error', 'Deze cursus is privé');
+    endif;
     $exercise = Exercise::find($excerciseId);
     $levels = Level::all();
     $exercises = OrderHelper::SortList($course->exercises);

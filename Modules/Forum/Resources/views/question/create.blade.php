@@ -6,7 +6,7 @@
       <h1>Maak een vraag over {{ $topic->name }}</h1>
     </div>
     <div class="col-12">
-      <form action="" method="post">
+      <form action="{{ route('QuestionCreate', ['topic' => $topic->slug]) }}" method="post">
         @csrf
         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
         <input type="hidden" name="user_id" value="{{ Auth::id() }}">

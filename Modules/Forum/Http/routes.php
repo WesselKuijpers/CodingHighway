@@ -13,6 +13,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'forum', 'namespace' => 'Module
       Route::group(['prefix'=> 'question'], function(){
         Route::get('/{question}/view', 'QuestionController@show')->name('QuestionShow');
         Route::get('/create', 'QuestionController@create')->name('QuestionCreate');
+        Route::post('/create', 'QuestionController@save')->name('QuestionSave');
       });
     });
   });

@@ -21,14 +21,12 @@ class Question extends Model
   {
     parent::boot();
 
-    self::created(function($model){
+    self::creating(function($model){
       $model->slug = str_slug($model->title, '-');
-      $model->save();
     });
 
-    self::updated(function($model){
+    self::updating(function($model){
       $model->slug = str_slug($model->title, '-');
-      $model->save();
     });
   }
 
@@ -45,6 +43,11 @@ class Question extends Model
   public function tags()
   {
     return $this->belongsToMany(Tag::class, 'question_tags');
+  }
+
+  public function topic()
+  {
+    return $this->belongsTo(Topic::class);
   }
 
   public function answers()

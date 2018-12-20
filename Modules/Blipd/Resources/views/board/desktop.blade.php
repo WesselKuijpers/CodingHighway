@@ -5,6 +5,7 @@
     </div>
 </div>
 <div class="row card dashboard-card mt-2">
+    @if(!empty($planning))
     <table class="table table-bordered text-center">
         <thead>
         <tr>
@@ -15,6 +16,7 @@
         </tr>
         </thead>
         <tbody>
+        @if($planning->lessons->count() != 0)
         <tr id="lessonBoard">
             <th scope="row" class="blipd-table-left">Lessen</th>
             @foreach($states as $state)
@@ -39,6 +41,8 @@
                 </td>
             @endforeach
         </tr>
+        @endif
+        @if($planning->exercises->count() != 0)
         <tr id="exerciseBoard">
             <th scope="row" class="blipd-table-left">Opdrachten</th>
             @foreach($states as $state)
@@ -63,6 +67,12 @@
                 </td>
             @endforeach
         </tr>
+        @endif
         </tbody>
     </table>
+        @else
+    <div class="col-12 text-center">
+        <p>Geen planning gevonden, <a href="{{route('planning.create')}}">maak er één aan.</a></p>
+    </div>
+        @endif
 </div>

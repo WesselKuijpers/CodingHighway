@@ -5,145 +5,15 @@
 
 {{-- Placeholder for the page-specific content --}}
 @section('content')
-    @desktop
-    <div class="row mt-3 mr-3">
-        <div class="col-12 text-right">
-            <a href="{{route('planning.create')}}" class="btn btn-primary btn-organisation">Maak een planning</a>
-        </div>
-    </div>
-    <div class="row card dashboard-card mt-2 pt-3">
-        <table class="table table-bordered text-center">
-            <thead>
-            <tr>
-                <th scope="col"></th>
-                @foreach($states as $state)
-                    <th scope="col">{{$state->name}}</th>
-                @endforeach
-            </tr>
-            </thead>
-            <tbody>
-            <tr id="lessonBoard">
-                <th scope="row">Lessen</th>
-                @foreach($states as $state)
-                    <td id="lstate{{$state->id}}">
-                        @foreach($planning->lessons->where('state_id', $state->id) as $lessonCard)
-                            <div class="card blipd-card m-3" id="lcard{{$lessonCard->id}}" draggable="true">
-                                <div class="card-body">
-                                    <h3>
-                                        <a href="{{route('lesson.show', ['course_id' => $lessonCard->lesson->course_id, 'id' => $lessonCard->lesson->id])}}">
-                                            {{$lessonCard->lesson->title}}
-                                        </a>
-                                    </h3>
-                                    <p>
-                                        <a href="{{route('course.show', ['id' => $lessonCard->lesson->course_id])}}">
-                                            {{$lessonCard->lesson->course->name}}
-                                        </a>
-                                    </p>
-                                    <p>Punten: 5</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </td>
-                @endforeach
-            </tr>
-            <tr id="exerciseBoard">
-                <th scope="row">Opdrachten</th>
-                @foreach($states as $state)
-                    <td id="estate{{$state->id}}">
-                        @foreach($planning->exercises->where('state_id', $state->id) as $exerciseCard)
-                            <div class="card blipd-card m-3" id="ecard{{$exerciseCard->id}}" draggable="true">
-                                <div class="card-body">
-                                    <h3>
-                                        <a href="{{route('exercise.show', ['course_id' => $exerciseCard->exercise->course_id, 'id' => $exerciseCard->exercise->id])}}">
-                                            {{$exerciseCard->exercise->title}}
-                                        </a>
-                                    </h3>
-                                    <p>
-                                        <a href="{{route('course.show', ['id' => $exerciseCard->exercise->course_id])}}">
-                                            {{$exerciseCard->exercise->course->name}}
-                                        </a>
-                                    </p>
-                                    <p>Punten: 5</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </td>
-                @endforeach
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    @enddesktop
 
     @handheld
-    <div class="col-12 pt-3">
-        <h1 class="pt-2 text-center">Lessen</h1>
-        <div class="offset-2 col-8">
-            <hr>
-        </div>
-        @foreach($states as $state)
-            <div id="lstate{{$state->id}}">
-                @foreach($planning->lessons->where('state_id', $state->id) as $lessonCard)
-                    <div class="card blipd-card m-3" id="lcard{{$lessonCard->id}}" draggable="true">
-                        <div class="card-body">
-                            <h3 class="blipd-title">
-                                <a href="{{route('lesson.show', ['course_id' => $lessonCard->lesson->course_id, 'id' => $lessonCard->lesson->id])}}">
-                                    {{$lessonCard->lesson->title}}
-                                </a>
-                            </h3>
-                            <p class="pl-3">
-                                <a href="{{route('course.show', ['id' => $lessonCard->lesson->course_id])}}">
-                                    {{$lessonCard->lesson->course->name}}
-                                </a>
-                            </p>
-                            <span class="blipd-points-badge bg-info text-white">5 punten</span>
-                            {{-- Todo: Change to dynamic state from loop --}}
-                            <select class="lessons" onchange="LessonChange({{$lessonCard->id}},{{$state->id}})">
-                                @foreach($states as $state)
-                                    <option value="{{$state->id}}">{{$state->name}}</option>
-                                    {{--<button id=" lcard{{$lessonCard->id}}{{ $lessonCard->state_id }}" class="btn btn-danger" onclick="BlipdUpdateLessonState({{$state->id}}, {{$lessonCard->id}})">{{$state->name}}</button>--}}
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endforeach
-
-        <h1 class="pt-2 text-center">Opdrachten</h1>
-        <div class="offset-2 col-8">
-            <hr>
-        </div>
-        @foreach($states as $state)
-            <div id="estate{{$state->id}}">
-                @foreach($planning->exercises->where('state_id', $state->id) as $exerciseCard)
-                    <div class="card blipd-card m-3" id="ecard{{$exerciseCard->id}}" draggable="true">
-                        <div class="card-body">
-                            <h3 class="blipd-title">
-                                <a href="{{route('exercise.show', ['course_id' => $exerciseCard->exercise->course_id, 'id' => $exerciseCard->exercise->id])}}">
-                                    {{$exerciseCard->exercise->title}}
-                                </a>
-                            </h3>
-                            <p class="ml-2">
-                                <a href="{{route('course.show', ['id' => $exerciseCard->exercise->course_id])}}">
-                                    {{$exerciseCard->exercise->course->name}}
-                                </a>
-                            </p>
-                            <span class="blipd-points-badge bg-info text-white">5 punten</span>
-                            {{-- Todo: Change to dynamic state from loop --}}
-                            <select class="exercises" onchange="ExerciseChange({{$exerciseCard->id}},{{$exerciseCard->state_id}})">
-                                @foreach($states as $state)
-                                    <option value="{{$state->id}}">{{$state->name}}</option>
-                                    {{--<button id="ecard{{ $exerciseCard->id }}{{ $exerciseCard->state_id }}" class="btn btn-danger" onclick="BlipdUpdateExerciseState({{$state->id}}, {{$exerciseCard->id}})">{{$state->name}}</button>--}}
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endforeach
-    </div>
+        @include('blipd::board.mobile')
     @endhandheld
+
+    @desktop
+        @include('blipd::board.desktop')
+    @enddesktop
+
 @endsection
 @section('scripts')
     @desktop
@@ -201,49 +71,23 @@
     @handheld
     <script type="text/javascript">
 
-        function ExerciseChange(state, id) {
-                $.post("{{route('ApiBlipdExercise')}}?api_token={{Auth::user()->api_token}}", {
-                    exercise_id: "ecard" + id,
-                    state_id: "estate" + state
-                }, function (data) {
-                    console.log(data);
-                });
+        function ExerciseChange(id) {
+            $.post("{{route('ApiBlipdExercise')}}?api_token={{Auth::user()->api_token}}", {
+                exercise_id: "ecard" + id,
+                state_id: "estate" + document.getElementById(id + 'exercise-select').value,
+            }, function (data) {
+                console.log(data);
+            });
         }
 
-        function LessonChange(state, id) {
-                $.post("{{route('ApiBlipdLesson')}}?api_token={{Auth::user()->api_token}}", {
-                    lesson_id: "lcard" + id,
-                    state_id: "lstate" + state,
-                }, function (data) {
-                    console.log(data);
-                });
+        function LessonChange(id) {
+            $.post("{{route('ApiBlipdLesson')}}?api_token={{Auth::user()->api_token}}", {
+                lesson_id: "lcard" + id,
+                state_id: "lstate" + document.getElementById(id + 'lesson-select').value,
+            }, function (data) {
+                console.log(data);
+            });
         }
-
-        {{--function BlipdUpdateExerciseState(state, id) {--}}
-        {{--// Todo: color button green depending on state--}}
-        {{--$.post("{{route('ApiBlipdExercise')}}?api_token={{Auth::user()->api_token}}", {--}}
-        {{--exercise_id: "ecard" + id,--}}
-        {{--state_id: "estate" + state--}}
-        {{--}, function (data) {--}}
-        {{--console.log(data + " " + state + " " + id);--}}
-        {{--$("#" + data + state).removeClass('btn-danger').addClass('btn-success');--}}
-        {{--})--}}
-        {{--}--}}
-
-        {{--function BlipdUpdateLessonState(state, id) {--}}
-        {{--// Todo: color button green depending on state--}}
-        {{--$.post("{{route('ApiBlipdLesson')}}?api_token={{Auth::user()->api_token}}", {--}}
-        {{--lesson_id: "lcard" + id,--}}
-        {{--state_id: "lstate" + state,--}}
-        {{--}, function (data) {--}}
-        {{--console.log(data);--}}
-        {{--if ($("#" + data + state).hasClass('btn-danger')) {--}}
-        {{--$("#" + data + state).removeClass('btn-danger').addClass('btn-success');--}}
-        {{--} else {--}}
-        {{--$("#" + data + state).removeClass('btn-success').addClass('btn-danger');--}}
-        {{--}--}}
-        {{--})--}}
-        {{--}--}}
     </script>
     @endhandheld
 @endsection

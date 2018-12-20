@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Modules\Blipd\Entities\LessonCard;
 use Modules\Blipd\Entities\ExerciseCard;
 use Modules\Blipd\Entities\Planning;
+use Modules\Blipd\Entities\State;
+use App\User;
 
 class BlipdController extends Controller
 {
@@ -47,5 +49,51 @@ class BlipdController extends Controller
         $plannings = Planning::where('user_id', $request->user_id)->with('lessons.lesson.course', 'lessons.state')->with('exercises.exercise.course', 'exercises.state')->orderBy('created_at', 'desc')->get();
 
         return $plannings;
+    }
+
+    public function getPie(Request $request)
+    {   
+        $user = User::find($request->user_id);
+
+        $f = State::where('name', 'F')->first();
+        $d = State::where('name', 'D')->first();
+        $ip = State::where('name', 'IP')->first();
+        $total = 0;
+        $doneCards = 0;
+        $failedCards = 0;
+        $unfinishedCards = 0;
+
+        foreach($user->plannings as $planning):
+            foreach($planning->lessons as $lesson):
+                if($lesson->state_id == $d->id):
+                    $doneCards++;
+                    $total++;
+                endif;
+                if($lesson->state_id == $f->id):
+                    $failedCards++;
+                    $total++;
+                endif;
+                if($lesson->state_id == $ip->id):
+                    $unfinishedCards++;
+                    $total++;
+                endif;
+            endforeach;
+            foreach($planning->exercises as $exercise):
+                if($exercise->state_id == $d->id):
+                    $doneCards++;
+                    $total++;
+                endif;
+                if($exercise->state_id == $f->id):
+                    $failedCards++;
+                    $total++;
+                endif;
+                if($exercise->state_id == $ip->id):
+                    $unfinishedCards++;
+                    $total++;
+                endif;
+            endforeach;
+        endforeach;
+
+        return ["total" => $total, "done" => $doneCards, "failed" => $failedCards, "in_progress" => $unfinishedCards];
     }
 }

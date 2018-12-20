@@ -32,6 +32,9 @@
             <div id="card-select">
               <p>Geen student geselecteerd.</p>
             </div>
+            <div id="pie-chart" class="md-6">
+              
+            </div>
             <div id="card-content">
 
             </div>
@@ -39,8 +42,10 @@
         </div>
     </div>
   </div>
+  <br>  
 @endsection
 @section('scripts')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
   <script>
     function focusStudent(id, fullName) {
       $.post("{{route('ApiBlipdGetPlanning')}}?api_token={{Auth::user()->api_token}}", {user_id : id}, function(data){
@@ -54,6 +59,9 @@
 
         cardContent.innerHTML = "";
 
+        let pieChart = document.getElementById('pie-chart');
+        pieChart.innerHTML = "";
+
         if(data.length != 0){
           cardBody.innerHTML = "<h3>Planningen</h3>";
           let select = document.createElement("select");
@@ -66,6 +74,7 @@
             select.appendChild(option);
           }
           cardBody.appendChild(select);
+          calculatePie(id);
           changeContent(data);
         } else {
           cardBody.innerHTML = "Deze student heeft nog geen planningen!";
@@ -175,6 +184,45 @@
         nc.innerHTML = "Geen opdrachten gedaan";
         content.appendChild(nc);
       }
+    }
+
+    function calculatePie(id) {
+      let pieChart = document.getElementById('pie-chart');  
+
+      $.post("{{route('ApiBlipdGetPie')}}?api_token={{Auth::user()->api_token}}", {user_id : id}, function(data){
+        if(data.total != 0){
+          let chart = document.createElement('canvas');
+          chart.id = "pieChart";
+
+          pieChart.appendChild(chart);
+          var ctxP = document.getElementById("pieChart").getContext('2d');
+          var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+              labels: ["Gehaald", "Gefaald", "Bezig"],
+              datasets: [{
+                data: [data.done, data.failed, data.in_progress],
+                backgroundColor: ["#00FF21", "#FF0000", "#FFD800"],
+                hoverBackgroundColor: ["#00CC17", "#CC0000", "#CCAA00"]
+              }]
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'bottom',
+              },
+              layout: {
+                padding: {
+                  left: 30,
+                  right: 30,
+                  top: 10,
+                  bottom: 10,
+                }
+              }
+            },
+          });
+        }
+      });
     }
   </script>
 @endsection

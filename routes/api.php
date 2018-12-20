@@ -20,6 +20,7 @@ Route::group(['middleware'=>'auth:api'], function() {
   Route::post('/blipd/lesson', 'api\BlipdController@lessonUpdate')->name('ApiBlipdLesson');
   Route::post('/blipd/exercise', 'api\BlipdController@ExerciseUpdate')->name('ApiBlipdExercise');
   Route::post('/blipd/planning', 'api\BlipdController@GetPlanning')->name('ApiBlipdGetPlanning');
+  Route::post('/blipd/pie', 'api\BlipdController@GetPie')->name('ApiBlipdGetPie');
 });
 
 Route::post('/startexam', 'api\StartExamController@load')->name('ApiStartExam');

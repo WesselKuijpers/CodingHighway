@@ -58,6 +58,7 @@
             ]
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 </head>
 <body>
 @include('layouts.error')

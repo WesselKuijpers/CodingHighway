@@ -10,9 +10,13 @@ class PlanningHelper
 {
     public static function create(PlanningRequest $request)
     {
-        $saved = null;
-
         $validated = $request->validated();
+
+        if(empty($validated['lessons']) && empty($validated['lessons'])):
+            return redirect()->back()->with('error', 'Je moet tenminste één les of opdracht selecteren.');
+        endif;
+
+        $saved = null;
 
         $planning = new Planning;
         $planning->user_id = Auth::id();

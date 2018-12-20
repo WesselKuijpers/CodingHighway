@@ -4,19 +4,21 @@
         <a href="{{route('planning.create')}}" class="btn btn-primary btn-organisation">Maak een planning</a>
     </div>
 </div>
-<div class="row card dashboard-card mt-2 pt-3">
+<div class="row card dashboard-card mt-2">
+    @if(!empty($planning))
     <table class="table table-bordered text-center">
         <thead>
         <tr>
             <th scope="col"></th>
             @foreach($states as $state)
-                <th scope="col">{{$state->name}}</th>
+                <th scope="col" class="blipd-table-head">{{$state->name}}</th>
             @endforeach
         </tr>
         </thead>
         <tbody>
+        @if($planning->lessons->count() != 0)
         <tr id="lessonBoard">
-            <th scope="row">Lessen</th>
+            <th scope="row" class="blipd-table-left">Lessen</th>
             @foreach($states as $state)
                 <td id="lstate{{$state->id}}">
                     @foreach($planning->lessons->where('state_id', $state->id) as $lessonCard)
@@ -39,8 +41,10 @@
                 </td>
             @endforeach
         </tr>
+        @endif
+        @if($planning->exercises->count() != 0)
         <tr id="exerciseBoard">
-            <th scope="row">Opdrachten</th>
+            <th scope="row" class="blipd-table-left">Opdrachten</th>
             @foreach($states as $state)
                 <td id="estate{{$state->id}}">
                     @foreach($planning->exercises->where('state_id', $state->id) as $exerciseCard)
@@ -63,6 +67,12 @@
                 </td>
             @endforeach
         </tr>
+        @endif
         </tbody>
     </table>
+        @else
+    <div class="col-12 text-center">
+        <p>Geen planning gevonden, <a href="{{route('planning.create')}}">maak er één aan.</a></p>
+    </div>
+        @endif
 </div>

@@ -7,7 +7,7 @@
     @foreach($states as $state)
         <div id="lstate{{$state->id}}">
             @foreach($planning->lessons->where('state_id', $state->id) as $lessonCard)
-                <div class="card blipd-card m-3" id="lcard{{$lessonCard->id}}" draggable="true">
+                <div class="card blipd-card-mobile m-3" id="lcard{{$lessonCard->id}}" draggable="true">
                     <div class="card-body">
                         <h3 class="blipd-title">
                             <a href="{{route('lesson.show', ['course_id' => $lessonCard->lesson->course_id, 'id' => $lessonCard->lesson->id])}}">
@@ -33,14 +33,14 @@
         </div>
     @endforeach
 
-    <h1 class="pt-2 text-center">Opdrachten</h1>
+    <h1 class="text-center">Opdrachten</h1>
     <div class="offset-2 col-8">
         <hr>
     </div>
     @foreach($states as $state)
         <div id="estate{{$state->id}}">
             @foreach($planning->exercises->where('state_id', $state->id) as $exerciseCard)
-                <div class="card blipd-card m-3" id="ecard{{$exerciseCard->id}}" draggable="true">
+                <div class="card blipd-card-mobile m-3" id="ecard{{$exerciseCard->id}}" draggable="true">
                     <div class="card-body">
                         <h3 class="blipd-title">
                             <a href="{{route('exercise.show', ['course_id' => $exerciseCard->exercise->course_id, 'id' => $exerciseCard->exercise->id])}}">

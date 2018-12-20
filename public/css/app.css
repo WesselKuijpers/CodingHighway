@@ -10601,6 +10601,11 @@ body {
   padding-top: 30px;
 }
 
+.dashboard-card {
+  -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.2);
+}
+
 /* Bootstrap Toggle v2.2.2 corrections for Bootsrtap 4*/
 
 .toggle-off {
@@ -10661,6 +10666,22 @@ a:hover.no-link {
 .blipd-card {
   -webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.2);
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.blipd-title {
+  margin-left: 50px;
+}
+
+.blipd-points-badge {
+  position: absolute;
+  right: 10px;
+  top: -10px;
+  text-align: center;
+  border-radius: 30px 30px 30px 30px;
+  padding: 5px 20px;
+  font-size: 14px;
 }
 
 .table-bordered {
@@ -10731,11 +10752,6 @@ a:hover.no-link {
   background-color: transparent;
   background-image: none;
   border-color: #343a40;
-}
-
-.progress-bar {
-  background-color: black;
-  color: white;
 }
 
 :root {

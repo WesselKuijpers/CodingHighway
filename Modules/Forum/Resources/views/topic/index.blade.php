@@ -10,9 +10,11 @@
       @endif
     </div>
     <div class="col-12">
-      <a class="btn btn-primary btn-organisation" href="{{ route('QuestionCreate', ['topic'=>$topic->slug]) }}">
-        Maak een nieuwe vraag
-      </a>
+      @auth
+        <a class="btn btn-primary btn-organisation" href="{{ route('QuestionCreate', ['topic'=>$topic->slug]) }}">
+          Maak een nieuwe vraag
+        </a>
+      @endauth
       @foreach($questions as $question)
         <a href="{{ route('QuestionShow', ['topic' => $topic->slug, 'question' => $question->slug]) }}"
            class="list-group-item list-group-item-action">

@@ -4,9 +4,11 @@
   <div class="row">
     <div class="col-12 page-header">
       <h1>Forum</h1>
+      @auth
       <a class="btn btn-primary btn-organisation" href="{{ route('TopicCreate') }}">
         Maak een nieuwe Topic
       </a>
+      @endauth
     </div>
     <div class="col-12">
       <div class="list-group">

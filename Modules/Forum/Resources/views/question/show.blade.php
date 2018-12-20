@@ -62,18 +62,21 @@
         </div>
       </div>
     @endforeach
-    <div class="offset-1 col-11 answer-card">
-      <form action="{{ route('AnswerSave', ['topic' => $question->topic->slug, 'question' => $question->slug]) }}" method="post">
-        @csrf
-        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-        <input type="hidden" name="question_id" value="{{ $question->id}}">
-        <div class="input-group form-group">
-          <textarea name="content" id="content" cols="30" rows="10" class="textarea"></textarea>
-        </div>
-        <div class="input-group form-group">
-          <input type="submit" id="submit" name="submit" class="btn btn-primary btn-organisation">
-        </div>
-      </form>
-    </div>
+    @auth
+      <div class="offset-1 col-11 answer-card">
+        <form action="{{ route('AnswerSave', ['topic' => $question->topic->slug, 'question' => $question->slug]) }}"
+              method="post">
+          @csrf
+          <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+          <input type="hidden" name="question_id" value="{{ $question->id}}">
+          <div class="input-group form-group">
+            <textarea name="content" id="content" cols="30" rows="10" class="textarea"></textarea>
+          </div>
+          <div class="input-group form-group">
+            <input type="submit" id="submit" name="submit" class="btn btn-primary btn-organisation">
+          </div>
+        </form>
+      </div>
+    @endauth
   </div>
 @endsection

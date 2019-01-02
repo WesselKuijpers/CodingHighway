@@ -19,3 +19,4 @@ require('./components/RoleCheckBox');
 require('./components/StartExamQuestion');
 require('./components/StartExam');
 require('./colorCalculator');
+require('chart.js');

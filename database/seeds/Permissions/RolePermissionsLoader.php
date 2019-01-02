@@ -30,6 +30,7 @@ class RolePermissionsLoader
     $this->ModulePermissions        = PermissionsLoader::ModulePermissions();
     $this->TeacherPermissions       = PermissionsLoader::TeacherPermissions();
     $this->BlipdPermissions         = PermissionsLoader::BlipdPermissions();
+    $this->GroupPermissions         = PermissionsLoader::GroupPermissions();
   }
 
   public function SystemAdmin()
@@ -58,6 +59,7 @@ class RolePermissionsLoader
     $teacher = Role::where('slug', 'teacher')->first();
 
     $this->ListAttaches($teacher, $this->TeacherPermissions);
+    $this->ListAttaches($teacher, $this->GroupPermissions);
   }
 
   public function User()

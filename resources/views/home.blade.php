@@ -113,7 +113,7 @@
               </div>
 
               <div class="col-md-7 col-sm-12">
-
+                <canvas id="HomeChart"></canvas>
                 @foreach($courses as $course)
                   @if(App\UserProgress::where('user_id', Auth::id())->where('course_id', $course->id)->count() != 0)
                     <p class="font-weight-bold mt-3">Voortgang van de {{ $course->name }} cursus</p>
@@ -200,4 +200,7 @@
         </div>
       </div>
     </div>
+@endsection
+@section('scripts')
+    
 @endsection

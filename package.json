@@ -26,6 +26,7 @@
     "shuffle-array": "^1.0.1"
   },
   "dependencies": {
+    "chart.js": "^2.7.3",
     "laravel-mix-merge-manifest": "^0.1.1"
   }
 }

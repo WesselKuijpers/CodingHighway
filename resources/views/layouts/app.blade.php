@@ -78,6 +78,7 @@
 </div>
 
 <!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="https://raw.githubusercontent.com/jugglinmike/srcdoc-polyfill/master/srcdoc-polyfill.min.js"></script>

@@ -17,4 +17,6 @@ Route::group(['middleware' => 'web', 'prefix' => 'organisation', 'namespace' => 
   Route::post('/license/generate', 'OrganisationController@generateLicenses')->name('licenses.generate');
 
   Route::post('/activate', 'OrganisationController@activate')->name('organisation.activate');
+
+  Route::post('/group/create', 'GroupController@store')->name('group.store');
 });

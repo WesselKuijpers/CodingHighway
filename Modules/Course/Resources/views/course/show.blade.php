@@ -15,9 +15,13 @@
 
         @else
 
+        @if(Auth::check() && Auth::user()->hasPermission('group.create'))
+            <div class="col-8">
+        @else
             <div class="col-12 ml-2">
+        @endif
                 <div class="row">
-                    <div class="col-12 ml-2">
+                    <div class="col-12">
                         <h1>{{$course->name}}</h1>
                     </div>
                 </div>
@@ -35,10 +39,8 @@
 
                 @else
                     <div class="row">
-                        <div class="ml-3  mb-2">
-                            <a href="{{ route('startExam.show', ['course_id' => $course->id, 'id' => $course->startExam->id]) }}"
-                               class="btn btn-primary btn-organisation">Bekijk de starttoets</a>
-                        </div>
+                        <a href="{{ route('startExam.show', ['course_id' => $course->id, 'id' => $course->startExam->id]) }}"
+                        class="btn btn-primary btn-organisation">Bekijk de starttoets</a>
                     </div>
                     <div class="offset-1">
                         <form method="POST"
@@ -188,4 +190,58 @@
                         @endif
                     </div>@endif
             </div>
+            @permission('group.create')
+                <div class="col-4">
+                    @if(Auth::user()->organisation()->groups->count() != 0)
+                        @if(Auth::user()->organisation()->groups->where('course_id', $course->id)->count() != 0)
+                            <h3>Bestaande groepen:</h3>
+                            <hr>
+                            @foreach (Auth::user()->organisation()->groups->where('course_id', $course->id) as $group)
+                                <strong>Docent: </strong>{{$group->teacher->getFullname()}}
+                                <br>
+                                <strong>Studenten: </strong>
+                                <ul>
+                                    @foreach($group->students as $student)
+                                        <li>{{$student->getFullname()}} @if($student->results->where('course_id', $course->id)->count() != 0) || {{$student->results->where('course_id', $course->id)->first()->level->name}} @endif</li>
+                                    @endforeach
+                                </ul>
+                                <hr>
+                            @endforeach
+                        @endif
+                    @endif
+                    <h3>Studenten zonder groep:</h3>
+                    <form method="POST" action="{{route('group.store')}}">
+                        @csrf
+                        <input type="hidden" name="organisation" value="{{Auth::user()->organisation()->id}}">
+                        <input type="hidden" name="course" value="{{$course->id}}">
+                        <ul>
+                            @foreach(Auth::user()->organisation()->users as $student)
+                                @if($student->groups->where('course_id', $course->id)->count() == 0 && $student->id != Auth::id() && !$student->hasRole('teacher'))
+                                    <li>
+                                        <input type="checkbox" name="users[]" id="check{{$student->id}}" value="{{$student->id}}">
+                                        <label for="check{{$student->id}}">
+                                            {{$student->getFullname()}} 
+                                            @if($student->results->where('course_id', $course->id)->count() != 0)
+                                                || {{$student->results->where('course_id', $course->id)->first()->level->name}} 
+                                            @endif
+                                        </label>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+                        <strong>Docent:</strong>
+                        <select name="teacher">
+                            @foreach (Auth::user()->organisation()->users as $user)
+                                @if($user->hasRole('teacher'))
+                                    <option value="{{$user->id}}">{{$user->getFullname()}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                        <br>
+                        <br>
+                        <input type="submit" value="Opslaan" class="btn btn-primary btn-organisation">
+                    </form>
+                </div>
+            @endpermission
+        </div>
 @endsection

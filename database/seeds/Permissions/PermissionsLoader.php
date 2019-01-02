@@ -319,4 +319,16 @@ class PermissionsLoader
       ]
     ];
   }
+
+  public static function GroupPermissions()
+  {
+    return [
+      'GroupCreate' => [
+        'name' => 'GroupCreate',
+        'slug' => 'group.create',
+        'model' => '',
+        'description' => 'permission to create a group of students'
+      ],
+    ];
+  }
 }

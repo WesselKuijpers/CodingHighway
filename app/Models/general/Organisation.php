@@ -8,6 +8,7 @@ use App\Models\invoice\Invoice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Modules\Course\Entities\Course;
+use Modules\Organisation\Entities\Group;
 
 class Organisation extends Model
 {
@@ -41,5 +42,10 @@ class Organisation extends Model
   public function courses()
   {
     return $this->hasMany(Course::class);
+  }
+
+  public function groups()
+  {
+      return $this->hasMany(Group::class);
   }
 }

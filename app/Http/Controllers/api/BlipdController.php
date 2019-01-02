@@ -63,36 +63,46 @@ class BlipdController extends Controller
         $failedCards = 0;
         $unfinishedCards = 0;
 
-        foreach($user->plannings as $planning):
-            foreach($planning->lessons as $lesson):
-                if($lesson->state_id == $d->id):
-                    $doneCards++;
-                    $total++;
-                endif;
-                if($lesson->state_id == $f->id):
-                    $failedCards++;
-                    $total++;
-                endif;
-                if($lesson->state_id == $ip->id):
-                    $unfinishedCards++;
-                    $total++;
-                endif;
+        $plannings;
+
+        if(!empty($request->planning_id)):
+            $plannings = $user->plannings->where('id', $request->planning_id);
+        else:
+            $plannings = $user->plannings;
+        endif;
+
+        if(!empty($plannings)):
+            foreach($plannings as $planning):
+                foreach($planning->lessons as $lesson):
+                    if($lesson->state_id == $d->id):
+                        $doneCards++;
+                        $total++;
+                    endif;
+                    if($lesson->state_id == $f->id):
+                        $failedCards++;
+                        $total++;
+                    endif;
+                    if($lesson->state_id == $ip->id):
+                        $unfinishedCards++;
+                        $total++;
+                    endif;
+                endforeach;
+                foreach($planning->exercises as $exercise):
+                    if($exercise->state_id == $d->id):
+                        $doneCards++;
+                        $total++;
+                    endif;
+                    if($exercise->state_id == $f->id):
+                        $failedCards++;
+                        $total++;
+                    endif;
+                    if($exercise->state_id == $ip->id):
+                        $unfinishedCards++;
+                        $total++;
+                    endif;
+                endforeach;
             endforeach;
-            foreach($planning->exercises as $exercise):
-                if($exercise->state_id == $d->id):
-                    $doneCards++;
-                    $total++;
-                endif;
-                if($exercise->state_id == $f->id):
-                    $failedCards++;
-                    $total++;
-                endif;
-                if($exercise->state_id == $ip->id):
-                    $unfinishedCards++;
-                    $total++;
-                endif;
-            endforeach;
-        endforeach;
+        endif;
 
         return ["total" => $total, "done" => $doneCards, "failed" => $failedCards, "in_progress" => $unfinishedCards];
     }

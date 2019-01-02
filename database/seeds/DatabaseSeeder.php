@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SolutionSeeder::class);
 
         $this->call(ForumDatabaseSeeder::class);
+        $this->call(StateTableSeeder::class);
         Schema::enableForeignKeyConstraints();
         break;
       case 'demo':

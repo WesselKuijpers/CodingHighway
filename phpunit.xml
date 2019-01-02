@@ -28,6 +28,10 @@
         <testsuite name="Management">
             <directory suffix="Test.php">./Modules/Management/Tests</directory>
         </testsuite>
+
+        <testsuite name="Blipd">
+            <directory suffix="Test.php">./Modules/Blipd/Tests</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">

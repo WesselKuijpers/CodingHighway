@@ -293,6 +293,14 @@ thead tr th {
   max-height: 350px;
 }
 
+canvas#pieChart {
+  height: auto !important;
+  width: 100% !important;
+  font-size: 25px;
+  max-width: 500px;
+  margin: 0px auto;
+}
+
 // Bootstrap overwrites
 
 .btn-outline-dark:hover {

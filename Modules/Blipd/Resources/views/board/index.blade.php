@@ -15,6 +15,7 @@
     @enddesktop
 
 @endsection
+@if(!empty($planning))
 @section('scripts')
     @desktop
     @foreach($planning->lessons as $lesson)
@@ -91,3 +92,4 @@
     </script>
     @endhandheld
 @endsection
+@endif

@@ -9,9 +9,9 @@
     <table class="table table-bordered text-center">
         <thead>
         <tr>
-            <th scope="col"></th>
+            <th scope="col-3"></th>
             @foreach($states as $state)
-                <th scope="col" class="blipd-table-head">{{$state->name}}</th>
+                <th scope="col-3" class="blipd-table-head">{{$state->name}}</th>
             @endforeach
         </tr>
         </thead>

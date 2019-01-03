@@ -5,14 +5,7 @@
 
 {{-- Placeholder for the page-specific content --}}
 @section('content')
-    <div class="row">
-        <div class="col-12 text-center mt-1">
-            <h1>Overzicht van de planningen van studenten</h1>
-        </div>
-    </div>
-    <br>
-
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
 
             @if(!empty($students))
@@ -22,7 +15,7 @@
                     <a href="javascript: void(0)" class="no-link"
                        onclick="focusStudent({{$student->id}}, '{{$student->getFullname()}}')">
                         <div class="card p-3 mb-2 list-card">
-                            {{$student->getFullname()}}
+                            <p>{{$student->getFullname()}}</p>
                         </div>
                     </a>
                     {{-- @endunless --}}
@@ -31,7 +24,7 @@
         </div>
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
             <div class="card" id="planning-card">
-                <div class="card-header text-center d-none" id="planning-card-header">
+                <div class="card-header organisation-card-header text-center d-none" id="planning-card-header">
 
                 </div>
                 <div class="card-body text-center" id="planning-card-body">
@@ -70,7 +63,7 @@
                 pieChart.innerHTML = "";
 
                 if (data.length != 0) {
-                    cardBody.innerHTML = "<h3>Planningen</h3>";
+                    cardBody.innerHTML = "<h3>Planning</h3>";
                     let select = document.createElement("select");
                     select.id = "planning-select";
                     select.classList = "col-11";

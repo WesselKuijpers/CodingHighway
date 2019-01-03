@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header text-center">Het dashboard van
+          <div class="card-header organisation-card-header text-center">Het dashboard van
             {{ Auth::user()->getFullname()}}
           </div>
 

@@ -15,6 +15,24 @@
                 {{ session('status') }}
               </div>
             @endif
+            @if(Auth::user()->plannings->count() != 0)
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <h1 class="text-center">Huidige sprint:</h1>
+                  <canvas id="pie-chart"></canvas>
+                  <p class="text-center"><strong>Loopt af op: </strong>{{\Carbon\Carbon::parse(Auth::user()->plannings()->latest('id')->first()->finished, 'UTC')->format('d F Y')}}</p>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <h1 class="text-center">laatste 
+                    <select name="limit" onchange="calculateBar({{Auth::id()}}, this.value)">
+                      @for($i = 2; $i < Auth::user()->plannings->count(); $i++)
+                        <option value={{$i}}>{{$i}}</option>
+                      @endfor
+                    </select> sprints:</h1>
+                  <canvas id="pie-chart-2"></canvas>
+                </div>
+              </div>
+            @endif
             <div class="row">
               <div class="col-md-5 col-sm-12">
                 <p class="font-weight-bold mt-3">Algemene informatie</p>
@@ -113,7 +131,6 @@
               </div>
 
               <div class="col-md-7 col-sm-12">
-                <canvas id="HomeChart"></canvas>
                 @foreach($courses as $course)
                   @if(App\UserProgress::where('user_id', Auth::id())->where('course_id', $course->id)->count() != 0)
                     <p class="font-weight-bold mt-3">Voortgang van de {{ $course->name }} cursus</p>
@@ -202,5 +219,94 @@
     </div>
 @endsection
 @section('scripts')
-    
+  <script>
+    function calculatePie(id, planning_id) {
+      $.post("{{route('ApiBlipdGetPie')}}?api_token={{Auth::user()->api_token}}", {user_id : id, planning_id : planning_id}, function(data){
+        console.log(data);
+        if(data.total != 0){
+          let chart = document.getElementById('pie-chart');
+          var ctxP = document.getElementById("pie-chart").getContext('2d');
+          var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+              labels: ["Gehaald", "Gefaald", "Bezig", "Backlog"],
+              datasets: [{
+                data: [data.done, data.failed, data.in_progress, data.backlog],
+                backgroundColor: ["#00FF21", "#FF0000", "#FFD800", "#0094FF"],
+                hoverBackgroundColor: ["#00CC17", "#CC0000", "#CCAA00", "#007ED8"]
+              }]
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'bottom',
+              },
+              layout: {
+                padding: {
+                  left: 30,
+                  right: 30,
+                  top: 10,
+                  bottom: 10,
+                }
+              }
+            },
+          });
+        }
+      });
+    }
+
+    function calculateBar(id, limit) {
+      $.post("{{route('ApiBlipdGetBar')}}?api_token={{Auth::user()->api_token}}", {user_id : id, limit : limit}, function(data){
+        console.log(data);
+        if(data.total != 0){
+          let chart = document.getElementById('pie-chart-2');
+          var ctxP = document.getElementById("pie-chart-2").getContext('2d');
+          let failed = [];
+          let succeeded = [];
+          let dates = [];
+
+          for (i = 0; i < data.length; i++){
+            x = i + 1;
+            dates.push(x);
+          };
+
+          for (i = 0; i < data.length; i++){
+            failed.push(data[i].failed);
+          };
+
+          for (i = 0; i < data.length; i++){
+            succeeded.push(data[i].succeeded);
+          };
+
+          var myPieChart = new Chart(ctxP, {
+            type: 'line',
+            data: {
+              labels: dates, 
+              datasets: [{
+                data: failed,
+                borderColor: ["#FF0000"],
+                label: "gefaald"
+              },{
+                data: succeeded,
+                borderColor: ["#00FF21"],
+                label: "gehaald",
+              }]
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'bottom',
+              }
+            },
+          });
+        }
+      });
+    }
+  </script>
+    @if(Auth::user()->plannings->count() != 0)
+      <script>
+        window.onload = calculatePie({{Auth::id()}}, {{Auth::user()->plannings()->latest('id')->first()->id}});
+        window.onload = calculateBar({{Auth::id()}}, 2)
+      </script>
+    @endif
 @endsection

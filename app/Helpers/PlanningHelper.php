@@ -12,7 +12,7 @@ class PlanningHelper
     {
         $validated = $request->validated();
 
-        if(empty($validated['lessons']) && empty($validated['lessons'])):
+        if(empty($validated['exercises']) && empty($validated['lessons'])):
             return redirect()->back()->with('error', 'Je moet tenminste één les of opdracht selecteren.');
         endif;
 

@@ -10595,7 +10595,7 @@ body {
 */
 
 .page-header {
-  font-family: 'Galdeano', sans-serif;
+  font-family: 'Raleway', sans-serif;
   margin-bottom: 30px;
   font-size: 35px;
   padding-top: 30px;
@@ -10678,6 +10678,10 @@ a:hover.no-link {
   margin-left: 50px;
 }
 
+.blipd-table-head {
+  padding: 30px !important;
+}
+
 .blipd-points-badge {
   position: absolute;
   right: 10px;
@@ -10688,34 +10692,9 @@ a:hover.no-link {
   font-size: 14px;
 }
 
-.blipd-table-head {
-  -webkit-box-shadow: 0px 3px 7px 3px rgba(0, 0, 0, 0.125);
-          box-shadow: 0px 3px 7px 3px rgba(0, 0, 0, 0.125);
-  font-size: 25px;
-}
-
-.blipd-table-left {
-  padding-top: 75px !important;
-  font-size: 25px;
-  -webkit-box-shadow: 5px 0px 8px 0px rgba(0, 0, 0, 0.25);
-          box-shadow: 5px 0px 8px 0px rgba(0, 0, 0, 0.25);
-}
-
 table {
   margin-bottom: 0 !important;
   border: none;
-}
-
-thead,
-th {
-  background: black;
-  color: white;
-  border: none;
-}
-
-thead tr th {
-  padding: 50px !important;
-  color: white;
 }
 
 .img-h-250 {
@@ -10775,6 +10754,14 @@ thead tr th {
 .custom-img {
   width: auto;
   max-height: 350px;
+}
+
+canvas#pieChart {
+  height: auto !important;
+  width: 100% !important;
+  font-size: 25px;
+  max-width: 500px;
+  margin: 0px auto;
 }
 
 .btn-outline-dark:hover {

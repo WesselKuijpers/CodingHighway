@@ -15,6 +15,7 @@
     @enddesktop
 
 @endsection
+@if(!empty($planning))
 @section('scripts')
     @if(!empty($planning))
         @desktop
@@ -93,3 +94,4 @@
         @endhandheld
     @endif
 @endsection
+@endif

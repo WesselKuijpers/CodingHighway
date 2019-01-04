@@ -10776,3 +10776,7 @@ canvas#pieChart {
   --border-threshold: 0.8;
 }
 
+.home-bar-chart {
+  height: 415px !important;
+}
+

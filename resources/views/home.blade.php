@@ -17,20 +17,22 @@
             @endif
             @if(Auth::user()->plannings->count() != 0)
               <div class="row">
-                <div class="col-sm-12 col-md-6">
-                  <h1 class="text-center">Huidige sprint:</h1>
+                <div class="col-sm-12 col-md-5">
+                  <h1 class="text-center">Huidige planning:</h1>
                   <canvas id="pie-chart"></canvas>
                   <p class="text-center"><strong>Loopt af op: </strong>{{\Carbon\Carbon::parse(Auth::user()->plannings()->latest('id')->first()->finished, 'UTC')->format('d F Y')}}</p>
                 </div>
-                <div class="col-sm-12 col-md-6">
+                @if(Auth::user()->plannings->where('finished', '>', \Carbon\Carbon::now())->count() != 0)
+                <div class="col-sm-12 col-md-7">
                   <h1 class="text-center">laatste 
                     <select name="limit" onchange="calculateBar({{Auth::id()}}, this.value)">
                       @for($i = 2; $i < Auth::user()->plannings->count(); $i++)
                         <option value={{$i}}>{{$i}}</option>
                       @endfor
-                    </select> sprints:</h1>
-                  <canvas id="pie-chart-2"></canvas>
+                    </select> planningen:</h1>
+                  <canvas id="pie-chart-2" class="home-bar-chart"></canvas>
                 </div>
+                @endif
               </div>
             @endif
             <div class="row">
@@ -158,15 +160,15 @@
 
                               <a
                                 href="{{ route('exercise.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->first()->exercise->next->id]) }}"
-                                class="no-link btn btn-outline-dark">Ga verder</a>
+                                class="no-link btn btn-primary btn-organisation">Ga verder</a>
                             @elseif (count(Auth::user()->progress($course->id)->where('exercise_id', '!=', null)->latest('id')->get()) != 0)
                               <p>Je hebt deze opdrachten al afgerond</p>
                               <a href="{{ route('course.show', ['id' => $course->id]) }}"
-                                 class="no-link btn btn-outline-dark">Bekijk</a>
+                                 class="no-link btn btn-primary btn-organisation">Bekijk</a>
                             @else
                               <p>Je bent nog niet begonnen aan deze opdrachten</p>
                               <a href="{{ route('course.show', ['id' => $course->id]) }}"
-                                 class="no-link btn btn-outline-dark">Start</a>
+                                 class="no-link btn btn-primary btn-organisation">Start</a>
                             @endif
                           </div>
                         </div>
@@ -194,29 +196,30 @@
 
                               <a
                                 href="{{ route('lesson.show', ['course_id' => $course->id, 'id' => Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->first()->lesson->next->id]) }}"
-                                class="no-link btn btn-outline-dark">Ga verder</a>
+                                class="no-link btn btn-primary btn-organisation">Ga verder</a>
                             @elseif (count(Auth::user()->progress($course->id)->where('lesson_id', '!=', null)->latest('id')->get()) != 0)
                               <p>Je hebt deze lessen al afgerond</p>
                               <a href="{{ route('course.show', ['id' => $course->id]) }}"
-                                 class="no-link btn btn-outline-dark">Bekijk</a>
+                                 class="no-link btn btn-primary btn-organisation">Bekijk</a>
                             @else
                               <p>Je bent nog niet begonnen aan deze lessen</p>
                               <a href="{{ route('course.show', ['id' => $course->id]) }}"
-                                 class="no-link btn btn-outline-dark">Start</a>
+                                 class="no-link btn btn-primary btn-organisation">Start</a>
                             @endif
                           </div>
                         </div>
 
                       </div>
+                    </div>
                       @endif
                       @endforeach
-                    </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 @endsection
 @section('scripts')
   <script>
@@ -294,6 +297,7 @@
             },
             options: {
               responsive: true,
+              maintainAspectRatio: false, 
               legend: {
                 position: 'bottom',
               }

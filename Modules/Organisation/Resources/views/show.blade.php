@@ -35,28 +35,30 @@
                             <p><strong>Email: </strong>{{ $user->email }}</p>
                             <h4>Voortgang:</h4>
                             @foreach($courses as $course)
-                              <strong>{{ $course->name }}</strong>
-                              <p>Lessen:
-                              <div
-                                class="progressbar"
-                                data-user_id="{{ $user->id }}"
-                                data-course_id="{{ $course->id }}"
-                                data-lessons="1"
-                                data-token="{{ Auth::user()->api_token }}"
-                              >
-                              </div>
-                              </p>
+                              @if($course->organisation_id == $organisation->id || $course->organisation_id == null)
+                                <strong>{{ $course->name }}</strong>
+                                <p>Lessen:
+                                <div
+                                  class="progressbar"
+                                  data-user_id="{{ $user->id }}"
+                                  data-course_id="{{ $course->id }}"
+                                  data-lessons="1"
+                                  data-token="{{ Auth::user()->api_token }}"
+                                >
+                                </div>
+                                </p>
 
-                              <p>Opdrachten:
-                              <div
-                                class="progressbar"
-                                data-user_id="{{ $user->id }}"
-                                data-course_id="{{ $course->id }}"
-                                data-exercises="1"
-                                data-token="{{ Auth::user()->api_token }}"
-                              >
-                              </div>
-                              </p>
+                                <p>Opdrachten:
+                                <div
+                                  class="progressbar"
+                                  data-user_id="{{ $user->id }}"
+                                  data-course_id="{{ $course->id }}"
+                                  data-exercises="1"
+                                  data-token="{{ Auth::user()->api_token }}"
+                                >
+                                </div>
+                                </p>
+                              @endif
                             @endforeach
                           </div>
                         </div>

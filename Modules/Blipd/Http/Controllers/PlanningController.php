@@ -26,12 +26,26 @@ class PlanningController extends Controller
     public function create()
     {
         $courses = Course::where('organisation_id', Auth::user()->organisation_id)->orWhere('organisation_id', null)->get();
-        $previousPlanning = Auth::user()->plannings()->latest('created_at')->first();
+        $previousPlanning = Auth::user()->plannings()->latest('id')->first();
         $f = State::where('name', 'F')->first();
         $d = State::where('name', 'D')->first();
+        $ip = State::where('name', 'IP')->first();
+        $bl = State::where('name', 'BL')->first();
         $failed = [];
         $oldLessonCards = [];
         $oldExerciseCards = [];
+
+        foreach ($previousPlanning->exercises as $exercise):
+            if ($exercise->state_id == $ip->id || $exercise->state_id == $bl->id):
+                $exercise->state_id = $f->id;
+            endif;
+        endforeach;
+
+        foreach ($previousPlanning->lessons as $lesson):
+            if ($lesson->state_id == $ip->id || $lesson->state_id == $bl->id):
+                $lesson->state_id = $f->id;
+            endif;
+        endforeach;
 
         foreach(Auth::user()->plannings as $planning):
             foreach($planning->lessons as $lesson):

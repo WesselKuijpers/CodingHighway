@@ -62,6 +62,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(OrganisationsTableSeeder::class);
 
+        $this->call(UserLicensesSeeder::class);
         $this->call(ForumDatabaseSeeder::class);
         Schema::enableForeignKeyConstraints();
         break;

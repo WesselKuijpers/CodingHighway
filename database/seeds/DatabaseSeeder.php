@@ -61,6 +61,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ExerciseMediaTableSeeder::class);
 
         $this->call(OrganisationsTableSeeder::class);
+        $this->call(StateTableSeeder::class);
 
         $this->call(UserLicensesSeeder::class);
         $this->call(ForumDatabaseSeeder::class);

@@ -1,11 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel nav-organisation">
   <div class="container">
 
-    <a href="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ Auth::user()->organisation()->link }} @else / @endif">
-      <img src="@if(Auth::user() && !empty(Auth::user()->organisation()->media)) {{ Auth::user()->organisation()->media->content }} @endif" class="navbar-brand nav-logo pl-3">
+    <a
+      href="@if(Auth::user() && !empty(Auth::user()->organisation())) {{ Auth::user()->organisation()->link }} @else / @endif">
+      <img
+        src="@if(Auth::user() && !empty(Auth::user()->organisation()->media)) {{ Auth::user()->organisation()->media->content }} @endif"
+        class="navbar-brand nav-logo pl-3">
     </a>
 
-    <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" class="navbar-toggler btn-organisation">
+    <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation"
+            class="navbar-toggler btn-organisation">
       <i class="fa fa-bars"></i>
     </button>
 
@@ -33,7 +38,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('UserEdit') }}" >
+              <a class="dropdown-item" href="{{ route('UserEdit') }}">
                 Wijzig mijn gegevens
               </a>
               <a class="dropdown-item" href="{{ route('logout') }}"
@@ -61,7 +66,8 @@
           </li>
           @if(Auth::user()->hasRole('admin') && Auth::user()->organisation() != null)
             <li class="nav-item">
-              <a href="{{ route('organisation.show', ['id' => Auth::user()->organisation()->id]) }}" class="nav-link organisation-link">{{ Auth::user()->organisation()->name }}</a>
+              <a href="{{ route('organisation.show', ['id' => Auth::user()->organisation()->id]) }}"
+                 class="nav-link organisation-link">{{ Auth::user()->organisation()->name }}</a>
             </li>
           @elseif(\App\Models\general\Organisation::where('requester', Auth::id())->count() != 1)
             <li>
@@ -74,10 +80,10 @@
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 Management <span class="caret"></span>
               </a>
-  
+
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 @if(Auth::user()->hasPermission('role.show'))
-                  <a class="dropdown-item" href="{{ route('role') }}" >
+                  <a class="dropdown-item" href="{{ route('role') }}">
                     Rollen
                   </a>
                 @endif
@@ -104,29 +110,29 @@
               </div>
             </li>
           @endif
-          @permission('teacher.check' || 'blipd.planning.review')
+          @if(Auth::user()->canTeacherCheck() || Auth::user()->canBlipdPlanningReview)
             @if(Auth::user()->organisation() != null)
               <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle organisation-link" href="#" role="button"
-                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    Docent <span class="caret"></span>
-                  </a>
-      
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    @if(Auth::user()->hasPermission('teacher.check'))
-                      <a class="dropdown-item" href="{{ route('teacherCheckIndex') }}" >
-                        Nakijken
-                      </a>
-                    @endif
-                    @if(Auth::user()->hasPermission('blipd.planning.review'))
-                      <a class="dropdown-item" href="{{ route('blipd.teacher') }}">
-                        Planningen
-                      </a>
-                    @endif
-                  </div>
-                </li>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle organisation-link" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  Docent <span class="caret"></span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  @if(Auth::user()->hasPermission('teacher.check'))
+                    <a class="dropdown-item" href="{{ route('teacherCheckIndex') }}">
+                      Nakijken
+                    </a>
+                  @endif
+                  @if(Auth::user()->hasPermission('blipd.planning.review'))
+                    <a class="dropdown-item" href="{{ route('blipd.teacher') }}">
+                      Planningen
+                    </a>
+                  @endif
+                </div>
+              </li>
             @endif
-          @endpermission
+          @endif
         @endguest
       </ul>
     </div>

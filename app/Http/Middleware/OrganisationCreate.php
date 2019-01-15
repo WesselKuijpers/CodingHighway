@@ -20,6 +20,6 @@ class OrganisationCreate
             return $next($request);
         endif;
 
-        return redirect()->route('home')->with('errors', 'Je bent al een lid van een organisatie, dus kan je er geen aanvragen');
+        return redirect()->route('home')->with('error', 'Je bent al een lid van een organisatie, dus kan je er geen aanvragen');
     }
 }

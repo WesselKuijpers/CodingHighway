@@ -3,7 +3,7 @@
 use Modules\Course\Http\Requests\SolutionRequest;
 use Modules\Course\Entities\Solution;
 use Illuminate\Support\Facades\Auth;
-use App\Models\general\SolutionMedia;
+use Modules\Course\Entities\SolutionMedia;
 use App\Models\general\Media;
 use Illuminate\Support\Facades\Storage;
 

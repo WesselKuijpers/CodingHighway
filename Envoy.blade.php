@@ -1,18 +1,16 @@
-@servers(['web' => 'deployer@alpha.m-dv.nl'])
+@servers(['web' => 'deploy@jsflix.nl'])
 
 @setup
 $git['url']     = 'git@gitlab.com:codinghighway/codinghighway.git';
 $git['branch']  = $branch;
 
 if($branch == "master"):
-$base           = '/var/www/production/codinghighway';
+$base           = '/var/www/codinghighway';
 elseif($branch == "staging"):
-$base           = '/var/www/staging/codinghighway';
-elseif($branch == "dev"):
-$base           = '/var/www/dev/codinghighway';
+$base           = '/var/www/codinghighway_staging';
 endif;
 
-$shared         = ['vendor', 'node_modules', '.env', '.env.demo'];
+$shared         = ['vendor', 'node_modules', 'storage', '.env'];
 $current        = \Carbon\Carbon::now()->format('YmdHis');
 @endsetup
 
@@ -24,7 +22,6 @@ make:link
 install
 set:live
 set:fin
-createdb
 @endstory
 
 @story('deploy')
@@ -86,11 +83,6 @@ cd {{ $base.'/releases/'.$current }}
   php artisan storage:link
   php artisan organisation:compile
   php artisan migrate
-@endtask
-
-@task('createdb')
-  cd {{ $base.'/current' }}
-  php artisan db:create
 @endtask
 
 @task('set:up')

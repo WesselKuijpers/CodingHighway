@@ -79,7 +79,7 @@ cd {{ $base.'/releases/'.$current }}
 
 @task('set:fin')
   cd {{ $base.'/current' }}
-  chmod 777 -R storage/
+  sudo -n chmod 777 -R storage/
   php artisan storage:link
   php artisan organisation:compile
   php artisan migrate

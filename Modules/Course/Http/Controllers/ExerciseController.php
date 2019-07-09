@@ -198,7 +198,17 @@ class ExerciseController extends Controller
    * Remove the specified resource from storage.
    * @return Response
    */
-  public function destroy()
+  public function destroy($course_id, $id)
   {
+//    dd($course_id, $id);
+    $exercise = Exercise::find($id);
+//    dd($course_id, $id);
+    $prevExercise = Exercise::where('next_id', $exercise->id)->first();
+    $prevExercise->next_id = $exercise->next_id;
+    $prevExercise->save();
+
+    $exercise->delete();
+
+    return redirect()->route('course.show', ['id' => $course_id]);
   }
 }

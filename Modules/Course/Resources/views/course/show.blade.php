@@ -109,8 +109,8 @@
                   </div>
                   <div class="row col-12">
                     @foreach($lessons as $lesson)
-                      @if($startResult->count() == 1)
-                        @if($startResult->first()->level->degree <= $lesson->level->degree)
+{{--                      @if($startResult->count() == 1)--}}
+{{--                        @if($startResult->first()->level->degree <= $lesson->level->degree)--}}
                           <div class="card col-lg-2 col-md-3 col-sm-5 col-xs-12 list-card no-link text-center"
                                onclick="location.href='{{ route('lesson.show',
                                 ['course_id' => $course->id, 'id'=> $lesson->id]) }}'"
@@ -119,17 +119,17 @@
                               {{$lesson->title}}
                             </li>
                           </div>
-                        @endif
-                      @else
-                        <div class="card col-lg-2 col-md-3 col-sm-5 col-xs-12 list-card no-link text-center"
-                             onclick="location.href='{{ route('lesson.show',
-                             ['course_id' => $course->id, 'id'=> $lesson->id]) }}'"
-                             style="cursor: pointer;">
-                          <li class="card-body list-group">
-                            {{$lesson->title}}
-                          </li>
-                        </div>
-                      @endif
+{{--                        @endif--}}
+{{--                      @else--}}
+{{--                        <div class="card col-lg-2 col-md-3 col-sm-5 col-xs-12 list-card no-link text-center"--}}
+{{--                             onclick="location.href='{{ route('lesson.show',--}}
+{{--                             ['course_id' => $course->id, 'id'=> $lesson->id]) }}'"--}}
+{{--                             style="cursor: pointer;">--}}
+{{--                          <li class="card-body list-group">--}}
+{{--                            {{$lesson->title}}--}}
+{{--                          </li>--}}
+{{--                        </div>--}}
+{{--                      @endif--}}
                     @endforeach
                     @endif
                   </div>

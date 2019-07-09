@@ -7,6 +7,9 @@
 @section('content')
 
   @include('shared.form_title', ['title'=>$exercise->title])
+  @permission('exercise.edit') <a href="{{ route('exercise.edit', ['course_id' => $exercise->course->id, 'id' => $exercise->id]) }}" class="btn btn-info">Edit</a> @endpermission
+  @permission('exercise.delete')<form action="{{ route('exercise.destroy', ['course_id' => $exercise->course->id, 'id' => $exercise->id]) }}" method="post"> @csrf @method('delete') <input value="Delete" type="submit" class="btn btn-danger" onclick="confirm('Are you Sure?')" /> </form> @endpermission
+
   @if($exercise->level != null)
     <p><b>Moeilijkheid:</b> {{$exercise->level->name}}</p>
   @endif

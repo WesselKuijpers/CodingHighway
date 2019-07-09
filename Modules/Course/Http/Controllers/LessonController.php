@@ -195,9 +195,20 @@ class LessonController extends Controller
 
   /**
    * Remove the specified resource from storage.
+   * @param $id
    * @return Response
+   * @throws \Exception
    */
-  public function destroy()
+  public function destroy($course_id, $id)
   {
+    $lesson = Lesson::find($id);
+//    dd($course_id, $id);
+    $prevLesson = Lesson::where('next_id', $lesson->id)->first();
+    $prevLesson->next_id = $lesson->next_id;
+    $prevLesson->save();
+
+    $lesson->delete();
+
+    return redirect()->route('course.show', ['id' => $course_id]);
   }
 }

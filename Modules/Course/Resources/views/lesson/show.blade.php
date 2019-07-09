@@ -6,6 +6,8 @@
 {{-- Placeholder for the page-specific content --}}
 @section('content')
   <h1>{{$lesson->title}}</h1>
+  @permission('lesson.edit') <a href="{{ route('lesson.edit', ['course_id' => $lesson->course->id, 'id' => $lesson->id]) }}" class="btn btn-info">Edit</a> @endpermission
+  @permission('lesson.delete')<form action="{{ route('lesson.destroy', ['course_id' => $lesson->course->id, 'id' => $lesson->id]) }}" method="post"> @csrf @method('delete') <input value="Delete" type="submit" class="btn btn-danger" onclick="confirm('Are you Sure?')" /> </form> @endpermission
   @if($lesson->level != null)
     <p><b>Moeilijkheid:</b> {{$lesson->level->name}}</p>
   @endif
